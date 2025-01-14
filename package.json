@@ -12,6 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^15.1.4",
     "framer-motion": "^11.18.0",
     "lucide-react": "^0.471.1",
     "next": "15.1.4",
@@ -24,6 +25,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/webpack": "^5.28.5",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
     "postcss": "^8",
