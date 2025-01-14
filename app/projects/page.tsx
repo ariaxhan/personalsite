@@ -5,12 +5,12 @@ import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import blossom1 from '../assets/blossom1.png';
-import brinkIcon from '../assets/brinkicon.png';
-import freetimeTexture from '../assets/freetime.png';
-import hotAgentsTexture from '../assets/hotagents.png';
-import itineratorTexture from '../assets/itineratorimage.png';
-import melodyTexture from '../assets/moodishmelodies.png';
+import blossom1 from '../assets/optimized-blossom1.png';
+import brinkIcon from '../assets/optimized-brinkicon.png';
+import freetimeTexture from '../assets/optimized-freetime.png';
+import hotAgentsTexture from '../assets/optimized-hotagents.png';
+import itineratorTexture from '../assets/optimized-itineratorimage.png';
+import melodyTexture from '../assets/optimized-moodishmelodies.png';
 import Navbar from '../components/Navbar';
 
 interface Project {
