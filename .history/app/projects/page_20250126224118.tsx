@@ -12,7 +12,7 @@ import hotAgentsTexture from '../assets/optimized-hotagents.png';
 import itineratorTexture from '../assets/optimized-itineratorimage.png';
 import melodyTexture from '../assets/optimized-moodishmelodies.png';
 import Navbar from '../components/Navbar';
-import cccIcon from '../assets/optimized-cccicon.png';
+
 interface Project {
   id: string;
   title: string;
@@ -22,13 +22,6 @@ interface Project {
 }
 
 const PROJECTS = [
-  {
-    id: 'ccc',
-    title: 'Content Creator Connector',
-    description: 'A platform that connects content creators with brands and agencies.',
-    image: cccIcon,
-    link: 'https://devpost.com/software/content-creator-connector'
-  },
   {
     id: 'brinklabs',
     title: 'Brink - AI Mental Health App',

@@ -27,7 +27,7 @@ const PROJECTS = [
     title: 'Content Creator Connector',
     description: 'A platform that connects content creators with brands and agencies.',
     image: cccIcon,
-    link: 'https://devpost.com/software/content-creator-connector'
+    link: 'https://contentcreatorconnector.com/'
   },
   {
     id: 'brinklabs',
