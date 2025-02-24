@@ -52,8 +52,8 @@ const PROJECTS = [
   },
   {
     id: 'blossom',
-    title: 'Blossom - AI Skills & Therapy App',
-    description: 'An app that supports mental health growth by teaching new skills through an AI therapist.',
+    title: 'Blossom - Mental Health Skills App',
+    description: 'An app that supports mental health by teaching new skills through a curated catalog and an AI chatbot.',
     image: blossom1,
     link: 'https://github.com/ariaxhan/blossom'
   },
