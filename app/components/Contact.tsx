@@ -19,17 +19,21 @@ export default function Contact() {
         </p>
         <br/> <br/>
         <div className="flex justify-center gap-8">
-          <a href="mailto:aria@brinklabs.xyz" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-gray-600 transition-transform hover:scale-110">
+          <a href="mailto:ariaxhan@gmail.com" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-gray-600 transition-transform hover:scale-110 flex flex-col items-center">
             <FaEnvelope size={36} />
+            <span className="sr-only">Email</span>
           </a>
-          <a href="https://www.linkedin.com/in/ariahan/" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-gray-600 transition-transform hover:scale-110">
+          <a href="https://www.linkedin.com/in/ariahan/" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-gray-600 transition-transform hover:scale-110 flex flex-col items-center">
             <FaLinkedin size={36} />
+            <span className="sr-only">LinkedIn</span>
           </a>
-          <a href="https://twitter.com/aria__han" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-gray-600 transition-transform hover:scale-110">
+          <a href="https://twitter.com/aria__han" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-gray-600 transition-transform hover:scale-110 flex flex-col items-center">
             <FaTwitter size={36} />
+            <span className="sr-only">Twitter</span>
           </a>
-          <a href="https://instagram.com/ariaxhan" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-gray-600 transition-transform hover:scale-110">
+          <a href="https://instagram.com/ariaxhan" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-gray-600 transition-transform hover:scale-110 flex flex-col items-center">
             <FaInstagram size={36} />
+            <span className="sr-only">Instagram</span>
           </a>
         </div>
       </div>
