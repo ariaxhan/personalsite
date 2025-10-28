@@ -9,17 +9,17 @@ export default function Projects() {
       year: "2025",
       award: "Winner: Best Use of Semgrep",
       description: "Darwin evolves better tool-writing AI. Models compete to generate tools. Semgrep scans. Weak code dies. Strong code survives.",
-      link: "https://devpost.com/software/darwin",
-      tech: ["AI", "Machine Learning", "Code Evolution"]
+      link: "https://devpost.com/software/darwin-cmfysv",
+      tech: ["AWS Bedrock", "Semgrep", "AI Evolution", "Security"]
     },
     {
       title: "The Convergence",
       event: "Weavehacks-2 - Self Improving Agents w/ Google Cloud",
       year: "2025",
       award: "Winner: Reinforcement Learning Track",
-      description: "Where cutting-edge AI infrastructure meets autonomous learning - agents that improve through experience, collaboration, and evolution.",
+      description: "Where cutting-edge AI infrastructure meets autonomous learning - agents that improve through experience, collaboration, and evolution. Converted into an open-source package and integrated into HeyContext.",
       link: "https://devpost.com/software/the-convergence",
-      tech: ["AI Infrastructure", "Autonomous Learning", "Agent Systems"]
+      tech: ["BrowserBase + Stagehand", "Google ADK", "Tavily", "AG-UI", "Daytona", "Weights & Biases Weave", "Coreweave Reinforcement Learning"]
     },
     {
       title: "Content Creator Connector",
@@ -28,16 +28,16 @@ export default function Projects() {
       award: "Winner: Best Use of Agno",
       description: "Enter your company name, and our platform finds the best mid-size content creators, researches your brand, and sends personalized collaboration emails.",
       link: "https://devpost.com/software/content-creator-connector",
-      tech: ["Gemini", "Agno", "Weave", "AI Integration"]
+      tech: ["Gemini", "Agno", "Weave", "Wordware"]
     },
     {
       title: "TheraVoice",
       event: "Vertical Specific AI Agents Hackathon",
       year: "2024",
       award: "Winner: Best Use of AI/ML API",
-      description: "TheraVoice is an AI therapist that analyzes user input and gives real-time, vocal responses, offering personalized mental health support.",
+      description: "TheraVoice, our AI therapy agent built with aiXplain, takes in user input, processes it using advanced AI and NLP, and delivers a vocalized response through text-to-speech (TTS) technology.",
       link: "https://devpost.com/software/draft_name",
-      tech: ["AI", "Voice Technology", "Mental Health"]
+      tech: ["aiXplain", "AI/ML"]
     },
     {
       title: "HotAgents",
@@ -46,7 +46,7 @@ export default function Projects() {
       award: "Winner: Best Use of Wordware",
       description: "Effortlessly trigger agents using hotkeys and simplify your workflow by condensing high-impact LLM use cases into easily repeatable actions.",
       link: "https://github.com/ariaxhan/hotagents",
-      tech: ["AI Integration", "Keyboard Shortcuts", "Productivity"]
+      tech: ["Wordware", "AgentOps", "Electron"]
     },
     {
       title: "Freetime - AI Social Planner",
@@ -55,7 +55,7 @@ export default function Projects() {
       award: "Finalist",
       description: "AI-driven social planning tool that coordinates gatherings based on shared interests.",
       link: "https://github.com/ariaxhan/freetime",
-      tech: ["Machine Learning", "Python", "Social Graph"]
+      tech: ["Groq", "Supabase", "CrewAI", "JigsawStack"]
     }
   ];
 
@@ -90,8 +90,8 @@ export default function Projects() {
             <div className="poetry-glow bg-gradient-to-r from-dark-gray to-medium-gray p-4 sm:p-6 lg:p-8 rounded-lg border border-poetry-gold">
               <h4 className="text-poetry-gold text-xl sm:text-2xl mb-3 sm:mb-4">Brink</h4>
               <p className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
-                SwiftUI app with seamless Apple Watch integration. Performed advanced LLM analysis 
-                and provided structured guidance through intelligent conversation.
+                SwiftUI app with seamless Apple Watch integration. Performed advanced LLM analysis of biometric and linguistic data
+                and provided structured guidance through intelligent conversation and insights.
               </p>
               <div className="text-xs sm:text-sm text-gray-500">
                 <div>Platform: <span className="text-terminal-green">iOS, watchOS</span></div>
@@ -103,8 +103,8 @@ export default function Projects() {
             <div className="bg-gradient-to-r from-dark-gray to-medium-gray p-4 sm:p-6 lg:p-8 rounded-lg border border-code-blue">
               <h4 className="text-code-blue text-xl sm:text-2xl mb-3 sm:mb-4">Divertissement AI</h4>
               <p className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
-                Built heycontent - dynamic memory layer technology that connected notes, chats, 
-                Instagram, YouTube, and Gmail for enhanced contextual understanding.
+                Built HeyContent - dynamic memory layer technology that connected notes, chats,
+                Instagram, YouTube, and Gmail for enhanced contextual understanding for content creators.
               </p>
               <div className="text-xs sm:text-sm text-gray-500">
                 <div>Focus: <span className="text-terminal-green">Contextual AI, Memory Systems</span></div>
@@ -143,7 +143,7 @@ export default function Projects() {
                   </div>
                   
                   {/* Tech stack */}
-                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
+                  <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-3 sm:mb-4">
                     {achievement.tech.map((tech, techIndex) => (
                       <span 
                         key={techIndex}

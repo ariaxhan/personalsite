@@ -56,7 +56,7 @@ export default function About() {
                 </ul>
               </div>
               <div className="text-xs sm:text-sm text-gray-500">
-                <div>Status: <span className="text-terminal-green">In Development</span></div>
+                <div>Status: <span className="text-terminal-green">Actively being developed while open for Beta Testing, free tier available</span></div>
                 <div>Tech: <span className="text-code-blue">AI, Memory Systems, Multi-Platform Integration</span></div>
               </div>
               <div className="flex gap-2 sm:gap-4 justify-center mt-4 sm:mt-6">
