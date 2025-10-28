@@ -23,7 +23,7 @@ export default function About() {
             <div className="terminal-bg p-8 rounded-lg">
               <div className=" text-lg text-gray-300 leading-relaxed">
                 <p className="mb-4">
-                  I'm the CEO and co-founder of <span className="text-code-blue font-semibold">PersistOs</span>, 
+                  I'm the CEO and co-founder of <span className="text-code-blue font-semibold">PersistOS</span>, 
                   where we're exploring the intersection of AI and human cognition.
                 </p>
                 <p className="mb-4">

@@ -108,7 +108,7 @@ export default function Projects() {
               </p>
               <div className="text-sm text-gray-500">
                 <div>Focus: <span className="text-terminal-green">Contextual AI, Memory Systems</span></div>
-                <div>Outcome: <span className="text-code-blue">Technology integrated into Persistos</span></div>
+                <div>Outcome: <span className="text-code-blue">Technology integrated into PersistOS</span></div>
               </div>
             </div>
           </div>
