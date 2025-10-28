@@ -4,12 +4,23 @@ import Navbar from "./components/Navbar";
 
 // Dynamically import components
 const Hero = dynamic(() => import("./components/Hero"), {
-  loading: () => <div className="h-screen" />, // Placeholder while loading
+  loading: () => <div className="h-screen bg-dark-gray" />, // Placeholder while loading
 });
 
+const About = dynamic(() => import("./components/About"), {
+  loading: () => <div className="min-h-screen bg-dark-gray" />,
+});
+
+const Writing = dynamic(() => import("./components/Writing"), {
+  loading: () => <div className="min-h-screen bg-dark-gray" />,
+});
+
+const Projects = dynamic(() => import("./components/Projects"), {
+  loading: () => <div className="min-h-screen bg-dark-gray" />,
+});
 
 const Contact = dynamic(() => import("./components/Contact"), {
-  loading: () => <div className="min-h-screen" />,
+  loading: () => <div className="min-h-screen bg-dark-gray" />,
 });
 
 export default function Home() {
@@ -17,6 +28,9 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
+      <About />
+      <Writing />
+      <Projects />
       <Contact />
     </>
   );

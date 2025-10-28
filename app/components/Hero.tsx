@@ -1,29 +1,34 @@
 /* eslint-disable react/no-unescaped-entities */
-
 "use client";
-import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="h-screen flex flex-col justify-center items-center px-8 text-center relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-pink-200 via-white to-transparent"></div>
-      <h1 className="text-6xl lg:text-7xl font-extrabold text-gray-800 leading-tight animate-fade-in">
-        aria han
-      </h1>
-      <p className="mt-6 text-lg lg:text-xl text-gray-600 max-w-3xl animate-slide-in">
-        startup founder and software engineer.
-      </p>
-      <div className="mt-8 flex flex-col sm:flex-row gap-4 animate-fade-in">
-        <Link href="#contact">
-          <button className="px-8 py-3 bg-gray-800 text-white rounded-full shadow-lg hover:bg-gray-700 hover:scale-105 transition-transform">
-            let's collaborate
-          </button>
-        </Link>
-        <Link href="/projects">
-          <button className="px-8 py-3 border-2 border-gray-800 text-gray-800 rounded-full shadow-lg hover:bg-gray-100 hover:scale-105 transition-transform">
-            explore my work
-          </button>
-        </Link>
+    <section className="h-screen flex flex-col justify-center items-center px-8 text-center relative overflow-hidden hero-bg">
+      {/* Terminal-style background elements */}
+      <div className="absolute top-10 left-10  text-xs text-gray-500 opacity-30">
+        <div className="text-terminal-green">aria han</div>
+      </div>
+      
+
+      {/* Main content */}
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-6xl lg:text-8xl font-extrabold text-white leading-tight animate-fade-in mb-8">
+          aria han
+        </h1>
+        
+        {/* Professional title */}
+        <div className="mb-8">
+          <div className=" text-2xl lg:text-3xl">
+            CEO & Co-Founder, Persistos
+          </div>
+        </div>
+
+        {/* Professional subtitle */}
+        <div className=" text-xl lg:text-2xl text-gray-300 mb-12 animate-fade-in">
+          Building AI for humans
+        </div>
+
+
       </div>
     </section>
   );
