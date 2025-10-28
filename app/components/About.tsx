@@ -76,7 +76,7 @@ export default function About() {
             <div className="bg-gradient-to-r from-dark-gray to-medium-gray p-4 sm:p-6 lg:p-8 rounded-lg border border-accent-purple">
               <h3 className="text-accent-purple text-xl sm:text-2xl mb-3 sm:mb-4">The Convergence</h3>
               <p className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
-                Open-source package that bridges different AI models and frameworks. 
+                Open-source package that solves the learning problem for AI tool usage via evolution and reinforcement learning. 
                 Available now on GitHub and PyPI.
               </p>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center">
