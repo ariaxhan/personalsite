@@ -62,19 +62,19 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="min-h-screen flex flex-col justify-center items-center px-8 py-32 relative overflow-hidden projects-bg"
+      className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 relative overflow-hidden projects-bg"
     >
       {/* Background elements */}
       <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-terminal-green via-code-blue to-transparent"></div>
       
       <div className="max-w-6xl mx-auto text-center animate-fade-in">
-        <h2 className="text-6xl lg:text-7xl font-bold mb-16 text-white">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 sm:mb-12 lg:mb-16 text-white">
           projects
         </h2>
         
         {/* Introduction */}
-        <div className="terminal-bg p-8 rounded-lg mb-16">
-          <div className="text-lg text-gray-300 leading-relaxed">
+        <div className="terminal-bg p-4 sm:p-6 lg:p-8 rounded-lg mb-8 sm:mb-12 lg:mb-16">
+          <div className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
             <p className="mb-4">
               A comprehensive portfolio spanning hackathon victories, previous ventures, 
               and ongoing projects that showcase technical innovation and entrepreneurial journey.
@@ -83,30 +83,30 @@ export default function Projects() {
 			  </div>
 			  
         {/* Previous Ventures */}
-        <div className="mb-16">
-          <h3 className=" text-poetry-gold text-3xl mb-8">Previous Ventures</h3>
-          <div className="grid md:grid-cols-2 gap-8">
+        <div className="mb-8 sm:mb-12 lg:mb-16">
+          <h3 className="text-poetry-gold text-2xl sm:text-3xl mb-6 sm:mb-8">Previous Ventures</h3>
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
             {/* Brink */}
-            <div className="poetry-glow bg-gradient-to-r from-dark-gray to-medium-gray p-8 rounded-lg border border-poetry-gold">
-              <h4 className=" text-poetry-gold text-2xl mb-4">Brink</h4>
-              <p className="text-gray-300 mb-4">
+            <div className="poetry-glow bg-gradient-to-r from-dark-gray to-medium-gray p-4 sm:p-6 lg:p-8 rounded-lg border border-poetry-gold">
+              <h4 className="text-poetry-gold text-xl sm:text-2xl mb-3 sm:mb-4">Brink</h4>
+              <p className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
                 SwiftUI app with seamless Apple Watch integration. Performed advanced LLM analysis 
                 and provided structured guidance through intelligent conversation.
               </p>
-              <div className="text-sm text-gray-500">
+              <div className="text-xs sm:text-sm text-gray-500">
                 <div>Platform: <span className="text-terminal-green">iOS, watchOS</span></div>
                 <div>Tech: <span className="text-poetry-gold">SwiftUI, Core ML, HealthKit</span></div>
               </div>
             </div>
 
             {/* Divertissement AI */}
-            <div className="bg-gradient-to-r from-dark-gray to-medium-gray p-8 rounded-lg border border-code-blue">
-              <h4 className=" text-code-blue text-2xl mb-4">Divertissement AI</h4>
-              <p className="text-gray-300 mb-4">
+            <div className="bg-gradient-to-r from-dark-gray to-medium-gray p-4 sm:p-6 lg:p-8 rounded-lg border border-code-blue">
+              <h4 className="text-code-blue text-xl sm:text-2xl mb-3 sm:mb-4">Divertissement AI</h4>
+              <p className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
                 Built heycontent - dynamic memory layer technology that connected notes, chats, 
                 Instagram, YouTube, and Gmail for enhanced contextual understanding.
               </p>
-              <div className="text-sm text-gray-500">
+              <div className="text-xs sm:text-sm text-gray-500">
                 <div>Focus: <span className="text-terminal-green">Contextual AI, Memory Systems</span></div>
                 <div>Outcome: <span className="text-code-blue">Technology integrated into PersistOS</span></div>
               </div>
@@ -115,9 +115,9 @@ export default function Projects() {
         </div>
 
         {/* Hackathon Wins */}
-        <div className="mb-16">
-          <h3 className=" text-terminal-green text-3xl mb-8">Hackathon Victories</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mb-8 sm:mb-12 lg:mb-16">
+          <h3 className="text-terminal-green text-2xl sm:text-3xl mb-6 sm:mb-8">Hackathon Victories</h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {hackathonWins.map((achievement, index) => (
               <Link 
                 key={index}
@@ -126,35 +126,35 @@ export default function Projects() {
                 rel="noopener noreferrer"
                 className="group"
               >
-                <div className="code-glow bg-gradient-to-r from-dark-gray to-medium-gray p-6 rounded-lg border border-code-blue hover:border-terminal-green transition-all duration-300 h-full">
-                  <div className="mb-4">
-                    <div className=" text-xs text-gray-500 mb-2">
+                <div className="code-glow bg-gradient-to-r from-dark-gray to-medium-gray p-4 sm:p-6 rounded-lg border border-code-blue hover:border-terminal-green transition-all duration-300 h-full">
+                  <div className="mb-3 sm:mb-4">
+                    <div className="text-xs text-gray-500 mb-2">
                       {achievement.event} • {achievement.year}
                     </div>
-                    <h4 className=" text-code-blue text-lg font-semibold mb-2 group-hover:text-terminal-green transition-colors">
+                    <h4 className="text-code-blue text-base sm:text-lg font-semibold mb-2 group-hover:text-terminal-green transition-colors">
                       {achievement.title}
                     </h4>
-                    <div className=" text-terminal-green text-sm mb-3">
+                    <div className="text-terminal-green text-xs sm:text-sm mb-2 sm:mb-3">
                       🏆 {achievement.award}
                     </div>
-                    <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                    <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
                       {achievement.description}
                     </p>
                   </div>
                   
                   {/* Tech stack */}
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
                     {achievement.tech.map((tech, techIndex) => (
                       <span 
                         key={techIndex}
-                        className="px-2 py-1 bg-accent-purple text-white text-xs  rounded"
+                        className="px-2 py-1 bg-accent-purple text-white text-xs rounded"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
                   
-                  <div className=" text-xs text-terminal-green">
+                  <div className="text-xs text-terminal-green">
                     View Project →
                   </div>
                 </div>

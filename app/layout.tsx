@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ReactNode } from 'react';
 
 
@@ -7,6 +7,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Aria Han",
   description: "Aria Han's personal portfolio",
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 

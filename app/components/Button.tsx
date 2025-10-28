@@ -22,9 +22,9 @@ export default function Button({
   const baseClasses = "font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-code-blue text-white hover:bg-blue-600 focus:ring-blue-500";
   
   const sizeClasses = {
-    sm: "px-4 py-2 text-sm",
-    md: "px-6 py-3 text-base",
-    lg: "px-8 py-4 text-lg",
+    sm: "px-3 py-2 text-xs sm:px-4 sm:py-2 sm:text-sm",
+    md: "px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base",
+    lg: "px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg",
   };
   
   const buttonClasses = `${baseClasses} ${sizeClasses[size]} ${className}`;
