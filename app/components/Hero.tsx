@@ -18,7 +18,7 @@ export default function Hero() {
         
         {/* Professional title */}
         <div className="mb-8">
-          <div className=" text-2xl lg:text-3xl">
+          <div className=" text-2xl lg:text-3xl animate-fade-in">
             CEO & Co-Founder, PersistOS
           </div>
         </div>
