@@ -463,7 +463,6 @@ button:hover::before {
   }
   button {
     width: auto;
-    min-width: fit-content;
   }
   .flex {
     flex-wrap: wrap;
