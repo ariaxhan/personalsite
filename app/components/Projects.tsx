@@ -33,17 +33,8 @@ export default function Projects() {
             <div className="code-glow bg-gradient-to-r from-dark-gray to-medium-gray p-4 sm:p-6 lg:p-8 rounded-lg border border-code-blue">
               <h4 className="text-code-blue text-xl sm:text-2xl mb-3 sm:mb-4">heycontext.co</h4>
               <p className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
-                An AI-powered memory and intelligence platform that creates persistent, evolving AI understanding of users through sophisticated content processing and psychological insight generation. Unlike ChatGPT or Claude which offer static memory, HeyContext builds dynamic, evolving AI understanding that grows with every interaction.
+                HeyContext helps you spend less time prompting and talking to AI. It simplifies complex AI and makes people better at using it without needing specialized knowledge. The goal is to refocus attention and reduce dependence on digital technologies.
               </p>
-              <div className="text-gray-300 mb-3 sm:mb-4 space-y-2 text-xs sm:text-sm">
-                <p><strong>Core Features:</strong></p>
-                <ul className="list-disc list-inside space-y-1">
-                  <li><strong>Thinking Lab:</strong> Context-aware conversations with persistent memory</li>
-                  <li><strong>Crystal Intelligence:</strong> AI extracts psychological insights from user content</li>
-                  <li><strong>Living Projects:</strong> Dynamic products that evolve with AI-powered widgets</li>
-                  <li><strong>Smart Notes:</strong> AI-enhanced note-taking with rich text editing</li>
-                </ul>
-              </div>
               <div className="text-xs sm:text-sm text-gray-500">
                 <div>Status: <span className="text-terminal-green">Actively being developed while open for Beta Testing, free tier available</span></div>
                 <div>Tech: <span className="text-code-blue">AI, Memory Systems, Multi-Platform Integration</span></div>
