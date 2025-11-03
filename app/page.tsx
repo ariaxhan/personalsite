@@ -19,6 +19,10 @@ const Projects = dynamic(() => import("./components/Projects"), {
   loading: () => <div className="min-h-screen bg-dark-gray" />,
 });
 
+const HackathonWins = dynamic(() => import("./components/HackathonWins"), {
+  loading: () => <div className="min-h-screen bg-dark-gray" />,
+});
+
 const Contact = dynamic(() => import("./components/Contact"), {
   loading: () => <div className="min-h-screen bg-dark-gray" />,
 });
@@ -29,6 +33,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
+      <HackathonWins />
       <Projects />
       <Writing />
       <Contact />
