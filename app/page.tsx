@@ -29,8 +29,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
-      <Writing />
       <Projects />
+      <Writing />
       <Contact />
     </>
   );

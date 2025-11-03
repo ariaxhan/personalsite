@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Button from "./Button";
 
 export default function Projects() {
   const hackathonWins = [
@@ -81,6 +82,73 @@ export default function Projects() {
             </p>
           </div>
 			  </div>
+			  
+        {/* Current Projects */}
+        <div className="mb-8 sm:mb-12 lg:mb-16">
+          <h3 className="text-code-blue text-2xl sm:text-3xl mb-6 sm:mb-8">Current Projects</h3>
+          <div className="space-y-6 sm:space-y-8 max-w-4xl mx-auto">
+            {/* heycontext.co */}
+            <div className="code-glow bg-gradient-to-r from-dark-gray to-medium-gray p-4 sm:p-6 lg:p-8 rounded-lg border border-code-blue">
+              <h4 className="text-code-blue text-xl sm:text-2xl mb-3 sm:mb-4">heycontext.co</h4>
+              <p className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
+                An AI-powered memory and intelligence platform that creates persistent, evolving AI understanding of users through sophisticated content processing and psychological insight generation. Unlike ChatGPT or Claude which offer static memory, HeyContext builds dynamic, evolving AI understanding that grows with every interaction.
+              </p>
+              <div className="text-gray-300 mb-3 sm:mb-4 space-y-2 text-xs sm:text-sm">
+                <p><strong>Core Features:</strong></p>
+                <ul className="list-disc list-inside space-y-1">
+                  <li><strong>Thinking Lab:</strong> Context-aware conversations with persistent memory</li>
+                  <li><strong>Crystal Intelligence:</strong> AI extracts psychological insights from user content</li>
+                  <li><strong>Living Projects:</strong> Dynamic projects that evolve with AI-powered widgets</li>
+                  <li><strong>Smart Notes:</strong> AI-enhanced note-taking with rich text editing</li>
+                </ul>
+              </div>
+              <div className="text-xs sm:text-sm text-gray-500">
+                <div>Status: <span className="text-terminal-green">Actively being developed while open for Beta Testing, free tier available</span></div>
+                <div>Tech: <span className="text-code-blue">AI, Memory Systems, Multi-Platform Integration</span></div>
+              </div>
+              <div className="flex gap-2 sm:gap-4 justify-center mt-4 sm:mt-6">
+                <Button 
+                  href="https://heycontext.co" 
+                  size="sm"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className=""
+                >
+                  Visit Website
+                </Button>
+              </div>
+            </div>
+
+            {/* The Convergence */}
+            <div className="bg-gradient-to-r from-dark-gray to-medium-gray p-4 sm:p-6 lg:p-8 rounded-lg border border-accent-purple">
+              <h4 className="text-accent-purple text-xl sm:text-2xl mb-3 sm:mb-4">The Convergence</h4>
+              <p className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
+                Open-source package that solves the learning problem for AI tool usage via evolution and reinforcement learning. 
+                Available now on GitHub and PyPI.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center">
+                <Button 
+                  href="https://github.com/persist-os/the-convergence" 
+                  size="sm"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className=""
+                >
+                  View on GitHub
+                </Button>
+                <Button 
+                  href="https://pypi.org/project/the-convergence/" 
+                  size="sm"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className=""
+                >
+                  PyPI Package
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
 			  
         {/* Previous Ventures */}
         <div className="mb-8 sm:mb-12 lg:mb-16">
