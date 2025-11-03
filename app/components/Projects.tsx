@@ -32,9 +32,9 @@ export default function Projects() {
             {/* heycontext.co */}
             <div className="code-glow bg-gradient-to-r from-dark-gray to-medium-gray p-4 sm:p-6 lg:p-8 rounded-lg border border-code-blue">
               <h4 className="text-code-blue text-xl sm:text-2xl mb-3 sm:mb-4">heycontext.co</h4>
-              <p className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
-                HeyContext helps you spend less time prompting and talking to AI. It simplifies complex AI and makes people better at using it without needing specialized knowledge. The goal is to refocus attention and reduce dependence on digital technologies.
-              </p>
+              <p className="text-gray-200 mb-3 sm:mb-4 text-md">
+                AI designed to spend less time talking to AI.
+                </p>
               <div className="text-xs sm:text-sm text-gray-500">
                 <div>Status: <span className="text-terminal-green">Actively being developed while open for Beta Testing, free tier available</span></div>
                 <div>Tech: <span className="text-code-blue">AI, Memory Systems, Multi-Platform Integration</span></div>
