@@ -3,15 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0a0a;
-  --surface: #000000;
-  --foreground: #e5e5e5;
-  --text-secondary: #a3a3a3;
-  --accent: #8b5cf6;
-  --accent-secondary: #a78bfa;
-  --accent-warm: #d4af37;
-  --accent-blue: #60a5fa;
-  --border: #2a2a2a;
+  --black: #000000;
+  --surface: #0a0a0a;
+  --white: #ffffff;
+  --gray: #666666;
+  --accent: #0066ff;
+  --border: #222222;
 }
 
 * {
@@ -25,140 +22,39 @@ html {
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, sans-serif;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
-  color: var(--foreground);
+  background: var(--black);
+  color: var(--white);
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle gradient backgrounds for sections */
-.section-gradient {
-  position: relative;
+/* Monospace metadata - the signature move */
+.mono-meta {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
 }
 
-.section-gradient::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at 30% 20%,
-    rgba(139, 92, 246, 0.04) 0%,
-    transparent 50%
-  );
-  pointer-events: none;
+/* Border accent - primary hierarchy indicator */
+.border-accent-left {
+  border-left: 4px solid var(--accent);
+  padding-left: 16px;
 }
 
-/* Hero specific gradient */
-.hero-gradient {
-  position: relative;
+.border-accent-left-inactive {
+  border-left: 4px solid var(--border);
+  padding-left: 16px;
 }
 
-.hero-gradient::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-      circle at 20% 30%,
-      rgba(139, 92, 246, 0.06) 0%,
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 80% 70%,
-      rgba(212, 175, 55, 0.04) 0%,
-      transparent 40%
-    );
-  pointer-events: none;
-}
-
-/* Subtle particle overlay */
-.particle-overlay::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(
-      1px 1px at 20px 30px,
-      rgba(139, 92, 246, 0.3),
-      transparent
-    ),
-    radial-gradient(1px 1px at 80px 60px, rgba(212, 175, 55, 0.2), transparent),
-    radial-gradient(1px 1px at 140px 40px, rgba(96, 165, 250, 0.2), transparent);
-  background-repeat: repeat;
-  background-size: 200px 100px;
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-/* Warm glow effect */
-.warm-glow {
-  box-shadow: 0 0 60px rgba(139, 92, 246, 0.08),
-    0 0 120px rgba(212, 175, 55, 0.04);
-}
-
-/* Text gradient for special elements */
-.text-gradient {
-  background: linear-gradient(135deg, #a78bfa 0%, #d4af37 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Soft border glow on hover */
-.soft-glow-hover {
-  transition: all 0.4s ease;
-}
-
-.soft-glow-hover:hover {
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
-  border-color: rgba(139, 92, 246, 0.3);
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
-}
-
-/* Selection styling */
-::selection {
-  background: rgba(139, 92, 246, 0.3);
-  color: var(--foreground);
-}
-
-/* Focus styles for accessibility */
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* Utility animations */
-@keyframes fadeInUp {
+/* Single animation: fade up, 150ms */
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -166,54 +62,73 @@ button:focus-visible {
   }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.animate-fade-up {
+  animation: fadeUp 150ms ease-out forwards;
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+/* Stagger delays - powers of 2 */
+.delay-0 {
+  animation-delay: 0ms;
+}
+.delay-1 {
+  animation-delay: 50ms;
+}
+.delay-2 {
+  animation-delay: 100ms;
+}
+.delay-3 {
+  animation-delay: 150ms;
+}
+.delay-4 {
+  animation-delay: 200ms;
 }
 
-@keyframes softPulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
+/* Custom scrollbar - minimal */
+::-webkit-scrollbar {
+  width: 4px;
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+::-webkit-scrollbar-track {
+  background: var(--black);
 }
 
-.animate-soft-pulse {
-  animation: softPulse 4s ease-in-out infinite;
+::-webkit-scrollbar-thumb {
+  background: var(--border);
 }
 
-/* Responsive typography */
-@media (max-width: 768px) {
-  html {
-    font-size: 15px;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray);
 }
 
-@media (max-width: 480px) {
-  html {
-    font-size: 14px;
-  }
+/* Selection - accent based */
+::selection {
+  background: rgba(0, 102, 255, 0.3);
+  color: var(--white);
+}
+
+/* Focus styles - visible, custom */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Hover transition - opacity only, 150ms */
+.hover-opacity {
+  transition: opacity 150ms ease-out;
+}
+
+.hover-opacity:hover {
+  opacity: 0.7;
+}
+
+/* Border hover - color shift only */
+.hover-border {
+  transition: border-color 150ms ease-out;
+}
+
+.hover-border:hover {
+  border-color: var(--accent);
 }
 
 /* Ensure touch targets are accessible */
@@ -222,4 +137,14 @@ button:focus-visible {
   a {
     min-height: 44px;
   }
+}
+
+/* Legacy class stubs - do nothing by design */
+.section-gradient {
+}
+.soft-glow-hover {
+  transition: border-color 150ms ease-out;
+}
+.soft-glow-hover:hover {
+  border-color: var(--accent);
 }
