@@ -1,18 +1,58 @@
-@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   COGNITIVE SUBSTRATE DESIGN SYSTEM
+   Theme: Layered Intelligence Made Visible
+   Philosophy: Form follows concept, not trend
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   CSS CUSTOM PROPERTIES
+   Cognitive state represented through color, not decoration
+   ───────────────────────────────────────────────────────────────────────────── */
 :root {
-  --background: #0a0a0a;
-  --foreground: #e5e5e5;
-  --terminal-green: #00ff41;
-  --code-blue: #007acc;
-  --poetry-gold: #d4af37;
-  --accent-purple: #8b5cf6;
-  --dark-gray: #1a1a1a;
-  --medium-gray: #2a2a2a;
+  /* Substrate layers - deep to surface */
+  --substrate-void: #0a0814;
+  --substrate-deep: #0d1b2a;
+  --substrate-mid: #1b263b;
+  --substrate-surface: #2d3e50;
+
+  /* Cognitive states */
+  --cognition: #00d9ff;
+  --cognition-dim: rgba(0, 217, 255, 0.5);
+  --cognition-glow: rgba(0, 217, 255, 0.25);
+  --cognition-subtle: rgba(0, 217, 255, 0.12);
+
+  /* Emergence / connections */
+  --emergence: #8b5cf6;
+  --emergence-dim: rgba(139, 92, 246, 0.5);
+  --emergence-glow: rgba(139, 92, 246, 0.25);
+  --emergence-subtle: rgba(139, 92, 246, 0.12);
+
+  /* Memory / persistence */
+  --memory: #fbbf24;
+  --memory-dim: rgba(251, 191, 36, 0.5);
+  --memory-glow: rgba(251, 191, 36, 0.25);
+
+  /* Data flow */
+  --data: #3b82f6;
+  --data-dim: rgba(59, 130, 246, 0.5);
+  --data-glow: rgba(59, 130, 246, 0.25);
+
+  /* Glass properties */
+  --glass-bg: rgba(13, 27, 42, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(0, 217, 255, 0.3);
+  --glass-blur: 12px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BASE STYLES
+   ───────────────────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -20,524 +60,480 @@ html {
 }
 
 body {
-  font-family: "Jost", sans-serif;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
-  color: var(--foreground);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--substrate-void);
+  color: #e5e5e5;
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography Classes - All using Lato for consistency */
-
-/* Terminal-inspired elements */
-.terminal-bg {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-  border: 1px solid #333;
+/* ─────────────────────────────────────────────────────────────────────────────
+   TYPOGRAPHY AS DATA STRUCTURE
+   Text is data being processed
+   ───────────────────────────────────────────────────────────────────────────── */
+.text-data {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--cognition-dim);
 }
 
-.code-glow {
-  box-shadow: 0 0 10px rgba(0, 122, 204, 0.2);
+.text-meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
 }
 
-.poetry-glow {
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
+.text-display {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.02em;
 }
 
-/* Button styles */
-button {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* ─────────────────────────────────────────────────────────────────────────────
+   GLASS SUBSTRATE CARDS
+   Information floating in cognitive space
+   ───────────────────────────────────────────────────────────────────────────── */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  background: rgba(13, 27, 42, 0.75);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px) translateZ(10px);
+  box-shadow: 0 0 30px var(--cognition-glow), 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.glass-panel-active {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--cognition-dim);
+  box-shadow: 0 0 20px var(--cognition-glow), 0 0 40px var(--cognition-subtle),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px var(--cognition-glow), 0 0 40px var(--cognition-subtle);
+    border-color: var(--cognition-dim);
+  }
+  50% {
+    box-shadow: 0 0 30px var(--cognition-dim), 0 0 60px var(--cognition-glow);
+    border-color: var(--cognition);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SUBSTRATE BACKGROUND LAYERS
+   Depth perception through translucent planes
+   ───────────────────────────────────────────────────────────────────────────── */
+.substrate-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.substrate-layer-deep {
+  background: radial-gradient(
+      ellipse 80% 60% at 10% 90%,
+      var(--emergence-subtle) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 70% 50% at 90% 10%,
+      var(--data-glow) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      var(--substrate-void) 0%,
+      var(--substrate-deep) 100%
+    );
+  z-index: -30;
+}
+
+.substrate-layer-mid {
+  background: radial-gradient(
+      circle at 30% 70%,
+      var(--cognition-subtle) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 70% 30%,
+      var(--emergence-subtle) 0%,
+      transparent 40%
+    );
+  z-index: -20;
+  animation: drift 30s ease-in-out infinite;
+}
+
+.substrate-layer-surface {
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 30%,
+    var(--substrate-void) 70%
+  );
+  z-index: -10;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(20px, -10px) scale(1.02);
+  }
+  50% {
+    transform: translate(-10px, 20px) scale(0.98);
+  }
+  75% {
+    transform: translate(-20px, -20px) scale(1.01);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   NEURAL CONNECTION LINES
+   Thoughts connecting across substrate
+   ───────────────────────────────────────────────────────────────────────────── */
+.neural-line {
+  stroke: var(--emergence-dim);
+  stroke-width: 1;
+  fill: none;
+  stroke-linecap: round;
+  animation: networkPulse 3s ease-in-out infinite;
+}
+
+@keyframes networkPulse {
+  0%,
+  100% {
+    stroke-opacity: 0.2;
+    stroke-width: 1;
+  }
+  50% {
+    stroke-opacity: 0.6;
+    stroke-width: 1.5;
+  }
+}
+
+.neural-node {
+  fill: var(--substrate-mid);
+  stroke: var(--cognition-dim);
+  stroke-width: 1;
+  transition: all 0.3s ease;
+}
+
+.neural-node:hover {
+  fill: var(--substrate-surface);
+  stroke: var(--cognition);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 10px var(--cognition-dim));
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ACTIVE COGNITION INDICATORS
+   Pulsing glow around active elements
+   ───────────────────────────────────────────────────────────────────────────── */
+.cognition-glow {
   position: relative;
-  overflow: hidden;
 }
 
-button:hover {
-  transform: translateY(-2px);
-}
-
-button::before {
+.cognition-glow::before {
   content: "";
   position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    var(--cognition-dim),
+    var(--emergence-dim)
+  );
+  z-index: -1;
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 0.4s ease;
+}
+
+.cognition-glow:hover::before {
+  opacity: 1;
+}
+
+.cognition-active {
+  border-color: var(--cognition-dim) !important;
+  box-shadow: 0 0 20px var(--cognition-glow),
+    inset 0 0 20px var(--cognition-subtle);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   DATA STREAM AESTHETIC
+   Information flowing through system
+   ───────────────────────────────────────────────────────────────────────────── */
+.data-stream {
+  position: fixed;
+  right: 0;
   top: 0;
-  left: -100%;
+  bottom: 0;
+  width: 40px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 5;
+}
+
+.data-particle {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--cognition),
+    transparent
+  );
+  animation: particleFlow 8s linear infinite;
+}
+
+@keyframes particleFlow {
+  0% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MEMORY TRACES
+   Past interactions leave visible trails
+   ───────────────────────────────────────────────────────────────────────────── */
+.memory-trace {
+  position: relative;
+}
+
+.memory-trace::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
   width: 100%;
-  height: 100%;
+  height: 2px;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.1),
+    var(--memory-dim),
     transparent
   );
-  transition: left 0.5s;
+  opacity: 0;
+  transform: scaleX(0);
+  transition: all 0.4s ease;
 }
 
-button:hover::before {
-  left: 100%;
+.memory-trace:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
-/* Enhanced Animations */
-@keyframes fade-in {
+/* ─────────────────────────────────────────────────────────────────────────────
+   EMERGENCE GRID
+   Ripple effects showing local rules creating global patterns
+   ───────────────────────────────────────────────────────────────────────────── */
+.emergence-grid {
+  background-image: linear-gradient(var(--glass-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: center;
+}
+
+.emergence-ripple {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--cognition-dim);
+  animation: ripple 2s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple {
   0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-in {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slow-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-@keyframes typewriter {
-  from {
     width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes blink-cursor {
-  0%,
-  50% {
-    border-color: var(--terminal-green);
-  }
-  51%,
-  100% {
-    border-color: transparent;
-  }
-}
-
-@keyframes code-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 10px rgba(0, 122, 204, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 15px rgba(0, 122, 204, 0.3);
-  }
-}
-
-@keyframes poetry-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
-  }
-  50% {
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
-  }
-}
-
-@keyframes gradient-shift {
-  0%,
-  100% {
+    height: 0;
     opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-  25% {
-    opacity: 0.8;
-    transform: scale(1.1) rotate(1deg);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(0.9) rotate(-1deg);
-  }
-  75% {
-    opacity: 0.7;
-    transform: scale(1.05) rotate(0.5deg);
-  }
-}
-
-@keyframes particle-float {
-  0% {
-    transform: translateY(0px) translateX(0px);
-  }
-  25% {
-    transform: translateY(-10px) translateX(5px);
-  }
-  50% {
-    transform: translateY(-5px) translateX(-3px);
-  }
-  75% {
-    transform: translateY(-15px) translateX(2px);
+    transform: translate(-50%, -50%);
   }
   100% {
-    transform: translateY(0px) translateX(0px);
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+    transform: translate(-50%, -50%);
   }
 }
 
-.animate-fade-in {
-  animation: fade-in 1.2s ease-in-out forwards;
+/* ─────────────────────────────────────────────────────────────────────────────
+   HOVER STATES AS ATTENTION
+   System focusing attention here
+   ───────────────────────────────────────────────────────────────────────────── */
+.attention-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.animate-slide-in {
-  animation: slide-in 1.5s ease-in-out forwards;
+.attention-hover:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.1);
 }
 
-.animate-slow-pulse {
-  animation: slow-pulse 6s infinite;
+/* Link styles */
+a {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+a:hover {
+  color: var(--cognition);
+  text-shadow: 0 0 20px var(--cognition-glow);
 }
 
-.animate-typewriter {
-  animation: typewriter 3s steps(40, end), blink-cursor 0.75s step-end infinite;
+/* ─────────────────────────────────────────────────────────────────────────────
+   SCROLL ANIMATIONS
+   Reveal as user travels through cognitive depth
+   ───────────────────────────────────────────────────────────────────────────── */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.animate-code-glow {
-  animation: code-glow 2s ease-in-out infinite;
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.animate-poetry-glow {
-  animation: poetry-glow 2s ease-in-out infinite;
+/* Stagger delays for orchestrated reveals */
+.stagger-1 {
+  transition-delay: 0.1s;
+}
+.stagger-2 {
+  transition-delay: 0.2s;
+}
+.stagger-3 {
+  transition-delay: 0.3s;
+}
+.stagger-4 {
+  transition-delay: 0.4s;
+}
+.stagger-5 {
+  transition-delay: 0.5s;
 }
 
-/* Subtle, intentional gradients for different sections */
-.hero-bg {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
-  position: relative;
-}
-
-.hero-bg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at 30% 20%,
-    rgba(139, 92, 246, 0.05) 0%,
-    transparent 60%
-  );
-  pointer-events: none;
-}
-
-.hero-bg::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(
-      1px 1px at 20px 30px,
-      rgba(139, 92, 246, 0.4),
-      transparent
-    ),
-    radial-gradient(1px 1px at 40px 70px, rgba(0, 255, 65, 0.3), transparent),
-    radial-gradient(1px 1px at 90px 40px, rgba(0, 122, 204, 0.4), transparent),
-    radial-gradient(1px 1px at 130px 80px, rgba(212, 175, 55, 0.3), transparent),
-    radial-gradient(1px 1px at 160px 30px, rgba(139, 92, 246, 0.2), transparent);
-  background-repeat: repeat;
-  background-size: 200px 100px;
-  pointer-events: none;
-}
-
-/* About section - subtle tech gradient */
-.about-bg {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 30%, #0a0a0a 100%);
-  position: relative;
-}
-
-.about-bg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at 70% 30%,
-    rgba(0, 122, 204, 0.03) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
-}
-
-.about-bg::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(
-      1px 1px at 30px 20px,
-      rgba(0, 122, 204, 0.4),
-      transparent
-    ),
-    radial-gradient(1px 1px at 80px 60px, rgba(139, 92, 246, 0.3), transparent),
-    radial-gradient(1px 1px at 120px 30px, rgba(0, 255, 65, 0.2), transparent),
-    radial-gradient(1px 1px at 180px 80px, rgba(0, 122, 204, 0.3), transparent);
-  background-repeat: repeat;
-  background-size: 200px 100px;
-  pointer-events: none;
-}
-
-/* Projects section - innovation gradient */
-.projects-bg {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 40%, #0a0a0a 100%);
-  position: relative;
-}
-
-.projects-bg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at 20% 80%,
-    rgba(0, 255, 65, 0.04) 0%,
-    transparent 60%
-  );
-  pointer-events: none;
-}
-
-.projects-bg::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(
-      1px 1px at 25px 15px,
-      rgba(0, 255, 65, 0.4),
-      transparent
-    ),
-    radial-gradient(1px 1px at 70px 45px, rgba(139, 92, 246, 0.3), transparent),
-    radial-gradient(1px 1px at 110px 75px, rgba(0, 122, 204, 0.2), transparent),
-    radial-gradient(1px 1px at 150px 25px, rgba(0, 255, 65, 0.3), transparent),
-    radial-gradient(1px 1px at 190px 85px, rgba(212, 175, 55, 0.2), transparent);
-  background-repeat: repeat;
-  background-size: 200px 100px;
-  pointer-events: none;
-}
-
-/* Writing section - creative gradient */
-.writing-bg {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 35%, #0a0a0a 100%);
-  position: relative;
-}
-
-.writing-bg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at 80% 20%,
-    rgba(212, 175, 55, 0.03) 0%,
-    transparent 65%
-  );
-  pointer-events: none;
-}
-
-.writing-bg::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(
-      1px 1px at 35px 25px,
-      rgba(212, 175, 55, 0.4),
-      transparent
-    ),
-    radial-gradient(1px 1px at 75px 55px, rgba(139, 92, 246, 0.3), transparent),
-    radial-gradient(1px 1px at 115px 15px, rgba(0, 122, 204, 0.2), transparent),
-    radial-gradient(1px 1px at 155px 65px, rgba(212, 175, 55, 0.3), transparent),
-    radial-gradient(1px 1px at 195px 35px, rgba(0, 255, 65, 0.2), transparent);
-  background-repeat: repeat;
-  background-size: 200px 100px;
-  pointer-events: none;
-}
-
-/* Contact section - connection gradient */
-.contact-bg {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0a0a0a 100%);
-  position: relative;
-}
-
-.contact-bg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(139, 92, 246, 0.04) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
-}
-
-.contact-bg::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(
-      1px 1px at 40px 30px,
-      rgba(139, 92, 246, 0.4),
-      transparent
-    ),
-    radial-gradient(1px 1px at 80px 70px, rgba(0, 255, 65, 0.3), transparent),
-    radial-gradient(1px 1px at 120px 20px, rgba(212, 175, 55, 0.2), transparent),
-    radial-gradient(1px 1px at 160px 60px, rgba(0, 122, 204, 0.3), transparent),
-    radial-gradient(1px 1px at 200px 40px, rgba(139, 92, 246, 0.2), transparent);
-  background-repeat: repeat;
-  background-size: 200px 100px;
-  pointer-events: none;
-}
-
-/* Custom scrollbar */
+/* ─────────────────────────────────────────────────────────────────────────────
+   SCROLLBAR - MINIMAL DATA AESTHETIC
+   ───────────────────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--dark-gray);
+  background: var(--substrate-void);
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-    line-height: 1.1;
-  }
-  h2 {
-    font-size: 2rem;
-    line-height: 1.2;
-  }
-  h3 {
-    font-size: 1.5rem;
-    line-height: 1.3;
-  }
-  p {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-  button {
-    width: auto;
-  }
-  .flex {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
+::-webkit-scrollbar-thumb {
+  background: var(--substrate-mid);
+  border-radius: 3px;
+}
 
-  /* Ensure text doesn't overflow */
-  .text-overflow-ellipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cognition-dim);
+}
 
-  /* Better spacing for mobile */
-  .space-y-8 > * + * {
-    margin-top: 1.5rem;
-  }
+/* ─────────────────────────────────────────────────────────────────────────────
+   SELECTION - COGNITIVE HIGHLIGHT
+   ───────────────────────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--cognition-glow);
+  color: white;
+}
 
-  .space-y-6 > * + * {
-    margin-top: 1rem;
+/* ─────────────────────────────────────────────────────────────────────────────
+   FOCUS STATES - ACCESSIBILITY
+   ───────────────────────────────────────────────────────────────────────────── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--cognition);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   REDUCED MOTION PREFERENCES
+   ───────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 2rem;
-    line-height: 1.1;
-  }
-  h2 {
-    font-size: 1.75rem;
-    line-height: 1.2;
-  }
-  h3 {
-    font-size: 1.25rem;
-    line-height: 1.3;
-  }
-  p {
-    font-size: 0.875rem;
-    line-height: 1.5;
-  }
-
-  /* Even tighter spacing on very small screens */
-  .space-y-8 > * + * {
-    margin-top: 1rem;
-  }
-
-  .space-y-6 > * + * {
-    margin-top: 0.75rem;
-  }
+/* ─────────────────────────────────────────────────────────────────────────────
+   UTILITY CLASSES
+   ───────────────────────────────────────────────────────────────────────────── */
+.border-gradient {
+  border: 1px solid transparent;
+  background: linear-gradient(var(--glass-bg), var(--glass-bg)) padding-box,
+    linear-gradient(135deg, var(--cognition-dim), var(--emergence-dim))
+      border-box;
 }
 
-/* Additional mobile optimizations */
+.text-gradient-cognition {
+  background: linear-gradient(135deg, var(--cognition), var(--emergence));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-memory {
+  background: linear-gradient(135deg, var(--memory), var(--cognition));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Touch targets for mobile */
 @media (max-width: 640px) {
-  /* Ensure containers don't overflow */
-  .max-w-6xl {
-    max-width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  /* Better grid layouts for mobile */
-  .grid {
-    gap: 1rem;
-  }
-
-  /* Improve button touch targets */
-  button {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  /* Better link spacing */
+  button,
   a {
     min-height: 44px;
-    display: flex;
-    align-items: center;
   }
+}
+
+/* Touch manipulation utility */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch active state for mobile interactions */
+.touch-active {
+  /* This class is added via JavaScript for touch interactions */
 }

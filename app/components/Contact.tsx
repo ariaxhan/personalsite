@@ -1,125 +1,238 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
-import dynamic from 'next/dynamic';
 
-// Dynamically import icons
-const FaEnvelope = dynamic(() => import('react-icons/fa').then(mod => mod.FaEnvelope), { ssr: false });
-const FaLinkedin = dynamic(() => import('react-icons/fa').then(mod => mod.FaLinkedin), { ssr: false });
-const FaTwitter = dynamic(() => import('react-icons/fa').then(mod => mod.FaTwitter), { ssr: false });
-const FaInstagram = dynamic(() => import('react-icons/fa').then(mod => mod.FaInstagram), { ssr: false });
-const FaGithub = dynamic(() => import('react-icons/fa').then(mod => mod.FaGithub), { ssr: false });
-const FaMedium = dynamic(() => import('react-icons/fa').then(mod => mod.FaMedium), { ssr: false });
+import { motion, useInView } from "framer-motion";
+import { Mail, Github, BookOpen, Linkedin, ArrowUpRight, X } from "lucide-react";
+import { useRef, useState } from "react";
 
+interface ContactLink {
+  label: string;
+  href: string;
+  external?: boolean;
+  icon: React.ReactNode;
+  color: "cognition" | "emergence" | "memory" | "data";
+}
+
+const contactLinks: ContactLink[] = [
+  {
+    label: "ariaxhan@gmail.com",
+    href: "mailto:ariaxhan@gmail.com",
+    icon: <Mail className="w-5 h-5" />,
+    color: "cognition",
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/ariaxhan",
+    external: true,
+    icon: <Github className="w-5 h-5" />,
+    color: "emergence",
+  },
+  {
+    label: "Medium",
+    href: "https://medium.com/@ariaxhan",
+    external: true,
+    icon: <BookOpen className="w-5 h-5" />,
+    color: "data",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/ariahan/",
+    external: true,
+    icon: <Linkedin className="w-5 h-5" />,
+    color: "memory",
+  },
+  {
+    label: "X (Twitter)",
+    href: "https://x.com/aria__han",
+    external: true,
+    icon: <X className="w-5 h-5" />,
+    color: "cognition",
+  },
+];
+
+const colorStyles = {
+  cognition: {
+    text: "text-cognition",
+    border: "border-cognition/30 hover:border-cognition/60",
+    bg: "hover:bg-cognition/5",
+    glow: "rgba(0, 217, 255, 0.2)",
+  },
+  emergence: {
+    text: "text-emergence",
+    border: "border-emergence/30 hover:border-emergence/60",
+    bg: "hover:bg-emergence/5",
+    glow: "rgba(139, 92, 246, 0.2)",
+  },
+  memory: {
+    text: "text-memory",
+    border: "border-memory/30 hover:border-memory/60",
+    bg: "hover:bg-memory/5",
+    glow: "rgba(251, 191, 36, 0.2)",
+  },
+  data: {
+    text: "text-data",
+    border: "border-data/30 hover:border-data/60",
+    bg: "hover:bg-data/5",
+    glow: "rgba(59, 130, 246, 0.2)",
+  },
+};
+
+/**
+ * Contact: Network nodes for connection
+ * 
+ * Concept: Each contact method is a node in the network of connection.
+ * Like neurons reaching out to form synapses, these are the pathways
+ * through which communication flows. Hovering activates the node.
+ */
 export default function Contact() {
-  const contactMethods = [
-    {
-      icon: FaEnvelope,
-      label: "Email",
-      value: "aria@persistos.co",
-      link: "mailto:aria@persistos.co",
-      description: "Collaborations, partnerships, and general inquiries"
-    },
-    {
-      icon: FaLinkedin,
-      label: "LinkedIn",
-      value: "@ariahan",
-      link: "https://www.linkedin.com/in/ariahan/",
-      description: "Professional networking and business opportunities"
-    },
-    {
-      icon: FaTwitter,
-      label: "Twitter",
-      value: "@aria__han",
-      link: "https://twitter.com/aria__han",
-      description: "Tech thoughts and daily musings"
-    },
-    {
-      icon: FaGithub,
-      label: "GitHub",
-      value: "@ariaxhan",
-      link: "https://github.com/ariaxhan",
-      description: "Open source projects and code collaborations"
-    },
-    {
-      icon: FaMedium,
-      label: "Medium",
-      value: "@ariahan",
-      link: "https://medium.com/@ariaxhan",
-      description: "Technical articles and thought leadership"
-    },
-    {
-      icon: FaInstagram,
-      label: "Instagram",
-      value: "@ariaxhan",
-      link: "https://instagram.com/ariaxhan",
-      description: "Behind-the-scenes and personal moments"
-    }
-  ];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="contact" className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 relative overflow-hidden contact-bg">
-      {/* Background elements */}
-      <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent-purple via-poetry-gold to-transparent"></div>
-      
-      <div className="max-w-6xl mx-auto text-center animate-fade-in">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-tight animate-fade-in mb-6 sm:mb-8">
-          get in touch
-        </h2>
-        
-        {/* Introduction */}
-        <div className="terminal-bg p-4 sm:p-6 lg:p-8 rounded-lg mb-8 sm:mb-12 lg:mb-16">
-          <div className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
-            <p className="mb-4">
-              Interested in collaborating? Want to discuss AI, entrepreneurship, or investment opportunities?
-            </p>
-            <p>
-              I'm always excited to connect with fellow builders and innovators.
-            </p>
-          </div>
-        </div>
+    <section 
+      ref={containerRef}
+      className="relative py-32 lg:py-40 overflow-hidden"
+    >
+      {/* Background gradient - convergence point */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 60% 60% at 50% 100%, rgba(0, 217, 255, 0.08) 0%, transparent 50%),
+            radial-gradient(ellipse 40% 40% at 50% 0%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)
+          `,
+        }}
+      />
 
-        {/* Contact methods grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 lg:mb-16">
-          {contactMethods.map((method, index) => {
-            const IconComponent = method.icon;
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
+        {/* Section Header */}
+        <motion.div
+          className="text-center mb-20 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+        >
+          <p className="text-data tracking-[0.2em] mb-6">
+            <span className="text-cognition/60">⊛</span> 05_CONTACT
+          </p>
+          <h2 className="text-display text-4xl lg:text-6xl text-white/90 mb-6">
+            Get in Touch
+          </h2>
+          <p className="text-neutral-400 text-lg">
+            Building something interesting? The network is open for new connections.
+          </p>
+        </motion.div>
+
+        {/* Contact links as network nodes */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-6 lg:gap-8"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          {contactLinks.map((link, index) => {
+            const colors = colorStyles[link.color];
+            const isHovered = hoveredIndex === index;
+
             return (
-              <a 
-                key={index}
-                href={method.link} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="group"
+              <motion.a
+                key={link.label}
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.4 + index * 0.1,
+                  ease: [0.4, 0, 0.2, 1],
+                }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`
+                  group relative flex items-center gap-4
+                  px-6 py-5 glass-panel
+                  border ${colors.border} ${colors.bg}
+                  transition-all duration-400
+                `}
+                style={{
+                  boxShadow: isHovered ? `0 0 30px ${colors.glow}` : undefined,
+                }}
               >
-                <div className="code-glow bg-gradient-to-r from-dark-gray to-medium-gray p-4 sm:p-6 rounded-lg border border-code-blue hover:border-terminal-green transition-all duration-300 h-full flex flex-col">
-                  <div className="flex items-start mb-3 sm:mb-4">
-                    <IconComponent size={20} className="text-code-blue group-hover:text-terminal-green transition-colors mr-3 sm:mr-4 mt-1 flex-shrink-0" />
-                    <div className="flex-1">
-                      <h3 className="text-code-blue text-base sm:text-lg font-semibold group-hover:text-terminal-green transition-colors mb-1">
-                        {method.label}
-                      </h3>
-                      <div className="text-xs sm:text-sm text-gray-400">
-                        {method.value}
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-gray-300 text-xs sm:text-sm leading-relaxed flex-1">
-                    {method.description}
-                  </p>
-                </div>
-              </a>
+                {/* Icon with glow */}
+                <span className={`
+                  transition-all duration-300
+                  ${isHovered ? colors.text : "text-neutral-400"}
+                `}>
+                  {link.icon}
+                </span>
+
+                {/* Label */}
+                <span className={`
+                  text-sm font-mono transition-colors duration-300
+                  ${isHovered ? "text-white" : "text-neutral-300"}
+                `}>
+                  {link.label}
+                </span>
+
+                {/* External link indicator */}
+                {link.external && (
+                  <ArrowUpRight className={`
+                    w-3.5 h-3.5 transition-all duration-300
+                    ${isHovered 
+                      ? `${colors.text} translate-x-0.5 -translate-y-0.5` 
+                      : "text-neutral-600"
+                    }
+                  `} />
+                )}
+
+                {/* Active node indicator */}
+                <div className={`
+                  absolute -top-1 -right-1 w-2 h-2 rounded-full
+                  transition-all duration-300
+                  ${isHovered 
+                    ? `${colors.text.replace('text-', 'bg-')} shadow-[0_0_8px_currentColor]` 
+                    : "bg-transparent"
+                  }
+                `} />
+              </motion.a>
             );
           })}
-        </div>
+        </motion.div>
 
-        {/* Final message */}
-        <div className="terminal-bg p-6 sm:p-8 lg:p-12 rounded-lg">
-          <h3 className="text-poetry-gold text-xl sm:text-2xl lg:text-3xl mb-4 sm:mb-6 lg:mb-8 italic">
-            The best collaborations begin with a single message
-          </h3>
-          <div className="text-terminal-green text-base sm:text-lg">
-            Let's build the future together
-          </div>
-        </div>
+        {/* Decorative network visualization */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 0.3 } : {}}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="absolute inset-0 pointer-events-none overflow-hidden"
+        >
+          <svg 
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px]"
+            viewBox="0 0 600 200"
+            fill="none"
+          >
+            {/* Network lines converging to center */}
+            {[...Array(5)].map((_, i) => (
+              <motion.path
+                key={i}
+                d={`M${100 + i * 100} 200 Q 300 100 300 50`}
+                stroke="url(#contact-gradient)"
+                strokeWidth="1"
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={isInView ? { pathLength: 1, opacity: 0.5 } : {}}
+                transition={{ duration: 1.5, delay: 0.5 + i * 0.1 }}
+              />
+            ))}
+            <defs>
+              <linearGradient id="contact-gradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stopColor="#00d9ff" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </motion.div>
       </div>
     </section>
   );
