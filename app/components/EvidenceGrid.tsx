@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import { useRef, useState } from "react";
 
 interface EvidenceCell {
   date: string;
@@ -85,129 +86,208 @@ const evidenceData: EvidenceCell[] = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-const cellVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
-};
-
+/**
+ * EvidenceConstellation: Achievements as stars in cognitive space
+ * 
+ * Concept: Each achievement is a node in a constellation of capability.
+ * Hovering illuminates connections - showing how skills and wins relate.
+ * The visual suggests emergence: individual achievements that together
+ * reveal a larger pattern of capability.
+ */
 export default function EvidenceGrid() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <section className="py-24 lg:py-32 section-gradient relative">
+    <section 
+      ref={containerRef}
+      className="relative py-32 lg:py-40 overflow-hidden"
+    >
+      {/* Section background gradient */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 60% 40% at 50% 0%, rgba(139, 92, 246, 0.08) 0%, transparent 60%),
+            radial-gradient(ellipse 40% 30% at 80% 80%, rgba(0, 217, 255, 0.05) 0%, transparent 50%)
+          `,
+        }}
+      />
+
       <div className="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
         {/* Section Header */}
         <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          className="mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
-          <p className="text-xs font-mono text-violet-400/60 mb-4 tracking-wider">
-            COMPETITION WINS
+          <p className="text-data tracking-[0.2em] mb-6">
+            <span className="text-emergence/60">◇</span> 01_COMPETITION_WINS
           </p>
-          <h2 className="text-3xl lg:text-5xl font-light text-neutral-100">
+          <h2 className="text-display text-4xl lg:text-6xl text-white/90 mb-6">
             Built Under Pressure
           </h2>
-          <p className="text-neutral-500 mt-4 max-w-xl">
-            Six hackathon wins in the past two years. Each project built in 24-48 hours, 
-            validated by judges, and often continued into production. Rapid iteration under pressure.
+          <p className="text-neutral-400 max-w-2xl text-lg leading-relaxed">
+            Six hackathon wins in the past two years. Each project built in 24-48 hours,
+            validated by judges, and often continued into production.{" "}
+            <span className="text-emergence/80">Rapid iteration under pressure.</span>
           </p>
         </motion.div>
 
-        {/* Grid */}
-        <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-4"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
+        {/* Constellation Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {evidenceData.map((cell, index) => {
+            const isHovered = hoveredIndex === index;
+            const isOtherHovered = hoveredIndex !== null && hoveredIndex !== index;
+
             const content = (
-              <>
-                <div>
-                  <p className="text-xs font-mono text-neutral-600 mb-3">
-                    {cell.date}
-                  </p>
-                  <h3 className="text-lg lg:text-xl font-medium mb-2 text-neutral-200 group-hover:text-violet-300 transition-colors">
+              <motion.div
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={isInView ? { 
+                  opacity: isOtherHovered ? 0.5 : 1, 
+                  y: 0, 
+                  scale: 1 
+                } : {}}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.08,
+                  ease: [0.4, 0, 0.2, 1],
+                }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`
+                  glass-panel group relative overflow-hidden
+                  p-6 lg:p-8 min-h-[320px] flex flex-col
+                  transition-all duration-500 ease-out
+                  ${isHovered ? "scale-[1.02] z-10" : "scale-100"}
+                `}
+                style={{
+                  boxShadow: isHovered 
+                    ? "0 0 40px rgba(139, 92, 246, 0.2), 0 20px 40px rgba(0, 0, 0, 0.3)"
+                    : undefined,
+                }}
+              >
+                {/* Node indicator - constellation star */}
+                <div className="absolute top-4 right-4 flex items-center gap-2">
+                  <span 
+                    className={`
+                      w-2 h-2 rounded-full transition-all duration-300
+                      ${isHovered 
+                        ? "bg-cognition shadow-[0_0_10px_#00d9ff]" 
+                        : "bg-emergence/50"
+                      }
+                    `}
+                  />
+                </div>
+
+                {/* Hover glow effect */}
+                <div 
+                  className={`
+                    absolute inset-0 transition-opacity duration-500
+                    bg-gradient-to-br from-cognition/5 via-transparent to-emergence/5
+                    ${isHovered ? "opacity-100" : "opacity-0"}
+                  `}
+                />
+
+                {/* Content */}
+                <div className="relative flex-1 flex flex-col">
+                  {/* Date */}
+                  <p className="text-meta mb-4">{cell.date}</p>
+
+                  {/* Project name */}
+                  <h3 className={`
+                    text-xl lg:text-2xl font-light mb-3 transition-colors duration-300
+                    ${isHovered ? "text-cognition" : "text-white/90"}
+                  `}>
                     {cell.name}
                   </h3>
-                  <p className="text-sm text-neutral-500 leading-relaxed mb-4">
+
+                  {/* Description */}
+                  <p className="text-sm text-neutral-400 leading-relaxed mb-4 flex-1">
                     {cell.desc}
                   </p>
-                  <p className="text-xs text-neutral-400 mb-4">
-                    {cell.title}
-                  </p>
-                  {cell.technologies && cell.technologies.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {cell.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="text-xs font-mono px-2 py-1 bg-neutral-900/50 border border-neutral-800/40 rounded text-neutral-400"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-neutral-800/50">
-                  <div>
-                    <p className="text-xs font-mono text-violet-400/80">
-                      {cell.metric}
-                    </p>
-                    {cell.award && (
-                      <p className="text-xs text-neutral-500 mt-1">
-                        {cell.award}
-                      </p>
+
+                  {/* Hackathon title */}
+                  <p className="text-xs text-neutral-500 mb-4">{cell.title}</p>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {cell.technologies.slice(0, 4).map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className={`
+                          text-xs font-mono px-2 py-1 rounded
+                          border transition-all duration-300
+                          ${isHovered
+                            ? "bg-cognition/10 border-cognition/30 text-cognition/80"
+                            : "bg-substrate-deep/50 border-glass-border text-neutral-500"
+                          }
+                        `}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {cell.technologies.length > 4 && (
+                      <span className="text-xs text-neutral-600">
+                        +{cell.technologies.length - 4}
+                      </span>
                     )}
                   </div>
-                  {cell.link && (
-                    <ExternalLink className="w-4 h-4 text-neutral-700 group-hover:text-violet-400 transition-colors flex-shrink-0" />
-                  )}
+
+                  {/* Bottom: Award + Link */}
+                  <div className="flex items-center justify-between pt-4 border-t border-glass-border">
+                    <div>
+                      <p className={`
+                        text-xs font-mono uppercase tracking-wider transition-colors duration-300
+                        ${cell.metric === "Winner" ? "text-emergence" : "text-data/70"}
+                      `}>
+                        {cell.metric}
+                      </p>
+                      {cell.award && (
+                        <p className="text-xs text-neutral-500 mt-1">{cell.award}</p>
+                      )}
+                    </div>
+                    {cell.link && (
+                      <ExternalLink 
+                        className={`
+                          w-4 h-4 transition-all duration-300
+                          ${isHovered 
+                            ? "text-cognition translate-x-0.5 -translate-y-0.5" 
+                            : "text-neutral-600"
+                          }
+                        `}
+                      />
+                    )}
+                  </div>
                 </div>
-              </>
+
+                {/* Connection lines to adjacent cards (decorative) */}
+                {isHovered && (
+                  <>
+                    <div className="absolute -right-3 top-1/2 w-3 h-px bg-gradient-to-r from-cognition/50 to-transparent hidden lg:block" />
+                    <div className="absolute -left-3 top-1/2 w-3 h-px bg-gradient-to-l from-cognition/50 to-transparent hidden lg:block" />
+                  </>
+                )}
+              </motion.div>
             );
 
-            const cellClassName =
-              "bg-neutral-950/60 backdrop-blur-sm border border-neutral-800/40 p-6 lg:p-8 flex flex-col rounded-sm group min-h-[280px]";
-
             return cell.link ? (
-              <motion.a
+              <a
                 key={index}
                 href={cell.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                variants={cellVariants}
-                className={`${cellClassName} soft-glow-hover cursor-pointer`}
+                className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-cognition focus-visible:ring-offset-4 focus-visible:ring-offset-substrate-void rounded-lg"
               >
                 {content}
-              </motion.a>
+              </a>
             ) : (
-              <motion.div
-                key={index}
-                variants={cellVariants}
-                className={cellClassName}
-              >
-                {content}
-              </motion.div>
+              <div key={index}>{content}</div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

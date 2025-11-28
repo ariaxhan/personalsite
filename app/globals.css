@@ -2,15 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   COGNITIVE SUBSTRATE DESIGN SYSTEM
+   Theme: Layered Intelligence Made Visible
+   Philosophy: Form follows concept, not trend
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   CSS CUSTOM PROPERTIES
+   Cognitive state represented through color, not decoration
+   ───────────────────────────────────────────────────────────────────────────── */
 :root {
-  --black: #000000;
-  --surface: #0a0a0a;
-  --white: #ffffff;
-  --gray: #666666;
-  --accent: #0066ff;
-  --border: #222222;
+  /* Substrate layers - deep to surface */
+  --substrate-void: #0a0814;
+  --substrate-deep: #0d1b2a;
+  --substrate-mid: #1b263b;
+  --substrate-surface: #2d3e50;
+
+  /* Cognitive states */
+  --cognition: #00d9ff;
+  --cognition-dim: rgba(0, 217, 255, 0.5);
+  --cognition-glow: rgba(0, 217, 255, 0.25);
+  --cognition-subtle: rgba(0, 217, 255, 0.12);
+
+  /* Emergence / connections */
+  --emergence: #8b5cf6;
+  --emergence-dim: rgba(139, 92, 246, 0.5);
+  --emergence-glow: rgba(139, 92, 246, 0.25);
+  --emergence-subtle: rgba(139, 92, 246, 0.12);
+
+  /* Memory / persistence */
+  --memory: #fbbf24;
+  --memory-dim: rgba(251, 191, 36, 0.5);
+  --memory-glow: rgba(251, 191, 36, 0.25);
+
+  /* Data flow */
+  --data: #3b82f6;
+  --data-dim: rgba(59, 130, 246, 0.5);
+  --data-glow: rgba(59, 130, 246, 0.25);
+
+  /* Glass properties */
+  --glass-bg: rgba(13, 27, 42, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(0, 217, 255, 0.3);
+  --glass-blur: 12px;
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   BASE STYLES
+   ───────────────────────────────────────────────────────────────────────────── */
 * {
   box-sizing: border-box;
 }
@@ -20,131 +60,469 @@ html {
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, sans-serif;
-  background: var(--black);
-  color: var(--white);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--substrate-void);
+  color: #e5e5e5;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Monospace metadata - the signature move */
-.mono-meta {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 11px;
+/* ─────────────────────────────────────────────────────────────────────────────
+   TYPOGRAPHY AS DATA STRUCTURE
+   Text is data being processed
+   ───────────────────────────────────────────────────────────────────────────── */
+.text-data {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--cognition-dim);
+}
+
+.text-meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.6875rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: rgba(255, 255, 255, 0.4);
 }
 
-/* Border accent - primary hierarchy indicator */
-.border-accent-left {
-  border-left: 4px solid var(--accent);
-  padding-left: 16px;
+.text-display {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.02em;
 }
 
-.border-accent-left-inactive {
-  border-left: 4px solid var(--border);
-  padding-left: 16px;
+/* ─────────────────────────────────────────────────────────────────────────────
+   GLASS SUBSTRATE CARDS
+   Information floating in cognitive space
+   ───────────────────────────────────────────────────────────────────────────── */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Single animation: fade up, 150ms */
-@keyframes fadeUp {
-  from {
+.glass-panel:hover {
+  background: rgba(13, 27, 42, 0.75);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px) translateZ(10px);
+  box-shadow: 0 0 30px var(--cognition-glow), 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.glass-panel-active {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--cognition-dim);
+  box-shadow: 0 0 20px var(--cognition-glow), 0 0 40px var(--cognition-subtle),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px var(--cognition-glow), 0 0 40px var(--cognition-subtle);
+    border-color: var(--cognition-dim);
+  }
+  50% {
+    box-shadow: 0 0 30px var(--cognition-dim), 0 0 60px var(--cognition-glow);
+    border-color: var(--cognition);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SUBSTRATE BACKGROUND LAYERS
+   Depth perception through translucent planes
+   ───────────────────────────────────────────────────────────────────────────── */
+.substrate-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.substrate-layer-deep {
+  background: radial-gradient(
+      ellipse 80% 60% at 10% 90%,
+      var(--emergence-subtle) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 70% 50% at 90% 10%,
+      var(--data-glow) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      var(--substrate-void) 0%,
+      var(--substrate-deep) 100%
+    );
+  z-index: -30;
+}
+
+.substrate-layer-mid {
+  background: radial-gradient(
+      circle at 30% 70%,
+      var(--cognition-subtle) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 70% 30%,
+      var(--emergence-subtle) 0%,
+      transparent 40%
+    );
+  z-index: -20;
+  animation: drift 30s ease-in-out infinite;
+}
+
+.substrate-layer-surface {
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 30%,
+    var(--substrate-void) 70%
+  );
+  z-index: -10;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(20px, -10px) scale(1.02);
+  }
+  50% {
+    transform: translate(-10px, 20px) scale(0.98);
+  }
+  75% {
+    transform: translate(-20px, -20px) scale(1.01);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   NEURAL CONNECTION LINES
+   Thoughts connecting across substrate
+   ───────────────────────────────────────────────────────────────────────────── */
+.neural-line {
+  stroke: var(--emergence-dim);
+  stroke-width: 1;
+  fill: none;
+  stroke-linecap: round;
+  animation: networkPulse 3s ease-in-out infinite;
+}
+
+@keyframes networkPulse {
+  0%,
+  100% {
+    stroke-opacity: 0.2;
+    stroke-width: 1;
+  }
+  50% {
+    stroke-opacity: 0.6;
+    stroke-width: 1.5;
+  }
+}
+
+.neural-node {
+  fill: var(--substrate-mid);
+  stroke: var(--cognition-dim);
+  stroke-width: 1;
+  transition: all 0.3s ease;
+}
+
+.neural-node:hover {
+  fill: var(--substrate-surface);
+  stroke: var(--cognition);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 10px var(--cognition-dim));
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ACTIVE COGNITION INDICATORS
+   Pulsing glow around active elements
+   ───────────────────────────────────────────────────────────────────────────── */
+.cognition-glow {
+  position: relative;
+}
+
+.cognition-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    var(--cognition-dim),
+    var(--emergence-dim)
+  );
+  z-index: -1;
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 0.4s ease;
+}
+
+.cognition-glow:hover::before {
+  opacity: 1;
+}
+
+.cognition-active {
+  border-color: var(--cognition-dim) !important;
+  box-shadow: 0 0 20px var(--cognition-glow),
+    inset 0 0 20px var(--cognition-subtle);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   DATA STREAM AESTHETIC
+   Information flowing through system
+   ───────────────────────────────────────────────────────────────────────────── */
+.data-stream {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 5;
+}
+
+.data-particle {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--cognition),
+    transparent
+  );
+  animation: particleFlow 8s linear infinite;
+}
+
+@keyframes particleFlow {
+  0% {
+    transform: translateY(100vh);
     opacity: 0;
-    transform: translateY(12px);
   }
-  to {
+  10% {
     opacity: 1;
-    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
   }
 }
 
-.animate-fade-up {
-  animation: fadeUp 150ms ease-out forwards;
+/* ─────────────────────────────────────────────────────────────────────────────
+   MEMORY TRACES
+   Past interactions leave visible trails
+   ───────────────────────────────────────────────────────────────────────────── */
+.memory-trace {
+  position: relative;
 }
 
-/* Stagger delays - powers of 2 */
-.delay-0 {
-  animation-delay: 0ms;
-}
-.delay-1 {
-  animation-delay: 50ms;
-}
-.delay-2 {
-  animation-delay: 100ms;
-}
-.delay-3 {
-  animation-delay: 150ms;
-}
-.delay-4 {
-  animation-delay: 200ms;
+.memory-trace::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--memory-dim),
+    transparent
+  );
+  opacity: 0;
+  transform: scaleX(0);
+  transition: all 0.4s ease;
 }
 
-/* Custom scrollbar - minimal */
+.memory-trace:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   EMERGENCE GRID
+   Ripple effects showing local rules creating global patterns
+   ───────────────────────────────────────────────────────────────────────────── */
+.emergence-grid {
+  background-image: linear-gradient(var(--glass-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: center;
+}
+
+.emergence-ripple {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--cognition-dim);
+  animation: ripple 2s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   HOVER STATES AS ATTENTION
+   System focusing attention here
+   ───────────────────────────────────────────────────────────────────────────── */
+.attention-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.attention-hover:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.1);
+}
+
+/* Link styles */
+a {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+  color: var(--cognition);
+  text-shadow: 0 0 20px var(--cognition-glow);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SCROLL ANIMATIONS
+   Reveal as user travels through cognitive depth
+   ───────────────────────────────────────────────────────────────────────────── */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for orchestrated reveals */
+.stagger-1 {
+  transition-delay: 0.1s;
+}
+.stagger-2 {
+  transition-delay: 0.2s;
+}
+.stagger-3 {
+  transition-delay: 0.3s;
+}
+.stagger-4 {
+  transition-delay: 0.4s;
+}
+.stagger-5 {
+  transition-delay: 0.5s;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SCROLLBAR - MINIMAL DATA AESTHETIC
+   ───────────────────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--black);
+  background: var(--substrate-void);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--substrate-mid);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gray);
+  background: var(--cognition-dim);
 }
 
-/* Selection - accent based */
+/* ─────────────────────────────────────────────────────────────────────────────
+   SELECTION - COGNITIVE HIGHLIGHT
+   ───────────────────────────────────────────────────────────────────────────── */
 ::selection {
-  background: rgba(0, 102, 255, 0.3);
-  color: var(--white);
+  background: var(--cognition-glow);
+  color: white;
 }
 
-/* Focus styles - visible, custom */
+/* ─────────────────────────────────────────────────────────────────────────────
+   FOCUS STATES - ACCESSIBILITY
+   ───────────────────────────────────────────────────────────────────────────── */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: 2px solid var(--cognition);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
-/* Hover transition - opacity only, 150ms */
-.hover-opacity {
-  transition: opacity 150ms ease-out;
+/* ─────────────────────────────────────────────────────────────────────────────
+   REDUCED MOTION PREFERENCES
+   ───────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-.hover-opacity:hover {
-  opacity: 0.7;
+/* ─────────────────────────────────────────────────────────────────────────────
+   UTILITY CLASSES
+   ───────────────────────────────────────────────────────────────────────────── */
+.border-gradient {
+  border: 1px solid transparent;
+  background: linear-gradient(var(--glass-bg), var(--glass-bg)) padding-box,
+    linear-gradient(135deg, var(--cognition-dim), var(--emergence-dim))
+      border-box;
 }
 
-/* Border hover - color shift only */
-.hover-border {
-  transition: border-color 150ms ease-out;
+.text-gradient-cognition {
+  background: linear-gradient(135deg, var(--cognition), var(--emergence));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.hover-border:hover {
-  border-color: var(--accent);
+.text-gradient-memory {
+  background: linear-gradient(135deg, var(--memory), var(--cognition));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Ensure touch targets are accessible */
+/* Touch targets for mobile */
 @media (max-width: 640px) {
   button,
   a {
     min-height: 44px;
   }
-}
-
-/* Legacy class stubs - do nothing by design */
-.section-gradient {
-}
-.soft-glow-hover {
-  transition: border-color 150ms ease-out;
-}
-.soft-glow-hover:hover {
-  border-color: var(--accent);
 }
