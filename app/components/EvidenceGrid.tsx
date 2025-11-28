@@ -13,46 +13,46 @@ interface EvidenceCell {
 
 const evidenceData: EvidenceCell[] = [
   {
-    date: "JAN 2025",
+    date: "2025",
     title: "AWS AI Agents Hackathon",
     desc: "Best Use of Semgrep. Darwin: AI models competing to generate better tools through automated quality metrics.",
     metric: "Winner",
-    link: "https://devpost.com/software/darwin-ai-powered-code-evolution",
+    link: "https://devpost.com/software/darwin-cmfysv",
   },
   {
-    date: "JAN 2025",
-    title: "Weavehacks-2",
+    date: "2025",
+    title: "Weavehacks-2 - Self Improving Agents w/ Google Cloud",
     desc: "RL Track Winner. The Convergence: Self-improving agents through reinforcement learning. Published to PyPI.",
     metric: "Winner · Open Source",
     link: "https://devpost.com/software/the-convergence",
   },
   {
-    date: "JAN 2025",
+    date: "2025",
     title: "Multimodal AI Agents",
     desc: "Best Use of Agno. Content Creator Connector: Brand-creator matching through multi-modal analysis.",
     metric: "Winner",
     link: "https://devpost.com/software/content-creator-connector",
   },
   {
-    date: "OCT 2024",
-    title: "Vertical Specific AI",
-    desc: "Best AI/ML API. Brink: Voice AI with Apple Watch biometric integration for mental health support.",
-    metric: "Winner · iOS",
-    link: "https://devpost.com/software/brink-wearable-ai-mental-health-companion",
+    date: "2024",
+    title: "Vertical Specific AI Agents Hackathon",
+    desc: "Best AI/ML API. TheraVoice: AI therapy agent that processes user input using advanced AI and NLP, delivering vocalized responses through TTS.",
+    metric: "Winner",
+    link: "https://devpost.com/software/draft_name",
   },
   {
     date: "2024",
-    title: "GPT-4o vs Gemini",
+    title: "GPT-4o vs. Gemini 1.5 Hackathon",
     desc: "Best Use of Wordware. HotAgents: Hotkey-triggered agent workflows for high-impact LLM operations.",
     metric: "Winner",
-    link: "https://devpost.com/software/hotagents",
+    link: "https://github.com/ariaxhan/hotagents",
   },
   {
     date: "2024",
-    title: "AI Agents 2.0",
+    title: "AI Agents 2.0 Hackathon",
     desc: "Freetime: AI-driven social coordination. Multi-agent system for gathering planning based on shared interests.",
     metric: "Finalist",
-    link: "https://devpost.com/software/freetime-ai-social-coordinator",
+    link: "https://github.com/ariaxhan/freetime",
   },
 ];
 
@@ -94,7 +94,7 @@ export default function EvidenceGrid() {
             Built Under Pressure
           </h2>
           <p className="text-neutral-500 mt-4 max-w-xl">
-            Six hackathon wins in 2024. Each project built in 24-48 hours, 
+            Six hackathon wins in 2024-2025. Each project built in 24-48 hours, 
             validated by judges, and often continued into production.
           </p>
         </motion.div>

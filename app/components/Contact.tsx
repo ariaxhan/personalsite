@@ -24,13 +24,13 @@ const contactLinks: ContactLink[] = [
   },
   {
     label: "Medium",
-    href: "https://medium.com/@ariahan",
+    href: "https://medium.com/@ariaxhan",
     external: true,
     icon: <BookOpen className="w-5 h-5" />,
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/ariahan",
+    href: "https://www.linkedin.com/in/ariahan/",
     external: true,
     icon: <Linkedin className="w-5 h-5" />,
   },
