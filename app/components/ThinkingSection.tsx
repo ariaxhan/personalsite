@@ -110,7 +110,7 @@ export default function ThinkingSection() {
             { label: "Platform", value: "Medium" },
             { label: "Focus", value: "AI, Agents, Building" },
             { label: "Style", value: "Technical + Thoughtful" },
-          ].map((item, index) => (
+          ].map((item) => (
             <div key={item.label} className="group">
               <p className="text-meta mb-2">{item.label}</p>
               <p className="text-neutral-300 text-sm group-hover:text-cognition/80 transition-colors">

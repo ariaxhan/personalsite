@@ -69,7 +69,7 @@ export default function SystemBlock({ system, index }: SystemBlockProps) {
         role="button"
         tabIndex={0}
         onKeyDown={(e) => e.key === "Enter" && setIsExpanded(!isExpanded)}
-        aria-expanded={isExpanded}
+        aria-expanded={isExpanded ? "true" : "false"}
       >
         {/* Active state indicator - cognitive processing */}
         {system.status === "LIVE_BETA" && (
