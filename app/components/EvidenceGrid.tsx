@@ -6,8 +6,11 @@ import { ExternalLink } from "lucide-react";
 interface EvidenceCell {
   date: string;
   title: string;
+  name: string;
   desc: string;
+  award: string;
   metric: string;
+  technologies: string[];
   link?: string;
 }
 
@@ -15,43 +18,69 @@ const evidenceData: EvidenceCell[] = [
   {
     date: "2025",
     title: "AWS AI Agents Hackathon",
-    desc: "Best Use of Semgrep. Darwin: AI models competing to generate better tools through automated quality metrics.",
+    name: "Darwin",
+    desc: "Darwin evolves better tool-writing AI. Models compete to generate tools. Semgrep scans. Weak code dies. Strong code survives.",
+    award: "Best Use of Semgrep",
     metric: "Winner",
+    technologies: ["AWS Bedrock", "Semgrep", "AI Evolution", "Security"],
     link: "https://devpost.com/software/darwin-cmfysv",
   },
   {
     date: "2025",
     title: "Weavehacks-2 - Self Improving Agents w/ Google Cloud",
-    desc: "RL Track Winner. The Convergence: Self-improving agents through reinforcement learning. Published to PyPI.",
-    metric: "Winner · Open Source",
+    name: "The Convergence",
+    desc: "Where cutting-edge AI infrastructure meets autonomous learning - agents that improve through experience, collaboration, and evolution. Converted into an open-source package and integrated into HeyContext.",
+    award: "Reinforcement Learning Track",
+    metric: "Winner",
+    technologies: [
+      "BrowserBase + Stagehand",
+      "Google ADK",
+      "Tavily",
+      "AG-UI",
+      "Daytona",
+      "Weights & Biases Weave",
+      "Coreweave Reinforcement Learning",
+    ],
     link: "https://devpost.com/software/the-convergence",
   },
   {
     date: "2025",
     title: "Multimodal AI Agents",
-    desc: "Best Use of Agno. Content Creator Connector: Brand-creator matching through multi-modal analysis.",
+    name: "Content Creator Connector",
+    desc: "Enter your company name, and our platform finds the best mid-size content creators, researches your brand, and sends personalized collaboration emails.",
+    award: "Best Use of Agno",
     metric: "Winner",
+    technologies: ["Gemini", "Agno", "Weave", "Wordware"],
     link: "https://devpost.com/software/content-creator-connector",
   },
   {
     date: "2024",
     title: "Vertical Specific AI Agents Hackathon",
-    desc: "Best AI/ML API. TheraVoice: AI therapy agent that processes user input using advanced AI and NLP, delivering vocalized responses through TTS.",
+    name: "TheraVoice",
+    desc: "TheraVoice, our AI therapy agent built with aiXplain, takes in user input, processes it using advanced AI and NLP, and delivers a vocalized response through text-to-speech (TTS) technology.",
+    award: "Best Use of AI/ML API",
     metric: "Winner",
+    technologies: ["aiXplain", "AI/ML"],
     link: "https://devpost.com/software/draft_name",
   },
   {
     date: "2024",
     title: "GPT-4o vs. Gemini 1.5 Hackathon",
-    desc: "Best Use of Wordware. HotAgents: Hotkey-triggered agent workflows for high-impact LLM operations.",
+    name: "HotAgents",
+    desc: "Effortlessly trigger agents using hotkeys and simplify your workflow by condensing high-impact LLM use cases into easily repeatable actions.",
+    award: "Best Use of Wordware",
     metric: "Winner",
+    technologies: ["Wordware", "AgentOps", "Electron"],
     link: "https://github.com/ariaxhan/hotagents",
   },
   {
     date: "2024",
     title: "AI Agents 2.0 Hackathon",
-    desc: "Freetime: AI-driven social coordination. Multi-agent system for gathering planning based on shared interests.",
+    name: "Freetime - AI Social Planner",
+    desc: "AI-driven social planning tool that coordinates gatherings based on shared interests.",
+    award: "",
     metric: "Finalist",
+    technologies: ["Groq", "Supabase", "CrewAI", "JigsawStack"],
     link: "https://github.com/ariaxhan/freetime",
   },
 ];
@@ -94,8 +123,8 @@ export default function EvidenceGrid() {
             Built Under Pressure
           </h2>
           <p className="text-neutral-500 mt-4 max-w-xl">
-            Six hackathon wins in 2024-2025. Each project built in 24-48 hours, 
-            validated by judges, and often continued into production.
+            Six hackathon wins in the past two years. Each project built in 24-48 hours, 
+            validated by judges, and often continued into production. Rapid iteration under pressure.
           </p>
         </motion.div>
 
@@ -115,22 +144,47 @@ export default function EvidenceGrid() {
                     {cell.date}
                   </p>
                   <h3 className="text-lg lg:text-xl font-medium mb-2 text-neutral-200 group-hover:text-violet-300 transition-colors">
-                    {cell.title}
+                    {cell.name}
                   </h3>
-                  <p className="text-sm text-neutral-500 leading-relaxed">
+                  <p className="text-sm text-neutral-500 leading-relaxed mb-4">
                     {cell.desc}
                   </p>
-                </div>
-                <div className="flex items-center justify-between mt-4 pt-4 border-t border-neutral-800/50">
-                  <p className="text-xs font-mono text-violet-400/80">
-                    {cell.metric}
+                  <p className="text-xs text-neutral-400 mb-4">
+                    {cell.title}
                   </p>
+                  {cell.technologies && cell.technologies.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {cell.technologies.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="text-xs font-mono px-2 py-1 bg-neutral-900/50 border border-neutral-800/40 rounded text-neutral-400"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-neutral-800/50">
+                  <div>
+                    <p className="text-xs font-mono text-violet-400/80">
+                      {cell.metric}
+                    </p>
+                    {cell.award && (
+                      <p className="text-xs text-neutral-500 mt-1">
+                        {cell.award}
+                      </p>
+                    )}
+                  </div>
                   {cell.link && (
-                    <ExternalLink className="w-4 h-4 text-neutral-700 group-hover:text-violet-400 transition-colors" />
+                    <ExternalLink className="w-4 h-4 text-neutral-700 group-hover:text-violet-400 transition-colors flex-shrink-0" />
                   )}
                 </div>
               </>
             );
+
+            const cellClassName =
+              "bg-neutral-950/60 backdrop-blur-sm border border-neutral-800/40 p-6 lg:p-8 flex flex-col rounded-sm group min-h-[280px]";
 
             return cell.link ? (
               <motion.a
@@ -139,7 +193,7 @@ export default function EvidenceGrid() {
                 target="_blank"
                 rel="noopener noreferrer"
                 variants={cellVariants}
-                className="bg-neutral-950/60 backdrop-blur-sm border border-neutral-800/40 p-6 lg:p-8 flex flex-col justify-between rounded-sm soft-glow-hover group cursor-pointer min-h-[220px]"
+                className={`${cellClassName} soft-glow-hover cursor-pointer`}
               >
                 {content}
               </motion.a>
@@ -147,7 +201,7 @@ export default function EvidenceGrid() {
               <motion.div
                 key={index}
                 variants={cellVariants}
-                className="bg-neutral-950/60 backdrop-blur-sm border border-neutral-800/40 p-6 lg:p-8 flex flex-col justify-between rounded-sm group min-h-[220px]"
+                className={cellClassName}
               >
                 {content}
               </motion.div>

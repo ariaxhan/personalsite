@@ -28,21 +28,6 @@ export const systemsData: SystemData[] = [
     },
   },
   {
-    name: "The Convergence",
-    status: "OPEN_SOURCE",
-    description: [
-      "RL framework where agents improve through experience and evolutionary pressure. Multi-armed bandit for adaptive selection. Weak behaviors die, strong behaviors survive and propagate.",
-      "Published to PyPI. Integrated into HeyContext production. Won Reinforcement Learning Track at Weavehacks-2. Community contributions active.",
-    ],
-    evidence:
-      "Agents don't need explicit reward functions—they need environments rich enough to generate natural selection pressure. Quality emerges from competition.",
-    meta: {
-      method: "Evolutionary selection + continuous learning",
-      validation: "Hackathon winner · Production deployed",
-      distribution: "PyPI package · GitHub",
-    },
-  },
-  {
     name: "HeyContent",
     status: "INTEGRATED",
     description: [

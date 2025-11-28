@@ -6,6 +6,7 @@ import { systemsData } from "./utils/systemsData";
 import ThinkingSection from "./components/ThinkingSection";
 import Timeline from "./components/Timeline";
 import Contact from "./components/Contact";
+import OpenSource from "./components/OpenSource";
 
 export const metadata: Metadata = {
   title: "Aria Han | AI Systems Builder",
@@ -51,6 +52,7 @@ export default function Home() {
         </div>
       </section>
 
+      <OpenSource />
       <ThinkingSection />
       <Timeline />
       <Contact />

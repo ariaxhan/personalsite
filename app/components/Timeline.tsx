@@ -10,23 +10,23 @@ interface TimelineEntry {
 
 const timelineData: TimelineEntry[] = [
   {
-    date: "NOV_2023 - MAR_2024",
-    title: "Brink Labs",
-    desc: "Founded. Built voice AI with biometric integration. iOS + watchOS. Won competition. Learned: multimodal signal fusion, real-time processing constraints, on-device vs cloud trade-offs.",
+    date: "SEPT_2025 - PRESENT",
+    title: "PersistOS / HeyContext",
+    desc: "Founded. Building HeyContext: multi-agent orchestration platform. 17+ agent types. Adaptive coordination. The Convergence framework integrated. Live in beta. <br/> Learned: coordination overhead dominates token costs, emergent agent behavior, long-horizon system design.",
   },
   {
-    date: "MAR_2024 - SEPT_2024",
-    title: "DivertissementAI",
-    desc: "Founded. Built cross-platform memory system. Instagram, YouTube, Gmail, notes integration. Learned: semantic linking, real-time sync, context management across platforms. Technology integrated into next system.",
+    date: "MAR_2025 - SEPT_2025",
+    title: "Divertissement / HeyContent",
+    desc: "Founded. Built cross-platform memory system. Instagram, YouTube, Gmail, notes integration. <br/> Learned: semantic linking, real-time sync, context management across platforms. Technology integrated into next system.",
   },
   {
-    date: "SEPT_2024 - PRESENT",
-    title: "PersistOS",
-    desc: "Founded. Building HeyContext: multi-agent orchestration platform. 17+ agent types. Adaptive coordination. The Convergence framework integrated. Live in beta. Learning: coordination overhead dominates token costs, emergent agent behavior, long-horizon system design.",
+    date: "NOV_2024 - MAR_2025",
+    title: "Brink Labs / Brink Mind",
+    desc: "Founded. Built voice AI with biometric integration. iOS + watchOS. Won hackathon. <br/> Learned: multimodal signal fusion, real-time processing constraints, on-device vs cloud trade-offs.",
   },
   {
-    date: "2024",
-    title: "Six Competition Wins",
+    date: "2024 - 2025",
+    title: "Six Hackathon Wins",
     desc: "AWS AI Agents. Weavehacks-2 RL Track. Multimodal AI Agents. Vertical Specific AI. GPT-4o vs Gemini. AI Agents 2.0 Finalist. Each validates different aspect of approach. Rapid iteration under pressure. Public judgment. Validation that frameworks hold.",
   },
   {
