@@ -277,7 +277,10 @@ export default function VectorNativeDocument() {
           </h1>
           <div className="space-y-4 text-neutral-400 max-w-2xl text-base leading-relaxed">
             <p>
-              LLMs don&apos;t &quot;read&quot; words;they process pattern distributions in vector space.
+              This is one of the products of my year-long exploration of LLMs, addressing one of the most fundamental questions: language. 
+            </p>
+            <p>
+              LLMs don&apos;t &quot;read&quot; words; they process pattern distributions in vector space.
               When you type text, the model sees <span className="text-cognition/80 font-mono text-sm">tokenization → embeddings → attention weights → probability distributions</span>.
               It never &quot;sees&quot; language. Only high-dimensional vector operations.
             </p>
@@ -285,12 +288,12 @@ export default function VectorNativeDocument() {
               Vector Native is a syntax layer that works <em>with</em> this nature, not against it.
               Using symbols already dense in LLM training data;<span className="text-emergence/80 font-mono text-sm">●</span> from bullet points,
               <span className="text-emergence/80 font-mono text-sm"> |</span> from config files,
-              <span className="text-emergence/80 font-mono text-sm"> ├└</span> from tree structures;we
+              <span className="text-emergence/80 font-mono text-sm"> ├└</span> from tree structures; we
               trigger pre-trained statistical patterns rather than forcing the model to parse prose.
             </p>
             <p className="text-neutral-500">
               Primary use: <span className="text-cognition/70">agent-to-agent communication</span> where semantic drift and compute waste matter.
-              I also use it in conversational flows to amplify my own workflows;articles on that coming soon.
+              I also use it in conversational flows to amplify my own workflows; articles on that coming soon.
             </p>
           </div>
           
