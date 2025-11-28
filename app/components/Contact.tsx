@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { Mail, Github, BookOpen, Linkedin, ArrowUpRight } from "lucide-react";
+import { Mail, Github, BookOpen, Linkedin, ArrowUpRight, X } from "lucide-react";
 import { useRef, useState } from "react";
 
 interface ContactLink {
@@ -14,8 +14,8 @@ interface ContactLink {
 
 const contactLinks: ContactLink[] = [
   {
-    label: "aria@persistos.co",
-    href: "mailto:aria@persistos.co",
+    label: "ariaxhan@gmail.com",
+    href: "mailto:ariaxhan@gmail.com",
     icon: <Mail className="w-5 h-5" />,
     color: "cognition",
   },
@@ -39,6 +39,13 @@ const contactLinks: ContactLink[] = [
     external: true,
     icon: <Linkedin className="w-5 h-5" />,
     color: "memory",
+  },
+  {
+    label: "X (Twitter)",
+    href: "https://x.com/aria__han",
+    external: true,
+    icon: <X className="w-5 h-5" />,
+    color: "cognition",
   },
 ];
 

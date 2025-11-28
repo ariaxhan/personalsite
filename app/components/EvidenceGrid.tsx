@@ -102,7 +102,7 @@ export default function EvidenceGrid() {
   return (
     <section 
       ref={containerRef}
-      className="relative py-32 lg:py-40 overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-32 xl:py-40 overflow-hidden"
     >
       {/* Section background gradient */}
       <div 
@@ -115,21 +115,21 @@ export default function EvidenceGrid() {
         }}
       />
 
-      <div className="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl relative z-10">
         {/* Section Header */}
         <motion.div
-          className="mb-20"
+          className="mb-12 sm:mb-16 lg:mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
-          <p className="text-data tracking-[0.2em] mb-6">
+          <p className="text-data tracking-[0.2em] mb-4 sm:mb-6 text-xs sm:text-sm">
             <span className="text-emergence/60">◇</span> 01_COMPETITION_WINS
           </p>
-          <h2 className="text-display text-4xl lg:text-6xl text-white/90 mb-6">
+          <h2 className="text-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-white/90 mb-4 sm:mb-6 leading-tight">
             Built Under Pressure
           </h2>
-          <p className="text-neutral-400 max-w-2xl text-lg leading-relaxed">
+          <p className="text-neutral-400 max-w-2xl text-base sm:text-lg leading-relaxed">
             Six hackathon wins in the past two years. Each project built in 24-48 hours,
             validated by judges, and often continued into production.{" "}
             <span className="text-emergence/80">Rapid iteration under pressure.</span>
@@ -137,7 +137,7 @@ export default function EvidenceGrid() {
         </motion.div>
 
         {/* Constellation Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           {evidenceData.map((cell, index) => {
             const isHovered = hoveredIndex === index;
             const isOtherHovered = hoveredIndex !== null && hoveredIndex !== index;
@@ -157,11 +157,14 @@ export default function EvidenceGrid() {
                 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                onTouchStart={() => setHoveredIndex(index)}
                 className={`
                   glass-panel group relative overflow-hidden
-                  p-6 lg:p-8 min-h-[320px] flex flex-col
+                  p-5 sm:p-6 lg:p-7 xl:p-8 
+                  min-h-[420px] sm:min-h-[460px] lg:h-[480px] 
+                  flex flex-col
                   transition-all duration-500 ease-out
-                  ${isHovered ? "scale-[1.02] z-10" : "scale-100"}
+                  ${isHovered ? "scale-[1.01] sm:scale-[1.02] z-10" : "scale-100"}
                 `}
                 style={{
                   boxShadow: isHovered 
@@ -170,10 +173,10 @@ export default function EvidenceGrid() {
                 }}
               >
                 {/* Node indicator - constellation star */}
-                <div className="absolute top-4 right-4 flex items-center gap-2">
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex items-center gap-2">
                   <span 
                     className={`
-                      w-2 h-2 rounded-full transition-all duration-300
+                      w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300
                       ${isHovered 
                         ? "bg-cognition shadow-[0_0_10px_#00d9ff]" 
                         : "bg-emergence/50"
@@ -192,34 +195,43 @@ export default function EvidenceGrid() {
                 />
 
                 {/* Content */}
-                <div className="relative flex-1 flex flex-col">
+                <div className="relative flex-1 flex flex-col min-h-0">
                   {/* Date */}
-                  <p className="text-meta mb-4">{cell.date}</p>
+                  <p className="text-meta mb-3 sm:mb-4 text-[0.6875rem] leading-tight">
+                    {cell.date}
+                  </p>
 
                   {/* Project name */}
                   <h3 className={`
-                    text-xl lg:text-2xl font-light mb-3 transition-colors duration-300
+                    text-lg sm:text-xl lg:text-2xl font-light mb-2 sm:mb-3 
+                    leading-tight transition-colors duration-300
                     ${isHovered ? "text-cognition" : "text-white/90"}
                   `}>
                     {cell.name}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm text-neutral-400 leading-relaxed mb-4 flex-1">
+                  <p className="text-sm text-neutral-400 leading-relaxed mb-3 sm:mb-4 flex-1 line-clamp-4 overflow-hidden min-h-0">
                     {cell.desc}
                   </p>
 
                   {/* Hackathon title */}
-                  <p className="text-xs text-neutral-500 mb-4">{cell.title}</p>
+                  <p className="text-xs text-neutral-500 mb-3 sm:mb-4 leading-relaxed line-clamp-2">
+                    {cell.title}
+                  </p>
 
                   {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-5 lg:mb-6 min-h-[52px] sm:min-h-[56px] lg:min-h-[60px] items-start">
                     {cell.technologies.slice(0, 4).map((tech, techIndex) => (
                       <span
                         key={techIndex}
                         className={`
-                          text-xs font-mono px-2 py-1 rounded
-                          border transition-all duration-300
+                          inline-flex items-center justify-center
+                          text-[0.6875rem] sm:text-xs font-mono font-normal
+                          px-2.5 sm:px-3 py-1 sm:py-1.5 min-h-[22px] sm:min-h-[24px]
+                          rounded border
+                          whitespace-nowrap
+                          transition-all duration-300
                           ${isHovered
                             ? "bg-cognition/10 border-cognition/30 text-cognition/80"
                             : "bg-substrate-deep/50 border-glass-border text-neutral-500"
@@ -230,34 +242,38 @@ export default function EvidenceGrid() {
                       </span>
                     ))}
                     {cell.technologies.length > 4 && (
-                      <span className="text-xs text-neutral-600">
+                      <span className="inline-flex items-center justify-center text-[0.6875rem] sm:text-xs text-neutral-600 min-h-[22px] sm:min-h-[24px] px-2">
                         +{cell.technologies.length - 4}
                       </span>
                     )}
                   </div>
 
                   {/* Bottom: Award + Link */}
-                  <div className="flex items-center justify-between pt-4 border-t border-glass-border">
-                    <div>
+                  <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-glass-border mt-auto">
+                    <div className="min-h-[36px] sm:min-h-[40px] flex flex-col justify-center flex-1 min-w-0 pr-3">
                       <p className={`
-                        text-xs font-mono uppercase tracking-wider transition-colors duration-300
+                        text-[0.6875rem] sm:text-xs font-mono uppercase tracking-wider 
+                        transition-colors duration-300 leading-tight
                         ${cell.metric === "Winner" ? "text-emergence" : "text-data/70"}
                       `}>
                         {cell.metric}
                       </p>
                       {cell.award && (
-                        <p className="text-xs text-neutral-500 mt-1">{cell.award}</p>
+                        <p className="text-[0.6875rem] sm:text-xs text-neutral-500 mt-0.5 sm:mt-1 line-clamp-1 leading-tight">
+                          {cell.award}
+                        </p>
                       )}
                     </div>
                     {cell.link && (
                       <ExternalLink 
                         className={`
-                          w-4 h-4 transition-all duration-300
+                          w-4 h-4 sm:w-4 sm:h-4 transition-all duration-300 flex-shrink-0
                           ${isHovered 
                             ? "text-cognition translate-x-0.5 -translate-y-0.5" 
                             : "text-neutral-600"
                           }
                         `}
+                        aria-label="View project"
                       />
                     )}
                   </div>
@@ -279,12 +295,13 @@ export default function EvidenceGrid() {
                 href={cell.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-cognition focus-visible:ring-offset-4 focus-visible:ring-offset-substrate-void rounded-lg"
+                className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-cognition focus-visible:ring-offset-2 sm:focus-visible:ring-offset-4 focus-visible:ring-offset-substrate-void rounded-lg touch-manipulation"
+                aria-label={`View ${cell.name} project`}
               >
                 {content}
               </a>
             ) : (
-              <div key={index}>{content}</div>
+              <div key={index} className="touch-manipulation">{content}</div>
             );
           })}
         </div>

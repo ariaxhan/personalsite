@@ -14,7 +14,7 @@ const timelineData: TimelineEntry[] = [
   {
     date: "SEPT_2025 - PRESENT",
     title: "PersistOS / HeyContext",
-    desc: "Founded. Building HeyContext: multi-agent orchestration platform. 17+ agent types. Adaptive coordination. The Convergence framework integrated. Live in beta.",
+    desc: "Founded. Building HeyContext: multi-agent orchestration platform. Adaptive coordination. The Convergence framework integrated. Live in beta.",
     type: "company",
   },
   {

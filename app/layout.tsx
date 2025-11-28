@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { ReactNode } from "react";
 import "./globals.css";
+import Navigation from "./components/Navigation";
+import SubstrateBackground from "./components/SubstrateBackground";
 
 export const metadata: Metadata = {
   title: "Aria Han | AI Systems Builder",
@@ -66,7 +68,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body className="bg-substrate-void text-neutral-200 antialiased overflow-x-hidden">
-        {children}
+        {/* Global background */}
+        <SubstrateBackground />
+        
+        {/* Navigation */}
+        <Navigation />
+        
+        {/* Main content */}
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );

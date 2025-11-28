@@ -526,3 +526,14 @@ button:focus-visible {
     min-height: 44px;
   }
 }
+
+/* Touch manipulation utility */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch active state for mobile interactions */
+.touch-active {
+  /* This class is added via JavaScript for touch interactions */
+}
