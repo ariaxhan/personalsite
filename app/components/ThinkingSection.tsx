@@ -15,7 +15,7 @@ const articlesData: Article[] = [
   {
     title: "What Happens When Agents Start Talking to Each Other",
     excerpt:
-      "Exploring what emerges when AI agents coordinate directly—the protocols, patterns, and unexpected behaviors that develop without human design.",
+      "Exploring what emerges when AI agents coordinate directly;the protocols, patterns, and unexpected behaviors that develop without human design.",
     link: "https://medium.com/@ariahan/what-happens-when-agents-start-talking-to-each-other-1ff00ce8f36c",
     category: "agents",
   },
@@ -90,12 +90,12 @@ export default function ThinkingSection() {
             <span className="text-data/60">⬡</span> TECHNICAL_WRITING
           </p>
           <h2 className="text-display text-4xl lg:text-6xl text-white/90 mb-6">
-            Thinking Stream
+            Deep Dives and Thought Pieces
           </h2>
           <p className="text-neutral-400 max-w-xl text-base leading-relaxed">
             Thoughts on AI development, building meaningful technology,
             and the intersection of technical craft and creative thinking.
-            <span className="text-cognition/60 ml-2">Externalized cognition.</span>
+         
           </p>
         </motion.div>
 

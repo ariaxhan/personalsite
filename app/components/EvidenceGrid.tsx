@@ -124,7 +124,7 @@ export default function EvidenceGrid() {
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
           <p className="text-data tracking-[0.2em] mb-4 sm:mb-6 text-xs sm:text-sm">
-            <span className="text-emergence/60">◇</span> 01_COMPETITION_WINS
+            <span className="text-emergence/60">◇</span> 01_hackathon_WINS
           </p>
           <h2 className="text-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-white/90 mb-4 sm:mb-6 leading-tight">
             Built Under Pressure

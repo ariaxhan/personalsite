@@ -13,12 +13,13 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/", shortLabel: "00" },
-  { label: "Evidence", href: "/evidence", shortLabel: "01" },
-  { label: "Systems", href: "/systems", shortLabel: "02" },
-  { label: "Open Source", href: "/open-source", shortLabel: "03" },
-  { label: "Writing", href: "/writing", shortLabel: "04" },
-  { label: "Timeline", href: "/timeline", shortLabel: "05" },
-  { label: "Contact", href: "/contact", shortLabel: "06" },
+  { label: "About", href: "/about", shortLabel: "01" },
+  { label: "Evidence", href: "/evidence", shortLabel: "02" },
+  { label: "Systems", href: "/systems", shortLabel: "03" },
+  { label: "Open Source", href: "/open-source", shortLabel: "04" },
+  { label: "Writing", href: "/writing", shortLabel: "05" },
+  { label: "Timeline", href: "/timeline", shortLabel: "06" },
+  { label: "Contact", href: "/contact", shortLabel: "07" },
   { label: "VN", href: "/vn", shortLabel: "∎" },
 ];
 

@@ -14,19 +14,19 @@ const timelineData: TimelineEntry[] = [
   {
     date: "SEPT_2025 - PRESENT",
     title: "PersistOS / HeyContext",
-    desc: "Founded. Building HeyContext: multi-agent orchestration platform. Adaptive coordination. The Convergence framework integrated. Live in beta.",
+    desc: "Exploring frontier AI concepts and implementing them in production. Live with hundreds of users.",
     type: "company",
   },
   {
     date: "MAR_2025 - SEPT_2025",
     title: "Divertissement / HeyContent",
-    desc: "Founded. Built cross-platform memory system. Instagram, YouTube, Gmail, notes integration. Technology integrated into next system.",
+    desc: "Built cross-platform memory system. Synthesized data from Instagram, YouTube, Gmail, and more. Integrated into HeyContext.",
     type: "company",
   },
   {
     date: "NOV_2024 - MAR_2025",
     title: "Brink Labs / Brink Mind",
-    desc: "Founded. Built voice AI with biometric integration. iOS + watchOS. Won hackathon. Multimodal signal fusion, real-time processing.",
+    desc: "A privacy-first, responsible mental health tool with Voice AI and real-time processing. iOS app with Apple Watch/HealthKit integration for biometric analysis. ",
     type: "company",
   },
   {
@@ -107,11 +107,10 @@ export default function Timeline() {
             <span className="text-memory/60">◈</span> 04_TRAJECTORY
           </p>
           <h2 className="text-display text-4xl lg:text-6xl text-white/90 mb-6">
-            Year of Fire
+            Year of AI
           </h2>
           <p className="text-neutral-400 max-w-xl text-base">
-            Memory accumulates in the substrate. Each experience builds the foundation 
-            for what comes next.
+            I spent the last year devoted almost solely to building AI systems. This is the map of where I&apos;ve been.
           </p>
         </motion.div>
 

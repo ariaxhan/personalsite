@@ -11,7 +11,7 @@ interface StatItem {
 
 const stats: StatItem[] = [
   { label: "Companies Founded", value: "3", color: "cognition" },
-  { label: "Competitions Won", value: "6", color: "emergence" },
+  { label: "hackathons Won", value: "6", color: "emergence" },
   { label: "Hours Building", value: "3000+", color: "memory" },
   { label: "Systems Live", value: "3", color: "data" },
 ];
@@ -110,7 +110,7 @@ export default function Hero() {
               className="mt-6 sm:mt-8 text-base sm:text-lg text-neutral-400 leading-relaxed max-w-[50ch]"
             >
               Building AI systems that understand how intelligence actually works.
-              Three companies, six competition wins, and thousands of hours
+              Three companies, six hackathon wins, and thousands of hours
               exploring what&apos;s possible when you work with AI&apos;s nature.
             </motion.p>
 
@@ -189,7 +189,7 @@ export default function Hero() {
                     <div className="relative">
                       <p className="text-meta mb-1.5 sm:mb-2 text-[0.6875rem] sm:text-sm">{stat.label}</p>
                       <p className={`text-3xl sm:text-4xl lg:text-5xl font-extralight tracking-tight ${colors.text}`}>
-                        {mounted ? stat.value : "—"}
+                        {mounted ? stat.value : ";"}
                       </p>
                     </div>
                   </motion.div>

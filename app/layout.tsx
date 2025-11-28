@@ -7,7 +7,7 @@ import SubstrateBackground from "./components/SubstrateBackground";
 export const metadata: Metadata = {
   title: "Aria Han | AI Systems Builder",
   description:
-    "Three-time CEO. Six competition wins. 3,000+ hours building production AI systems that work with AI's nature, not against it.",
+    "Three-time CEO. Six hackathon wins. 3,000+ hours building production AI systems that work with AI's nature, not against it.",
   keywords: [
     "AI",
     "machine learning",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Aria Han | AI Systems Builder",
     description:
-      "Three-time CEO. Six competition wins. Building production AI systems that work with AI's nature.",
+      "Three-time CEO. Six hackathon wins. Building production AI systems that work with AI's nature.",
     type: "website",
     locale: "en_US",
   },

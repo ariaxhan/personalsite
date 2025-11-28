@@ -3,7 +3,7 @@ import Timeline from "../components/Timeline";
 
 export const metadata: Metadata = {
   title: "Timeline | Aria Han",
-  description: "Three companies founded. Six hackathon wins. Published author. A year of fire in AI development.",
+  description: "Three companies. Six hackathon wins. 3,000+ hours of building. This is what one year of full commitment looks like.",
 };
 
 export default function TimelinePage() {
@@ -13,4 +13,3 @@ export default function TimelinePage() {
     </main>
   );
 }
-

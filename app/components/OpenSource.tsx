@@ -18,12 +18,12 @@ const openSourceProjects: OpenSourceProject[] = [
   {
     name: "Vector Native",
     description: [
-      "A symbolic communication protocol that turns natural language into queryable, reusable knowledge. Structured symbols eliminate ambiguity—precision is the goal, token savings are the side effect.",
+      "A symbolic communication protocol that turns natural language into queryable, reusable knowledge. Structured symbols eliminate ambiguity;precision is the goal, token savings are the side effect.",
       "LLMs speak their native language: vector operations, not English. Designed for agent-to-agent communication, system instructions, and knowledge management where precision and reusability matter.",
     ],
     url: "https://github.com/persist-os/vector-native",
     evidence:
-      "Structured symbols leverage pre-trained associations from training data. Not just abbreviations—symbols trigger statistical patterns from math, programming, and config files.",
+      "Structured symbols leverage pre-trained associations from training data. Not just abbreviations;symbols trigger statistical patterns from math, programming, and config files.",
     meta: {
       status: "Active Development",
       language: "Python",
@@ -38,7 +38,7 @@ const openSourceProjects: OpenSourceProject[] = [
     ],
     url: "https://github.com/persist-os/the-convergence",
     evidence:
-      "Agents don't need explicit reward functions—they need environments rich enough to generate natural selection pressure. Quality emerges from competition.",
+      "Agents don't need explicit reward functions;they need environments rich enough to generate natural selection pressure. Quality emerges from hackathon.",
     meta: {
       method: "Evolutionary selection + continuous learning",
       validation: "Hackathon winner · Production deployed",

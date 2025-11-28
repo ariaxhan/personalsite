@@ -20,16 +20,18 @@ const catalogCards: CatalogCard[] = [
     id: "identity",
     category: "ENTITY",
     title: "Aria Han",
-    content: "AI Systems Engineer. Building infrastructure for the agentic era.",
+    content: "Writer who builds AI systems. Three companies, six hackathon wins, one year of full commitment.",
     tags: ["founder", "engineer", "ai", "systems", "builder", "san francisco"],
+    link: "/about",
     color: "cognition",
   },
   {
     id: "thesis",
     category: "THESIS",
     title: "Work With AI's Nature",
-    content: "Systems that embrace emergence over explicit programming. Coordination > capability.",
+    content: "Systems that embrace emergence over explicit programming. Coordination over raw capability.",
     tags: ["philosophy", "emergence", "coordination", "agents", "architecture"],
+    link: "/about",
     color: "emergence",
   },
   {
@@ -45,7 +47,7 @@ const catalogCards: CatalogCard[] = [
     id: "hackathons",
     category: "EVIDENCE",
     title: "6 Competition Wins",
-    content: "AWS, Weavehacks, Multimodal AI, Vertical AI, GPT-4o vs Gemini, AI Agents 2.0.",
+    content: "AWS. Weavehacks. Multimodal AI. Vertical AI. Each one built in 24-48 hours under pressure.",
     tags: ["hackathon", "winner", "competition", "aws", "google", "evidence"],
     link: "/evidence",
     color: "memory",
@@ -72,7 +74,7 @@ const catalogCards: CatalogCard[] = [
     id: "companies",
     category: "TRAJECTORY",
     title: "3 Companies Founded",
-    content: "PersistOS → HeyContext. Divertissement → HeyContent. Brink Labs → Brink Mind.",
+    content: "PersistOS. Divertissement. Brink Labs. Each one taught me something. Nothing wasted.",
     tags: ["founder", "ceo", "startup", "company", "entrepreneur"],
     link: "/timeline",
     color: "memory",
@@ -155,7 +157,7 @@ function calculateRelevance(card: CatalogCard, query: string): number {
  * CardCatalogHero: Portfolio as a queryable filing system
  * 
  * Concept: Information organized like a library card catalog.
- * Type to search—cards physically reorganize by relevance.
+ * Type to search;cards physically reorganize by relevance.
  * The most relevant cards rise to the top.
  */
 export default function CardCatalogHero() {

@@ -7,7 +7,7 @@ import { Copy, Check, ExternalLink, BookOpen } from "lucide-react";
 /**
  * VectorNativeDocument: The entire portfolio as a VN specification
  * 
- * Vector Native is not compression—it's semiotic density.
+ * Vector Native is not compression;it's semiotic density.
  * LLMs don't "read" words. They process pattern distributions in vector space.
  * VN uses symbols LLMs already recognize from training data: config files,
  * math notation, programming syntax. These trigger pre-trained statistical
@@ -277,20 +277,20 @@ export default function VectorNativeDocument() {
           </h1>
           <div className="space-y-4 text-neutral-400 max-w-2xl text-base leading-relaxed">
             <p>
-              LLMs don&apos;t &quot;read&quot; words—they process pattern distributions in vector space.
+              LLMs don&apos;t &quot;read&quot; words;they process pattern distributions in vector space.
               When you type text, the model sees <span className="text-cognition/80 font-mono text-sm">tokenization → embeddings → attention weights → probability distributions</span>.
               It never &quot;sees&quot; language. Only high-dimensional vector operations.
             </p>
             <p>
               Vector Native is a syntax layer that works <em>with</em> this nature, not against it.
-              Using symbols already dense in LLM training data—<span className="text-emergence/80 font-mono text-sm">●</span> from bullet points,
+              Using symbols already dense in LLM training data;<span className="text-emergence/80 font-mono text-sm">●</span> from bullet points,
               <span className="text-emergence/80 font-mono text-sm"> |</span> from config files,
-              <span className="text-emergence/80 font-mono text-sm"> ├└</span> from tree structures—we
+              <span className="text-emergence/80 font-mono text-sm"> ├└</span> from tree structures;we
               trigger pre-trained statistical patterns rather than forcing the model to parse prose.
             </p>
             <p className="text-neutral-500">
               Primary use: <span className="text-cognition/70">agent-to-agent communication</span> where semantic drift and compute waste matter.
-              I also use it in conversational flows to amplify my own workflows—articles on that coming soon.
+              I also use it in conversational flows to amplify my own workflows;articles on that coming soon.
             </p>
           </div>
           
@@ -393,7 +393,7 @@ export default function VectorNativeDocument() {
           {[
             {
               label: "Semiotic Density",
-              desc: "Not compression—meaning per token. Like a .zip file for semantics. The model already has the \"unzipped\" definitions.",
+              desc: "Not compression;meaning per token. Like a .zip file for semantics. The model already has the \"unzipped\" definitions.",
               color: "emergence",
             },
             {
@@ -408,7 +408,7 @@ export default function VectorNativeDocument() {
             },
             {
               label: "Training-Aligned",
-              desc: "Symbols from config files, math, code. Triggers statistical patterns LLMs already know—information expands in context.",
+              desc: "Symbols from config files, math, code. Triggers statistical patterns LLMs already know;information expands in context.",
               color: "data",
             },
           ].map((item) => (
@@ -442,7 +442,7 @@ export default function VectorNativeDocument() {
             The question isn&apos;t &quot;how do we teach AI to understand words like a human?&quot;
             It&apos;s &quot;how do we communicate in a way that works with what they actually are?&quot;
             VN is one answer: selectively remove unnecessary prose, intentionally use symbols
-            they already recognize. No code required—just prompting with intention.
+            they already recognize. No code required;just prompting with intention.
           </p>
         </motion.div>
 
