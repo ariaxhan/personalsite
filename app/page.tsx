@@ -10,7 +10,7 @@ export default function Home() {
         <div className="container mx-auto px-6 lg:px-12 max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-meta">
-              ARIA HAN · SAN FRANCISCO · 2024
+              ARIA HAN · SAN FRANCISCO · 2025
             </p>
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-cognition animate-pulse shadow-[0_0_8px_rgba(0,217,255,0.5)]" />
