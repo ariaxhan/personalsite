@@ -252,7 +252,7 @@ export default function ThinkingSection() {
           className="flex justify-center"
         >
           <a
-            href="https://medium.com/@ariahan"
+            href="https://medium.com/@ariaxhan"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 px-6 py-4 glass-panel hover:border-cognition/30"
