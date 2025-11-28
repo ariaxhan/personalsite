@@ -23,7 +23,7 @@ const openSourceProjects: OpenSourceProject[] = [
     ],
     url: "https://github.com/persist-os/vector-native",
     evidence:
-      "Structured symbols leverage pre-trained associations from training data. Not just abbreviations;symbols trigger statistical patterns from math, programming, and config files.",
+      "Structured symbols leverage pre-trained associations from training data. Not just abbreviations. Symbols trigger statistical patterns from math, programming, and config files.",
     meta: {
       status: "Active Development",
       language: "Python",
@@ -202,7 +202,7 @@ export default function OpenSource() {
                       transition-colors duration-300
                       ${isHovered ? "text-cognition/90 border-cognition/50" : "text-cognition/60"}
                     `}>
-                      <span className="absolute -left-1 top-3 text-2xl text-cognition/30">&ldquo;</span>
+                     
                       {project.evidence}
                     </blockquote>
                   </div>

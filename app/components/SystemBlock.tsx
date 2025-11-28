@@ -155,7 +155,6 @@ export default function SystemBlock({ system, index }: SystemBlockProps) {
                 ${isExpanded ? "text-emergence/90" : "text-emergence/60"}
               `}
             >
-              <span className="absolute -left-1 top-3 text-2xl text-emergence/30">&ldquo;</span>
               {system.evidence}
             </motion.blockquote>
           </div>
