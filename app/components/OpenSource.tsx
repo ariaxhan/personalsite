@@ -38,7 +38,7 @@ const openSourceProjects: OpenSourceProject[] = [
     ],
     url: "https://github.com/persist-os/the-convergence",
     evidence:
-      "Agents don't need explicit reward functions;they need environments rich enough to generate natural selection pressure. Quality emerges from hackathon.",
+      "Agents need environments rich enough to generate natural selection pressure. Quality emerges from competition.",
     meta: {
       method: "Evolutionary selection + continuous learning",
       validation: "Hackathon winner · Production deployed",
