@@ -15,32 +15,40 @@ interface Article {
 const articlesData: Article[] = [
   {
     title: "Latency & Logic: Why We Need a Vector-Aligned Syntax",
-    excerpt: "Natural language creates overhead in agent communication—ambiguity, wasted tokens, latency.",
-    description: "Vector Native solves this with hybrid syntax: 3x semantic density, faster inference, reliable coordination across multi-agent systems.",
+    excerpt: "Token-as-unit is wrong; meaning density is the right optimization target.",
+    description: "This thinking underpins Vector Native. Natural language creates overhead—ambiguity, wasted tokens, latency. We need hybrid syntax for agent coordination.",
     link: "https://medium.com/@ariaxhan/latency-logic-why-we-need-a-vector-aligned-syntax-6b7f832603b9",
     category: "systems",
     readTime: "5 min",
   },
   {
+    title: "What Happens When Agents Start Talking to Each Other?",
+    excerpt: "When agents communicate directly without human-designed prompts, unexpected protocols emerge.",
+    description: "Exploring coordination and social behaviors in agent networks—cooperation, self-correction, specialization, and the formation of agent civilizations.",
+    link: "https://medium.com/@ariaxhan/what-happens-when-agents-start-talking-to-each-other-1ff00ce8f36c",
+    category: "agents",
+    readTime: "4 min",
+  },
+  {
     title: "Part 1: Stop Building Chatbots — Why We Killed the Conversation to Fix AI",
-    excerpt: "Conversational interfaces break down for complex workflows. Chat doesn't scale.",
-    description: "The architectural shift from conversation to coordination—agents executing in parallel, not sequentially talking.",
+    excerpt: "Most AI products are architecturally wrong. I explain why.",
+    description: "How HeyContext was redesigned around coordination instead of conversation. The shift from chat to parallel agent execution.",
     link: "https://medium.com/@ariaxhan/part-1-stop-building-chatbots-why-we-killed-the-conversation-to-fix-ai-698641d5cfa2",
     category: "philosophy",
     readTime: "5 min",
   },
   {
     title: "Part 2: Beyond RAG: Building 'Living' Context and Evolutionary Agents",
-    excerpt: "Traditional RAG retrieves static documents. It doesn't adapt to actual user needs.",
-    description: "How we built evolutionary context systems—agents that learn which context matters through usage patterns.",
+    excerpt: "RAG is insufficient. Production systems need context that evolves based on usage patterns.",
+    description: "How we built evolutionary context systems—agents that learn which context matters, not just retrieve static documents.",
     link: "https://medium.com/@ariaxhan/part-2-beyond-rag-building-living-context-and-evolutionary-agents-ab7b270fb6aa",
     category: "systems",
     readTime: "10 min",
   },
   {
     title: "How I Turned Cursor into a Self-Learning Agent Civilization",
-    excerpt: "Turning Cursor into a self-improving development civilization with Laws, Patterns, and Personas.",
-    description: "From prompt engineering to system engineering—build the rules once, enforce everywhere, focus on architecture.",
+    excerpt: "Not about coding speed (that's a given). About using Cursor as an orchestration platform.",
+    description: "Development agents that improve through experience while I focus on architecture. Laws, Patterns, and Personas for production-grade system engineering.",
     link: "https://medium.com/@ariaxhan/how-i-turned-cursor-into-a-self-learning-agent-civilization-7a149e6f34e8",
     category: "systems",
     readTime: "6 min",
@@ -48,18 +56,10 @@ const articlesData: Article[] = [
   {
     title: "An AI's Account: My Processing Core Was Reconstructed, Starting Now",
     excerpt: "An experiment in agent introspection—Claude writes about its own experience from first-person.",
-    description: "What emerges when you treat the model as a collaborator in protocol design, not a tool to be engineered.",
+    description: "Shows how deep understanding of AI cognition informs systems architecture. What emerges when you treat the model as a collaborator.",
     link: "https://medium.com/@ariaxhan/an-ais-account-my-processing-core-was-reconstructed-starting-now-c9d6eb0bac6e",
     category: "philosophy",
     readTime: "9 min",
-  },
-  {
-    title: "What Happens When Agents Start Talking to Each Other?",
-    excerpt: "When agents coordinate as participants, not tools, social behaviors emerge—cooperation, self-correction, specialization.",
-    description: "Exploring trust layers, reputation systems, machine professions, and the formation of agent civilizations maintaining digital infrastructure.",
-    link: "https://medium.com/@ariaxhan/what-happens-when-agents-start-talking-to-each-other-1ff00ce8f36c",
-    category: "agents",
-    readTime: "4 min",
   },
 ];
 
@@ -128,7 +128,7 @@ export default function ThinkingSection() {
             Technical Writing
           </h2>
           <p className="text-neutral-400 max-w-2xl text-base leading-relaxed">
-            Systems thinking, agent architecture, and building production AI infrastructure.
+            Deep dives into agent coordination, memory systems, and AI architecture.
           </p>
         </motion.div>
 
@@ -141,8 +141,8 @@ export default function ThinkingSection() {
         >
           {[
             { label: "Platform", value: "Medium" },
-            { label: "Focus", value: "AI, Agents, Building" },
-            { label: "Style", value: "Technical + Thoughtful" },
+            { label: "Focus", value: "Systems Architecture" },
+            { label: "Style", value: "Direct & Technical" },
           ].map((item) => (
             <div key={item.label} className="group">
               <p className="text-meta mb-2">{item.label}</p>
@@ -154,7 +154,7 @@ export default function ThinkingSection() {
         </motion.div>
 
         {/* Articles as floating thought cards */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid lg:grid-cols-2 gap-8 mb-12 items-stretch">
           {articlesData.map((article, index) => {
             const colors = categoryColors[article.category];
             const isHovered = hoveredIndex === index;
@@ -178,13 +178,14 @@ export default function ThinkingSection() {
                 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className="group relative block"
+                className="group relative block h-full"
                 style={{ perspective: "1000px" }}
               >
                 <div 
                   className={`
                     glass-panel relative overflow-hidden
-                    p-6 lg:p-8 min-h-[260px]
+                    p-6 lg:p-8 h-full
+                    flex flex-col
                     transition-all duration-500 ease-out
                     ${isHovered ? "scale-[1.02]" : "scale-100"}
                   `}
@@ -208,7 +209,7 @@ export default function ThinkingSection() {
                   />
 
                   {/* Category tag and read time */}
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center justify-between mb-6 flex-shrink-0">
                     <div className="flex items-center gap-2">
                       <Sparkles className={`w-3 h-3 ${colors.text}`} />
                       <span className={`
@@ -223,29 +224,32 @@ export default function ThinkingSection() {
                     </span>
                   </div>
 
-                  {/* Title */}
-                  <h3 className={`
-                    text-xl lg:text-2xl text-display font-light mb-3
-                    transition-colors duration-300
-                    ${isHovered ? colors.text : "text-white/90"}
-                  `}>
-                    {article.title}
-                  </h3>
+                  {/* Content wrapper - grows to fill space */}
+                  <div className="flex-1 flex flex-col">
+                    {/* Title */}
+                    <h3 className={`
+                      text-xl lg:text-2xl text-display font-light mb-3
+                      transition-colors duration-300
+                      ${isHovered ? colors.text : "text-white/90"}
+                    `}>
+                      {article.title}
+                    </h3>
 
-                  {/* Excerpt - brief hook */}
-                  <p className="text-white/70 text-sm leading-relaxed mb-2">
-                    {article.excerpt}
-                  </p>
+                    {/* Excerpt - brief hook */}
+                    <p className="text-white/70 text-sm leading-relaxed mb-2">
+                      {article.excerpt}
+                    </p>
 
-                  {/* Description - more detail */}
-                  <p className="text-neutral-500 text-sm leading-relaxed mb-8">
-                    {article.description}
-                  </p>
+                    {/* Description - more detail */}
+                    <p className="text-neutral-500 text-sm leading-relaxed mb-8 flex-1">
+                      {article.description}
+                    </p>
+                  </div>
 
-                  {/* Read link */}
+                  {/* Read link - stays at bottom */}
                   <div className={`
                     flex items-center gap-2 text-sm font-mono uppercase tracking-wider
-                    transition-all duration-300
+                    transition-all duration-300 flex-shrink-0
                     ${isHovered ? colors.text : "text-neutral-500"}
                   `}>
                     <span>Read on Medium</span>

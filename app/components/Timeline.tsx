@@ -20,19 +20,19 @@ const timelineData: TimelineEntry[] = [
   {
     date: "MAR_2025 - SEPT_2025",
     title: "Divertissement / HeyContent",
-    desc: "Built cross-platform memory system. Synthesized data from Instagram, YouTube, Gmail, and more. Integrated into HeyContext.",
+    desc: "Cross-platform memory architecture across Instagram, YouTube, Gmail. Understanding what breaks when you synthesize data from multiple sources. Integrated into HeyContext.",
     type: "company",
   },
   {
     date: "NOV_2024 - MAR_2025",
     title: "Brink Labs / Brink Mind",
-    desc: "A privacy-first, responsible mental health tool with Voice AI and real-time processing. iOS app with Apple Watch/HealthKit integration for biometric analysis. ",
+    desc: "Voice AI + Apple Watch biometric integration. Privacy-first mental health tool. Learning what works in theory vs. what works with real humans.",
     type: "company",
   },
   {
     date: "2024 - 2025",
     title: "Six Hackathon Wins",
-    desc: "AWS AI Agents. Weavehacks-2 RL Track. Multimodal AI Agents. Vertical Specific AI. GPT-4o vs Gemini. AI Agents 2.0 Finalist. Rapid iteration under pressure.",
+    desc: "Darwin (AWS). The Convergence (RL Track). Content Creator Connector. TheraVoice. HotAgents. Freetime. Each one built in 24-48 hours, validating ideas under pressure.",
     type: "achievement",
   },
   {
@@ -107,10 +107,10 @@ export default function Timeline() {
             <span className="text-memory/60">◈</span> 04_TRAJECTORY
           </p>
           <h2 className="text-display text-4xl lg:text-6xl text-white/90 mb-6">
-            Year of AI
+            Timeline
           </h2>
           <p className="text-neutral-400 max-w-xl text-base">
-            I spent the last year devoted almost solely to building AI systems. This is the map of where I&apos;ve been.
+            Three companies, six hackathon wins, hundreds of builders met. The last 12 months.
           </p>
         </motion.div>
 

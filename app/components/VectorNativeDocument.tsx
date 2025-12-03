@@ -18,43 +18,43 @@ import { Copy, Check, ExternalLink, BookOpen } from "lucide-react";
  */
 
 const vnDocument = `●ENTITY|type:human|name:aria_han
-├──role:ai_systems_engineer
-├──focus:agentic_infrastructure
+├──role:3x_ceo·ai_systems_architect
 ├──location:san_francisco
-└──domain:multi_agent_systems·ai_infrastructure
+└──domain:multi_agent_systems·coordination_protocols
 
 
 ●THESIS
-|core:work_with_ai_nature_not_against
-|method:emergence_>_explicit_programming
-|principle:coordination_>_individual_capability
+|core:coordination_>_capability
+|method:theory→architecture→implementation
 |output:production_systems·open_source·writing
 
 
 ●SYSTEM_BLOCK|type:production|count:3
 
 ├──●system|name:heycontext|status:live_production
-│  |role:ceo·architect·engineer
+│  |role:ceo·lead_architect·lead_engineer
 │  |timeline:sept_2024→present
-│  |desc:multi_agent_orchestration_platform
-│  |capability:adaptive_routing·family_coordination
+│  |desc:multi_agent_orchestration_workspace
+│  |capability:agents_coordinate·learn·improve_through_experience
 │  |tech:[fastapi,redis,convex,agno,nextjs]
-│  └──insight:bottleneck=coordination_not_capability
+│  |status_detail:serving_users_in_production
+│  └──insight:why_multi_agent_systems_fail=information_degradation
 
 ├──●system|name:heycontent|status:integrated
-│  |role:ceo·lead_dev
+│  |role:ceo·lead_developer
 │  |timeline:mar_2025→sept_2025
 │  |desc:cross_platform_memory_architecture
 │  |platforms:[instagram,youtube,gmail,notes]
 │  |method:semantic_linking·vector_embeddings
-│  └──insight:long_horizon_requires_persistent_memory
+│  |integration:core_tech_in_heycontext
+│  └──insight:what_breaks_when_synthesizing_multiple_sources
 
-└──●system|name:brink|status:hackathon_winner
-   |role:ceo·system_architect
+└──●system|name:brink_mind|status:testflight_phase
+   |role:ceo·lead_architect·swiftui_developer
    |timeline:nov_2024→mar_2025
-   |desc:voice_ai·biometric_fusion
+   |desc:voice_ai_mental_health·biometric_fusion
    |platform:[ios,watchos,healthkit]
-   └──insight:linguistic+physiological_>_either_alone
+   └──insight:theory_vs_real_humans
 
 
 ●EVIDENCE_BLOCK|type:hackathons|count:6|outcome:5_wins_1_finalist
@@ -62,37 +62,37 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 ├──●entry|name:darwin|year:2025
 │  |event:aws_ai_agents_hackathon
 │  |award:best_use_of_semgrep
-│  |desc:evolutionary_code_generation
+│  |desc:evolutionary_code_generation·models_compete·weak_code_dies·strong_code_survives
 │  └──url:devpost.com/software/darwin-cmfysv
 
 ├──●entry|name:the_convergence|year:2025
-│  |event:weavehacks_2_rl_track
-│  |award:winner
-│  |desc:self_improving_agents·rl_framework
+│  |event:weavehacks_2_self_improving_agents_google_cloud
+│  |award:reinforcement_learning_track_winner
+│  |desc:self_improving_agents·rl_framework·published_pypi·integrated_heycontext
 │  └──url:devpost.com/software/the-convergence
 
 ├──●entry|name:content_creator_connector|year:2025
 │  |event:multimodal_ai_agents
 │  |award:best_use_of_agno
-│  |desc:automated_creator_outreach
+│  |desc:automated_creator_outreach·finds_mid_size_creators·researches_brand·sends_personalized_emails
 │  └──url:devpost.com/software/content-creator-connector
 
 ├──●entry|name:theravoice|year:2024
-│  |event:vertical_specific_ai_agents
+│  |event:vertical_specific_ai_agents_hackathon
 │  |award:best_use_of_ai_ml_api
-│  |desc:voice_ai_therapy
+│  |desc:voice_ai_therapy·aixplain·nlp·tts
 │  └──url:devpost.com/software/draft_name
 
 ├──●entry|name:hotagents|year:2024
-│  |event:gpt4o_vs_gemini
+│  |event:gpt4o_vs_gemini_hackathon
 │  |award:best_use_of_wordware
-│  |desc:hotkey_triggered_agents
+│  |desc:hotkey_triggered_agents·simplify_workflow·condense_llm_use_cases
 │  └──url:github.com/ariaxhan/hotagents
 
 └──●entry|name:freetime|year:2024
-   |event:ai_agents_2.0
+   |event:ai_agents_2.0_hackathon
    |outcome:finalist
-   |desc:ai_social_planning
+   |desc:ai_social_planner·coordinates_gatherings·shared_interests
    └──url:github.com/ariaxhan/freetime
 
 
@@ -101,56 +101,85 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 ├──●project|name:vector_native
 │  |status:active_development
 │  |license:mit
-│  |desc:vector_aligned_syntax_protocol
-│  |use_case:a2a_communication·system_prompts·knowledge
-│  |thesis:meaning_per_token_>_token_count
+│  |language:python
+│  |desc:a2a_communication_protocol·3x_semantic_density
+│  |thesis:natural_language_inefficient_for_agent_coordination
+│  |method:meaning_density_>_token_count
+│  |evidence:symbols_trigger_pre_trained_statistical_patterns
 │  └──url:github.com/persist-os/vector-native
 
 └──●project|name:the_convergence
    |status:published_pypi·production_deployed
-   |desc:rl_framework·evolutionary_selection
+   |desc:self_improving_agent_framework·evolutionary_pressure
+   |thesis:agents_need_evolutionary_pressure_to_improve
    |method:multi_armed_bandit·adaptive_selection
+   |evidence:hackathon_winner_weavehacks_rl_track·integrated_heycontext
+   |distribution:pypi·github
    └──url:github.com/persist-os/the-convergence
 
 
 ●WRITING_BLOCK|platform:medium|handle:@ariaxhan
+|philosophy:systems_thinking+technical_depth+clarity
+|audience:people_who_want_to_understand_why_not_just_how
 
 ├──●article
 │  |title:latency_&_logic:why_we_need_vector_aligned_syntax
-│  |topic:vn_origin·semiotic_density·a2a
-│  └──url:medium.com/@ariaxhan
+│  |thesis:token_as_unit_wrong·meaning_density_right
+│  |category:systems
+│  └──url:medium.com/@ariaxhan/latency-logic-why-we-need-a-vector-aligned-syntax-6b7f832603b9
 
 ├──●article
-│  |title:what_happens_when_agents_talk_to_each_other
-│  |topic:agent_coordination·emergent_protocols
-│  └──url:medium.com/@ariaxhan
+│  |title:what_happens_when_agents_start_talking_to_each_other
+│  |thesis:unexpected_protocols_emerge_without_human_prompts
+│  |category:agents
+│  └──url:medium.com/@ariaxhan/what-happens-when-agents-start-talking-to-each-other-1ff00ce8f36c
+
+├──●article
+│  |title:part_1_stop_building_chatbots_why_we_killed_the_conversation_to_fix_ai
+│  |thesis:most_ai_products_architecturally_wrong
+│  |category:philosophy
+│  └──url:medium.com/@ariaxhan/part-1-stop-building-chatbots-why-we-killed-the-conversation-to-fix-ai-698641d5cfa2
+
+├──●article
+│  |title:part_2_beyond_rag_building_living_context_and_evolutionary_agents
+│  |thesis:rag_insufficient·production_needs_evolving_context
+│  |category:systems
+│  └──url:medium.com/@ariaxhan/part-2-beyond-rag-building-living-context-and-evolutionary-agents-ab7b270fb6aa
+
+├──●article
+│  |title:how_i_turned_cursor_into_a_self_learning_agent_civilization
+│  |thesis:orchestration_platform_not_coding_speed
+│  |category:systems
+│  └──url:medium.com/@ariaxhan/how-i-turned-cursor-into-a-self-learning-agent-civilization-7a149e6f34e8
 
 └──●article
-   |title:cursor_as_self_learning_agent_civilization
-   |topic:evolutionary_agents·experience_learning
-   └──url:medium.com/@ariaxhan
+   |title:an_ais_account_my_processing_core_was_reconstructed_starting_now
+   |thesis:treat_claude_as_thinking_partner_not_tool
+   |category:philosophy
+   └──url:medium.com/@ariaxhan/an-ais-account-my-processing-core-was-reconstructed-starting-now-c9d6eb0bac6e
 
 
-●TIMELINE_BLOCK|period:2023→2025
+●TIMELINE_BLOCK|period:2024→2025
 
 ├──●event|date:sept_2024→present|type:company
 │  |name:persistos/heycontext
-│  └──desc:multi_agent_orchestration·live_production
+│  └──desc:exploring_frontier_ai_concepts·live_with_hundreds_of_users
 
 ├──●event|date:mar_2025→sept_2025|type:company
 │  |name:divertissement/heycontent
-│  └──desc:cross_platform_memory·integrated
+│  └──desc:cross_platform_memory·what_breaks_when_synthesizing_multiple_sources·integrated_into_heycontext
 
 ├──●event|date:nov_2024→mar_2025|type:company
 │  |name:brink_labs/brink_mind
-│  └──desc:voice_ai·biometric·winner
+│  └──desc:voice_ai·apple_watch_biometric·privacy_first_mental_health·theory_vs_real_humans
 
 ├──●event|date:2024→2025|type:achievement
-│  └──desc:6_hackathons·5_wins·rapid_iteration
+│  |names:[darwin,convergence,ccc,theravoice,hotagents,freetime]
+│  └──desc:6_hackathons·each_built_in_24_48_hours·validating_ideas_under_pressure
 
 └──●event|date:2024|type:creative
    |name:notes_on_surviving_eternity
-   └──desc:poetry_collection·amazon
+   └──desc:poetry_collection·amazon·exploring_time_fate_free_will
 
 
 ●CONTACT_BLOCK
@@ -277,23 +306,12 @@ export default function VectorNativeDocument() {
           </h1>
           <div className="space-y-4 text-neutral-400 max-w-2xl text-base leading-relaxed">
             <p>
-              This is one of the products of my year-long exploration of LLMs, addressing one of the most fundamental questions: language. 
-            </p>
-            <p>
-              LLMs don&apos;t &quot;read&quot; words; they process pattern distributions in vector space.
-              When you type text, the model sees <span className="text-cognition/80 font-mono text-sm">tokenization → embeddings → attention weights → probability distributions</span>.
-              It never &quot;sees&quot; language. Only high-dimensional vector operations.
-            </p>
-            <p>
-              Vector Native is a syntax layer that works <em>with</em> this nature, not against it.
-              Using symbols already dense in LLM training data;<span className="text-emergence/80 font-mono text-sm">●</span> from bullet points,
-              <span className="text-emergence/80 font-mono text-sm"> |</span> from config files,
-              <span className="text-emergence/80 font-mono text-sm"> ├└</span> from tree structures; we
-              trigger pre-trained statistical patterns rather than forcing the model to parse prose.
+              LLMs process pattern distributions in vector space, not words. 
+              Vector Native is a syntax layer that works <em>with</em> this nature—using symbols 
+              dense in training data to trigger pre-trained statistical patterns.
             </p>
             <p className="text-neutral-500">
               Primary use: <span className="text-cognition/70">agent-to-agent communication</span> where semantic drift and compute waste matter.
-              I also use it in conversational flows to amplify my own workflows; articles on that coming soon.
             </p>
           </div>
           

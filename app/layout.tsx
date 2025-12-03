@@ -5,17 +5,17 @@ import Navigation from "./components/Navigation";
 import SubstrateBackground from "./components/SubstrateBackground";
 
 export const metadata: Metadata = {
-  title: "Aria Han | AI Systems Builder",
+  title: "Aria Han | AI Systems Architect",
   description:
-    "Three-time CEO. Six hackathon wins. 3,000+ hours building production AI systems that work with AI's nature, not against it.",
+    "AI systems architect. Writer. Systems thinker. Three companies, six hackathon wins, 3,300+ hours building production AI systems.",
   keywords: [
-    "AI",
-    "machine learning",
+    "AI systems architect",
     "multi-agent systems",
+    "agent coordination",
     "reinforcement learning",
     "startup founder",
-    "AI civilization",
-    "cognitive substrates",
+    "systems thinking",
+    "AI infrastructure",
   ],
   authors: [{ name: "Aria Han" }],
   icons: {
@@ -23,17 +23,17 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Aria Han | AI Systems Builder",
+    title: "Aria Han | AI Systems Architect",
     description:
-      "Three-time CEO. Six hackathon wins. Building production AI systems that work with AI's nature.",
+      "AI systems architect. Writer. Systems thinker. Building infrastructure for multi-agent coordination.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aria Han | AI Systems Builder",
+    title: "Aria Han | AI Systems Architect",
     description:
-      "Building AI systems that understand how intelligence actually works.",
+      "Architecture, coordination, emergence, and fundamental design patterns in AI systems.",
   },
   robots: {
     index: true,

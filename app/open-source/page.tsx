@@ -3,7 +3,7 @@ import OpenSource from "../components/OpenSource";
 
 export const metadata: Metadata = {
   title: "Open Source | Aria Han",
-  description: "Vector Native protocol and The Convergence RL framework. Contributing back to the collective substrate of AI development.",
+  description: "Vector Native A2A protocol and The Convergence self-improving agent framework. Exploring how agents should actually communicate and improve.",
 };
 
 export default function OpenSourcePage() {
@@ -13,6 +13,7 @@ export default function OpenSourcePage() {
     </main>
   );
 }
+
 
 
 

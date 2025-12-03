@@ -3,7 +3,7 @@ import VectorNativeDocument from "../components/VectorNativeDocument";
 
 export const metadata: Metadata = {
   title: "VN Translation | Aria Han",
-  description: "Complete portfolio translated to Vector Native protocol. Symbolic communication that leverages LLM statistical patterns for efficiency.",
+  description: "Complete portfolio as Vector Native protocol. A2A communication syntax—natural language is inefficient for agent coordination.",
 };
 
 export default function VNPage() {
@@ -13,6 +13,7 @@ export default function VNPage() {
     </main>
   );
 }
+
 
 
 

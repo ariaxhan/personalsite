@@ -11,7 +11,7 @@ interface StatItem {
 
 const stats: StatItem[] = [
   { label: "Companies Founded", value: "3", color: "cognition" },
-  { label: "hackathons Won", value: "6", color: "emergence" },
+  { label: "Competitions Won", value: "6", color: "emergence" },
   { label: "Hours Building", value: "3000+", color: "memory" },
   { label: "Systems Live", value: "3", color: "data" },
 ];
@@ -61,8 +61,8 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Hero content container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 sm:py-16 lg:py-20 xl:py-24">
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-8 sm:gap-12 lg:gap-16 xl:gap-24 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-24">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-24 items-center">
           {/* Left: Identity emerging from substrate */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -75,7 +75,7 @@ export default function Hero() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-data tracking-[0.2em] mb-4 sm:mb-6 lg:mb-8 text-xs sm:text-sm"
+              className="text-data tracking-[0.2em] mb-8"
             >
               <span className="text-cognition/60">○</span> AI EXPERT · FOUNDER · BUILDER
             </motion.p>
@@ -107,10 +107,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-6 sm:mt-8 text-base sm:text-lg text-neutral-400 leading-relaxed max-w-[50ch]"
+              className="mt-8 text-lg text-neutral-400 leading-relaxed max-w-[50ch]"
             >
               Building AI systems that understand how intelligence actually works.
-              Three companies, six hackathon wins, and thousands of hours
+              Three companies, six competition wins, and thousands of hours
               exploring what&apos;s possible when you work with AI&apos;s nature.
             </motion.p>
 
@@ -119,10 +119,10 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="mt-6 sm:mt-8 lg:mt-10 flex items-center gap-3 sm:gap-4"
+              className="mt-10 flex items-center gap-4"
             >
-              <span className="text-meta text-[0.6875rem] sm:text-sm">SAN FRANCISCO · 2024</span>
-              <span className="w-6 sm:w-8 h-px bg-gradient-to-r from-cognition/50 to-transparent" />
+              <span className="text-meta">SAN FRANCISCO · 2024</span>
+              <span className="w-8 h-px bg-gradient-to-r from-cognition/50 to-transparent" />
             </motion.div>
           </motion.div>
 
@@ -134,9 +134,9 @@ export default function Hero() {
             className="relative"
           >
             {/* Decorative connection line */}
-            <div className="absolute -left-8 lg:-left-12 top-1/2 w-8 lg:w-12 h-px bg-gradient-to-r from-transparent to-cognition/30 hidden lg:block" />
+            <div className="absolute -left-12 top-1/2 w-12 h-px bg-gradient-to-r from-transparent to-cognition/30 hidden lg:block" />
             
-            <div className="space-y-3 sm:space-y-4">
+            <div className="space-y-4">
               {stats.map((stat, index) => {
                 const colors = colorMap[stat.color];
                 return (
@@ -149,34 +149,25 @@ export default function Hero() {
                       delay: 0.6 + index * 0.1,
                       ease: [0.4, 0, 0.2, 1],
                     }}
-                    onTouchStart={(e) => {
-                      e.currentTarget.classList.add('touch-active');
-                    }}
-                    onTouchEnd={(e) => {
-                      setTimeout(() => {
-                        e.currentTarget.classList.remove('touch-active');
-                      }, 300);
-                    }}
                     className={`
                       glass-panel group relative overflow-hidden
-                      p-4 sm:p-5 lg:p-6 cursor-default touch-manipulation
-                      ${colors.glow}
+                      p-6 cursor-default
+                      hover:${colors.glow}
                     `}
                   >
                     {/* Animated border gradient on hover */}
                     <div 
                       className={`
-                        absolute inset-0 opacity-0 group-hover:opacity-100 group-touch-active:opacity-100 
-                        transition-opacity duration-500
+                        absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500
                         bg-gradient-to-r ${colors.bg} via-transparent to-transparent
                       `}
                     />
                     
                     {/* Pulsing indicator */}
-                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
+                    <div className="absolute top-4 right-4">
                       <span 
                         className={`
-                          block w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${colors.bg} ${colors.text}
+                          block w-2 h-2 rounded-full ${colors.bg} ${colors.text}
                           animate-pulse
                         `}
                         style={{
@@ -187,9 +178,9 @@ export default function Hero() {
                     </div>
 
                     <div className="relative">
-                      <p className="text-meta mb-1.5 sm:mb-2 text-[0.6875rem] sm:text-sm">{stat.label}</p>
-                      <p className={`text-3xl sm:text-4xl lg:text-5xl font-extralight tracking-tight ${colors.text}`}>
-                        {mounted ? stat.value : ";"}
+                      <p className="text-meta mb-2">{stat.label}</p>
+                      <p className={`text-4xl lg:text-5xl font-extralight tracking-tight ${colors.text}`}>
+                        {mounted ? stat.value : "—"}
                       </p>
                     </div>
                   </motion.div>
@@ -205,14 +196,14 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}
-        className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <div className="flex flex-col items-center gap-1.5 sm:gap-2">
-          <span className="text-meta tracking-wider text-[0.6875rem] sm:text-sm">SCROLL</span>
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-meta tracking-wider">SCROLL</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-px h-6 sm:h-8 bg-gradient-to-b from-cognition/50 to-transparent"
+            className="w-px h-8 bg-gradient-to-b from-cognition/50 to-transparent"
           />
         </div>
       </motion.div>

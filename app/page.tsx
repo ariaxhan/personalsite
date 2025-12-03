@@ -15,7 +15,7 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-cognition animate-pulse shadow-[0_0_8px_rgba(0,217,255,0.5)]" />
               <p className="text-xs text-neutral-500">
-                Systems that work with AI&apos;s nature
+                Architecture over capability
               </p>
             </div>
           </div>

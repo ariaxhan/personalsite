@@ -10,26 +10,25 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-  { value: "3", label: "Companies", sublabel: "founded" },
+  { value: "3x", label: "CEO", sublabel: "founded" },
   { value: "6", label: "Hackathons", sublabel: "won" },
-  { value: "3,000+", label: "Hours", sublabel: "building" },
-  { value: "1", label: "Year", sublabel: "all-in" },
+  { value: "3,300+", label: "Hours", sublabel: "building AI systems" },
+  { value: "1", label: "Year", sublabel: "all in" },
 ];
 
 const tools = [
+	"Multi-agent Orchestration",
+	"Coordination Protocols",
+	"Cursor Mastery",
+	"Reinforcement Learning",
+	"Memory Systems",
+	"Prompt Architecture",
 	"Agno",
-	"Wordware",
 	"Weave",
-	"Cursor",
+	"Google Cloud",
+	"AWS Bedrock",
 	"Convex",
 	"Vercel",
-	"Google Cloud",
-	"Azure",
-	"Redis",
-	"Multi-agent Systems",
-	"RL",
-	"Self-learning Agents",
-	"Prompt Engineering",
 ];
 
 /**
@@ -55,11 +54,10 @@ export default function About() {
             <span className="text-cognition/60">○</span> ABOUT
           </p>
           <h1 className="text-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white/90 mb-6 sm:mb-8 leading-[0.95]">
-            I build AI systems<br className="hidden sm:block" /> that actually work.
+            Background
           </h1>
           <p className="text-xl sm:text-2xl text-neutral-400 leading-relaxed max-w-3xl">
-            I&apos;m Aria. I&apos;ve spent the last year building, 
-            learning, and thinking about AI. 8-12 hours a day. Almost every day.
+            Writer turned engineer. I spent years studying how language creates meaning. For the past year, I&apos;ve applied that to how machines communicate.
           </p>
         </motion.div>
 
@@ -102,101 +100,42 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="space-y-8 sm:space-y-10"
           >
-            {/* Origin */}
             <div>
-              <h2 className="text-lg sm:text-xl text-white/90 mb-4 font-light">
-                The Background
-              </h2>
               <div className="space-y-4 text-neutral-400 leading-relaxed">
                 <p>
-                  I started as a writer. English, history, literature. I spent high school 
-                  doing business and debate, but mostly I was writing: essays, poetry, fiction. 
-                  That&apos;s how I learned to think: through words.
+                  English was never my first language, but it&apos;s always been my favorite subject. I spent most of my life reading and writing endlessly—debating ideas, reporting stories, diving into text. 
                 </p>
                 <p>
-                  Then came computer science. Two and a half years of it in college. 
-                  Data structures, algorithms, systems. I was good at it, but something 
-                  was missing. Coding felt mechanical. I was implementing, not creating.
+                  Then I discovered computer science. And I realized something that changed everything: it was just writing. Different syntax, different rules, but writing all the same. The ability to create elaborate systems, to build and control with precision using strange new languages—it felt surreal.
                 </p>
                 <p>
-                  Then AI changed everything. Suddenly, writing code meant writing prose. 
-                  Understanding systems meant understanding language. The skills I&apos;d 
-                  built as a writer became 
-                  the skills that mattered most.
-                </p>
-              </div>
-            </div>
-
-            {/* What I do */}
-            <div>
-              <h2 className="text-lg sm:text-xl text-white/90 mb-4 font-light">
-                What I Actually Do
-              </h2>
-              <div className="space-y-4 text-neutral-400 leading-relaxed">
-                <p>
-                  I design and build AI systems. Not just prompts: full architectures. 
-                  Multi-agent coordination. Memory systems. Self-improving loops. 
-                  The infrastructure that lets AI work together and get better over time.
+                  But at the end of last year, I came full circle.
                 </p>
                 <p>
-                  I read research papers and implement them the same day. I test every 
-                  major AI tool and model as they come out. I go to hackathons and build 
-                  under pressure. 
+                  I started my first company after a hackathon win earned through hours of intensive thinking and prompting. I didn&apos;t realize it then, but from that moment forward, I wasn&apos;t writing code anymore. I was writing English—the language I&apos;d already spent my life perfecting, just channeled through a new medium.
                 </p>
                 <p>
-                  Most importantly, I ship. Three companies. Six hackathon wins. 
-                  Open-source tools. Production systems. I don&apos;t just think about 
-                  this stuff. I build it.
-                </p>
-              </div>
-            </div>
-
-            {/* Philosophy */}
-            <div>
-              <h2 className="text-lg sm:text-xl text-white/90 mb-4 font-light">
-                How I Think About AI
-              </h2>
-              <div className="space-y-4 text-neutral-400 leading-relaxed">
-                <p>
-                  Most people try to make AI do what they want. I think that&apos;s backwards. 
-                  AI has its own nature, its own strengths and patterns. The best systems 
-                  don&apos;t fight that. They work with it.
+                  Over the past year, I&apos;ve spent 3,300+ hours immersed in AI. Cursor evolved from a convenient tool into something I use constantly—8-12 hours daily, alongside ChatGPT, Claude, Gemini. I&apos;ve attended dozens of hackathons and AI events across San Francisco, hands-on with cutting-edge technology, talking directly with the people who built the infrastructure defining this generation.
                 </p>
                 <p>
-                  I believe in emergence over explicit programming. In coordination over 
-                  raw capability. In letting multiple agents work together rather than 
-                  trying to build one perfect model. The complexity comes from composition, 
-                  not from any single part.
+                  I&apos;ve seen the wave. I&apos;m riding it.
                 </p>
                 <p>
-                  I also believe that understanding AI is understanding language. The same 
-                  skills that make good writing: precision, structure, knowing your audience, also make 
-                  good AI systems. That&apos;s why I don&apos;t call myself an engineer anymore. 
-                  I&apos;m a writer who builds with code.
-                </p>
-              </div>
-            </div>
-
-            {/* The context */}
-            <div>
-              <h2 className="text-lg sm:text-xl text-white/90 mb-4 font-light">
-                The Context
-              </h2>
-              <div className="space-y-4 text-neutral-400 leading-relaxed">
-                <p>
-                  I did all of this without a safety net. No salary. No investors. 
-                  No degree yet. Just work and curiosity and the conviction that this is 
-                  the most important thing I could be doing.
+                  But here&apos;s what I&apos;ve learned: we&apos;re not using AI correctly.
                 </p>
                 <p>
-                  I&apos;ve led teams: UX researchers, designers, engineers, cofounders. I&apos;ve made the 
-                  hard calls and lived with the consequences. I&apos;ve failed publicly, 
-                  learned quickly, and kept going.
+                  Most people are optimizing for the wrong things. They&apos;re building chatbots when they should be building coordination systems. They&apos;re replacing human thought instead of augmenting it. They&apos;re solving the problem they know how to solve instead of the problem that actually matters.
                 </p>
                 <p>
-                  When I say I understand AI 
-                  systems, I mean I&apos;ve bet everything on that understanding. And so far, 
-                  the evidence says I wasn&apos;t wrong.
+                  I&apos;ve built three production platforms, won six hackathons, and published open-source frameworks. I&apos;ve led teams and made hard calls. I&apos;ve failed publicly and kept going. Why?
+                </p>
+                <p>
+                  Because I believe AI should give people back their time. It should make us more human, more creative, more focused on the things that require actual thinking. Use AI to synthesize research, not do it. Use AI to build systems, not have mindless conversations. Use AI as infrastructure for human intelligence, not as a replacement for it.
+                </p>
+                <p>
+                  When I say I understand AI systems, I mean I&apos;ve bet everything on that understanding. I&apos;ve lived in production systems for over a year. I&apos;ve optimized not just what we built, but how we worked—constantly challenging existing notions of what&apos;s possible. I&apos;ve studied the landscape thoroughly enough to know what&apos;s real and what&apos;s hype.
+                  
+                  And I keep learning.
                 </p>
               </div>
             </div>
@@ -235,11 +174,7 @@ export default function About() {
                 Current Focus
               </h3>
               <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-4">
-                Building HeyContext, a multi-agent orchestration platform. Agents that 
-                coordinate, learn, and improve through experience.
-              </p>
-              <p className="text-xs sm:text-sm text-neutral-500">
-                Live in beta. Everything I&apos;ve learned, deployed.
+                HeyContext—multi-agent orchestration platform. Live in beta with real users.
               </p>
             </div>
 

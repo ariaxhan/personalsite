@@ -18,12 +18,11 @@ const openSourceProjects: OpenSourceProject[] = [
   {
     name: "Vector Native",
     description: [
-      "A symbolic communication protocol that turns natural language into queryable, reusable knowledge. Structured symbols eliminate ambiguity;precision is the goal, token savings are the side effect.",
-      "LLMs speak their native language: vector operations, not English. Designed for agent-to-agent communication, system instructions, and knowledge management where precision and reusability matter.",
+      "A2A communication protocol with 3x semantic density. Natural language is inefficient for agent coordination—ambiguity, wasted tokens, latency.",
     ],
     url: "https://github.com/persist-os/vector-native",
     evidence:
-      "Structured symbols leverage pre-trained associations from training data. Not just abbreviations. Symbols trigger statistical patterns from math, programming, and config files.",
+      "Symbols trigger pre-trained statistical patterns from math, programming, and config files.",
     meta: {
       status: "Active Development",
       language: "Python",
@@ -33,16 +32,15 @@ const openSourceProjects: OpenSourceProject[] = [
   {
     name: "The Convergence",
     description: [
-      "RL framework where agents improve through experience and evolutionary pressure. Multi-armed bandit for adaptive selection. Weak behaviors die, strong behaviors survive and propagate.",
-      "Published to PyPI. Integrated into HeyContext production. Won Reinforcement Learning Track at Weavehacks-2. Community contributions active.",
+      "Self-improving agent framework with evolutionary pressure. Weak behaviors die, strong behaviors survive. Published to PyPI, integrated into HeyContext.",
     ],
     url: "https://github.com/persist-os/the-convergence",
     evidence:
-      "Agents need environments rich enough to generate natural selection pressure. Quality emerges from competition.",
+      "Hackathon winner (Weavehacks RL Track). Production deployed.",
     meta: {
-      method: "Evolutionary selection + continuous learning",
+      method: "Evolutionary selection",
       validation: "Hackathon winner · Production deployed",
-      distribution: "PyPI package · GitHub",
+      distribution: "PyPI · GitHub",
     },
   },
 ];
@@ -90,8 +88,7 @@ export default function OpenSource() {
             Open Source
           </h2>
           <p className="text-neutral-400 max-w-xl text-base">
-            Contributing back to the collective substrate. Building blocks for the next
-            generation of AI systems.
+            Building blocks for multi-agent systems.
           </p>
         </motion.div>
 

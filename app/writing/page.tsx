@@ -3,7 +3,7 @@ import ThinkingSection from "../components/ThinkingSection";
 
 export const metadata: Metadata = {
   title: "Writing | Aria Han",
-  description: "Technical writing on AI development, multi-agent systems, and building meaningful technology.",
+  description: "Systems thinking + technical depth + clarity. For people who want to understand why things work, not just how to use them.",
 };
 
 export default function WritingPage() {
