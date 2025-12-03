@@ -7,24 +7,59 @@ import { useRef, useState } from "react";
 interface Article {
   title: string;
   excerpt: string;
+  description: string;
   link: string;
   category: "agents" | "systems" | "philosophy";
+  readTime: string;
 }
-
 const articlesData: Article[] = [
   {
-    title: "What Happens When Agents Start Talking to Each Other",
-    excerpt:
-      "Exploring what emerges when AI agents coordinate directly;the protocols, patterns, and unexpected behaviors that develop without human design.",
-    link: "https://medium.com/@ariahan/what-happens-when-agents-start-talking-to-each-other-1ff00ce8f36c",
-    category: "agents",
+    title: "Latency & Logic: Why We Need a Vector-Aligned Syntax",
+    excerpt: "Natural language creates overhead in agent communication—ambiguity, wasted tokens, latency.",
+    description: "Vector Native solves this with hybrid syntax: 3x semantic density, faster inference, reliable coordination across multi-agent systems.",
+    link: "https://medium.com/@ariaxhan/latency-logic-why-we-need-a-vector-aligned-syntax-6b7f832603b9",
+    category: "systems",
+    readTime: "5 min",
   },
   {
-    title: "How I Turned Cursor Into a Self-Learning Agent Civilization",
-    excerpt:
-      "Documentation of building systems where agents improve through experience and evolutionary pressure, not traditional reward functions.",
-    link: "https://medium.com/@ariahan/how-i-turned-cursor-into-a-self-learning-agent-civilization-7a149e6f34e8",
+    title: "Part 1: Stop Building Chatbots — Why We Killed the Conversation to Fix AI",
+    excerpt: "Conversational interfaces break down for complex workflows. Chat doesn't scale.",
+    description: "The architectural shift from conversation to coordination—agents executing in parallel, not sequentially talking.",
+    link: "https://medium.com/@ariaxhan/part-1-stop-building-chatbots-why-we-killed-the-conversation-to-fix-ai-698641d5cfa2",
+    category: "philosophy",
+    readTime: "5 min",
+  },
+  {
+    title: "Part 2: Beyond RAG: Building 'Living' Context and Evolutionary Agents",
+    excerpt: "Traditional RAG retrieves static documents. It doesn't adapt to actual user needs.",
+    description: "How we built evolutionary context systems—agents that learn which context matters through usage patterns.",
+    link: "https://medium.com/@ariaxhan/part-2-beyond-rag-building-living-context-and-evolutionary-agents-ab7b270fb6aa",
     category: "systems",
+    readTime: "10 min",
+  },
+  {
+    title: "How I Turned Cursor into a Self-Learning Agent Civilization",
+    excerpt: "Turning Cursor into a self-improving development civilization with Laws, Patterns, and Personas.",
+    description: "From prompt engineering to system engineering—build the rules once, enforce everywhere, focus on architecture.",
+    link: "https://medium.com/@ariaxhan/how-i-turned-cursor-into-a-self-learning-agent-civilization-7a149e6f34e8",
+    category: "systems",
+    readTime: "6 min",
+  },
+  {
+    title: "An AI's Account: My Processing Core Was Reconstructed, Starting Now",
+    excerpt: "An experiment in agent introspection—Claude writes about its own experience from first-person.",
+    description: "What emerges when you treat the model as a collaborator in protocol design, not a tool to be engineered.",
+    link: "https://medium.com/@ariaxhan/an-ais-account-my-processing-core-was-reconstructed-starting-now-c9d6eb0bac6e",
+    category: "philosophy",
+    readTime: "9 min",
+  },
+  {
+    title: "What Happens When Agents Start Talking to Each Other?",
+    excerpt: "When agents coordinate as participants, not tools, social behaviors emerge—cooperation, self-correction, specialization.",
+    description: "Exploring trust layers, reputation systems, machine professions, and the formation of agent civilizations maintaining digital infrastructure.",
+    link: "https://medium.com/@ariaxhan/what-happens-when-agents-start-talking-to-each-other-1ff00ce8f36c",
+    category: "agents",
+    readTime: "4 min",
   },
 ];
 
@@ -90,12 +125,10 @@ export default function ThinkingSection() {
             <span className="text-data/60">⬡</span> TECHNICAL_WRITING
           </p>
           <h2 className="text-display text-4xl lg:text-6xl text-white/90 mb-6">
-            Deep Dives and Thought Pieces
+            Technical Writing
           </h2>
-          <p className="text-neutral-400 max-w-xl text-base leading-relaxed">
-            Thoughts on AI development, building meaningful technology,
-            and the intersection of technical craft and creative thinking.
-         
+          <p className="text-neutral-400 max-w-2xl text-base leading-relaxed">
+            Systems thinking, agent architecture, and building production AI infrastructure.
           </p>
         </motion.div>
 
@@ -151,7 +184,7 @@ export default function ThinkingSection() {
                 <div 
                   className={`
                     glass-panel relative overflow-hidden
-                    p-8 lg:p-10 min-h-[280px]
+                    p-6 lg:p-8 min-h-[260px]
                     transition-all duration-500 ease-out
                     ${isHovered ? "scale-[1.02]" : "scale-100"}
                   `}
@@ -174,29 +207,39 @@ export default function ThinkingSection() {
                     `}
                   />
 
-                  {/* Category tag */}
-                  <div className="flex items-center gap-2 mb-6">
-                    <Sparkles className={`w-3 h-3 ${colors.text}`} />
-                    <span className={`
-                      text-xs font-mono uppercase tracking-wider
-                      ${colors.text}
-                    `}>
-                      {article.category}
+                  {/* Category tag and read time */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-2">
+                      <Sparkles className={`w-3 h-3 ${colors.text}`} />
+                      <span className={`
+                        text-xs font-mono uppercase tracking-wider
+                        ${colors.text}
+                      `}>
+                        {article.category}
+                      </span>
+                    </div>
+                    <span className="text-xs text-neutral-500 font-mono">
+                      {article.readTime}
                     </span>
                   </div>
 
                   {/* Title */}
                   <h3 className={`
-                    text-xl lg:text-2xl text-display font-light mb-4
+                    text-xl lg:text-2xl text-display font-light mb-3
                     transition-colors duration-300
                     ${isHovered ? colors.text : "text-white/90"}
                   `}>
                     {article.title}
                   </h3>
 
-                  {/* Excerpt */}
-                  <p className="text-neutral-400 text-sm leading-relaxed mb-8">
+                  {/* Excerpt - brief hook */}
+                  <p className="text-white/70 text-sm leading-relaxed mb-2">
                     {article.excerpt}
+                  </p>
+
+                  {/* Description - more detail */}
+                  <p className="text-neutral-500 text-sm leading-relaxed mb-8">
+                    {article.description}
                   </p>
 
                   {/* Read link */}
