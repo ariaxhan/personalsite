@@ -20,6 +20,7 @@ import { Copy, Check, ExternalLink, BookOpen } from "lucide-react";
 const vnDocument = `●ENTITY|type:human|name:aria_han
 ├──role:3x_ceo·ai_systems_architect
 ├──location:san_francisco
+├──hours_in_claude_code:4000+
 └──domain:multi_agent_systems·coordination_protocols
 
 
@@ -31,14 +32,14 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 
 ●SYSTEM_BLOCK|type:production|count:3
 
-├──●system|name:heycontext|status:live_production
+├──●system|name:heycontext|status:shipped
 │  |role:ceo·lead_architect·lead_engineer
-│  |timeline:sept_2024→present
+│  |timeline:sept_2024→jan_2026
 │  |desc:multi_agent_orchestration_workspace
 │  |capability:agents_coordinate·learn·improve_through_experience
 │  |tech:[fastapi,redis,convex,agno,nextjs]
-│  |status_detail:serving_users_in_production
-│  └──insight:why_multi_agent_systems_fail=information_degradation
+│  |status_detail:shipped_to_production
+│  └──insight:bottleneck_is_coordination_overhead_not_individual_capability
 
 ├──●system|name:heycontent|status:integrated
 │  |role:ceo·lead_developer
@@ -47,14 +48,14 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 │  |platforms:[instagram,youtube,gmail,notes]
 │  |method:semantic_linking·vector_embeddings
 │  |integration:core_tech_in_heycontext
-│  └──insight:what_breaks_when_synthesizing_multiple_sources
+│  └──insight:long_horizon_work_requires_persistent_memory
 
 └──●system|name:brink_mind|status:testflight_phase
    |role:ceo·lead_architect·swiftui_developer
    |timeline:nov_2024→mar_2025
    |desc:voice_ai_mental_health·biometric_fusion
    |platform:[ios,watchos,healthkit]
-   └──insight:theory_vs_real_humans
+   └──insight:users_need_privacy_first_tool_not_ai_companion
 
 
 ●EVIDENCE_BLOCK|type:hackathons|count:6|outcome:5_wins_1_finalist
@@ -98,6 +99,18 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 
 ●OPEN_SOURCE_BLOCK
 
+├──●project|name:kernel
+│  |status:active_development·production_validated
+│  |license:mit
+│  |desc:self_evolving_claude_code_plugin·agentdb_first_methodology
+│  |origin:built_from_failure_paths·not_theory·every_pattern_earned_through_breaking
+│  |hours:4000+_daily_iteration·patterns_extracted_from_real_production_failures
+│  |capability:multi_agent_orchestration·contracts·checkpoints·verdicts
+│  |tech:[claude_code,sqlite,shell]
+│  |validation:enterprise_production_feb_2026
+│  |thesis:representation_is_the_bottleneck·markdown_bad_for_agents·sqlite_good
+│  └──url:github.com/ariaxhan/kernel-claude
+
 ├──●project|name:vector_native
 │  |status:active_development
 │  |license:mit
@@ -123,45 +136,61 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 |audience:people_who_want_to_understand_why_not_just_how
 
 ├──●article
-│  |title:latency_&_logic:why_we_need_vector_aligned_syntax
-│  |thesis:token_as_unit_wrong·meaning_density_right
+│  |title:stop_writing_markdown_start_writing_memory
+│  |thesis:markdown_for_human_eyes·terrible_for_agent_queries·sqlite_better
 │  |category:systems
-│  └──url:medium.com/@ariaxhan/latency-logic-why-we-need-a-vector-aligned-syntax-6b7f832603b9
+│  └──url:medium.com/@ariaxhan/stop-writing-markdown-start-writing-memory-e4a69c57caa9
 
 ├──●article
-│  |title:what_happens_when_agents_start_talking_to_each_other
-│  |thesis:unexpected_protocols_emerge_without_human_prompts
+│  |title:i_put_chatgpt_in_charge_of_claude_code
+│  |thesis:multi_model_orchestration·strategic_observer_vs_executor
 │  |category:agents
-│  └──url:medium.com/@ariaxhan/what-happens-when-agents-start-talking-to-each-other-1ff00ce8f36c
+│  └──url:medium.com/@ariaxhan/i-put-chatgpt-in-charge-of-claude-code-7b9bf5bb8ea9
 
 ├──●article
-│  |title:part_1_stop_building_chatbots_why_we_killed_the_conversation_to_fix_ai
-│  |thesis:most_ai_products_architecturally_wrong
+│  |title:i_tested_openais_new_codex_desktop_app
+│  |thesis:ui_is_the_real_product·model_secondary
 │  |category:philosophy
-│  └──url:medium.com/@ariaxhan/part-1-stop-building-chatbots-why-we-killed-the-conversation-to-fix-ai-698641d5cfa2
+│  └──url:medium.com/@ariaxhan/i-tested-openais-new-codex-desktop-app-the-ui-is-the-real-product-c2c59bdcb5f6
 
 ├──●article
-│  |title:part_2_beyond_rag_building_living_context_and_evolutionary_agents
-│  |thesis:rag_insufficient·production_needs_evolving_context
+│  |title:automations_with_claude_code
+│  |thesis:proactive_ai_pattern·local_context·personalized_outputs
 │  |category:systems
-│  └──url:medium.com/@ariaxhan/part-2-beyond-rag-building-living-context-and-evolutionary-agents-ab7b270fb6aa
+│  └──url:medium.com/@ariaxhan/automations-with-claude-code-personalized-proactive-emails-and-code-poetry-from-local-context-3a7e93bf5a3d
 
 ├──●article
-│  |title:how_i_turned_cursor_into_a_self_learning_agent_civilization
-│  |thesis:orchestration_platform_not_coding_speed
+│  |title:kernel_self_evolving_claude_code_configuration
+│  |thesis:config_that_learns_from_how_you_work·agentdb·orchestration·contracts
 │  |category:systems
-│  └──url:medium.com/@ariaxhan/how-i-turned-cursor-into-a-self-learning-agent-civilization-7a149e6f34e8
+│  └──url:medium.com/@ariaxhan/kernel-the-ultimate-self-evolving-claude-code-and-cursor-configuration-system-a3ddeb7f4d32
+
+├──●article
+│  |title:from_friction_to_flow_building_a_command_library
+│  |thesis:commands_as_cognitive_offloading·stop_remembering·start_invoking
+│  |category:systems
+│  └──url:medium.com/@ariaxhan/from-friction-to-flow-building-a-command-library-for-claude-code-a9eb19f7dce2
+
+├──●article
+│  |title:10_things_i_wish_i_knew_about_ai_coding
+│  |thesis:hard_won_lessons·thousands_of_hours·practical_wisdom
+│  |category:philosophy
+│  └──url:medium.com/@ariaxhan/10-things-i-wish-i-knew-when-i-started-using-ai-for-coding-887c26a6c1d1
 
 └──●article
-   |title:an_ais_account_my_processing_core_was_reconstructed_starting_now
-   |thesis:treat_claude_as_thinking_partner_not_tool
-   |category:philosophy
-   └──url:medium.com/@ariaxhan/an-ais-account-my-processing-core-was-reconstructed-starting-now-c9d6eb0bac6e
+   |title:this_ai_analyzes_my_entire_life
+   |thesis:synthesis_pool·personal_ai·zero_cloud_cost·privacy_first
+   |category:agents
+   └──url:medium.com/@ariaxhan/the-synthesis-pool-0ce814fdfa5f
 
 
-●TIMELINE_BLOCK|period:2024→2025
+●TIMELINE_BLOCK|period:2024→2026
 
-├──●event|date:sept_2024→present|type:company
+├──●event|date:jan_2026→present|type:practice
+│  |name:ai_systems_architecture
+│  └──desc:research_through_building·coordination_architectures·agent_protocols·self_improving_systems
+
+├──●event|date:sept_2025→jan_2026|type:company
 │  |name:persistos/heycontext
 │  └──desc:exploring_frontier_ai_concepts·live_with_hundreds_of_users
 
@@ -192,11 +221,12 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 
 
 ●META
-|format:vn_1.0
-|semiotic_density:~3.2x
+|format:vn_1.1
+|semiotic_density:~3.4x
 |primary_use:a2a_communication
 |secondary_use:conversational_workflow_amplification
 |thesis:zip_file_for_meaning
+|last_sync:feb_2026
 
 
 ●END_DOCUMENT`;
@@ -318,8 +348,8 @@ export default function VectorNativeDocument() {
           {/* Meta info + Article link */}
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <div className="flex flex-wrap gap-4 text-xs font-mono">
-              <span className="text-neutral-600">format: vn_1.0</span>
-              <span className="text-neutral-600">semiotic_density: ~3.2x</span>
+              <span className="text-neutral-600">format: vn_1.1</span>
+              <span className="text-neutral-600">semiotic_density: ~3.4x</span>
               <span className="text-neutral-600">meaning_per_token: optimized</span>
             </div>
             <a

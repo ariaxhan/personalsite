@@ -7,12 +7,18 @@ interface TimelineEntry {
   date: string;
   title: string;
   desc: string;
-  type: "company" | "achievement" | "creative";
+  type: "company" | "achievement" | "creative" | "practice";
 }
 
 const timelineData: TimelineEntry[] = [
   {
-    date: "SEPT_2025 - PRESENT",
+    date: "JAN_2026 - PRESENT",
+    title: "AI Systems Architecture",
+    desc: "Research through building. Developing coordination architectures, agent protocols, self-improving systems. Not just prompt engineering, but real infrastructure. Shipping production systems that prove the methodology.",
+    type: "practice",
+  },
+  {
+    date: "SEPT_2025 - JAN_2026",
     title: "PersistOS / HeyContext",
     desc: "Exploring frontier AI concepts and implementing them in production. Live with hundreds of users.",
     type: "company",
@@ -44,23 +50,57 @@ const timelineData: TimelineEntry[] = [
 ];
 
 const typeStyles = {
+  practice: {
+    color: "data",
+    dotBg: "bg-data",
+    dotGlow: "shadow-[0_0_10px_rgba(59,130,246,0.5)]",
+    lineBg: "from-data/60",
+    borderBase: "border-data/30",
+    borderHover: "hover:border-data/60",
+    tagBg: "bg-data/10",
+    tagText: "text-data/80",
+    tagBorder: "border-data/20",
+    titleHover: "group-hover:text-data",
+    traceBg: "from-data/40 via-data/20",
+  },
   company: {
     color: "cognition",
     dotBg: "bg-cognition",
     dotGlow: "shadow-[0_0_10px_rgba(0,217,255,0.5)]",
     lineBg: "from-cognition/60",
+    borderBase: "border-cognition/30",
+    borderHover: "hover:border-cognition/60",
+    tagBg: "bg-cognition/10",
+    tagText: "text-cognition/80",
+    tagBorder: "border-cognition/20",
+    titleHover: "group-hover:text-cognition",
+    traceBg: "from-cognition/40 via-cognition/20",
   },
   achievement: {
     color: "emergence",
     dotBg: "bg-emergence",
     dotGlow: "shadow-[0_0_10px_rgba(139,92,246,0.5)]",
     lineBg: "from-emergence/60",
+    borderBase: "border-emergence/30",
+    borderHover: "hover:border-emergence/60",
+    tagBg: "bg-emergence/10",
+    tagText: "text-emergence/80",
+    tagBorder: "border-emergence/20",
+    titleHover: "group-hover:text-emergence",
+    traceBg: "from-emergence/40 via-emergence/20",
   },
   creative: {
     color: "memory",
     dotBg: "bg-memory",
     dotGlow: "shadow-[0_0_10px_rgba(251,191,36,0.5)]",
     lineBg: "from-memory/60",
+    borderBase: "border-memory/30",
+    borderHover: "hover:border-memory/60",
+    tagBg: "bg-memory/10",
+    tagText: "text-memory/80",
+    tagBorder: "border-memory/20",
+    titleHover: "group-hover:text-memory",
+    traceBg: "from-memory/40 via-memory/20",
   },
 };
 
@@ -183,11 +223,11 @@ export default function Timeline() {
                   </div>
 
                   {/* Content card */}
-                  <div 
+                  <div
                     className={`
                       glass-panel p-6 lg:p-8 group
-                      border-l-2 border-${style.color}/30
-                      hover:border-${style.color}/60
+                      border-l-2 ${style.borderBase}
+                      ${style.borderHover}
                       transition-all duration-400
                     `}
                   >
@@ -196,8 +236,8 @@ export default function Timeline() {
                       <span>{entry.date}</span>
                       <span className={`
                         px-2 py-0.5 rounded text-[10px] uppercase
-                        bg-${style.color}/10 text-${style.color}/80
-                        border border-${style.color}/20
+                        ${style.tagBg} ${style.tagText}
+                        border ${style.tagBorder}
                       `}>
                         {entry.type}
                       </span>
@@ -206,7 +246,7 @@ export default function Timeline() {
                     {/* Title */}
                     <h3 className={`
                       text-xl lg:text-2xl text-display font-light mb-4
-                      group-hover:text-${style.color}
+                      ${style.titleHover}
                       transition-colors duration-300
                     `}>
                       {entry.title}
@@ -218,10 +258,10 @@ export default function Timeline() {
                     </p>
 
                     {/* Memory trace - appears on hover */}
-                    <div 
+                    <div
                       className={`
                         absolute bottom-0 left-0 right-0 h-px
-                        bg-gradient-to-r from-${style.color}/40 via-${style.color}/20 to-transparent
+                        bg-gradient-to-r ${style.traceBg} to-transparent
                         opacity-0 group-hover:opacity-100
                         transition-opacity duration-500
                       `}

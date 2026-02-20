@@ -13,7 +13,7 @@ export interface SystemData {
 export const systemsData: SystemData[] = [
   {
     name: "HeyContext",
-    status: "LIVE_PRODUCTION",
+    status: "SHIPPED",
     description: [
       "Multi-agent orchestration workspace where families of specialized agents coordinate autonomously. Adaptive model + config selection across OpenAI, Claude, Gemini, Llama, and more.",
       "Agents write A2A notes, generate prompts on-demand and iterate every time. Redis-backed async processing. Background intelligence pipelines. Advanced anti-summary context enrichment system.",
@@ -22,9 +22,9 @@ export const systemsData: SystemData[] = [
       "The bottleneck isn't individual agent capability; it's coordination overhead. Built architecture where agents share context and learn collaboration patterns.",
     meta: {
       role: "CEO · Lead Architect · Lead Engineer",
-      timeline: "Sept 2024 - Present",
+      timeline: "Sept 2025 - Jan 2026",
       stack: "FastAPI · Redis · Convex · Agno · Next.js",
-      status: "Serving users in production",
+      status: "Shipped to production",
     },
   },
   {

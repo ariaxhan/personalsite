@@ -20,8 +20,8 @@ const catalogCards: CatalogCard[] = [
     id: "identity",
     category: "ENTITY",
     title: "Aria Han",
-    content: "3x CEO and AI systems architect building multi-agent orchestration. San Francisco.",
-    tags: ["3x ceo", "ai architect", "san francisco"],
+    content: "3x CEO and AI systems architect. 4000+ hours writing code with AI. San Francisco.",
+    tags: ["3x ceo", "claude code", "ai architect", "san francisco"],
     link: "/about",
     color: "cognition",
   },
@@ -29,7 +29,7 @@ const catalogCards: CatalogCard[] = [
     id: "heycontext",
     category: "SYSTEM",
     title: "HeyContext",
-    content: "Multi-agent orchestration platform. Live in beta with real users.",
+    content: "Multi-agent orchestration platform. Shipped to beta.",
     tags: ["agents", "orchestration", "production", "live"],
     link: "/systems",
     color: "cognition",
@@ -60,6 +60,15 @@ const catalogCards: CatalogCard[] = [
     tags: ["reinforcement learning", "pypi"],
     link: "/open-source",
     color: "data",
+  },
+  {
+    id: "kernel",
+    category: "OPEN SOURCE",
+    title: "KERNEL",
+    content: "Self-evolving Claude Code plugin. AgentDB, multi-agent orchestration, contracts.",
+    tags: ["claude code", "plugin", "agentdb"],
+    link: "/open-source",
+    color: "cognition",
   },
   {
     id: "companies",
@@ -201,7 +210,7 @@ export default function CardCatalogHero() {
             Aria Han
           </h1>
           <p className="text-neutral-400 text-base sm:text-lg">
-            AI Expert · Founder · Builder
+            AI Systems Architect · Founder · Builder
           </p>
         </motion.div>
 
@@ -406,7 +415,7 @@ export default function CardCatalogHero() {
               View as Vector Native
             </span>
             <span className="text-[0.625rem] sm:text-xs text-neutral-600 font-mono">
-              ~3.2x compression
+              ~3.4x density
             </span>
           </Link>
         </motion.div>

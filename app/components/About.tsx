@@ -12,23 +12,20 @@ interface Stat {
 const stats: Stat[] = [
   { value: "3x", label: "CEO", sublabel: "founded" },
   { value: "6", label: "Hackathons", sublabel: "won" },
-  { value: "3,300+", label: "Hours", sublabel: "building AI systems" },
+  { value: "4,000+", label: "Hours", sublabel: "writing code with AI" },
   { value: "1", label: "Year", sublabel: "all in" },
 ];
 
 const tools = [
+	"Claude Code",
+  "Self-improving Systems",
 	"Multi-agent Orchestration",
 	"Coordination Protocols",
-	"Cursor Mastery",
+	"AgentDB",
 	"Reinforcement Learning",
 	"Memory Systems",
 	"Prompt Architecture",
-	"Agno",
-	"Weave",
-	"Google Cloud",
-	"AWS Bedrock",
-	"Convex",
-	"Vercel",
+  "Evals/benchmarks"
 ];
 
 /**
@@ -109,13 +106,13 @@ export default function About() {
                   Then I discovered computer science. And I realized something that changed everything: it was just writing. Different syntax, different rules, but writing all the same. The ability to create elaborate systems, to build and control with precision using strange new languages—it felt surreal.
                 </p>
                 <p>
-                  But at the end of last year, I came full circle.
+                  But at the end of 2024, I came full circle.
                 </p>
                 <p>
-                  I started my first company after a hackathon win earned through hours of intensive thinking and prompting. I didn&apos;t realize it then, but from that moment forward, I wasn&apos;t writing code anymore. I was writing English—the language I&apos;d already spent my life perfecting, just channeled through a new medium.
+                  I started my first company after a hackathon win earned through hours of intensive thinking and prompting. I didn&apos;t realize it then, but from that moment forward, I wasn&apos;t writing in code anymore. I was writing in English—the language I&apos;d already spent my life perfecting, just channeled through a new medium.
                 </p>
                 <p>
-                  Over the past year, I&apos;ve spent 3,300+ hours immersed in AI. Cursor evolved from a convenient tool into something I use constantly—8-12 hours daily, alongside ChatGPT, Claude, Gemini. I&apos;ve attended dozens of hackathons and AI events across San Francisco, hands-on with cutting-edge technology, talking directly with the people who built the infrastructure defining this generation.
+                  Over the past year, I&apos;ve spent 4,000+ hours immersed in AI. Claude Code evolved from a convenient tool into something I use constantly—8-12 hours daily, building production systems and developing the KERNEL plugin. I&apos;ve attended dozens of hackathons and AI events across San Francisco, hands-on with cutting-edge technology, talking directly with the people who built the infrastructure defining this generation.
                 </p>
                 <p>
                   I&apos;ve seen the wave. I&apos;m riding it.
@@ -174,7 +171,7 @@ export default function About() {
                 Current Focus
               </h3>
               <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-4">
-                HeyContext—multi-agent orchestration platform. Live in beta with real users.
+                <b> KERNEL</b>: self-evolving Claude Code plugin. AgentDB, multi-agent orchestration, contracts.
               </p>
             </div>
 

@@ -16,6 +16,22 @@ interface OpenSourceProject {
 
 const openSourceProjects: OpenSourceProject[] = [
   {
+    name: "KERNEL",
+    description: [
+      "Self-evolving Claude Code plugin built from failure paths, not theory. Every pattern earned through breaking something first. 4,000+ hours of daily iteration, addressing real production failures.",
+      "AgentDB-first methodology where every artifact reads on start, writes on end. Multi-agent orchestration with contracts, checkpoints, and verdicts. Configuration that learns from how you actually work.",
+    ],
+    url: "https://github.com/ariaxhan/kernel-claude",
+    evidence:
+      "Representation is the bottleneck. Markdown is optimized for human eyes—terrible for agent coordination. SQLite is optimized for structured retrieval.",
+    meta: {
+      status: "Active Development · Production Validated",
+      stack: "Claude Code · SQLite · Shell",
+      methodology: "AgentDB · Contracts · Orchestration",
+      license: "MIT",
+    },
+  },
+  {
     name: "Vector Native",
     description: [
       "A2A communication protocol with 3x semantic density. Natural language is inefficient for agent coordination—ambiguity, wasted tokens, latency.",

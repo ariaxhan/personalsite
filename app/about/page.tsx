@@ -3,7 +3,7 @@ import About from "../components/About";
 
 export const metadata: Metadata = {
   title: "About | Aria Han",
-  description: "AI systems architect. Writer. Systems thinker. Three companies, six hackathon wins, 3,300+ hours building production AI systems.",
+  description: "AI systems architect. Writer. Systems thinker. Three companies, six hackathon wins, 4,000+ hours coding with AI.",
 };
 
 export default function AboutPage() {

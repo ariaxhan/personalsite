@@ -10,6 +10,12 @@ interface SystemBlockProps {
 }
 
 const statusColors: Record<string, { border: string; text: string; glow: string; bg: string }> = {
+  SHIPPED: {
+    border: "border-emergence/50",
+    text: "text-emergence",
+    glow: "shadow-[0_0_15px_rgba(139,92,246,0.3)]",
+    bg: "bg-emergence/10",
+  },
   LIVE_BETA: {
     border: "border-cognition/50",
     text: "text-cognition",
