@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo, useEffect } from "react";
-import { Search, ArrowRight } from "lucide-react";
+import { Search, ArrowRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 interface CatalogCard {
@@ -13,6 +13,7 @@ interface CatalogCard {
   tags: string[];
   link?: string;
   color: "cognition" | "emergence" | "memory" | "data";
+  external?: boolean;
 }
 
 const catalogCards: CatalogCard[] = [
@@ -87,6 +88,16 @@ const catalogCards: CatalogCard[] = [
     tags: ["medium", "articles"],
     link: "/writing",
     color: "data",
+  },
+  {
+    id: "substrate",
+    category: "ARTIFACT",
+    title: "SUBSTRATE",
+    content: "Computational poetry gallery. AI-generated pieces accumulate daily. Inspired by Taper.",
+    tags: ["generative", "claude code", "daily"],
+    link: "https://nexus-substrate.pages.dev",
+    color: "emergence",
+    external: true,
   },
 ];
 
@@ -308,7 +319,14 @@ export default function CardCatalogHero() {
                     border-l border-b
                     text-[0.625rem] sm:text-[0.6875rem] lg:text-[10px] font-mono uppercase tracking-wider
                     ${colors.tab}
+                    ${card.category === "ARTIFACT" ? "flex items-center gap-1.5" : ""}
                   `}>
+                    {card.category === "ARTIFACT" && (
+                      <span className="relative flex h-1.5 w-1.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emergence opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emergence"></span>
+                      </span>
+                    )}
                     {card.category}
                   </div>
 
@@ -352,12 +370,20 @@ export default function CardCatalogHero() {
                     {/* Link indicator */}
                     {card.link && (
                       <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4">
-                        <ArrowRight className={`
-                          w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-700
-                          group-hover:text-neutral-400
-                          group-hover:translate-x-1
-                          transition-all duration-300
-                        `} aria-hidden="true" />
+                        {card.external ? (
+                          <ExternalLink className={`
+                            w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-700
+                            group-hover:text-emergence
+                            transition-all duration-300
+                          `} aria-hidden="true" />
+                        ) : (
+                          <ArrowRight className={`
+                            w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-700
+                            group-hover:text-neutral-400
+                            group-hover:translate-x-1
+                            transition-all duration-300
+                          `} aria-hidden="true" />
+                        )}
                       </div>
                     )}
                   </div>
@@ -376,10 +402,25 @@ export default function CardCatalogHero() {
                 </motion.div>
               );
 
+              if (card.link && card.external) {
+                return (
+                  <a
+                    key={card.id}
+                    href={card.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contents touch-manipulation"
+                    aria-label={`View ${card.title} (opens in new tab)`}
+                  >
+                    {cardContent}
+                  </a>
+                );
+              }
+
               return card.link ? (
-                <Link 
-                  key={card.id} 
-                  href={card.link} 
+                <Link
+                  key={card.id}
+                  href={card.link}
                   className="contents touch-manipulation"
                   aria-label={`View ${card.title}`}
                 >
