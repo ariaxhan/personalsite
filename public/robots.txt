@@ -1,0 +1,62 @@
+# ariaxhan.com — robots policy
+# Policy: allow search/answer bots (they cite), disallow training-only crawlers.
+
+User-agent: *
+Allow: /
+Content-Signal: ai-train=no, ai-input=yes, search=yes
+
+# Training-only crawlers: disallowed
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+# Search/answer crawlers: allowed (cite source)
+User-agent: ClaudeBot
+Allow: /
+Content-Signal: ai-train=no, ai-input=yes, search=yes
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://ariaxhan.com/sitemap.xml
