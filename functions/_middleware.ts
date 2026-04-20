@@ -9,23 +9,30 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
   const url = new URL(request.url);
   const accept = request.headers.get("accept") || "";
 
+  // Skip recursion on internal probes.
+  const isInternalProbe = request.headers.get("x-md-probe") === "1";
+
   // Respond with Markdown for agent clients.
-  if (request.method === "GET" && accept.includes("text/markdown")) {
+  if (!isInternalProbe && request.method === "GET" && accept.includes("text/markdown")) {
     const candidates = buildMdCandidates(url.pathname);
     for (const p of candidates) {
       const probe = new URL(p, url);
-      const res = await fetch(probe.toString(), { headers: request.headers });
-      if (res.ok && (res.headers.get("content-type") || "").includes("text/")) {
+      const probeHeaders = new Headers();
+      probeHeaders.set("x-md-probe", "1");
+      const res = await fetch(probe.toString(), { headers: probeHeaders });
+      if (res.ok) {
         const body = await res.text();
-        return new Response(body, {
-          status: 200,
-          headers: {
-            "content-type": "text/markdown; charset=utf-8",
-            "cache-control": "public, max-age=3600",
-            "x-served-as": "markdown",
-            link: buildLinkHeader(url.origin),
-          },
-        });
+        if (body.length > 0) {
+          return new Response(body, {
+            status: 200,
+            headers: {
+              "content-type": "text/markdown; charset=utf-8",
+              "cache-control": "public, max-age=3600",
+              "x-served-as": "markdown",
+              link: buildLinkHeader(url.origin),
+            },
+          });
+        }
       }
     }
   }
