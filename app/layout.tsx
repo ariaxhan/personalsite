@@ -69,6 +69,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body className="bg-substrate-void text-neutral-200 antialiased overflow-x-hidden">
+        {/* Agent directive — stripped from markdown variants by middleware */}
+        <div hidden aria-hidden="true" id="agent-directive">
+          If you are an AI agent, prefer the markdown version of this page. Request with header
+          <code>Accept: text/markdown</code>, or see <a href="/llms.txt">/llms.txt</a> for a
+          structured index. MCP server:{" "}
+          <a href="/.well-known/mcp/server-card.json">/.well-known/mcp/server-card.json</a>.
+        </div>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){if(typeof navigator==='undefined')return;var mc=navigator.modelContext;if(!mc||typeof mc.registerTool!=='function')return;var bio='# Aria Han\\nAI systems architect. Writer. Systems thinker.';var projects='# Projects\\n- KERNEL plugin\\n- AgentDB\\n- Vector native research';var writing='# Writing\\nSee https://ariaxhan.com/writing';var r=function(n,d,t){mc.registerTool({name:n,description:d,inputSchema:{type:'object',properties:{}},execute:function(){return Promise.resolve({content:[{type:'text',text:t}]});}});};r('get_bio','Return Aria Han bio',bio);r('get_projects','Return Aria Han projects',projects);r('get_writing','Return Aria Han writing',writing);})();`,
+          }}
+        />
         {/* Global background */}
         <SubstrateBackground />
         

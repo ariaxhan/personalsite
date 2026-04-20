@@ -1,0 +1,52 @@
+{
+  "name": "Aria Han Portfolio Agent",
+  "version": "1.0.0",
+  "description": "A2A-compatible agent card representing Aria Han's professional portfolio. Read-only access to bio, projects, and writing.",
+  "url": "https://ariaxhan.com",
+  "provider": {
+    "organization": "Aria Han",
+    "url": "https://ariaxhan.com"
+  },
+  "supportedInterfaces": [
+    {
+      "protocol": "http",
+      "transport": "https",
+      "url": "https://ariaxhan.com"
+    },
+    {
+      "protocol": "mcp",
+      "transport": "streamable-http",
+      "url": "https://ariaxhan.com/mcp"
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/markdown", "application/json"],
+  "skills": [
+    {
+      "id": "get_bio",
+      "name": "Get Bio",
+      "description": "Return Aria Han's professional bio",
+      "tags": ["bio", "about"],
+      "examples": ["What does Aria Han do?", "Who is Aria Han?"]
+    },
+    {
+      "id": "get_projects",
+      "name": "Get Projects",
+      "description": "List Aria Han's public projects and open-source work",
+      "tags": ["projects", "open-source"],
+      "examples": ["What is Aria working on?", "List Aria's projects."]
+    },
+    {
+      "id": "get_writing",
+      "name": "Get Writing",
+      "description": "List Aria Han's public essays and writing",
+      "tags": ["writing", "essays"],
+      "examples": ["What has Aria written?", "Show Aria's essays."]
+    }
+  ]
+}

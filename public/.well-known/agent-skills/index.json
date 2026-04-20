@@ -1,0 +1,27 @@
+{
+  "$schema": "https://agentskills.io/schemas/index.v0.2.0.json",
+  "version": "0.2.0",
+  "skills": [
+    {
+      "name": "aria-bio",
+      "type": "skill-md",
+      "description": "Retrieve Aria Han's professional bio and current focus areas",
+      "url": "https://ariaxhan.com/.well-known/agent-skills/aria-bio/SKILL.md",
+      "sha256": "f187ce85db90d3d470cb9067d74c8e144d4cc3edd8aec3b1649d8d1b22d61169"
+    },
+    {
+      "name": "aria-projects",
+      "type": "skill-md",
+      "description": "List Aria Han's public projects and open-source work",
+      "url": "https://ariaxhan.com/.well-known/agent-skills/aria-projects/SKILL.md",
+      "sha256": "a84a4846043d1ede4ed51ff4d104f59989a202b366c44f5dccb515d8d125735b"
+    },
+    {
+      "name": "aria-writing",
+      "type": "skill-md",
+      "description": "List Aria Han's public writing and essays",
+      "url": "https://ariaxhan.com/.well-known/agent-skills/aria-writing/SKILL.md",
+      "sha256": "49d012772fbd8dd04d41e461bdb5c1b9c73cb032848aae1bdedc6e03bb325e3e"
+    }
+  ]
+}

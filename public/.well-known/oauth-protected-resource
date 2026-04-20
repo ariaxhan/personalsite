@@ -1,0 +1,7 @@
+{
+  "resource": "https://ariaxhan.com",
+  "authorization_servers": ["https://ariaxhan.com"],
+  "scopes_supported": ["portfolio:read"],
+  "bearer_methods_supported": ["header"],
+  "resource_documentation": "https://ariaxhan.com/llms.txt"
+}

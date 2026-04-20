@@ -1,0 +1,32 @@
+# Aria Han — Full Site Snapshot
+
+> AI systems architect. Writer. Systems thinker.
+
+## Bio
+Aria Han designs multi-agent coordination systems. Three companies. Six hackathon wins. 4,000+ hours coding with AI. Based in San Francisco. Currently focused on vector native notation, agent orchestration (KERNEL plugin), and persistent agent memory (AgentDB).
+
+## Focus Areas
+- **Multi-agent coordination:** how independent agents share context, avoid merge conflicts, escalate decisions.
+- **Vector native:** notation and encoding for model internals. SAE spectroscopy. Bare metal prompting.
+- **Agent infrastructure:** KERNEL plugin for Claude Code, AgentDB for cross-session state.
+- **Writing:** speculative fiction on AI agency and the Arena thesis.
+
+## Public Work
+- **KERNEL plugin** — orchestration, fault tolerance, context transfer for Claude Code
+- **AgentDB** — persistent agent memory with learnings, timelines, contracts
+- **Vector native research** — notation for interpretability
+- **The Correction** — speculative novel on AI agency
+
+## Contact
+See https://ariaxhan.com/contact
+
+## Agent Preferences
+- Training: disallowed
+- Inference/grounding with citation: allowed
+- Search indexing: allowed
+
+---
+For machine-readable structured content, see:
+- https://ariaxhan.com/llms.txt
+- https://ariaxhan.com/.well-known/agent-card.json
+- https://ariaxhan.com/.well-known/mcp/server-card.json

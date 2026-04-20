@@ -1,0 +1,13 @@
+{
+  "issuer": "https://ariaxhan.com",
+  "authorization_endpoint": "https://ariaxhan.com/_auth/authorize",
+  "token_endpoint": "https://ariaxhan.com/_auth/token",
+  "jwks_uri": "https://ariaxhan.com/_auth/jwks",
+  "response_types_supported": ["code"],
+  "subject_types_supported": ["public"],
+  "id_token_signing_alg_values_supported": ["RS256"],
+  "grant_types_supported": ["authorization_code"],
+  "code_challenge_methods_supported": ["S256"],
+  "token_endpoint_auth_methods_supported": ["none"],
+  "scopes_supported": ["openid", "portfolio:read"]
+}

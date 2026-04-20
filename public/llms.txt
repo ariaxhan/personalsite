@@ -1,0 +1,25 @@
+# Aria Han
+
+> AI systems architect. Writer. Systems thinker. Building infrastructure for multi-agent coordination.
+
+## Core
+- [About](https://ariaxhan.com/about): background, focus areas, current work
+- [Writing](https://ariaxhan.com/writing): essays on AI systems, agents, vector native interfaces
+- [Open Source](https://ariaxhan.com/open-source): KERNEL plugin, AgentDB, tooling
+- [Systems](https://ariaxhan.com/systems): architectural patterns and multi-agent coordination
+- [Timeline](https://ariaxhan.com/timeline): project and company milestones
+- [Vector Native](https://ariaxhan.com/vn): research on notation for model internals
+- [Evidence](https://ariaxhan.com/evidence): proof of work, outputs, receipts
+- [Contact](https://ariaxhan.com/contact): how to reach me
+
+## Agent Resources
+- [llms-full.txt](https://ariaxhan.com/llms-full.txt): full concatenated content
+- [Agent Card](https://ariaxhan.com/.well-known/agent-card.json)
+- [MCP Server Card](https://ariaxhan.com/.well-known/mcp/server-card.json)
+- [API Catalog](https://ariaxhan.com/.well-known/api-catalog)
+- [Agent Skills](https://ariaxhan.com/.well-known/agent-skills/index.json)
+
+## Preferences
+- ai-train: no
+- ai-input: yes (cite source)
+- search: yes

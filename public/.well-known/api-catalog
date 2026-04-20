@@ -1,0 +1,49 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://ariaxhan.com/",
+      "service-desc": [
+        {
+          "href": "https://ariaxhan.com/llms-full.txt",
+          "type": "text/plain",
+          "title": "Full site content (LLM-friendly)"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://ariaxhan.com/llms.txt",
+          "type": "text/plain",
+          "title": "Structured site index"
+        },
+        {
+          "href": "https://ariaxhan.com/about",
+          "type": "text/html",
+          "title": "About page"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://ariaxhan.com/",
+          "type": "text/html"
+        }
+      ],
+      "related": [
+        {
+          "href": "https://ariaxhan.com/sitemap.xml",
+          "type": "application/xml",
+          "title": "Sitemap"
+        },
+        {
+          "href": "https://ariaxhan.com/.well-known/agent-card.json",
+          "type": "application/json",
+          "title": "A2A Agent Card"
+        },
+        {
+          "href": "https://ariaxhan.com/.well-known/mcp/server-card.json",
+          "type": "application/json",
+          "title": "MCP Server Card"
+        }
+      ]
+    }
+  ]
+}

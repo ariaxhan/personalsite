@@ -1,0 +1,50 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
+  "version": "1.0",
+  "protocolVersion": "2025-06-18",
+  "serverInfo": {
+    "name": "ariaxhan-portfolio",
+    "title": "Aria Han Portfolio",
+    "version": "1.0.0"
+  },
+  "description": "Read-only MCP server exposing Aria Han's portfolio content (bio, projects, writing).",
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "/mcp"
+  },
+  "authentication": {
+    "required": false
+  },
+  "tools": [
+    {
+      "name": "get_bio",
+      "title": "Get Bio",
+      "description": "Return Aria Han's professional bio in markdown.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_projects",
+      "title": "Get Projects",
+      "description": "Return list of Aria Han's public projects.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_writing",
+      "title": "Get Writing",
+      "description": "Return list of Aria Han's public writing.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    }
+  ]
+}
