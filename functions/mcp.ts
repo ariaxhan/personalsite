@@ -9,8 +9,8 @@ const BIO_MD = `# Aria Han
 
 AI systems architect. Writer. Systems thinker.
 
-Three companies. Six hackathon wins. 4,000+ hours coding with AI. Based in San Francisco.
-Focus: multi-agent coordination, vector native notation, agent infrastructure.
+Three companies. Six hackathon wins. The KERNEL plugin. Based in San Francisco.
+Focus: multi-agent coordination, vector native notation, agent infrastructure, and writing about how AI systems actually work.
 `;
 
 const PROJECTS_MD = `# Projects
@@ -18,7 +18,7 @@ const PROJECTS_MD = `# Projects
 - **KERNEL plugin** — orchestration, fault tolerance, context transfer for Claude Code.
 - **AgentDB** — persistent agent memory: learnings, timelines, contracts.
 - **Vector native research** — notation for model internals, SAE spectroscopy.
-- **The Correction** — speculative novel on AI agency and the Arena thesis.
+- **ModelMind** — Duolingo-style app for understanding how AI actually works (in development).
 
 See https://ariaxhan.com/open-source for current list.
 `;

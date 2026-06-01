@@ -7,7 +7,7 @@ import SubstrateBackground from "./components/SubstrateBackground";
 export const metadata: Metadata = {
   title: "Aria Han | AI Systems Architect",
   description:
-    "AI systems architect. Writer. Systems thinker. Three companies, six hackathon wins, 4,000+ hours coding with AI.",
+    "AI systems architect and writer. Three companies, six hackathon wins, and KERNEL—an open-source agent framework. I build AI systems and explain how they actually work.",
   keywords: [
     "AI systems architect",
     "Claude Code",

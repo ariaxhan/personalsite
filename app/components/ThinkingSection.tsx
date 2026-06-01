@@ -14,6 +14,30 @@ interface Article {
 }
 const articlesData: Article[] = [
   {
+    title: "How to Make Claude Code Actually Work",
+    excerpt: "The most capable AI coding tool available. Also completely chaotic.",
+    description: "Structure, memory, and multi-agent workflows—the full guide to KERNEL, the plugin I built to give Claude Code guardrails, persistent memory, and a real methodology.",
+    link: "https://medium.com/@ariaxhan/how-to-make-claude-code-actually-work-structure-memory-and-multi-agent-workflows-6d32b1d815d2",
+    category: "systems",
+    readTime: "12 min",
+  },
+  {
+    title: "Engineering the Soul",
+    excerpt: "We ask engineers to explain the ghost in the machine. The novelists have been documenting it for years.",
+    description: "Reading AI consciousness through four novels—Babel, A Psalm for the Wild-Built, Katabasis, The Humans. Every answer to 'can a machine care' ends up sounding like the person answering.",
+    link: "https://medium.com/@ariaxhan/engineering-the-soul-49428c073c4e",
+    category: "philosophy",
+    readTime: "6 min",
+  },
+  {
+    title: "The Agent-Ready Web: A Working Guide to Cloudflare's New Score",
+    excerpt: "I pointed Cloudflare's new agent-readiness scanner at my own site. Zero of thirteen.",
+    description: "What it actually takes to make a site legible to AI agents—llms.txt, markdown negotiation, MCP, content-signals—and why half the checks are business decisions disguised as config.",
+    link: "https://medium.com/@ariaxhan/the-agent-ready-web-a-working-guide-to-cloudflares-new-score-1ed0fce8d760",
+    category: "systems",
+    readTime: "12 min",
+  },
+  {
     title: "Stop Writing Markdown. Start Writing Memory.",
     excerpt: "Markdown is optimized for human eyes. Terrible for knowledge agents need to query.",
     description: "Rebuilt my agent workflow around SQLite. Three tables: context, learnings, errors. No markdown generation unless a human needs to read something.",
@@ -63,7 +87,7 @@ const articlesData: Article[] = [
   },
   {
     title: "10 Things I Wish I Knew About AI Coding",
-    excerpt: "Hard-won lessons from thousands of hours with AI coding tools.",
+    excerpt: "Hard-won lessons from daily production use of AI coding tools.",
     description: "Practical wisdom from production use. What actually matters when you code with AI every day.",
     link: "https://medium.com/@ariaxhan/10-things-i-wish-i-knew-when-i-started-using-ai-for-coding-887c26a6c1d1",
     category: "philosophy",

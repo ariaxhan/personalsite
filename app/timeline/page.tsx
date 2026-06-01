@@ -3,7 +3,7 @@ import Timeline from "../components/Timeline";
 
 export const metadata: Metadata = {
   title: "Timeline | Aria Han",
-  description: "Three companies. Six hackathon wins. 3,000+ hours of building. This is what one year of full commitment looks like.",
+  description: "Three companies. Six hackathon wins. The KERNEL plugin. This is what full commitment to AI systems looks like.",
 };
 
 export default function TimelinePage() {

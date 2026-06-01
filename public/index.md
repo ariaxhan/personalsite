@@ -2,7 +2,7 @@
 
 AI systems architect. Writer. Systems thinker.
 
-Three companies. Six hackathon wins. 4,000+ hours coding with AI. Building infrastructure for multi-agent coordination.
+Three companies. Six hackathon wins. The KERNEL plugin. Building infrastructure for multi-agent coordination—and writing about how AI systems actually work.
 
 ## Sections
 - [About](/about)

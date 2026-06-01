@@ -18,8 +18,8 @@ const openSourceProjects: OpenSourceProject[] = [
   {
     name: "KERNEL",
     description: [
-      "Self-evolving Claude Code plugin built from failure paths, not theory. Every pattern earned through breaking something first. 4,000+ hours of daily iteration, addressing real production failures.",
-      "AgentDB-first methodology where every artifact reads on start, writes on end. Multi-agent orchestration with contracts, checkpoints, and verdicts. Configuration that learns from how you actually work.",
+      "Self-evolving Claude Code plugin built from failure paths, not theory. Every pattern earned by breaking something first, then encoding the fix so it never breaks the same way twice.",
+      "AgentDB-first methodology where every artifact reads on start, writes on end. Multi-agent orchestration with contracts, checkpoints, and verdicts. An experiment engine that proves which workflows actually hold up. Active development, open source.",
     ],
     url: "https://github.com/ariaxhan/kernel-claude",
     evidence:

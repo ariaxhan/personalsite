@@ -21,8 +21,8 @@ const catalogCards: CatalogCard[] = [
     id: "identity",
     category: "ENTITY",
     title: "Aria Han",
-    content: "3x CEO and AI systems architect. 4000+ hours writing code with AI. San Francisco.",
-    tags: ["3x ceo", "claude code", "ai architect", "san francisco"],
+    content: "AI systems architect and writer. Three-time founder. Building KERNEL. San Francisco.",
+    tags: ["architect", "writer", "founder", "san francisco"],
     link: "/about",
     color: "cognition",
   },
@@ -66,10 +66,19 @@ const catalogCards: CatalogCard[] = [
     id: "kernel",
     category: "OPEN SOURCE",
     title: "KERNEL",
-    content: "Self-evolving Claude Code plugin. AgentDB, multi-agent orchestration, contracts.",
-    tags: ["claude code", "plugin", "agentdb"],
+    content: "Claude Code that learns from itself. Persistent memory, multi-agent orchestration, experiment engine. Open source, active development.",
+    tags: ["claude code", "plugin", "agentdb", "open source"],
     link: "/open-source",
     color: "cognition",
+  },
+  {
+    id: "modelmind",
+    category: "SYSTEM",
+    title: "ModelMind",
+    content: "Duolingo-style app for genuinely understanding how AI works—not how to prompt it, how it thinks. In development.",
+    tags: ["ai education", "mobile", "in development"],
+    link: "/systems",
+    color: "data",
   },
   {
     id: "companies",
@@ -221,7 +230,7 @@ export default function CardCatalogHero() {
             Aria Han
           </h1>
           <p className="text-neutral-400 text-base sm:text-lg">
-            AI Systems Architect · Founder · Builder
+            AI Systems Architect · Writer · Builder
           </p>
         </motion.div>
 

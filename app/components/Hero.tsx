@@ -11,9 +11,9 @@ interface StatItem {
 
 const stats: StatItem[] = [
   { label: "Companies Founded", value: "3", color: "cognition" },
-  { label: "Competitions Won", value: "6", color: "emergence" },
-  { label: "Hours writing code with AI", value: "4000+", color: "memory" },
-  { label: "Systems Live", value: "4", color: "data" },
+  { label: "Hackathon Wins", value: "6", color: "emergence" },
+  { label: "Systems Shipped", value: "5+", color: "memory" },
+  { label: "Open Source Projects", value: "6+", color: "data" },
 ];
 
 const colorMap = {
@@ -77,7 +77,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-data tracking-[0.2em] mb-8"
             >
-              <span className="text-cognition/60">○</span> AI EXPERT · FOUNDER · BUILDER
+              <span className="text-cognition/60">○</span> AI SYSTEMS ARCHITECT · WRITER · BUILDER
             </motion.p>
 
             {/* Name with glow effect */}
@@ -109,9 +109,9 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="mt-8 text-lg text-neutral-400 leading-relaxed max-w-[50ch]"
             >
-              Building AI systems that understand how intelligence actually works.
-              Three companies, six competition wins, and thousands of hours
-              exploring what&apos;s possible when you work with AI&apos;s nature.
+              I architect AI systems—and write about how they actually work.
+              These models are built from language, so I treat language as the
+              real interface. Three companies, six hackathon wins, and KERNEL.
             </motion.p>
 
             {/* Location + Time - memory timestamp */}

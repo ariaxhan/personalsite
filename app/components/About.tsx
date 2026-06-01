@@ -10,10 +10,10 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-  { value: "3x", label: "CEO", sublabel: "founded" },
+  { value: "3x", label: "Companies", sublabel: "founded" },
   { value: "6", label: "Hackathons", sublabel: "won" },
-  { value: "4,000+", label: "Hours", sublabel: "writing code with AI" },
-  { value: "1", label: "Year", sublabel: "all in" },
+  { value: "5+", label: "Systems", sublabel: "shipped" },
+  { value: "6+", label: "Open Source", sublabel: "projects" },
 ];
 
 const tools = [
@@ -112,7 +112,7 @@ export default function About() {
                   I started my first company after a hackathon win earned through hours of intensive thinking and prompting. I didn&apos;t realize it then, but from that moment forward, I wasn&apos;t writing in code anymore. I was writing in English—the language I&apos;d already spent my life perfecting, just channeled through a new medium.
                 </p>
                 <p>
-                  Over the past year, I&apos;ve spent 4,000+ hours immersed in AI. Claude Code evolved from a convenient tool into something I use constantly—8-12 hours daily, building production systems and developing the KERNEL plugin. I&apos;ve attended dozens of hackathons and AI events across San Francisco, hands-on with cutting-edge technology, talking directly with the people who built the infrastructure defining this generation.
+                  Over the past year I&apos;ve lived inside these systems—building production platforms, developing the KERNEL plugin, and attending dozens of hackathons and AI events across San Francisco. Hands-on with the tools as they ship, in the room with the people building the infrastructure that defines this generation.
                 </p>
                 <p>
                   I&apos;ve seen the wave. I&apos;m riding it.
@@ -171,7 +171,10 @@ export default function About() {
                 Current Focus
               </h3>
               <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-4">
-                <b> KERNEL</b>: self-evolving Claude Code plugin. AgentDB, multi-agent orchestration, contracts.
+                <b>KERNEL</b>: my self-evolving Claude Code plugin—persistent agent memory, multi-agent orchestration, and an experiment engine that proves which workflows actually hold up. In active development, open source.
+              </p>
+              <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                <b>ModelMind</b>: a Duolingo-style app for genuinely understanding how AI works—not how to prompt it, how it thinks. In development.
               </p>
             </div>
 

@@ -18,10 +18,9 @@ import { Copy, Check, ExternalLink, BookOpen } from "lucide-react";
  */
 
 const vnDocument = `●ENTITY|type:human|name:aria_han
-├──role:3x_ceo·ai_systems_architect
+├──role:ai_systems_architect·writer·founder
 ├──location:san_francisco
-├──hours_in_claude_code:4000+
-└──domain:multi_agent_systems·coordination_protocols
+└──domain:multi_agent_systems·coordination_protocols·agent_infrastructure
 
 
 ●THESIS
@@ -104,7 +103,7 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 │  |license:mit
 │  |desc:self_evolving_claude_code_plugin·agentdb_first_methodology
 │  |origin:built_from_failure_paths·not_theory·every_pattern_earned_through_breaking
-│  |hours:4000+_daily_iteration·patterns_extracted_from_real_production_failures
+│  |engine:experiment_driven·proves_which_rules_actually_work
 │  |capability:multi_agent_orchestration·contracts·checkpoints·verdicts
 │  |tech:[claude_code,sqlite,shell]
 │  |validation:enterprise_production_feb_2026
@@ -134,6 +133,24 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 ●WRITING_BLOCK|platform:medium|handle:@ariaxhan
 |philosophy:systems_thinking+technical_depth+clarity
 |audience:people_who_want_to_understand_why_not_just_how
+
+├──●article
+│  |title:how_to_make_claude_code_actually_work
+│  |thesis:structure+memory+multi_agent_workflows·the_full_kernel_guide
+│  |category:systems
+│  └──url:medium.com/@ariaxhan/how-to-make-claude-code-actually-work
+
+├──●article
+│  |title:engineering_the_soul
+│  |thesis:ai_consciousness_read_through_four_novels·every_answer_mirrors_the_asker
+│  |category:philosophy
+│  └──url:medium.com/@ariaxhan/engineering-the-soul-49428c073c4e
+
+├──●article
+│  |title:the_agent_ready_web
+│  |thesis:making_a_site_legible_to_agents·llms_txt·mcp·markdown·half_the_checks_are_policy
+│  |category:systems
+│  └──url:medium.com/@ariaxhan/the-agent-ready-web
 
 ├──●article
 │  |title:stop_writing_markdown_start_writing_memory
@@ -226,7 +243,7 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 |primary_use:a2a_communication
 |secondary_use:conversational_workflow_amplification
 |thesis:zip_file_for_meaning
-|last_sync:feb_2026
+|last_sync:may_2026
 
 
 ●END_DOCUMENT`;
