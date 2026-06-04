@@ -32,6 +32,22 @@ const openSourceProjects: OpenSourceProject[] = [
     },
   },
   {
+    name: "llm-bench",
+    description: [
+      "Practical benchmark for local and open-source LLMs—21 programmatically-verified tests that mirror real work: extracting structured data, finding bugs, resisting prompt injection, reasoning through dependency chains. Not another MMLU wrapper.",
+      "Every test has a deterministic verifier—no LLM-as-judge, no vibes. Benchmarks any local model against Claude haiku/sonnet/opus tiers through headless Claude Code, no API key required. Collaborative: run it on your hardware, submit results, build a shared performance map.",
+    ],
+    url: "https://github.com/ariaxhan/llm-bench",
+    evidence:
+      "Academic scores don't predict real workflow performance. The only benchmark that matters is whether the model can do the actual job—verified, not judged.",
+    meta: {
+      status: "Active Development · Open Source",
+      stack: "Python · Ollama · Claude Code",
+      tests: "21 verified · standard + adversarial",
+      license: "MIT",
+    },
+  },
+  {
     name: "Vector Native",
     description: [
       "A2A communication protocol with 3x semantic density. Natural language is inefficient for agent coordination—ambiguity, wasted tokens, latency.",
@@ -50,7 +66,7 @@ const openSourceProjects: OpenSourceProject[] = [
     description: [
       "Self-improving agent framework with evolutionary pressure. Weak behaviors die, strong behaviors survive. Published to PyPI, integrated into HeyContext.",
     ],
-    url: "https://github.com/persist-os/the-convergence",
+    url: "https://github.com/ariaxhan/armature-ai",
     evidence:
       "Hackathon winner (Weavehacks RL Track). Production deployed.",
     meta: {
