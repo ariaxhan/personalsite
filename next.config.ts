@@ -35,10 +35,12 @@ const nextConfig: NextConfig = {
             vendor: {
               test: /[\\/]node_modules[\\/]/,
               name(module: any, chunks: any) {
-                const packageName = module.context.match(
+                // next/font and other virtual modules have no node_modules path.
+                const match = module.context?.match(
                   /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-                )[1];
-                return `npm.${packageName.replace('@', '')}`;
+                );
+                if (!match) return 'vendor';
+                return `npm.${match[1].replace('@', '')}`;
               },
               priority: 20,
             },

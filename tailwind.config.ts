@@ -67,9 +67,9 @@ export default {
       },
       // Typography as data structure
       fontFamily: {
-        mono: ['"JetBrains Mono"', '"Fira Code"', '"SF Mono"', "Consolas", "monospace"],
-        sans: ['"Inter"', '"SF Pro Display"', "system-ui", "sans-serif"],
-        display: ['"Space Grotesk"', '"Inter"', "system-ui", "sans-serif"],
+        mono: ['var(--font-mono)', '"Fira Code"', '"SF Mono"', "Consolas", "monospace"],
+        sans: ['var(--font-sans)', '"SF Pro Display"', "system-ui", "sans-serif"],
+        display: ['var(--font-display)', 'var(--font-sans)', "system-ui", "sans-serif"],
       },
       // Animation timings for cognitive motion
       animation: {

@@ -60,7 +60,7 @@ html {
 }
 
 body {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   background: var(--substrate-void);
   color: #e5e5e5;
   min-height: 100vh;
@@ -74,7 +74,7 @@ body {
    Text is data being processed
    ───────────────────────────────────────────────────────────────────────────── */
 .text-data {
-  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-family: var(--font-mono), "Fira Code", monospace;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -82,7 +82,7 @@ body {
 }
 
 .text-meta {
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono), monospace;
   font-size: 0.6875rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -90,7 +90,7 @@ body {
 }
 
 .text-display {
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: var(--font-display), system-ui, sans-serif;
   font-weight: 300;
   letter-spacing: -0.02em;
 }
