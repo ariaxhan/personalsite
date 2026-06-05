@@ -29,8 +29,8 @@ const evidenceData: EvidenceCell[] = [
   {
     date: "2025",
     title: "Weavehacks-2 - Self Improving Agents w/ Google Cloud",
-    name: "The Convergence",
-    desc: "Where cutting-edge AI infrastructure meets autonomous learning - agents that improve through experience, collaboration, and evolution. Converted into an open-source package and integrated into HeyContext.",
+    name: "Armature",
+    desc: "Where cutting-edge AI infrastructure meets autonomous learning - agents that improve through experience, collaboration, and evolution. Converted into an open-source package (armature-ai on PyPI) and integrated into HeyContext.",
     award: "Reinforcement Learning Track",
     metric: "Winner",
     technologies: [

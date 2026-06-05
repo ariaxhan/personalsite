@@ -38,7 +38,7 @@ const timelineData: TimelineEntry[] = [
   {
     date: "2024 - 2025",
     title: "Six Hackathon Wins",
-    desc: "Darwin (AWS). The Convergence (RL Track). Content Creator Connector. TheraVoice. HotAgents. Freetime. Each one built in 24-48 hours, validating ideas under pressure.",
+    desc: "Darwin (AWS). Armature (RL Track). Content Creator Connector. TheraVoice. HotAgents. Freetime. Each one built in 24-48 hours, validating ideas under pressure.",
     type: "achievement",
   },
   {

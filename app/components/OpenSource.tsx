@@ -78,7 +78,7 @@ const openSourceProjects: OpenSourceProject[] = [
     },
   },
   {
-    name: "The Convergence",
+    name: "Armature",
     description: [
       "A self-evolving agent framework—AI agents that get better every time they run. Normally you deploy an agent, then burn weeks hand-tuning prompts, swapping models, and adjusting temperatures, and redo it all whenever user behavior shifts. Armature wraps the agent in a reinforcement-learning loop so it improves automatically from its own outcomes.",
       "Reinforcement learning + evolutionary algorithms + self-improving policies: weak behaviors die off, strong ones survive and propagate. Published to PyPI as armature-ai and integrated into HeyContext.",

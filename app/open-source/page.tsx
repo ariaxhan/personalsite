@@ -3,7 +3,7 @@ import OpenSource from "../components/OpenSource";
 
 export const metadata: Metadata = {
   title: "Open Source | Aria Han",
-  description: "KERNEL agent-development plugin, llm-bench local LLM benchmark, Vector Native A2A protocol, and The Convergence self-improving agent framework. Building blocks for multi-agent systems.",
+  description: "metabrain self-improving agent memory, KERNEL agent-development plugin, llm-bench local LLM benchmark, Vector Native A2A protocol, and Armature self-improving agent framework. Building blocks for multi-agent systems.",
 };
 
 export default function OpenSourcePage() {

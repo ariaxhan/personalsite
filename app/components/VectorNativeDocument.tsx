@@ -65,7 +65,7 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 │  |desc:evolutionary_code_generation·models_compete·weak_code_dies·strong_code_survives
 │  └──url:devpost.com/software/darwin-cmfysv
 
-├──●entry|name:the_convergence|year:2025
+├──●entry|name:armature|year:2025
 │  |event:weavehacks_2_self_improving_agents_google_cloud
 │  |award:reinforcement_learning_track_winner
 │  |desc:self_improving_agents·rl_framework·published_pypi·integrated_heycontext
@@ -120,14 +120,14 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 │  |evidence:symbols_trigger_pre_trained_statistical_patterns
 │  └──url:github.com/persist-os/vector-native
 
-└──●project|name:the_convergence
+└──●project|name:armature
    |status:published_pypi·production_deployed
    |desc:self_improving_agent_framework·evolutionary_pressure
    |thesis:agents_need_evolutionary_pressure_to_improve
    |method:multi_armed_bandit·adaptive_selection
    |evidence:hackathon_winner_weavehacks_rl_track·integrated_heycontext
    |distribution:pypi·github
-   └──url:github.com/persist-os/the-convergence
+   └──url:github.com/ariaxhan/armature-ai
 
 
 ●WRITING_BLOCK|platform:medium|handle:@ariaxhan
@@ -220,7 +220,7 @@ const vnDocument = `●ENTITY|type:human|name:aria_han
 │  └──desc:voice_ai·apple_watch_biometric·privacy_first_mental_health·theory_vs_real_humans
 
 ├──●event|date:2024→2025|type:achievement
-│  |names:[darwin,convergence,ccc,theravoice,hotagents,freetime]
+│  |names:[darwin,armature,ccc,theravoice,hotagents,freetime]
 │  └──desc:6_hackathons·each_built_in_24_48_hours·validating_ideas_under_pressure
 
 └──●event|date:2024|type:creative

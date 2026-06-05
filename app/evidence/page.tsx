@@ -3,7 +3,7 @@ import EvidenceGrid from "../components/EvidenceGrid";
 
 export const metadata: Metadata = {
   title: "Evidence | Aria Han",
-  description: "Six hackathon wins in 12 months. Darwin (AWS). The Convergence (RL Track). Each one built in 24-48 hours, validating ideas under pressure.",
+  description: "Six hackathon wins in 12 months. Darwin (AWS). Armature (RL Track). Each one built in 24-48 hours, validating ideas under pressure.",
 };
 
 export default function EvidencePage() {
