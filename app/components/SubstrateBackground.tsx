@@ -4,35 +4,26 @@ import { useEffect, useRef, useState, useCallback } from "react";
 
 /**
  * SubstrateBackground: Clean gradient foundation
- * 
+ *
  * Simplified version without constellation/network elements.
  * Just subtle, breathing gradients that create depth.
+ *
+ * Perf: the breathing cycle is extremely slow, so the loop is frame-capped
+ * (~15fps) instead of running at 60fps, and pauses entirely when the tab is
+ * hidden. Cuts steady-state CPU/GPU work by ~4x with no visible change.
  */
+const TARGET_FPS = 15;
+const FRAME_INTERVAL = 1000 / TARGET_FPS;
+
 export default function SubstrateBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
+  const lastFrameRef = useRef<number>(0);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
-
-  // Animation loop - just breathing gradients
-  const animate = useCallback((ctx: CanvasRenderingContext2D, width: number, height: number) => {
-    if (isReducedMotion) {
-      ctx.clearRect(0, 0, width, height);
-      drawStaticBackground(ctx, width, height);
-      return;
-    }
-
-    const draw = () => {
-      ctx.clearRect(0, 0, width, height);
-      drawGradientMesh(ctx, width, height);
-      animationRef.current = requestAnimationFrame(draw);
-    };
-
-    draw();
-  }, [isReducedMotion]);
 
   const drawGradientMesh = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
     const time = Date.now() * 0.00005; // Very slow breathing
-    
+
     // Deep emergence glow - bottom left (purple)
     const grad1 = ctx.createRadialGradient(
       width * 0.1 + Math.sin(time) * 30,
@@ -91,11 +82,30 @@ export default function SubstrateBackground() {
     ctx.fillRect(0, 0, width, height);
   };
 
+  // Frame-capped animation loop. Reads live canvas dims so resize stays correct.
+  const animate = useCallback((ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
+    if (isReducedMotion) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawStaticBackground(ctx, canvas.width, canvas.height);
+      return;
+    }
+
+    const draw = (now: number) => {
+      animationRef.current = requestAnimationFrame(draw);
+      if (now - lastFrameRef.current < FRAME_INTERVAL) return;
+      lastFrameRef.current = now;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawGradientMesh(ctx, canvas.width, canvas.height);
+    };
+
+    animationRef.current = requestAnimationFrame(draw);
+  }, [isReducedMotion]);
+
   useEffect(() => {
     // Check for reduced motion preference
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setIsReducedMotion(mediaQuery.matches);
-    
+
     const handleChange = (e: MediaQueryListEvent) => setIsReducedMotion(e.matches);
     mediaQuery.addEventListener("change", handleChange);
 
@@ -112,20 +122,41 @@ export default function SubstrateBackground() {
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      // Reduced motion never animates — repaint the static frame on resize.
+      if (isReducedMotion) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawStaticBackground(ctx, canvas.width, canvas.height);
+      }
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
 
-    animate(ctx, canvas.width, canvas.height);
+    const stop = () => {
+      if (animationRef.current !== null) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
+      }
+    };
+
+    const start = () => {
+      if (animationRef.current === null && !isReducedMotion) {
+        animate(ctx, canvas);
+      }
+    };
+
+    // Don't burn cycles animating an invisible tab.
+    const handleVisibility = () => (document.hidden ? stop() : start());
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    start();
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
+      document.removeEventListener("visibilitychange", handleVisibility);
+      stop();
     };
-  }, [animate]);
+  }, [animate, isReducedMotion]);
 
   return (
     <>
@@ -136,7 +167,7 @@ export default function SubstrateBackground() {
         style={{ zIndex: -20 }}
         aria-hidden="true"
       />
-      
+
       {/* Static base layer */}
       <div
         className="fixed inset-0 pointer-events-none"
