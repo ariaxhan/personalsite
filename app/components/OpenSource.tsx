@@ -32,6 +32,22 @@ const openSourceProjects: OpenSourceProject[] = [
     },
   },
   {
+    name: "metabrain",
+    description: [
+      "A zero-dependency SQLite memory layer for AI agents that learns what works. Most memory tools store what you tell them; metabrain closes the loop—a pattern recorded enough times graduates into a hypothesis, every outcome becomes an experiment for or against it, and proven hypotheses graduate into preferences the agent runs on.",
+      "Deterministic by construction: using the API correctly populates every table as a side effect. Seven tables, one file, stdlib sqlite—no vector database, no server, no API key. General across self-learning content engines, lead capture, and self-improving job applications.",
+    ],
+    url: "https://github.com/ariaxhan/metabrain",
+    evidence:
+      "Most agent memory remembers what you told it. The memory that compounds is the kind that proves which lessons actually work—and promotes them.",
+    meta: {
+      status: "Published · PyPI + GitHub",
+      stack: "Python · SQLite · zero-dependency",
+      install: "pip install metabrain",
+      license: "MIT",
+    },
+  },
+  {
     name: "llm-bench",
     description: [
       "Practical benchmark for local and open-source LLMs—21 programmatically-verified tests that mirror real work: extracting structured data, finding bugs, resisting prompt injection, reasoning through dependency chains. Not another MMLU wrapper.",
