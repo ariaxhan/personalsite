@@ -12,6 +12,22 @@ export interface SystemData {
 
 export const systemsData: SystemData[] = [
   {
+    name: "ModelMind",
+    status: "BETA",
+    description: [
+      "A Duolingo-style mobile app that teaches how AI actually works—not how to prompt it, but how it thinks, why it fails, and how to reason with it. React Native + Expo (TypeScript, strict mode), in beta on TestFlight and the Google Play internal track.",
+      "21 courses across Foundations, Building, Thinking, and Creating. Seven offline-gradeable exercise types—multiple choice, sort, sequence, match, triage, comparison, decision tree—graded by pure local functions with content authored as JSON. Domain logic carries 100% test coverage; a backend handles auth, sync, and social.",
+    ],
+    evidence:
+      "Everyone teaches prompt tricks; almost no one teaches the mental model underneath—what a model is actually doing when it answers, and where that breaks. Understanding beats memorized prompts.",
+    meta: {
+      role: "Founder · Lead Architect · Mobile Engineer",
+      status: "Beta · TestFlight + Play Store",
+      platform: "iOS · Android · Expo SDK 55",
+      stack: "React Native · TypeScript · MMKV",
+    },
+  },
+  {
     name: "HeyContext",
     status: "SHIPPED",
     description: [

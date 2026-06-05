@@ -174,7 +174,7 @@ export default function About() {
                 <b>KERNEL</b>: my self-evolving Claude Code plugin—persistent agent memory, multi-agent orchestration, and an experiment engine that proves which workflows actually hold up. In active development, open source.
               </p>
               <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
-                <b>ModelMind</b>: a Duolingo-style app for genuinely understanding how AI works—not how to prompt it, how it thinks. In development.
+                <b>ModelMind</b>: a Duolingo-style app for genuinely understanding how AI works—not how to prompt it, how it thinks. In beta on TestFlight + Play Store.
               </p>
             </div>
 

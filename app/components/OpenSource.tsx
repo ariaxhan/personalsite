@@ -16,22 +16,6 @@ interface OpenSourceProject {
 
 const openSourceProjects: OpenSourceProject[] = [
   {
-    name: "KERNEL",
-    description: [
-      "Self-evolving Claude Code plugin built from failure paths, not theory. Every pattern earned by breaking something first, then encoding the fix so it never breaks the same way twice.",
-      "AgentDB-first methodology where every artifact reads on start, writes on end. Multi-agent orchestration with contracts, checkpoints, and verdicts. An experiment engine that proves which workflows actually hold up. Active development, open source.",
-    ],
-    url: "https://github.com/ariaxhan/kernel-claude",
-    evidence:
-      "Representation is the bottleneck. Markdown is optimized for human eyes—terrible for agent coordination. SQLite is optimized for structured retrieval.",
-    meta: {
-      status: "Active Development · Production Validated",
-      stack: "Claude Code · SQLite · Shell",
-      methodology: "AgentDB · Contracts · Orchestration",
-      license: "MIT",
-    },
-  },
-  {
     name: "metabrain",
     description: [
       "A zero-dependency SQLite memory layer for AI agents that learns what works. Most memory tools store what you tell them; metabrain closes the loop—a pattern recorded enough times graduates into a hypothesis, every outcome becomes an experiment for or against it, and proven hypotheses graduate into preferences the agent runs on.",
@@ -44,6 +28,22 @@ const openSourceProjects: OpenSourceProject[] = [
       status: "Published · PyPI + GitHub",
       stack: "Python · SQLite · zero-dependency",
       install: "pip install metabrain",
+      license: "MIT",
+    },
+  },
+  {
+    name: "KERNEL",
+    description: [
+      "Self-evolving Claude Code plugin built from failure paths, not theory. Every pattern earned by breaking something first, then encoding the fix so it never breaks the same way twice.",
+      "AgentDB-first methodology where every artifact reads on start, writes on end. Multi-agent orchestration with contracts, checkpoints, and verdicts. An experiment engine that proves which workflows actually hold up. Active development, open source.",
+    ],
+    url: "https://github.com/ariaxhan/kernel-claude",
+    evidence:
+      "Representation is the bottleneck. Markdown is optimized for human eyes—terrible for agent coordination. SQLite is optimized for structured retrieval.",
+    meta: {
+      status: "Active Development · Production Validated",
+      stack: "Claude Code · SQLite · Shell",
+      methodology: "AgentDB · Contracts · Orchestration",
       license: "MIT",
     },
   },
@@ -80,15 +80,17 @@ const openSourceProjects: OpenSourceProject[] = [
   {
     name: "The Convergence",
     description: [
-      "Self-improving agent framework with evolutionary pressure. Weak behaviors die, strong behaviors survive. Published to PyPI, integrated into HeyContext.",
+      "A self-evolving agent framework—AI agents that get better every time they run. Normally you deploy an agent, then burn weeks hand-tuning prompts, swapping models, and adjusting temperatures, and redo it all whenever user behavior shifts. Armature wraps the agent in a reinforcement-learning loop so it improves automatically from its own outcomes.",
+      "Reinforcement learning + evolutionary algorithms + self-improving policies: weak behaviors die off, strong ones survive and propagate. Published to PyPI as armature-ai and integrated into HeyContext.",
     ],
     url: "https://github.com/ariaxhan/armature-ai",
     evidence:
-      "Hackathon winner (Weavehacks RL Track). Production deployed.",
+      "Manual prompt-tuning doesn't scale and breaks every time user behavior shifts. The agent should learn from its own results instead of waiting for you to tune it.",
     meta: {
-      method: "Evolutionary selection",
-      validation: "Hackathon winner · Production deployed",
-      distribution: "PyPI · GitHub",
+      method: "Reinforcement learning · Evolutionary selection",
+      validation: "Hackathon winner (Weavehacks RL Track) · Production deployed",
+      distribution: "pip install armature-ai · GitHub",
+      license: "MIT",
     },
   },
 ];
