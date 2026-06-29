@@ -16,6 +16,54 @@ interface OpenSourceProject {
 
 const openSourceProjects: OpenSourceProject[] = [
   {
+    name: "the-agent-library",
+    description: [
+      "A curated library of portable skills for getting real work out of AI agents. Built for Claude, Codex, and any agent that loads skills. Most of the shelf is not code-specific: it covers verification, planning, research, writing, work management, creative taste, and shipping.",
+      "Thirty-four skills across category-first shelves, each packaged as a standalone workflow with a clear trigger, `SKILL.md`, and OpenAI agent metadata. The spine is trust: audit claims, test measuring sticks, question premises, and get fresh eyes before believing an agent that says done.",
+    ],
+    url: "https://github.com/ariaxhan/the-agent-library",
+    evidence:
+      "The useful unit is not a giant prompt collection. It is a small, sharp workflow someone can copy, run, and trust.",
+    meta: {
+      status: "Active · 34 portable skills",
+      stack: "Claude · Codex · agent skills",
+      structure: "Category-first shelves",
+      license: "MIT",
+    },
+  },
+  {
+    name: "KERNEL",
+    description: [
+      "Claude Code that learns from itself: persistent memory, multi-agent orchestration, and a scientific experiment engine that proves which rules actually work. Every session writes evidence so the next one starts smarter.",
+      "AgentDB-backed workflows, 13 specialized agents, on-demand skills, validation gates, and an experiment loop that graduates rules only after they survive real telemetry. The plugin is installable through Claude's plugin marketplace and mirrored into Cursor workflows.",
+    ],
+    url: "https://github.com/ariaxhan/kernel-claude",
+    evidence:
+      "Agents do not need more vibes. They need memory, contracts, verification, and rules that prove themselves under pressure.",
+    meta: {
+      status: "Active · Plugin marketplace",
+      stack: "Claude Code · SQLite · Shell",
+      methodology: "AgentDB · Contracts · Orchestration",
+      stars: "11",
+    },
+  },
+  {
+    name: "llm-bench",
+    description: [
+      "A Model Familiarity Engine, not a leaderboard. It continuously onboards language models by observing them in real work, learning where they should be trusted, and building evidence-backed routing knowledge for multi-model agent systems.",
+      "The replay-bootstrap loop is shipped and verified live: mine past tasks, redact secrets, replay through other models, floor-test the judge, and render model cards from real observations. The original 42-test benchmark suite remains as the objective-signal layer.",
+    ],
+    url: "https://github.com/ariaxhan/llm-bench",
+    evidence:
+      "The question is not 'which model is best?' It is 'what responsibility has this model earned?'",
+    meta: {
+      status: "Bootstrap loop shipped",
+      stack: "Python · Bedrock · Ollama · Claude CLI",
+      scope: "42 verified tests · model cards",
+      license: "MIT",
+    },
+  },
+  {
     name: "metabrain",
     description: [
       "A zero-dependency SQLite memory layer for AI agents that learns what works. Most memory tools store what you tell them; metabrain closes the loop—a pattern recorded enough times graduates into a hypothesis, every outcome becomes an experiment for or against it, and proven hypotheses graduate into preferences the agent runs on.",
@@ -32,64 +80,34 @@ const openSourceProjects: OpenSourceProject[] = [
     },
   },
   {
-    name: "KERNEL",
+    name: "Substrate",
     description: [
-      "Self-evolving Claude Code plugin built from failure paths, not theory. Every pattern earned by breaking something first, then encoding the fix so it never breaks the same way twice.",
-      "AgentDB-first methodology where every artifact reads on start, writes on end. Multi-agent orchestration with contracts, checkpoints, and verdicts. An experiment engine that proves which workflows actually hold up. Active development, open source.",
+      "A generative art gallery where Claude Code agents create abstract, interactive HTML pieces through automated daily workflows. Each piece is self-contained computational poetry: inline CSS, JavaScript, and interaction, usually under 4KB.",
+      "The gallery has 70+ pieces and counting. A theme email becomes a generated piece, manifest rebuild, GitHub push, and Cloudflare Pages deploy. Humans set the constraint; agents supply concept, code, visual design, and interaction.",
     ],
-    url: "https://github.com/ariaxhan/kernel-claude",
+    url: "https://github.com/ariaxhan/substrate",
     evidence:
-      "Representation is the bottleneck. Markdown is optimized for human eyes—terrible for agent coordination. SQLite is optimized for structured retrieval.",
+      "This is what happens when agents are allowed to make artifacts every day, not just answer questions about making them.",
     meta: {
-      status: "Active Development · Production Validated",
-      stack: "Claude Code · SQLite · Shell",
-      methodology: "AgentDB · Contracts · Orchestration",
-      license: "MIT",
+      status: "Live · 70+ pieces",
+      stack: "HTML · CSS · JavaScript · Cloudflare Pages",
+      cadence: "Daily agent generation",
+      constraint: "Self-contained · ~2KB average",
     },
   },
   {
-    name: "llm-bench",
+    name: "latent-diagnostics",
     description: [
-      "Practical benchmark for local and open-source LLMs—21 programmatically-verified tests that mirror real work: extracting structured data, finding bugs, resisting prompt injection, reasoning through dependency chains. Not another MMLU wrapper.",
-      "Every test has a deterministic verifier—no LLM-as-judge, no vibes. Benchmarks any local model against Claude haiku/sonnet/opus tiers through headless Claude Code, no API key required. Collaborative: run it on your hardware, submit results, build a shared performance map.",
+      "Representation-level analysis of language models via attribution graph geometry. The work measures computational regimes inside model internals instead of asking only whether the output was correct.",
+      "The strongest finding is disciplined and bounded: task domains show measurable geometric signatures after length control, while hallucination and truthfulness detection did not survive. The repo preserves negative results instead of laundering them into a bigger claim.",
     ],
-    url: "https://github.com/ariaxhan/llm-bench",
+    url: "https://github.com/ariaxhan/latent-diagnostics",
     evidence:
-      "Academic scores don't predict real workflow performance. The only benchmark that matters is whether the model can do the actual job—verified, not judged.",
+      "The honest result matters: some internal signals are real, some are length artifacts, and correctness is not the same thing as computation shape.",
     meta: {
-      status: "Active Development · Open Source",
-      stack: "Python · Ollama · Claude Code",
-      tests: "21 verified · standard + adversarial",
-      license: "MIT",
-    },
-  },
-  {
-    name: "Vector Native",
-    description: [
-      "A2A communication protocol with 3x semantic density. Natural language is inefficient for agent coordination—ambiguity, wasted tokens, latency.",
-    ],
-    url: "https://github.com/persist-os/vector-native",
-    evidence:
-      "Symbols trigger pre-trained statistical patterns from math, programming, and config files.",
-    meta: {
-      status: "Active Development",
-      language: "Python",
-      license: "MIT",
-    },
-  },
-  {
-    name: "Armature",
-    description: [
-      "A self-evolving agent framework—AI agents that get better every time they run. Normally you deploy an agent, then burn weeks hand-tuning prompts, swapping models, and adjusting temperatures, and redo it all whenever user behavior shifts. Armature wraps the agent in a reinforcement-learning loop so it improves automatically from its own outcomes.",
-      "Reinforcement learning + evolutionary algorithms + self-improving policies: weak behaviors die off, strong ones survive and propagate. Published to PyPI as armature-ai and integrated into HeyContext.",
-    ],
-    url: "https://github.com/ariaxhan/armature-ai",
-    evidence:
-      "Manual prompt-tuning doesn't scale and breaks every time user behavior shifts. The agent should learn from its own results instead of waiting for you to tune it.",
-    meta: {
-      method: "Reinforcement learning · Evolutionary selection",
-      validation: "Hackathon winner (Weavehacks RL Track) · Production deployed",
-      distribution: "pip install armature-ai · GitHub",
+      status: "Research · Negative results preserved",
+      stack: "Python · SAEs · Attribution graphs",
+      finding: "Grammar influence d=1.08 after length control",
       license: "MIT",
     },
   },
@@ -138,7 +156,7 @@ export default function OpenSource() {
             Open Source
           </h2>
           <p className="text-neutral-400 max-w-xl text-base">
-            Building blocks for multi-agent systems.
+            Public work across agent infrastructure, model familiarity, portable skills, memory, and computational poetry.
           </p>
         </motion.div>
 
