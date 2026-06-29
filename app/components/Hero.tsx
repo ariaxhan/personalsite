@@ -13,7 +13,7 @@ const stats: StatItem[] = [
   { label: "Companies Founded", value: "3", color: "cognition" },
   { label: "Hackathon Wins", value: "6", color: "emergence" },
   { label: "Systems Shipped", value: "5+", color: "memory" },
-  { label: "Open Source Projects", value: "6+", color: "data" },
+  { label: "Public GitHub Repos", value: "46", color: "data" },
 ];
 
 const colorMap = {
