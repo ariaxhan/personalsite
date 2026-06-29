@@ -12,9 +12,21 @@ interface TimelineEntry {
 
 const timelineData: TimelineEntry[] = [
   {
-    date: "JAN_2026 - PRESENT",
-    title: "AI Systems Architecture",
-    desc: "Research through building. Developing coordination architectures, agent protocols, self-improving systems. Not just prompt engineering, but real infrastructure. Shipping production systems that prove the methodology.",
+    date: "MAY_2026 - PRESENT",
+    title: "AI Implementation Specialist · Blink Build Studios",
+    desc: "Working alongside founders and enterprise organizations to design, architect, and deploy AI systems that solve real operational problems. From validating AI initiatives and building production-ready MVPs to implementing agent workflows and internal automation, helping teams discover where AI creates measurable value across their business.",
+    type: "company",
+  },
+  {
+    date: "APR_2026 - MAY_2026",
+    title: "Lead AI Architect · FunJoin",
+    desc: "Led the company's AI-first transformation by capturing, structuring, and consolidating institutional knowledge into a centralized AI knowledge base designed to outlast individual employees. Built internal AI systems that improved onboarding, preserved organizational expertise, and enabled teams to access accumulated knowledge through intelligent workflows.",
+    type: "company",
+  },
+  {
+    date: "JAN_2026 - APR_2026",
+    title: "Independent AI Consultant & Researcher",
+    desc: "Worked with founders to develop practical AI engineering skills using Claude Code and modern coding agents. Designed AI-native development workflows, taught context engineering and multi-agent collaboration, and helped teams move from experimentation to shipping real products. Alongside consulting, built experimental systems exploring memory, evaluation, and agent architectures, published open-source tools, and completed technical interviews across a wide range of AI engineering roles, gaining firsthand insight into how organizations were adopting AI and where the field was headed.",
     type: "practice",
   },
   {

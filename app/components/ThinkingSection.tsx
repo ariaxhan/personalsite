@@ -14,6 +14,14 @@ interface Article {
 }
 const articlesData: Article[] = [
   {
+    title: "How to Secure API Keys for AI Agents",
+    excerpt: "When the AI asks you for a key, that's the exact moment to stop. The most dangerous habit in AI coding—and what to do instead.",
+    description: "Two kinds of keys: one buys compute, one buys access to your whole life, and only one has a spending cap. Why pasting keys into chats, .env files, and terminals keeps leaking them, how OAuth, Mac Keychain, and secrets managers actually compare, and the honest takeaway—there is no 'safe,' only less exposed. Ends with an audit prompt you can hand your agent.",
+    link: "https://medium.com/@ariaxhan/how-to-secure-api-keys-for-ai-agents-ca773a66bd84",
+    category: "agents",
+    readTime: "12 min",
+  },
+  {
     title: "Opus 4.8 vs 4.7 vs Sonnet vs Haiku: When the Expensive Model Is Worth It",
     excerpt: "A new model dropped with impressive numbers. The only question that matters: will you feel any difference in the work you actually do?",
     description: "Ran all four Claude tiers through 21 code-graded tasks, back to back—no LLM-as-judge, just verifiers. The finding: on everyday work the cheapest model nearly matches the priciest, so save Opus for the genuinely hard jobs. Defaulting to the biggest model is the most expensive habit in AI.",
