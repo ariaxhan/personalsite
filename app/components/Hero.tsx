@@ -12,8 +12,8 @@ interface StatItem {
 const stats: StatItem[] = [
   { label: "Companies Founded", value: "3", color: "cognition" },
   { label: "Hackathon Wins", value: "6", color: "emergence" },
-  { label: "Systems Shipped", value: "5+", color: "memory" },
-  { label: "Public GitHub Repos", value: "46", color: "data" },
+  { label: "Skills Packaged", value: "34", color: "memory" },
+  { label: "Public GitHub Repos", value: "47", color: "data" },
 ];
 
 const colorMap = {
@@ -121,7 +121,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="mt-10 flex items-center gap-4"
             >
-              <span className="text-meta">SAN FRANCISCO · 2026</span>
+              <span className="text-meta">LOS ANGELES · 2026</span>
               <span className="w-8 h-px bg-gradient-to-r from-cognition/50 to-transparent" />
             </motion.div>
           </motion.div>

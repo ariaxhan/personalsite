@@ -50,16 +50,32 @@ const openSourceProjects: OpenSourceProject[] = [
   {
     name: "llm-bench",
     description: [
-      "A Model Familiarity Engine, not a leaderboard. It continuously onboards language models by observing them in real work, learning where they should be trusted, and building evidence-backed routing knowledge for multi-model agent systems.",
-      "The replay-bootstrap loop is shipped and verified live: mine past tasks, redact secrets, replay through other models, floor-test the judge, and render model cards from real observations. The original 42-test benchmark suite remains as the objective-signal layer.",
+      "Practical workflow benchmarks for local and API-hosted language models. It runs concrete tasks that look like normal model work: extraction, copy cleanup, code, planted bugs, email drafting, exact formats, prompt injection, and messy-input reasoning.",
+      "Every benchmark task has a programmatic verifier. The goal is boring, reproducible model comparison across local and hosted providers: Ollama, LM Studio, Apple Intelligence, Claude CLI, Anthropic, Bedrock, OpenCode, and OpenAI-compatible endpoints.",
     ],
     url: "https://github.com/ariaxhan/llm-bench",
+    evidence:
+      "A benchmark is useful when the measuring stick is explicit enough to argue with. No vibes, no leaderboard theater, no hidden judge.",
+    meta: {
+      status: "Active · Practical workflow benchmark",
+      stack: "Python · Ollama · Bedrock · Claude CLI",
+      scope: "Standard · hard · agentic · adversarial · messy",
+      license: "MIT",
+    },
+  },
+  {
+    name: "model-familiarity-engine",
+    description: [
+      "A Model Familiarity Engine, not a leaderboard. It continuously onboards language models by observing them in real work, learning where they should be trusted, and building evidence-backed routing knowledge for multi-model agent systems.",
+      "The replay-bootstrap loop is shipped: load known-outcome tasks, redact secrets, replay through models, floor-test the judge, and render model cards from observations. It can import benchmark evidence, but it does not depend on any one benchmark project.",
+    ],
+    url: "https://github.com/ariaxhan/model-familiarity-engine",
     evidence:
       "The question is not 'which model is best?' It is 'what responsibility has this model earned?'",
     meta: {
       status: "Bootstrap loop shipped",
       stack: "Python · Bedrock · Ollama · Claude CLI",
-      scope: "42 verified tests · model cards",
+      scope: "Replay · redaction · floor-tested judging · model cards",
       license: "MIT",
     },
   },
@@ -156,7 +172,7 @@ export default function OpenSource() {
             Open Source
           </h2>
           <p className="text-neutral-400 max-w-xl text-base">
-            Public work across agent infrastructure, model familiarity, portable skills, memory, and computational poetry.
+            Public work across agent infrastructure, benchmarks, model familiarity, portable skills, memory, and computational poetry.
           </p>
         </motion.div>
 

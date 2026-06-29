@@ -3,7 +3,7 @@ import OpenSource from "../components/OpenSource";
 
 export const metadata: Metadata = {
   title: "Open Source | Aria Han",
-  description: "Current public work from Aria Han: KERNEL, llm-bench, the-agent-library, metabrain, Substrate, and latent-diagnostics. Agent infrastructure, model familiarity, portable skills, memory, and computational poetry.",
+  description: "Current public work from Aria Han: KERNEL, llm-bench, model-familiarity-engine, the-agent-library, metabrain, Substrate, and latent-diagnostics. Agent infrastructure, benchmarks, model familiarity, portable skills, memory, and computational poetry.",
 };
 
 export default function OpenSourcePage() {
@@ -13,6 +13,5 @@ export default function OpenSourcePage() {
     </main>
   );
 }
-
 
 

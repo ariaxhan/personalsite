@@ -12,8 +12,8 @@ interface Stat {
 const stats: Stat[] = [
   { value: "3x", label: "Companies", sublabel: "founded" },
   { value: "6", label: "Hackathons", sublabel: "won" },
-  { value: "5+", label: "Systems", sublabel: "shipped" },
-  { value: "46", label: "Public GitHub", sublabel: "repositories" },
+  { value: "34", label: "Skills", sublabel: "packaged" },
+  { value: "47", label: "Public GitHub", sublabel: "repositories" },
 ];
 
 const tools = [
@@ -114,7 +114,7 @@ export default function About() {
                   I started my first company after a hackathon win earned through hours of intensive thinking and prompting. I didn&apos;t realize it then, but from that moment forward, I wasn&apos;t writing in code anymore. I was writing in English—the language I&apos;d already spent my life perfecting, just channeled through a new medium.
                 </p>
                 <p>
-                  Over the past year I&apos;ve lived inside these systems—building production platforms, developing KERNEL, publishing agent skills, running model-familiarity experiments, and attending dozens of hackathons and AI events across San Francisco. Hands-on with the tools as they ship, in the room with the people building the infrastructure that defines this generation.
+                  Over the past year I&apos;ve lived inside these systems—building production platforms, developing KERNEL, publishing agent skills, running model-familiarity experiments, and attending hackathons and AI events across California. Hands-on with the tools as they ship, in the room with the people building the infrastructure that defines this generation.
                 </p>
                 <p>
                   I&apos;ve seen the wave. I&apos;m riding it.
@@ -126,7 +126,7 @@ export default function About() {
                   Most people are optimizing for the wrong things. They&apos;re building chatbots when they should be building coordination systems. They&apos;re replacing human thought instead of augmenting it. They&apos;re solving the problem they know how to solve instead of the problem that actually matters.
                 </p>
                 <p>
-                  I&apos;ve built three production platforms, won six hackathons, and published 46 public GitHub repositories across agent infrastructure, model evaluation, memory, mobile apps, and creative systems. I&apos;ve led teams and made hard calls. I&apos;ve failed publicly and kept going. Why?
+                  I&apos;ve built three production platforms, won six hackathons, and published 47 public GitHub repositories across agent infrastructure, model evaluation, memory, mobile apps, and creative systems. I&apos;ve led teams and made hard calls. I&apos;ve failed publicly and kept going. Why?
                 </p>
                 <p>
                   Because I believe AI should give people back their time. It should make us more human, more creative, more focused on the things that require actual thinking. Use AI to synthesize research, not do it. Use AI to build systems, not have mindless conversations. Use AI as infrastructure for human intelligence, not as a replacement for it.
@@ -176,7 +176,10 @@ export default function About() {
                 <b>KERNEL</b>: my Claude Code plugin for persistent agent memory, multi-agent orchestration, and an experiment engine that proves which workflows actually hold up. Active, open source, and installable.
               </p>
               <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-4">
-                <b>llm-bench</b>: a Model Familiarity Engine that onboards language models through real work, redacted replay, floor-tested judging, and model cards.
+                <b>llm-bench</b>: practical workflow benchmarks for local and API-hosted language models, with programmatic verifiers and provider adapters.
+              </p>
+              <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-4">
+                <b>model-familiarity-engine</b>: evidence-backed model cards from replayed known-outcome tasks and observed model behavior.
               </p>
               <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
                 <b>the-agent-library</b>: a curated library of 34 portable skills for verification, planning, research, writing, work management, and code engineering.
@@ -189,7 +192,7 @@ export default function About() {
                 Location
               </h3>
               <p className="text-neutral-300 text-sm sm:text-base">
-                San Francisco, CA
+                Los Angeles, CA
               </p>
             </div>
           </motion.div>
