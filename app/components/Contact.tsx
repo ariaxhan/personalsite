@@ -77,9 +77,18 @@ const colorStyles = {
   },
 };
 
+const consultingServices: string[] = [
+  "Learning to use AI better — hands-on, for you or your team",
+  "Designing personalized AI workflows for individuals and companies",
+  "Helping founders get started with AI from zero",
+  "Reviewing AI-generated and vibe-coded projects",
+  "Code reviews and refactors of existing codebases",
+  "Technical expertise and architecture advising",
+];
+
 /**
  * Contact: Network nodes for connection
- * 
+ *
  * Concept: Each contact method is a node in the network of connection.
  * Like neurons reaching out to form synapses, these are the pathways
  * through which communication flows. Hovering activates the node.
@@ -122,6 +131,38 @@ export default function Contact() {
           <p className="text-neutral-400 text-lg">
             Building something interesting? The network is open for new connections.
           </p>
+        </motion.div>
+
+        {/* Open for consulting */}
+        <motion.div
+          className="max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
+          <div className="glass-panel border border-cognition/30 p-6 lg:p-8">
+            <p className="text-data tracking-[0.2em] mb-3 text-xs">
+              <span className="text-cognition/60">⊛</span> OPEN FOR CONSULTING
+            </p>
+            <p className="text-neutral-300 text-base lg:text-lg leading-relaxed mb-6">
+              I&apos;m openly taking on consulting work and would genuinely love to hear from you.
+              If any of this is what you need, reach out — individuals and companies both welcome:
+            </p>
+            <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
+              {consultingServices.map((svc) => (
+                <li
+                  key={svc}
+                  className="flex items-start gap-3 text-neutral-400 text-sm leading-relaxed"
+                >
+                  <span className="text-cognition/70 mt-1 flex-shrink-0">▹</span>
+                  <span>{svc}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-neutral-500 text-sm mt-6">
+              Not sure if it fits? Ask anyway — book a call below or email me.
+            </p>
+          </div>
         </motion.div>
 
         {/* Contact links as network nodes */}
