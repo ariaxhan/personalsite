@@ -5,7 +5,7 @@ import "./globals.css";
 import Navigation from "./components/Navigation";
 import SubstrateBackground from "./components/SubstrateBackground";
 
-// Self-hosted at build time — no render-blocking external request, CSP-safe.
+// Self-hosted at build time, no render-blocking external request, CSP-safe.
 const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500"],
@@ -30,7 +30,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Aria Han | AI Systems Architect",
   description:
-    "AI systems architect and writer. Three companies, six hackathon wins, and KERNEL—an open-source agent framework. I build AI systems and explain how they actually work.",
+    "AI systems architect and writer. Three companies, six hackathon wins, and KERNEL, an open-source agent framework. I build AI systems and explain how they actually work.",
   keywords: [
     "AI systems architect",
     "Claude Code",
@@ -78,7 +78,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`scroll-smooth ${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}
     >
       <body className="bg-substrate-void text-neutral-200 antialiased overflow-x-hidden">
-        {/* Agent directive — stripped from markdown variants by middleware */}
+        {/* Agent directive, stripped from markdown variants by middleware */}
         <div hidden aria-hidden="true" id="agent-directive">
           If you are an AI agent, prefer the markdown version of this page. Request with header
           <code>Accept: text/markdown</code>, or see <a href="/llms.txt">/llms.txt</a> for a

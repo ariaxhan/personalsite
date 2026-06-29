@@ -122,7 +122,7 @@ export default function SubstrateBackground() {
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      // Reduced motion never animates — repaint the static frame on resize.
+      // Reduced motion never animates, repaint the static frame on resize.
       if (isReducedMotion) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawStaticBackground(ctx, canvas.width, canvas.height);

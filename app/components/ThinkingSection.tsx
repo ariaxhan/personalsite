@@ -15,8 +15,8 @@ interface Article {
 const articlesData: Article[] = [
   {
     title: "How to Secure API Keys for AI Agents",
-    excerpt: "When the AI asks you for a key, that's the exact moment to stop. The most dangerous habit in AI coding—and what to do instead.",
-    description: "Two kinds of keys: one buys compute, one buys access to your whole life, and only one has a spending cap. Why pasting keys into chats, .env files, and terminals keeps leaking them, how OAuth, Mac Keychain, and secrets managers actually compare, and the honest takeaway—there is no 'safe,' only less exposed. Ends with an audit prompt you can hand your agent.",
+    excerpt: "When the AI asks you for a key, that's the exact moment to stop. The most dangerous habit in AI coding, and what to do instead.",
+    description: "Two kinds of keys: one buys compute, one buys access to your whole life, and only one has a spending cap. Why pasting keys into chats, .env files, and terminals keeps leaking them, how OAuth, Mac Keychain, and secrets managers actually compare, and the honest takeaway, there is no 'safe,' only less exposed. Ends with an audit prompt you can hand your agent.",
     link: "https://medium.com/@ariaxhan/how-to-secure-api-keys-for-ai-agents-ca773a66bd84",
     category: "agents",
     readTime: "12 min",
@@ -24,15 +24,15 @@ const articlesData: Article[] = [
   {
     title: "Opus 4.8 vs 4.7 vs Sonnet vs Haiku: When the Expensive Model Is Worth It",
     excerpt: "A new model dropped with impressive numbers. The only question that matters: will you feel any difference in the work you actually do?",
-    description: "Ran all four Claude tiers through 21 code-graded tasks, back to back—no LLM-as-judge, just verifiers. The finding: on everyday work the cheapest model nearly matches the priciest, so save Opus for the genuinely hard jobs. Defaulting to the biggest model is the most expensive habit in AI.",
+    description: "Ran all four Claude tiers through 21 code-graded tasks, back to back, no LLM-as-judge, just verifiers. The finding: on everyday work the cheapest model nearly matches the priciest, so save Opus for the genuinely hard jobs. Defaulting to the biggest model is the most expensive habit in AI.",
     link: "https://medium.com/@ariaxhan/opus-4-8-vs-4-7-vs-sonnet-vs-haiku-when-the-expensive-model-is-worth-it-44892a75d5c5",
     category: "systems",
     readTime: "12 min",
   },
   {
     title: "What an AI Detector Actually Measures",
-    excerpt: "AI detectors promise to tell you if a machine wrote something. What they actually measure is much narrower—and shakier.",
-    description: "These tools score how predictable text is, not whether AI wrote it—so they flag clean writing and famous passages like the Constitution as 'AI.' Why the false-positive rate makes them unfit for any decision that affects a real person.",
+    excerpt: "AI detectors promise to tell you if a machine wrote something. What they actually measure is much narrower, and shakier.",
+    description: "These tools score how predictable text is, not whether AI wrote it, so they flag clean writing and famous passages like the Constitution as 'AI.' Why the false-positive rate makes them unfit for any decision that affects a real person.",
     link: "https://medium.com/@ariaxhan/what-an-ai-detector-actually-measures-86b452979a5a",
     category: "philosophy",
     readTime: "6 min",
@@ -40,7 +40,7 @@ const articlesData: Article[] = [
   {
     title: "Stop Copying Other People's AI Setups. Build One That's Actually Yours.",
     excerpt: "Borrowed AI workflows aren't accountable to your work. Build one that's tested against your own evidence.",
-    description: "A repeatable method: turn each rule into a falsifiable hypothesis, mine your own work history for cases that support or break it, and keep only what survives. The setup grounded in your track record is the one that actually holds up—and adapts when things change.",
+    description: "A repeatable method: turn each rule into a falsifiable hypothesis, mine your own work history for cases that support or break it, and keep only what survives. The setup grounded in your track record is the one that actually holds up, and adapts when things change.",
     link: "https://medium.com/@ariaxhan/stop-copying-other-peoples-ai-setups-build-one-that-s-actually-yours-e1a05ebabc2a",
     category: "systems",
     readTime: "10 min",
@@ -48,7 +48,7 @@ const articlesData: Article[] = [
   {
     title: "How to Make Claude Code Actually Work",
     excerpt: "The most capable AI coding tool available. Also completely chaotic.",
-    description: "Structure, memory, and multi-agent workflows—the full guide to KERNEL, the plugin I built to give Claude Code guardrails, persistent memory, and a real methodology.",
+    description: "Structure, memory, and multi-agent workflows, the full guide to KERNEL, the plugin I built to give Claude Code guardrails, persistent memory, and a real methodology.",
     link: "https://medium.com/@ariaxhan/how-to-make-claude-code-actually-work-structure-memory-and-multi-agent-workflows-6d32b1d815d2",
     category: "systems",
     readTime: "12 min",
@@ -56,7 +56,7 @@ const articlesData: Article[] = [
   {
     title: "Engineering the Soul",
     excerpt: "We ask engineers to explain the ghost in the machine. The novelists have been documenting it for years.",
-    description: "Reading AI consciousness through four novels—Babel, A Psalm for the Wild-Built, Katabasis, The Humans. Every answer to 'can a machine care' ends up sounding like the person answering.",
+    description: "Reading AI consciousness through four novels, Babel, A Psalm for the Wild-Built, Katabasis, The Humans. Every answer to 'can a machine care' ends up sounding like the person answering.",
     link: "https://medium.com/@ariaxhan/engineering-the-soul-49428c073c4e",
     category: "philosophy",
     readTime: "6 min",
@@ -64,7 +64,7 @@ const articlesData: Article[] = [
   {
     title: "The Agent-Ready Web: A Working Guide to Cloudflare's New Score",
     excerpt: "I pointed Cloudflare's new agent-readiness scanner at my own site. Zero of thirteen.",
-    description: "What it actually takes to make a site legible to AI agents—llms.txt, markdown negotiation, MCP, content-signals—and why half the checks are business decisions disguised as config.",
+    description: "What it actually takes to make a site legible to AI agents, llms.txt, markdown negotiation, MCP, content-signals, and why half the checks are business decisions disguised as config.",
     link: "https://medium.com/@ariaxhan/the-agent-ready-web-a-working-guide-to-cloudflares-new-score-1ed0fce8d760",
     category: "systems",
     readTime: "12 min",

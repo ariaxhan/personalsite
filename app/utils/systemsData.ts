@@ -16,11 +16,11 @@ export const systemsData: SystemData[] = [
     name: "ModelMind",
     status: "SHIPPED",
     description: [
-      "A Duolingo-style app that teaches how AI actually works—not how to prompt it, but how it thinks, why it fails, and how to reason with it. Live on the App Store (iPhone, iPad, Mac, and Vision Pro), with an Android build on the Google Play internal track. React Native + Expo, TypeScript strict mode.",
-      "21 courses across Foundations, Building, Thinking, and Creating. Seven offline-gradeable exercise types—multiple choice, sort, sequence, match, triage, comparison, decision tree—graded by pure local functions with content authored as JSON. Domain logic carries 100% test coverage; a backend handles auth, sync, and social.",
+      "A Duolingo-style app that teaches how AI actually works, not how to prompt it, but how it thinks, why it fails, and how to reason with it. Live on the App Store (iPhone, iPad, Mac, and Vision Pro), with an Android build on the Google Play internal track. React Native + Expo, TypeScript strict mode.",
+      "21 courses across Foundations, Building, Thinking, and Creating. Seven offline-gradeable exercise types, multiple choice, sort, sequence, match, triage, comparison, decision tree, graded by pure local functions with content authored as JSON. Domain logic carries 100% test coverage; a backend handles auth, sync, and social.",
     ],
     evidence:
-      "Everyone teaches prompt tricks; almost no one teaches the mental model underneath—what a model is actually doing when it answers, and where that breaks. Understanding beats memorized prompts.",
+      "Everyone teaches prompt tricks; almost no one teaches the mental model underneath, what a model is actually doing when it answers, and where that breaks. Understanding beats memorized prompts.",
     meta: {
       role: "Founder · Lead Architect · Mobile Engineer",
       status: "Live on the App Store · Free + Premium",
@@ -33,8 +33,8 @@ export const systemsData: SystemData[] = [
     name: "Paper Rooms",
     status: "SHIPPED",
     description: [
-      "A local-first library app for organizing and reading research papers—“every paper has an address.” Paste a link from arXiv, a DOI, PubMed, bioRxiv, or Google Scholar and the app gives each paper a virtual address by subject, then arranges your library like shelves so related work sits nearby instead of buried in a list.",
-      "A typography-focused reader with clean margins and rendered equations, plus highlights, notes, and collections. Everything stays on-device—no accounts, no cloud sync, no tracking or analytics. Permanently free, no ads, no subscriptions.",
+      "A local-first library app for organizing and reading research papers, “every paper has an address.” Paste a link from arXiv, a DOI, PubMed, bioRxiv, or Google Scholar and the app gives each paper a virtual address by subject, then arranges your library like shelves so related work sits nearby instead of buried in a list.",
+      "A typography-focused reader with clean margins and rendered equations, plus highlights, notes, and collections. Everything stays on-device, no accounts, no cloud sync, no tracking or analytics. Permanently free, no ads, no subscriptions.",
     ],
     evidence:
       "A love letter to libraries, built for anyone who likes reading something slowly and all the way through. Discovery should feel like browsing shelves, not scrolling a feed.",
@@ -85,7 +85,7 @@ export const systemsData: SystemData[] = [
       "Science-backed patterns, post-quantum encryption, and reflections users can use. Demonstrated multimodal signal fusion: linguistic + physiological analysis reveals patterns neither shows alone.",
     ],
     evidence:
-      "Users need a privacy-first, responsible mental health tool—not another AI companion or therapist.",
+      "Users need a privacy-first, responsible mental health tool, not another AI companion or therapist.",
     meta: {
       role: "CEO · Lead Architect · SwiftUI Developer",
       timeline: "Nov 2024 - Mar 2025",

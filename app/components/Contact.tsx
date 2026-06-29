@@ -78,7 +78,7 @@ const colorStyles = {
 };
 
 const consultingServices: string[] = [
-  "Learning to use AI better — hands-on, for you or your team",
+  "Learning to use AI better, hands-on, for you or your team",
   "Designing personalized AI workflows for individuals and companies",
   "Helping founders get started with AI from zero",
   "Reviewing AI-generated and vibe-coded projects",
@@ -146,7 +146,7 @@ export default function Contact() {
             </p>
             <p className="text-neutral-300 text-base lg:text-lg leading-relaxed mb-6">
               I&apos;m openly taking on consulting work and would genuinely love to hear from you.
-              If any of this is what you need, reach out — individuals and companies both welcome:
+              If any of this is what you need, reach out, individuals and companies both welcome:
             </p>
             <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
               {consultingServices.map((svc) => (
@@ -160,7 +160,7 @@ export default function Contact() {
               ))}
             </ul>
             <p className="text-neutral-500 text-sm mt-6">
-              Not sure if it fits? Ask anyway — book a call below or email me.
+              Not sure if it fits? Ask anyway, book a call below or email me.
             </p>
           </div>
         </motion.div>
@@ -242,7 +242,7 @@ export default function Contact() {
           })}
         </motion.div>
 
-        {/* Booking node — grab a slot directly */}
+        {/* Booking node, grab a slot directly */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -254,7 +254,7 @@ export default function Contact() {
               <span className="text-cognition/60">⊛</span> BOOK A CALL
             </p>
             <p className="text-neutral-400 text-sm mb-4">
-              AI, consulting, or a project — pick a time. Availability is live across my calendars.
+              AI, consulting, or a project, pick a time. Availability is live across my calendars.
             </p>
             <CalEmbed calLink="aria-han/15min" minHeight={480} />
           </div>

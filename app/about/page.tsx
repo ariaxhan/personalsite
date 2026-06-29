@@ -3,7 +3,7 @@ import About from "../components/About";
 
 export const metadata: Metadata = {
   title: "About | Aria Han",
-  description: "AI systems architect and writer. Three companies, six hackathon wins, and KERNEL—an open-source agent framework. Building AI systems and explaining how they actually work.",
+  description: "AI systems architect and writer. Three companies, six hackathon wins, and KERNEL, an open-source agent framework. Building AI systems and explaining how they actually work.",
 };
 
 export default function AboutPage() {

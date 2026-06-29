@@ -108,7 +108,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="mt-8 text-lg text-neutral-400 leading-relaxed max-w-[50ch]"
             >
-              I architect AI systems—and write about how they actually work.
+              I architect AI systems, and write about how they actually work.
               These models are built from language, so I treat language as the
               real interface. Three companies, six hackathon wins, and KERNEL.
             </motion.p>
@@ -179,7 +179,7 @@ export default function Hero() {
                     <div className="relative">
                       <p className="text-meta mb-2">{stat.label}</p>
                       <p className={`text-4xl lg:text-5xl font-extralight tracking-tight ${colors.text}`}>
-                        {mounted ? stat.value : "—"}
+                        {mounted ? stat.value : "··"}
                       </p>
                     </div>
                   </motion.div>
