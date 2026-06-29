@@ -93,10 +93,21 @@ const catalogCards: CatalogCard[] = [
     id: "modelmind",
     category: "SYSTEM",
     title: "ModelMind",
-    content: "Duolingo-style app for genuinely understanding how AI works—not how to prompt it, how it thinks. In beta on TestFlight + Play Store.",
-    tags: ["ai education", "mobile", "beta"],
-    link: "/systems",
+    content: "Duolingo-style app for genuinely understanding how AI works—not how to prompt it, how it thinks. Live on the App Store: iPhone, iPad, Mac, Vision Pro.",
+    tags: ["ai education", "mobile", "app store", "ios"],
+    link: "https://apps.apple.com/us/app/modelmind/id6761348536",
     color: "data",
+    external: true,
+  },
+  {
+    id: "paper-rooms",
+    category: "SYSTEM",
+    title: "Paper Rooms",
+    content: "Local-first library app for reading research papers—every paper gets an address, your library arranges like shelves. Private by design. Free on the App Store.",
+    tags: ["reading", "research", "app store", "ios", "mac"],
+    link: "https://apps.apple.com/us/app/paper-rooms/id6780741814",
+    color: "emergence",
+    external: true,
   },
   {
     id: "companies",
@@ -458,34 +469,6 @@ export default function CardCatalogHero() {
               );
             })}
           </AnimatePresence>
-        </motion.div>
-
-        {/* VN Link */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-12 sm:mt-14 lg:mt-16 text-center"
-        >
-          <Link
-            href="/vn"
-            className="
-              group inline-flex items-center gap-2 sm:gap-3
-              px-4 sm:px-5 lg:px-6 py-2.5 sm:py-3 rounded-lg border border-emergence/30
-              hover:border-emergence/60 hover:bg-emergence/5
-              transition-all duration-400 touch-manipulation
-              hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]
-            "
-            aria-label="View as Vector Native"
-          >
-            <span className="text-emergence font-mono text-xs sm:text-sm">∎</span>
-            <span className="text-neutral-300 group-hover:text-white transition-colors text-xs sm:text-sm">
-              View as Vector Native
-            </span>
-            <span className="text-[0.625rem] sm:text-xs text-neutral-600 font-mono">
-              ~3.4x density
-            </span>
-          </Link>
         </motion.div>
 
         {/* Footer text */}

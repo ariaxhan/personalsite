@@ -13,7 +13,6 @@ const stats: Stat[] = [
   { value: "3x", label: "Companies", sublabel: "founded" },
   { value: "6", label: "Hackathons", sublabel: "won" },
   { value: "34", label: "Skills", sublabel: "packaged" },
-  { value: "47", label: "Public GitHub", sublabel: "repositories" },
 ];
 
 const tools = [
@@ -56,7 +55,7 @@ export default function About() {
             Background
           </h1>
           <p className="text-xl sm:text-2xl text-neutral-400 leading-relaxed max-w-3xl">
-            Writer turned engineer. I spent years studying how language creates meaning. For the past year, I&apos;ve applied that to how machines communicate.
+            i&apos;ve always been interested in one thing: how language shapes thought.
           </p>
         </motion.div>
 
@@ -65,7 +64,7 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16 sm:mb-20 lg:mb-24"
+          className="grid grid-cols-3 gap-4 sm:gap-6 mb-16 sm:mb-20 lg:mb-24"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -102,39 +101,34 @@ export default function About() {
             <div>
               <div className="space-y-4 text-neutral-400 leading-relaxed">
                 <p>
-                  English was never my first language, but it&apos;s always been my favorite subject. I spent most of my life reading and writing endlessly—debating ideas, reporting stories, diving into text. 
+                  i started with journalism, essays, stories, and research. then i discovered computer science and realized it wasn&apos;t all that different. code was just another language. another way to describe complex systems with precision.
                 </p>
                 <p>
-                  Then I discovered computer science. And I realized something that changed everything: it was just writing. Different syntax, different rules, but writing all the same. The ability to create elaborate systems, to build and control with precision using strange new languages—it felt surreal.
+                  when large language models arrived, those worlds merged.
                 </p>
                 <p>
-                  But at the end of 2024, I came full circle.
+                  for the past two years i&apos;ve been building and shipping ai systems across evaluation, agent infrastructure, memory, research tools, mobile apps, and production workflows. but the more i build, the less interested i become in ai that&apos;s constantly asking for attention.
                 </p>
                 <p>
-                  I started my first company after a hackathon win earned through hours of intensive thinking and prompting. I didn&apos;t realize it then, but from that moment forward, I wasn&apos;t writing in code anymore. I was writing in English—the language I&apos;d already spent my life perfecting, just channeled through a new medium.
+                  i don&apos;t think the future is another chatbot.
                 </p>
                 <p>
-                  Over the past year I&apos;ve lived inside these systems—building production platforms, developing KERNEL, publishing agent skills, running model-familiarity experiments, and attending hackathons and AI events across California. Hands-on with the tools as they ship, in the room with the people building the infrastructure that defines this generation.
+                  i think the best ai is ambient.
                 </p>
                 <p>
-                  I&apos;ve seen the wave. I&apos;m riding it.
+                  it quietly organizes information, preserves context, coordinates work, and surfaces the right knowledge at the right moment. it doesn&apos;t interrupt your thinking. it protects it.
                 </p>
                 <p>
-                  But here&apos;s what I&apos;ve learned: we&apos;re not using AI correctly.
+                  that&apos;s what i want to build.
                 </p>
                 <p>
-                  Most people are optimizing for the wrong things. They&apos;re building chatbots when they should be building coordination systems. They&apos;re replacing human thought instead of augmenting it. They&apos;re solving the problem they know how to solve instead of the problem that actually matters.
+                  not software that replaces human intelligence, but infrastructure that expands it. tools that disappear into the background so people can spend less time managing information and more time discovering, creating, and solving meaningful problems.
                 </p>
                 <p>
-                  I&apos;ve built three production platforms, won six hackathons, and published 47 public GitHub repositories across agent infrastructure, model evaluation, memory, mobile apps, and creative systems. I&apos;ve led teams and made hard calls. I&apos;ve failed publicly and kept going. Why?
+                  the best technology isn&apos;t the part you notice.
                 </p>
                 <p>
-                  Because I believe AI should give people back their time. It should make us more human, more creative, more focused on the things that require actual thinking. Use AI to synthesize research, not do it. Use AI to build systems, not have mindless conversations. Use AI as infrastructure for human intelligence, not as a replacement for it.
-                </p>
-                <p>
-                  When I say I understand AI systems, I mean I&apos;ve bet everything on that understanding. I&apos;ve lived in production systems for over a year. I&apos;ve optimized not just what we built, but how we worked—constantly challenging existing notions of what&apos;s possible. I&apos;ve studied the landscape thoroughly enough to know what&apos;s real and what&apos;s hype.
-                  
-                  And I keep learning.
+                  it&apos;s everything you no longer have to think about.
                 </p>
               </div>
             </div>

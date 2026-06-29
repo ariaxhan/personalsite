@@ -20,7 +20,6 @@ const navItems: NavItem[] = [
   { label: "Writing", href: "/writing", shortLabel: "05" },
   { label: "Timeline", href: "/timeline", shortLabel: "06" },
   { label: "Contact", href: "/contact", shortLabel: "07" },
-  { label: "VN", href: "/vn", shortLabel: "∎" },
 ];
 
 /**
@@ -55,7 +54,6 @@ export default function Navigation() {
         >
           {navItems.map((item) => {
             const isActive = pathname === item.href;
-            const isVN = item.href === "/vn";
 
             return (
               <Link
@@ -74,7 +72,6 @@ export default function Navigation() {
                 <span className={`
                   font-mono text-[10px] w-4
                   ${isActive ? "text-cognition" : "text-neutral-700"}
-                  ${isVN ? "text-emergence" : ""}
                 `}>
                   {item.shortLabel}
                 </span>
@@ -157,7 +154,6 @@ export default function Navigation() {
                 <div className="grid grid-cols-4 gap-1 p-4">
                   {navItems.map((item) => {
                     const isActive = pathname === item.href;
-                    const isVN = item.href === "/vn";
 
                     return (
                       <Link
@@ -167,11 +163,10 @@ export default function Navigation() {
                         className={`
                           flex flex-col items-center gap-1 py-3 px-2 rounded
                           transition-all duration-300
-                          ${isActive 
-                            ? "bg-cognition/10 text-cognition" 
+                          ${isActive
+                            ? "bg-cognition/10 text-cognition"
                             : "text-neutral-500 hover:text-neutral-300"
                           }
-                          ${isVN ? "text-emergence" : ""}
                         `}
                       >
                         <span className="font-mono text-[10px]">

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { useRef, useState } from "react";
 import type { SystemData } from "../utils/systemsData";
 
@@ -163,6 +164,28 @@ export default function SystemBlock({ system, index }: SystemBlockProps) {
             >
               {system.evidence}
             </motion.blockquote>
+
+            {/* App Store link */}
+            {system.appStore && (
+              <a
+                href={system.appStore}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="
+                  mt-6 inline-flex items-center gap-2
+                  px-4 py-2 rounded
+                  border border-cognition/40 bg-cognition/5 text-cognition
+                  text-xs font-mono uppercase tracking-wider
+                  hover:bg-cognition/10 hover:border-cognition/60
+                  transition-all duration-300
+                "
+                aria-label={`Download ${system.name} on the App Store (opens in new tab)`}
+              >
+                Download on the App Store
+                <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+              </a>
+            )}
           </div>
 
           {/* Right: Meta sidebar */}

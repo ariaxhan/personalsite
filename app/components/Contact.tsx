@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { Mail, Github, BookOpen, Linkedin, ArrowUpRight, X } from "lucide-react";
 import { useRef, useState } from "react";
+import CalEmbed from "./CalEmbed";
 
 interface ContactLink {
   label: string;
@@ -198,6 +199,24 @@ export default function Contact() {
               </motion.a>
             );
           })}
+        </motion.div>
+
+        {/* Booking node — grab a slot directly */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="mt-16 max-w-2xl mx-auto"
+        >
+          <div className="glass-panel border border-cognition/30 p-4 lg:p-5">
+            <p className="text-data tracking-[0.2em] mb-1 text-xs">
+              <span className="text-cognition/60">⊛</span> BOOK A CALL
+            </p>
+            <p className="text-neutral-400 text-sm mb-4">
+              AI, consulting, or a project — pick a time. Availability is live across my calendars.
+            </p>
+            <CalEmbed calLink="aria-han/15min" minHeight={480} />
+          </div>
         </motion.div>
 
         {/* Decorative network visualization */}

@@ -12,7 +12,6 @@ const routes = [
   "/open-source",
   "/systems",
   "/timeline",
-  "/vn",
   "/writing",
 ];
 
