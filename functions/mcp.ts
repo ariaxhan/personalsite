@@ -15,10 +15,10 @@ Focus: multi-agent coordination, vector native notation, agent infrastructure, a
 
 const PROJECTS_MD = `# Projects
 
-- **KERNEL plugin** — orchestration, fault tolerance, context transfer for Claude Code.
-- **AgentDB** — persistent agent memory: learnings, timelines, contracts.
-- **Vector native research** — notation for model internals, SAE spectroscopy.
-- **ModelMind** — Duolingo-style app for understanding how AI actually works (in development).
+- **KERNEL plugin**, orchestration, fault tolerance, context transfer for Claude Code.
+- **AgentDB**, persistent agent memory: learnings, timelines, contracts.
+- **Vector native research**, notation for model internals, SAE spectroscopy.
+- **ModelMind**, Duolingo-style app for understanding how AI actually works (in development).
 
 See https://ariaxhan.com/open-source for current list.
 `;

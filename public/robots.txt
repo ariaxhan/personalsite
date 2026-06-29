@@ -1,4 +1,4 @@
-# ariaxhan.com — robots policy
+# ariaxhan.com, robots policy
 # Policy: allow search/answer bots (they cite), disallow training-only crawlers.
 
 User-agent: *
