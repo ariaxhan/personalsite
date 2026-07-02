@@ -1,0 +1,1635 @@
+{
+  "format": 1,
+  "migrations": [
+    "001_init",
+    "002_graph_tracking",
+    "003_telemetry",
+    "004_fix_learnings_schema",
+    "005_learning_system",
+    "006_hypotheses",
+    "007_compaction_telemetry",
+    "008_error_domain",
+    "009_learning_visibility_sensitivity",
+    "010_normalize_timestamps",
+    "011_drop_sync_log",
+    "012_learnings_fts",
+    "013_learning_load_count"
+  ],
+  "tables": {
+    "compaction_events": [],
+    "context": [
+      {
+        "agent": "orchestrator",
+        "content": "{\"agent\":\"main-91032\",\"event\":\"session-end\",\"branch\":\"main\",\"uncommitted_files\":57}",
+        "contract_id": null,
+        "id": "CP-20260701151352-59136-16731",
+        "ts": "2026-07-01T22:13:52.563Z",
+        "type": "checkpoint"
+      }
+    ],
+    "context_sessions": [],
+    "edges": [],
+    "errors": [
+      {
+        "context": null,
+        "domain": "",
+        "error": "Exit code 1\n=== exported page exists? ===",
+        "file": "",
+        "id": 1,
+        "tool": "Bash",
+        "ts": "2026-06-29T19:59:21.985Z"
+      },
+      {
+        "context": null,
+        "domain": "backend",
+        "error": "Exit code 1\n=== HTTP status per route ===\n/ -> 200\n/about -> 404\n/writing -> 404\n/systems -> 404\n/open-source -> 404\n/evidence -> 404\n/timeline -> 404\n/contact -> 404\n\n=== self-hosted studio fonts emitted? (next/font) ===\n(eval):14: no matches found: out/_next/static/media/*.woff2\nfont files: 0\n\n=== CSS references Newsreader/Hanken/Space Mono var fonts? ===\n(eval):17: no matches found: out/_next/static/css/*.css",
+        "file": "",
+        "id": 2,
+        "tool": "Bash",
+        "ts": "2026-06-30T23:39:57.553Z"
+      },
+      {
+        "context": null,
+        "domain": "testing",
+        "error": "Exit code 1\ngenerating test image (metabrain)...\nHTTP 400 {\n  \"error\": {\n    \"message\": \"Billing hard limit has been reached.\",\n    \"type\": \"billing_limit_user_error\",\n    \"param\": null,\n    \"code\": \"billing_hard_limit_reached\"\n  }\n}\n(eval):21: no matches found: public/studio/*.png",
+        "file": "",
+        "id": 3,
+        "tool": "Bash",
+        "ts": "2026-07-01T03:01:33.969Z"
+      },
+      {
+        "context": null,
+        "domain": "",
+        "error": "Exit code 1\n=== desktop screenshot dims ===\n1765827830678.jpeg -> 480x346\n1765827059818.jpeg -> 367x800\n1765827353534.jpeg -> 480x288\n1765829425400.jpeg -> 480x262\n1765827416309.jpeg -> 480x274\n1765829500544.jpeg -> 480x277\n1765828870701.jpeg -> 480x272\n1765827858478.jpeg -> 480x274\n1765827102655.jpeg -> 367x800\n\n=== copy + optimize desktop shots into public/studio ===\n(eval):15: bad substitution",
+        "file": "",
+        "id": 4,
+        "tool": "Bash",
+        "ts": "2026-07-01T03:06:45.132Z"
+      },
+      {
+        "context": null,
+        "domain": "",
+        "error": "Exit code 1\n=== copy desktop shots (already small, just place) ===\nheycontext-1.jpg 16K\nheycontext-2.jpg 20K\nheycontext-3.jpg 20K\nheycontent-1.jpg 16K\nheycontent-2.jpg 20K\nheycontent-3.jpg 20K\nheycontent-4.jpg 24K\nbrinkmind-1.jpg 20K\nbrinkmind-2.jpg 24K\n\n=== fetch App Store screenshots ===\nmodelmind screenshots: 0\npaperrooms screenshots: 0\n(eval):33: no matches found: public/studio/modelmind-*.jpg",
+        "file": "",
+        "id": 5,
+        "tool": "Bash",
+        "ts": "2026-07-01T03:07:11.105Z"
+      },
+      {
+        "context": null,
+        "domain": "",
+        "error": "Exit code 143\nCommand timed out after 2m 0s\n=== heycontext public + assets (full) ===\n \n146699 heycontext.jpeg\n3253 placeholder.svg\n1981801 preview-image.png\n160 robots.txt\n \n61556 hero-bg.jpg\n1534698 hero-bg.png\n\n=== logos/ folder detail ===\n \n7955 brink_mind_logo.svg\n621267 icon.png\n289872 icongray.png\n584171 iOS_light.png\nBackground.colorset\nContents.json\nCoolBlue.colorset\nImage.imageset\nNeutralGray.colorset\nPastelPurple.colorset\nSecondaryBackground.colorset\nSecondaryText.colorset\nSoftAqua.colorset\nSoftCoral.colorset\nSoftLavender.colorset\nSoftTeal.colorset\nSoothingBlue.colorset\nText.colorset\nTextBox.colorset\nVibrantGreen.colorset\nVibrantOrange.colorset\nWarmYellow.colorset\n\n=== ffmpeg / ffprobe available? ===\n/opt/homebrew/bin/ffmpeg\n/opt/homebrew/bin/ffprobe\n\n=== probe key demo videos (duration, resolution) ===\n--- HEYCONTEXTDEMO.mp4 (0B) ---\nwidth=1920\nheight=1080\nduration=77.744333\n--- mainedited.mp4 (38M) ---\nwidth=1920\nheight=1080\nduration=81.581500\n--- youtube_updated_demo.mp4 (30M) ---\nwidth=1920\nheight=1080\nduration=63.196467\n--- the_convergence.mov (0B) ---",
+        "file": "",
+        "id": 6,
+        "tool": "Bash",
+        "ts": "2026-07-01T03:30:40.632Z"
+      },
+      {
+        "context": null,
+        "domain": "",
+        "error": "Exit code 1\nunique screenshots: 0",
+        "file": "",
+        "id": 7,
+        "tool": "Bash",
+        "ts": "2026-07-01T04:00:05.993Z"
+      }
+    ],
+    "events": [
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 1,
+        "metadata": "{\"branch\":\"main\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260605100400-87170",
+        "ts": "2026-06-05T17:04:04.056Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 3065,
+        "event": "session-start",
+        "id": 2,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260605100400-87170",
+        "ts": "2026-06-05T17:04:04.072Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 3130,
+        "event": "post-compact-restore",
+        "id": 3,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260605100400-87170",
+        "ts": "2026-06-05T17:04:04.094Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 28,
+        "event": "log-write",
+        "id": 4,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/SubstrateBackground.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-05T17:05:18.572Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 43,
+        "event": "post-compact-restore",
+        "id": 5,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260605100400-87170",
+        "ts": "2026-06-05T17:07:59.966Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": 3476000,
+        "event": "session:end",
+        "id": 6,
+        "metadata": "{\"branch\":\"\",\"files_changed\":,\"agent\":\"main-87170\",\"duration_s\":3476}",
+        "session_id": "",
+        "ts": "2026-06-05T18:01:56.604Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 528,
+        "event": "session-end",
+        "id": 7,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260605100400-87170",
+        "ts": "2026-06-05T18:01:57.121Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 51,
+        "event": "post-compact-restore",
+        "id": 8,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629123650-92409",
+        "ts": "2026-06-29T19:42:38.522Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 49,
+        "event": "post-compact-restore",
+        "id": 9,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629123650-92409",
+        "ts": "2026-06-29T19:45:48.703Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 49,
+        "event": "post-compact-restore",
+        "id": 10,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629123650-92409",
+        "ts": "2026-06-29T19:50:28.157Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "post-compact-restore",
+        "id": 11,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629123650-92409",
+        "ts": "2026-06-29T19:50:59.762Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "post-compact-restore",
+        "id": 12,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629123650-92409",
+        "ts": "2026-06-29T19:52:33.867Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 53,
+        "event": "post-compact-restore",
+        "id": 13,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629123650-92409",
+        "ts": "2026-06-29T19:53:10.904Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "post-compact-restore",
+        "id": 14,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629123650-92409",
+        "ts": "2026-06-29T19:53:48.120Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 36,
+        "event": "log-write",
+        "id": 15,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/.claude/projects/-Users-slowember-Documents-Vaults/memory/keychain-secret-prompt.md\"}",
+        "session_id": "",
+        "ts": "2026-06-29T19:54:00.634Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 16,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/.claude/projects/-Users-slowember-Documents-Vaults/memory/MEMORY.md\"}",
+        "session_id": "",
+        "ts": "2026-06-29T19:54:08.798Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "post-compact-restore",
+        "id": 17,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629123650-92409",
+        "ts": "2026-06-29T19:54:55.691Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 38,
+        "event": "log-write",
+        "id": 18,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/CalEmbed.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T19:57:52.306Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 19,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/connect/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T19:58:00.677Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "log-write",
+        "id": 20,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Navigation.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T19:58:17.509Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "log-write",
+        "id": 21,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/CalEmbed.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T19:58:42.274Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 93,
+        "event": "capture-error",
+        "id": 22,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629125549-98462",
+        "ts": "2026-06-29T19:59:22.040Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "log-write",
+        "id": 23,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/.claude/projects/-Users-slowember-Documents-Vaults/memory/booking-page-connect.md\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:00:33.876Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 24,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/.claude/projects/-Users-slowember-Documents-Vaults/memory/booking-page-connect.md\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:00:38.393Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 25,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/.claude/projects/-Users-slowember-Documents-Vaults/memory/MEMORY.md\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:00:43.781Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 49,
+        "event": "post-compact-restore",
+        "id": 26,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629125549-98462",
+        "ts": "2026-06-29T20:02:22.250Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 36,
+        "event": "log-write",
+        "id": 27,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Navigation.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:05:17.530Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 28,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/CalEmbed.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:05:25.996Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 29,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/CalEmbed.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:05:30.719Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 44,
+        "event": "log-write",
+        "id": 30,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Contact.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:05:45.920Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 37,
+        "event": "log-write",
+        "id": 31,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Contact.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:05:52.860Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 32,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/sitemap.ts\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:06:09.926Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 33,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/CardCatalogHero.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:06:17.071Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 40,
+        "event": "log-write",
+        "id": 34,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/systemsData.ts\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:06:34.263Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 37,
+        "event": "log-write",
+        "id": 35,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/systemsData.ts\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:06:50.317Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "log-write",
+        "id": 36,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/SystemBlock.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:07:02.842Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 37,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/SystemBlock.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:07:08.767Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 35,
+        "event": "log-write",
+        "id": 38,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/CardCatalogHero.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:07:27.229Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 35,
+        "event": "log-write",
+        "id": 39,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Navigation.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:08:20.248Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 40,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Navigation.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:08:25.176Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 41,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Navigation.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:08:33.106Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 42,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Navigation.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:08:37.697Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 47,
+        "event": "post-compact-restore",
+        "id": 43,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629125549-98462",
+        "ts": "2026-06-29T20:08:58.752Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 36,
+        "event": "log-write",
+        "id": 44,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/About.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:10:27.514Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 35,
+        "event": "log-write",
+        "id": 45,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/About.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:10:32.257Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 46,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/About.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:10:37.365Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "log-write",
+        "id": 47,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/About.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:11:01.597Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 48,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Hero.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:11:13.221Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 49,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/.claude/projects/-Users-slowember-Documents-Vaults/memory/booking-page-connect.md\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:14:47.863Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 55,
+        "event": "post-compact-restore",
+        "id": 50,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629125549-98462",
+        "ts": "2026-06-29T20:15:31.098Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "post-compact-restore",
+        "id": 51,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629125549-98462",
+        "ts": "2026-06-29T20:48:53.487Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 36,
+        "event": "log-write",
+        "id": 52,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/public/_headers\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:50:23.309Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 57,
+        "event": "post-compact-restore",
+        "id": 53,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629125549-98462",
+        "ts": "2026-06-29T20:51:52.563Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 54,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/.claude/projects/-Users-slowember-Documents-Vaults/memory/booking-page-connect.md\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:52:12.242Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 52,
+        "event": "post-compact-restore",
+        "id": 55,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629125549-98462",
+        "ts": "2026-06-29T20:55:57.605Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 35,
+        "event": "log-write",
+        "id": 56,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Timeline.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:57:23.579Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 39,
+        "event": "log-write",
+        "id": 57,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/ThinkingSection.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T20:58:14.283Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 52,
+        "event": "post-compact-restore",
+        "id": 58,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629125549-98462",
+        "ts": "2026-06-29T20:59:19.353Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "log-write",
+        "id": 59,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Contact.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T21:00:15.198Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "log-write",
+        "id": 60,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Contact.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-29T21:00:25.363Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 82,
+        "event": "post-compact-restore",
+        "id": 61,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629125549-98462",
+        "ts": "2026-06-29T21:03:15.295Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "post-compact-restore",
+        "id": 62,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629141903-54780",
+        "ts": "2026-06-29T23:54:18.131Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "post-compact-restore",
+        "id": 63,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260629141903-54780",
+        "ts": "2026-06-29T23:54:49.641Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 64,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/.claude/hooks/no-em-dash.sh\"}",
+        "session_id": "",
+        "ts": "2026-06-29T23:58:46.024Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "log-write",
+        "id": 65,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/.claude/settings.json\"}",
+        "session_id": "",
+        "ts": "2026-06-29T23:59:02.852Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 66,
+        "metadata": "{\"branch\":\"main\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-06-30T23:15:32.215Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 3561,
+        "event": "session-start",
+        "id": 67,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-06-30T23:15:32.230Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 47,
+        "event": "post-compact-restore",
+        "id": 68,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-06-30T23:16:29.554Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 69,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/tailwind.config.ts\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:20:20.239Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 70,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/tailwind.config.ts\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:20:45.537Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 71,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/tailwind.config.ts\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:20:46.922Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 72,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/tailwind.config.ts\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:20:47.933Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 73,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/globals.css\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:24:58.856Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 29,
+        "event": "log-write",
+        "id": 74,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/PaperGrain.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:25:09.528Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 75,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/layout.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:25:26.135Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 76,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/studio/Reveal.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:26:15.403Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 77,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/studio/SectionHeader.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:26:20.804Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 78,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/studio/Modal.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:26:28.500Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 79,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/studioData.ts\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:29:14.455Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 80,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Navigation.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:29:51.052Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 50,
+        "event": "log-write",
+        "id": 81,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Hero.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:30:48.936Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 82,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/LivingDesk.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:31:38.012Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 83,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Playground.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:31:54.494Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 84,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Manifesto.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:32:14.496Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 85,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/StudioFooter.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:32:27.234Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "log-write",
+        "id": 86,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:32:34.901Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 35,
+        "event": "log-write",
+        "id": 87,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/CuriosityMap.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:33:23.782Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 88,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Obsessions.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:33:38.574Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 89,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Cabinet.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:33:52.305Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 90,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/About.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:34:24.047Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 91,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/about/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:34:30.346Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 92,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Bookshelf.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:35:30.427Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 93,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/ThinkingSection.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:35:52.685Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 94,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/writing/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:35:58.214Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 29,
+        "event": "log-write",
+        "id": 95,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:36:40.224Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 96,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:36:55.150Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 97,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/open-source/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:37:02.605Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 98,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/EvidenceGrid.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:37:36.724Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 99,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Timeline.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:37:52.656Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 100,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/CalEmbed.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:38:01.345Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 101,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Contact.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:38:16.461Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 102,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/evidence/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:38:21.889Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "log-write",
+        "id": 103,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/timeline/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:38:27.575Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 104,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/contact/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-06-30T23:38:33.375Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 90,
+        "event": "capture-error",
+        "id": 105,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-06-30T23:39:57.609Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 47,
+        "event": "post-compact-restore",
+        "id": 106,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T02:55:03.675Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "post-compact-restore",
+        "id": 107,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T02:55:20.267Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 37,
+        "event": "log-write",
+        "id": 108,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/studioData.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-01T02:56:29.706Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 34,
+        "event": "log-write",
+        "id": 109,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/writing/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T02:56:37.416Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 41,
+        "event": "log-write",
+        "id": 110,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/ThinkingSection.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T02:56:42.099Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 50,
+        "event": "post-compact-restore",
+        "id": 111,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T02:59:32.201Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 94,
+        "event": "capture-error",
+        "id": 112,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:01:34.019Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 49,
+        "event": "post-compact-restore",
+        "id": 113,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:04:48.154Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 87,
+        "event": "capture-error",
+        "id": 114,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:06:45.196Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 63,
+        "event": "capture-error",
+        "id": 115,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:07:11.152Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 38,
+        "event": "log-write",
+        "id": 116,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:12:41.955Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 117,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:12:55.036Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 118,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:13:07.568Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 119,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:13:22.985Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 120,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/open-source/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:13:32.099Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 47,
+        "event": "post-compact-restore",
+        "id": 121,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:27:08.031Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 79,
+        "event": "capture-error",
+        "id": 122,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:30:40.694Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 35,
+        "event": "log-write",
+        "id": 123,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:33:12.253Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 124,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:33:20.200Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 125,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:33:38.106Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "log-write",
+        "id": 126,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:33:46.077Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 127,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:35:36.445Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 29,
+        "event": "log-write",
+        "id": 128,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:35:50.845Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 129,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:36:00.890Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 130,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:36:08.468Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "post-compact-restore",
+        "id": 131,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:39:48.939Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 39,
+        "event": "log-write",
+        "id": 132,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:41:00.609Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 50,
+        "event": "post-compact-restore",
+        "id": 133,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:43:05.144Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "post-compact-restore",
+        "id": 134,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:43:23.765Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 50,
+        "event": "post-compact-restore",
+        "id": 135,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:44:34.355Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 136,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:51:17.250Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 137,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:51:26.410Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 50,
+        "event": "post-compact-restore",
+        "id": 138,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:52:58.048Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "post-compact-restore",
+        "id": 139,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:53:16.201Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 82,
+        "event": "log-write",
+        "id": 140,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:55:25.352Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 37,
+        "event": "log-write",
+        "id": 141,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:55:37.470Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 142,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:55:48.556Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 143,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:55:59.201Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 30,
+        "event": "log-write",
+        "id": 144,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T03:56:08.105Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "post-compact-restore",
+        "id": 145,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T03:57:52.961Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 89,
+        "event": "capture-error",
+        "id": 146,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T04:00:06.068Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 35,
+        "event": "log-write",
+        "id": 147,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T04:01:18.648Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "log-write",
+        "id": 148,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T04:01:35.687Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 149,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T04:01:37.444Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 50,
+        "event": "post-compact-restore",
+        "id": 150,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T16:58:13.991Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 36,
+        "event": "log-write",
+        "id": 151,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/systems/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T17:03:51.078Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 36,
+        "event": "log-write",
+        "id": 152,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T17:04:08.055Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 35,
+        "event": "log-write",
+        "id": 153,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-01T17:04:25.452Z"
+      }
+    ],
+    "execution_traces": [],
+    "experiments": [],
+    "hypotheses": [],
+    "learnings": [],
+    "nodes": []
+  }
+}

@@ -2,55 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   COGNITIVE SUBSTRATE DESIGN SYSTEM
-   Theme: Layered Intelligence Made Visible
-   Philosophy: Form follows concept, not trend
-   ═══════════════════════════════════════════════════════════════════════════ */
+/* ============================================================================
+   STUDIO DESIGN SYSTEM
+   Print editorial warmth, brought onto the web. Sunlight through a library window.
+   ========================================================================== */
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   CSS CUSTOM PROPERTIES
-   Cognitive state represented through color, not decoration
-   ───────────────────────────────────────────────────────────────────────────── */
-:root {
-  /* Substrate layers - deep to surface */
-  --substrate-void: #0a0814;
-  --substrate-deep: #0d1b2a;
-  --substrate-mid: #1b263b;
-  --substrate-surface: #2d3e50;
-
-  /* Cognitive states */
-  --cognition: #00d9ff;
-  --cognition-dim: rgba(0, 217, 255, 0.5);
-  --cognition-glow: rgba(0, 217, 255, 0.25);
-  --cognition-subtle: rgba(0, 217, 255, 0.12);
-
-  /* Emergence / connections */
-  --emergence: #8b5cf6;
-  --emergence-dim: rgba(139, 92, 246, 0.5);
-  --emergence-glow: rgba(139, 92, 246, 0.25);
-  --emergence-subtle: rgba(139, 92, 246, 0.12);
-
-  /* Memory / persistence */
-  --memory: #fbbf24;
-  --memory-dim: rgba(251, 191, 36, 0.5);
-  --memory-glow: rgba(251, 191, 36, 0.25);
-
-  /* Data flow */
-  --data: #3b82f6;
-  --data-dim: rgba(59, 130, 246, 0.5);
-  --data-glow: rgba(59, 130, 246, 0.25);
-
-  /* Glass properties */
-  --glass-bg: rgba(13, 27, 42, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-hover: rgba(0, 217, 255, 0.3);
-  --glass-blur: 12px;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   BASE STYLES
-   ───────────────────────────────────────────────────────────────────────────── */
 * {
   box-sizing: border-box;
 }
@@ -60,431 +16,144 @@ html {
 }
 
 body {
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  background: var(--substrate-void);
-  color: #e5e5e5;
+  margin: 0;
+  background: #f3ede0;
+  color: #2c2823;
+  font-family: var(--font-sans), "Hanken Grotesk", system-ui, sans-serif;
+  font-weight: 400;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   TYPOGRAPHY AS DATA STRUCTURE
-   Text is data being processed
-   ───────────────────────────────────────────────────────────────────────────── */
-.text-data {
-  font-family: var(--font-mono), "Fira Code", monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--cognition-dim);
-}
-
-.text-meta {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.text-display {
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-weight: 300;
-  letter-spacing: -0.02em;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   GLASS SUBSTRATE CARDS
-   Information floating in cognitive space
-   ───────────────────────────────────────────────────────────────────────────── */
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--glass-border);
-  border-radius: 8px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-panel:hover {
-  background: rgba(13, 27, 42, 0.75);
-  border-color: var(--glass-border-hover);
-  transform: translateY(-2px) translateZ(10px);
-  box-shadow: 0 0 30px var(--cognition-glow), 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.glass-panel-active {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--cognition-dim);
-  box-shadow: 0 0 20px var(--cognition-glow), 0 0 40px var(--cognition-subtle),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  animation: pulseGlow 3s ease-in-out infinite;
-}
-
-@keyframes pulseGlow {
-  0%,
-  100% {
-    box-shadow: 0 0 20px var(--cognition-glow), 0 0 40px var(--cognition-subtle);
-    border-color: var(--cognition-dim);
-  }
-  50% {
-    box-shadow: 0 0 30px var(--cognition-dim), 0 0 60px var(--cognition-glow);
-    border-color: var(--cognition);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   SUBSTRATE BACKGROUND LAYERS
-   Depth perception through translucent planes
-   ───────────────────────────────────────────────────────────────────────────── */
-.substrate-layer {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-}
-
-.substrate-layer-deep {
-  background: radial-gradient(
-      ellipse 80% 60% at 10% 90%,
-      var(--emergence-subtle) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse 70% 50% at 90% 10%,
-      var(--data-glow) 0%,
-      transparent 50%
-    ),
-    linear-gradient(
-      180deg,
-      var(--substrate-void) 0%,
-      var(--substrate-deep) 100%
-    );
-  z-index: -30;
-}
-
-.substrate-layer-mid {
-  background: radial-gradient(
-      circle at 30% 70%,
-      var(--cognition-subtle) 0%,
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 70% 30%,
-      var(--emergence-subtle) 0%,
-      transparent 40%
-    );
-  z-index: -20;
-  animation: drift 30s ease-in-out infinite;
-}
-
-.substrate-layer-surface {
-  background: radial-gradient(
-    circle at 50% 50%,
-    transparent 30%,
-    var(--substrate-void) 70%
-  );
-  z-index: -10;
-}
-
-@keyframes drift {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(20px, -10px) scale(1.02);
-  }
-  50% {
-    transform: translate(-10px, 20px) scale(0.98);
-  }
-  75% {
-    transform: translate(-20px, -20px) scale(1.01);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   NEURAL CONNECTION LINES
-   Thoughts connecting across substrate
-   ───────────────────────────────────────────────────────────────────────────── */
-.neural-line {
-  stroke: var(--emergence-dim);
-  stroke-width: 1;
-  fill: none;
-  stroke-linecap: round;
-  animation: networkPulse 3s ease-in-out infinite;
-}
-
-@keyframes networkPulse {
-  0%,
-  100% {
-    stroke-opacity: 0.2;
-    stroke-width: 1;
-  }
-  50% {
-    stroke-opacity: 0.6;
-    stroke-width: 1.5;
-  }
-}
-
-.neural-node {
-  fill: var(--substrate-mid);
-  stroke: var(--cognition-dim);
-  stroke-width: 1;
-  transition: all 0.3s ease;
-}
-
-.neural-node:hover {
-  fill: var(--substrate-surface);
-  stroke: var(--cognition);
-  stroke-width: 2;
-  filter: drop-shadow(0 0 10px var(--cognition-dim));
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   ACTIVE COGNITION INDICATORS
-   Pulsing glow around active elements
-   ───────────────────────────────────────────────────────────────────────────── */
-.cognition-glow {
-  position: relative;
-}
-
-.cognition-glow::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    var(--cognition-dim),
-    var(--emergence-dim)
-  );
-  z-index: -1;
-  opacity: 0;
-  filter: blur(8px);
-  transition: opacity 0.4s ease;
-}
-
-.cognition-glow:hover::before {
-  opacity: 1;
-}
-
-.cognition-active {
-  border-color: var(--cognition-dim) !important;
-  box-shadow: 0 0 20px var(--cognition-glow),
-    inset 0 0 20px var(--cognition-subtle);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   DATA STREAM AESTHETIC
-   Information flowing through system
-   ───────────────────────────────────────────────────────────────────────────── */
-.data-stream {
-  position: fixed;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 40px;
-  overflow: hidden;
-  pointer-events: none;
-  opacity: 0.3;
-  z-index: 5;
-}
-
-.data-particle {
-  position: absolute;
-  width: 2px;
-  height: 20px;
-  background: linear-gradient(
-    180deg,
-    transparent,
-    var(--cognition),
-    transparent
-  );
-  animation: particleFlow 8s linear infinite;
-}
-
-@keyframes particleFlow {
-  0% {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100px);
-    opacity: 0;
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   MEMORY TRACES
-   Past interactions leave visible trails
-   ───────────────────────────────────────────────────────────────────────────── */
-.memory-trace {
-  position: relative;
-}
-
-.memory-trace::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--memory-dim),
-    transparent
-  );
-  opacity: 0;
-  transform: scaleX(0);
-  transition: all 0.4s ease;
-}
-
-.memory-trace:hover::after {
-  opacity: 1;
-  transform: scaleX(1);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   EMERGENCE GRID
-   Ripple effects showing local rules creating global patterns
-   ───────────────────────────────────────────────────────────────────────────── */
-.emergence-grid {
-  background-image: linear-gradient(var(--glass-border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
-  background-size: 60px 60px;
-  background-position: center;
-}
-
-.emergence-ripple {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid var(--cognition-dim);
-  animation: ripple 2s ease-out forwards;
-  pointer-events: none;
-}
-
-@keyframes ripple {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-  100% {
-    width: 200px;
-    height: 200px;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   HOVER STATES AS ATTENTION
-   System focusing attention here
-   ───────────────────────────────────────────────────────────────────────────── */
-.attention-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.attention-hover:hover {
-  transform: translateY(-4px);
-  filter: brightness(1.1);
-}
-
-/* Link styles */
-a {
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-a:hover {
-  color: var(--cognition);
-  text-shadow: 0 0 20px var(--cognition-glow);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   SCROLL ANIMATIONS
-   Reveal as user travels through cognitive depth
-   ───────────────────────────────────────────────────────────────────────────── */
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal-on-scroll.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Stagger delays for orchestrated reveals */
-.stagger-1 {
-  transition-delay: 0.1s;
-}
-.stagger-2 {
-  transition-delay: 0.2s;
-}
-.stagger-3 {
-  transition-delay: 0.3s;
-}
-.stagger-4 {
-  transition-delay: 0.4s;
-}
-.stagger-5 {
-  transition-delay: 0.5s;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   SCROLLBAR - MINIMAL DATA AESTHETIC
-   ───────────────────────────────────────────────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--substrate-void);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--substrate-mid);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--cognition-dim);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   SELECTION - COGNITIVE HIGHLIGHT
-   ───────────────────────────────────────────────────────────────────────────── */
 ::selection {
-  background: var(--cognition-glow);
-  color: white;
+  background: #b56a4f;
+  color: #f8f4ea;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   FOCUS STATES - ACCESSIBILITY
-   ───────────────────────────────────────────────────────────────────────────── */
+/* ----------------------------------------------------------------------------
+   TYPOGRAPHIC HELPERS
+   -------------------------------------------------------------------------- */
+.font-serif {
+  font-family: var(--font-serif), "Newsreader", Georgia, serif;
+}
+.font-mono {
+  font-family: var(--font-mono), "Space Mono", ui-monospace, monospace;
+}
+
+/* Mono caption / figure label, the museum-signage voice */
+.kicker {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8a8275;
+}
+
+/* Hairline rule used under section headers */
+.rule {
+  border: 0;
+  border-top: 1px solid rgba(44, 40, 35, 0.18);
+}
+
+@layer components {
+  .field-input {
+    width: 100%;
+    border: 1px solid rgba(44, 40, 35, 0.18);
+    background: rgba(248, 244, 234, 0.52);
+    padding: 0.8rem 0.9rem;
+    color: #2c2823;
+    font: inherit;
+    line-height: 1.55;
+    outline: none;
+    transition: border-color 0.24s ease, background-color 0.24s ease, box-shadow 0.24s ease;
+  }
+
+  .field-input::placeholder {
+    color: #8a8275;
+  }
+
+  .field-input:focus {
+    border-color: #b56a4f;
+    background: rgba(248, 244, 234, 0.82);
+    box-shadow: 0 0 0 3px rgba(181, 106, 79, 0.12);
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   SCROLL REVEAL
+   Content emerging from beneath paper. Driven by the <Reveal> component.
+   -------------------------------------------------------------------------- */
+[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-enhanced [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 1s cubic-bezier(0.2, 0.6, 0.2, 1),
+    transform 1s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.reveal-enhanced [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ----------------------------------------------------------------------------
+   LINKS
+   -------------------------------------------------------------------------- */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ----------------------------------------------------------------------------
+   SCROLLBAR, warm and thin
+   -------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #ece4d4;
+}
+::-webkit-scrollbar-thumb {
+  background: #cdbf9f;
+  border-radius: 6px;
+  border: 2px solid #ece4d4;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b59f76;
+}
+
+/* ----------------------------------------------------------------------------
+   FOCUS, accessible
+   -------------------------------------------------------------------------- */
 a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--cognition);
-  outline-offset: 4px;
-  border-radius: 4px;
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #b56a4f;
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   REDUCED MOTION PREFERENCES
-   ───────────────────────────────────────────────────────────────────────────── */
+textarea:focus-visible {
+  outline: 2px solid #b56a4f;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.nav-index-toggle:focus-visible {
+  outline: 0;
+  color: #b56a4f;
+}
+
+/* ----------------------------------------------------------------------------
+   REDUCED MOTION
+   -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -493,47 +162,22 @@ button:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   UTILITY CLASSES
-   ───────────────────────────────────────────────────────────────────────────── */
-.border-gradient {
-  border: 1px solid transparent;
-  background: linear-gradient(var(--glass-bg), var(--glass-bg)) padding-box,
-    linear-gradient(135deg, var(--cognition-dim), var(--emergence-dim))
-      border-box;
-}
-
-.text-gradient-cognition {
-  background: linear-gradient(135deg, var(--cognition), var(--emergence));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-memory {
-  background: linear-gradient(135deg, var(--memory), var(--cognition));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Touch targets for mobile */
+/* Touch targets on mobile */
 @media (max-width: 640px) {
   button,
   a {
     min-height: 44px;
   }
-}
 
-/* Touch manipulation utility */
-.touch-manipulation {
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Touch active state for mobile interactions */
-.touch-active {
-  /* This class is added via JavaScript for touch interactions */
+  .kicker {
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    line-height: 1.7;
+  }
 }

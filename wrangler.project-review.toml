@@ -1,0 +1,11 @@
+name = "personalsite-project-review"
+main = "workers/project-review.ts"
+compatibility_date = "2025-01-14"
+workers_dev = true
+
+[[routes]]
+pattern = "ariaxhan.com/api/project-review*"
+zone_name = "ariaxhan.com"
+
+[[send_email]]
+name = "EMAIL"

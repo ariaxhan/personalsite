@@ -1,299 +1,83 @@
-"use client";
+import Link from "next/link";
+import SectionHeader from "./studio/SectionHeader";
+import Reveal from "./studio/Reveal";
+import { CONTACT_EMAIL, contactLinks } from "../utils/studioData";
 
-import { motion, useInView } from "framer-motion";
-import { Mail, Github, BookOpen, Linkedin, ArrowUpRight, X } from "lucide-react";
-import { useRef, useState } from "react";
-import CalEmbed from "./CalEmbed";
-
-interface ContactLink {
-  label: string;
-  href: string;
-  external?: boolean;
-  icon: React.ReactNode;
-  color: "cognition" | "emergence" | "memory" | "data";
-}
-
-const contactLinks: ContactLink[] = [
-  {
-    label: "ariaxhan@gmail.com",
-    href: "mailto:ariaxhan@gmail.com",
-    icon: <Mail className="w-5 h-5" />,
-    color: "cognition",
-  },
-  {
-    label: "GitHub",
-    href: "https://github.com/ariaxhan",
-    external: true,
-    icon: <Github className="w-5 h-5" />,
-    color: "emergence",
-  },
-  {
-    label: "Medium",
-    href: "https://medium.com/@ariaxhan",
-    external: true,
-    icon: <BookOpen className="w-5 h-5" />,
-    color: "data",
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/ariahan/",
-    external: true,
-    icon: <Linkedin className="w-5 h-5" />,
-    color: "memory",
-  },
-  {
-    label: "X (Twitter)",
-    href: "https://x.com/aria__han",
-    external: true,
-    icon: <X className="w-5 h-5" />,
-    color: "cognition",
-  },
-];
-
-const colorStyles = {
-  cognition: {
-    text: "text-cognition",
-    border: "border-cognition/30 hover:border-cognition/60",
-    bg: "hover:bg-cognition/5",
-    glow: "rgba(0, 217, 255, 0.2)",
-  },
-  emergence: {
-    text: "text-emergence",
-    border: "border-emergence/30 hover:border-emergence/60",
-    bg: "hover:bg-emergence/5",
-    glow: "rgba(139, 92, 246, 0.2)",
-  },
-  memory: {
-    text: "text-memory",
-    border: "border-memory/30 hover:border-memory/60",
-    bg: "hover:bg-memory/5",
-    glow: "rgba(251, 191, 36, 0.2)",
-  },
-  data: {
-    text: "text-data",
-    border: "border-data/30 hover:border-data/60",
-    bg: "hover:bg-data/5",
-    glow: "rgba(59, 130, 246, 0.2)",
-  },
-};
-
-const consultingServices: string[] = [
-  "Learning to use AI better, hands-on, for you or your team",
-  "Designing personalized AI workflows for individuals and companies",
-  "Helping founders get started with AI from zero",
-  "Reviewing AI-generated and vibe-coded projects",
-  "Code reviews and refactors of existing codebases",
-  "Technical expertise and architecture advising",
-];
-
-/**
- * Contact: Network nodes for connection
- *
- * Concept: Each contact method is a node in the network of connection.
- * Like neurons reaching out to form synapses, these are the pathways
- * through which communication flows. Hovering activates the node.
- */
 export default function Contact() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
-    <section 
-      ref={containerRef}
-      className="relative py-32 lg:py-40 overflow-hidden"
-    >
-      {/* Background gradient - convergence point */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-            radial-gradient(ellipse 60% 60% at 50% 100%, rgba(0, 217, 255, 0.08) 0%, transparent 50%),
-            radial-gradient(ellipse 40% 40% at 50% 0%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)
-          `,
-        }}
+    <section className="mx-auto max-w-[1120px] px-5 sm:px-8 lg:px-14" style={{ paddingTop: 120 }}>
+      <SectionHeader
+        fig="Fig. 10"
+        label="Contact"
+        title="Building with AI? Make it yours."
+        note="A one-time async review for the idea, the architecture, the tools, and what really matters: the human building it."
       />
 
-      <div className="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
-        {/* Section Header */}
-        <motion.div
-          className="text-center mb-20 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-        >
-          <p className="text-data tracking-[0.2em] mb-6">
-            <span className="text-cognition/60">⊛</span> 05_CONTACT
+      <Reveal className="mt-12 grid gap-10 pb-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div>
+          <div className="kicker mb-4">Project Review</div>
+          <p className="m-0 max-w-prose font-serif text-[clamp(28px,4vw,46px)] leading-[1.08] text-ink">
+            Send me what you&apos;re building.
           </p>
-          <h2 className="text-display text-4xl lg:text-6xl text-white/90 mb-6">
-            Get in Touch
-          </h2>
-          <p className="text-neutral-400 text-lg">
-            Building something interesting? The network is open for new connections.
+          <p className="m-0 mt-4 max-w-prose font-serif text-[clamp(18px,2.4vw,24px)] italic leading-[1.4] text-ink-ghost">
+            I&apos;ll get you to a place you won&apos;t get to from YouTube videos and AI conversations.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Open for consulting */}
-        <motion.div
-          className="max-w-3xl mx-auto mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.15 }}
-        >
-          <div className="glass-panel border border-cognition/30 p-6 lg:p-8">
-            <p className="text-data tracking-[0.2em] mb-3 text-xs">
-              <span className="text-cognition/60">⊛</span> OPEN FOR CONSULTING
-            </p>
-            <p className="text-neutral-300 text-base lg:text-lg leading-relaxed mb-6">
-              I&apos;m openly taking on consulting work and would genuinely love to hear from you.
-              If any of this is what you need, reach out, individuals and companies both welcome:
-            </p>
-            <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
-              {consultingServices.map((svc) => (
-                <li
-                  key={svc}
-                  className="flex items-start gap-3 text-neutral-400 text-sm leading-relaxed"
-                >
-                  <span className="text-cognition/70 mt-1 flex-shrink-0">▹</span>
-                  <span>{svc}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-neutral-500 text-sm mt-6">
-              Not sure if it fits? Ask anyway, book a call below or email me.
-            </p>
+        <div className="lg:border-l lg:border-[rgba(44,40,35,0.18)] lg:pl-8">
+          <p className="m-0 text-[17px] leading-[1.75] text-ink-muted">
+            Origin story, architecture, tools, repo, docs, screenshots, messy
+            AI-generated code. I care less about perfect code and more about
+            whether the thing has a real shape.
+          </p>
+          <p className="m-0 mt-5 font-serif text-[21px] italic leading-snug text-ink-ghost">
+            Not another template project. Something sharper, stranger, and more yours.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3 pl-12 sm:pl-0">
+            <Link
+              href="/project-review"
+              className="inline-flex min-h-11 items-center border border-ink bg-ink px-4 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-studio-paper transition-colors hover:border-terracotta hover:bg-terracotta sm:px-5 sm:text-[11px] sm:tracking-[0.18em]"
+            >
+              Submit project
+            </Link>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="inline-flex min-h-11 items-center border border-[rgba(44,40,35,0.28)] px-4 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-ink transition-colors hover:border-terracotta hover:text-terracotta sm:px-5 sm:text-[11px] sm:tracking-[0.18em]"
+            >
+              Email me
+            </a>
           </div>
-        </motion.div>
+        </div>
+      </Reveal>
 
-        {/* Contact links as network nodes */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-6 lg:gap-8"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          {contactLinks.map((link, index) => {
-            const colors = colorStyles[link.color];
-            const isHovered = hoveredIndex === index;
-
-            return (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noopener noreferrer" : undefined}
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.4 + index * 0.1,
-                  ease: [0.4, 0, 0.2, 1],
-                }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className={`
-                  group relative flex items-center gap-4
-                  px-6 py-5 glass-panel
-                  border ${colors.border} ${colors.bg}
-                  transition-all duration-400
-                `}
-                style={{
-                  boxShadow: isHovered ? `0 0 30px ${colors.glow}` : undefined,
-                }}
-              >
-                {/* Icon with glow */}
-                <span className={`
-                  transition-all duration-300
-                  ${isHovered ? colors.text : "text-neutral-400"}
-                `}>
-                  {link.icon}
-                </span>
-
-                {/* Label */}
-                <span className={`
-                  text-sm font-mono transition-colors duration-300
-                  ${isHovered ? "text-white" : "text-neutral-300"}
-                `}>
-                  {link.label}
-                </span>
-
-                {/* External link indicator */}
-                {link.external && (
-                  <ArrowUpRight className={`
-                    w-3.5 h-3.5 transition-all duration-300
-                    ${isHovered 
-                      ? `${colors.text} translate-x-0.5 -translate-y-0.5` 
-                      : "text-neutral-600"
-                    }
-                  `} />
-                )}
-
-                {/* Active node indicator */}
-                <div className={`
-                  absolute -top-1 -right-1 w-2 h-2 rounded-full
-                  transition-all duration-300
-                  ${isHovered 
-                    ? `${colors.text.replace('text-', 'bg-')} shadow-[0_0_8px_currentColor]` 
-                    : "bg-transparent"
-                  }
-                `} />
-              </motion.a>
-            );
-          })}
-        </motion.div>
-
-        {/* Booking node, grab a slot directly */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-16 max-w-2xl mx-auto"
-        >
-          <div className="glass-panel border border-cognition/30 p-4 lg:p-5">
-            <p className="text-data tracking-[0.2em] mb-1 text-xs">
-              <span className="text-cognition/60">⊛</span> BOOK A CALL
-            </p>
-            <p className="text-neutral-400 text-sm mb-4">
-              AI, consulting, or a project, pick a time. Availability is live across my calendars.
-            </p>
-            <CalEmbed calLink="aria-han/15min" minHeight={480} />
+      <Reveal className="mt-10 grid gap-6 sm:grid-cols-3">
+        {[
+          "Idea, origin, and what makes it yours",
+          "Architecture, agents, docs, and tool choices",
+          "What to keep, cut, rebuild, or rethink",
+        ].map((item) => (
+          <div key={item} className="border-t border-[rgba(44,40,35,0.16)] pt-4">
+            <p className="m-0 font-serif text-[20px] leading-snug text-ink">{item}</p>
           </div>
-        </motion.div>
+        ))}
+      </Reveal>
 
-        {/* Decorative network visualization */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 0.3 } : {}}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="absolute inset-0 pointer-events-none overflow-hidden"
-        >
-          <svg 
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px]"
-            viewBox="0 0 600 200"
-            fill="none"
-          >
-            {/* Network lines converging to center */}
-            {[...Array(5)].map((_, i) => (
-              <motion.path
-                key={i}
-                d={`M${100 + i * 100} 200 Q 300 100 300 50`}
-                stroke="url(#contact-gradient)"
-                strokeWidth="1"
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={isInView ? { pathLength: 1, opacity: 0.5 } : {}}
-                transition={{ duration: 1.5, delay: 0.5 + i * 0.1 }}
-              />
-            ))}
-            <defs>
-              <linearGradient id="contact-gradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" stopColor="#00d9ff" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </motion.div>
-      </div>
+      <Reveal className="mt-16">
+        <div className="kicker mb-6">Links</div>
+        <div className="flex flex-wrap gap-x-10 gap-y-5">
+          {contactLinks.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              target={l.external ? "_blank" : undefined}
+              rel={l.external ? "noopener noreferrer" : undefined}
+              className="border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[clamp(20px,2.6vw,28px)] text-ink transition-colors hover:border-terracotta hover:text-terracotta"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+      </Reveal>
     </section>
   );
 }

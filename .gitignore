@@ -45,3 +45,12 @@ next-env.d.ts
 
 # .idea
 .idea
+
+# agentdb: binary sqlite db never tracked, JSON mirror is (see Vaults sqlite-mirror rule)
+_meta/agentdb/*.db
+_meta/agentdb/*.db-shm
+_meta/agentdb/*.db-wal
+_meta/agentdb/*.db-journal
+
+# claude hook runtime state (per-session, not repo content)
+.claude/.killswitch/

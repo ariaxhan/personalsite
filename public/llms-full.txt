@@ -1,19 +1,19 @@
 # Aria Han, Full Site Snapshot
 
-> AI systems architect. Writer. Systems thinker.
+> Builder, writer, researcher. Agent memory, verification, model familiarity, and tools that protect attention.
 
 ## Bio
-Aria Han designs agent systems and writes about how they actually work. Three companies. Six hackathon wins. Forty-seven public GitHub repositories. Based in Los Angeles. Current public work centers on KERNEL, llm-bench, model-familiarity-engine, the-agent-library, metabrain, Substrate, and latent-diagnostics.
+Aria Han builds agent systems and writes about how they actually behave under real work. Three companies. Six hackathon wins. Forty-seven public GitHub repositories. Based in Los Angeles. Current public work centers on KERNEL, llm-bench, model-familiarity-engine, the-agent-library, metabrain, Substrate, and latent-diagnostics.
 
 ## Focus Areas
-- **Multi-agent coordination:** how independent agents share context, avoid merge conflicts, escalate decisions.
-- **Agent infrastructure:** KERNEL for Claude Code, AgentDB for cross-session state, contracts, validation, and multi-agent orchestration.
+- **Multi-agent coordination:** how independent agents share context, avoid conflicts, and stop dumping every thought into the chat window.
+- **Agent memory:** KERNEL for Claude Code, AgentDB for cross-session state, contracts, validation, and multi-agent orchestration.
 - **Benchmarks:** llm-bench runs practical workflow benchmarks for local and API-hosted language models with programmatic verifiers.
 - **Model familiarity:** model-familiarity-engine onboards language models through replayed known-outcome tasks, fail-closed redaction, floor-tested judging, and evidence-backed model cards.
 - **Portable skills:** the-agent-library packages reusable workflows for verification, planning, research, writing, work management, code engineering, and shipping.
 - **Representation research:** latent-diagnostics measures computational regimes inside model internals via attribution graph geometry.
 - **Creative systems:** Substrate is a daily generative art gallery created by Claude Code agents.
-- **Writing:** essays on agent coordination, memory systems, and how AI systems actually work (Medium @ariaxhan).
+- **Writing:** essays on agent coordination, memory systems, model behavior, and what survives contact with real work (Medium @ariaxhan).
 
 ## Public Work
 - **KERNEL**, Claude Code plugin for persistent memory, multi-agent orchestration, on-demand skills, validation gates, and an experiment engine.

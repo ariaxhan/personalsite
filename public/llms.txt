@@ -1,15 +1,14 @@
 # Aria Han
 
-> AI systems architect. Writer. Systems thinker. Building infrastructure for multi-agent coordination.
+> Builder, writer, researcher. Agent memory, verification, model familiarity, and tools that protect attention.
 
 ## Core
 - [About](https://ariaxhan.com/about): background, focus areas, current work
-- [Writing](https://ariaxhan.com/writing): essays on AI systems, agents, vector native interfaces
-- [Open Source](https://ariaxhan.com/open-source): KERNEL plugin, AgentDB, tooling
-- [Systems](https://ariaxhan.com/systems): architectural patterns and multi-agent coordination
+- [Writing](https://ariaxhan.com/writing): essays on agents, memory, model behavior, and what breaks in real work
+- [Open Source](https://ariaxhan.com/open-source): KERNEL, the-agent-library, llm-bench, model familiarity, memory, and diagnostics
+- [Systems](https://ariaxhan.com/systems): free solo dev apps, coordination systems, and memory tools
 - [Timeline](https://ariaxhan.com/timeline): project and company milestones
-- [Vector Native](https://ariaxhan.com/vn): research on notation for model internals
-- [Evidence](https://ariaxhan.com/evidence): proof of work, outputs, receipts
+- [Hackathons](https://ariaxhan.com/hackathons): hackathon wins, builds under pressure
 - [Contact](https://ariaxhan.com/contact): how to reach me
 
 ## Agent Resources

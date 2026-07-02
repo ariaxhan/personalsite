@@ -1,196 +1,144 @@
-"use client";
+import Reveal from "./studio/Reveal";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-
-interface Stat {
-  value: string;
-  label: string;
-  sublabel?: string;
-}
-
-const stats: Stat[] = [
-  { value: "3x", label: "Companies", sublabel: "founded" },
-  { value: "6", label: "Hackathons", sublabel: "won" },
-  { value: "34", label: "Skills", sublabel: "packaged" },
+const stats = [
+  { value: "3x", label: "Companies", sub: "Founded" },
+  { value: "6", label: "Hackathons", sub: "Won" },
+  { value: "34", label: "Skills", sub: "Packaged" },
 ];
 
-const tools = [
-	"Claude Code",
+const narrative = [
+  "I started as a language person. Journalism, essays, stories, poems, research rabbit holes, and constant reading.",
+  "Computer science did not feel like leaving that behind. It felt like picking up one more language. Variables, files, interfaces, loops: all of it was another way to arrange meaning so it could turn meaning into something real.",
+  "Then language models arrived, and it all came full circle.",
+];
+
+const pulls = [
+  "Language was never decoration.",
+  "It was the first machine I learned to build with.",
+];
+
+const narrative2 = [
+  "Since then: companies founded, hackathons won, apps shipped, research tools built, obsessive writing about where current systems fail. My philosophy: follow the weird question until it becomes something real: a repo, an essay, an app.",
+];
+
+const worksWith = [
+  "Claude Code, Codex, etc.",
   "Self-improving Systems",
-	"Multi-agent Orchestration",
-	"Coordination Protocols",
-	"AgentDB",
-  "Model Familiarity",
-  "Portable Skills",
-	"Reinforcement Learning",
-	"Memory Systems",
-	"Prompt Architecture",
-  "Evals/benchmarks"
+  "Multi-agent Orchestration",
+  "Coordination Protocols",
+  "Skills, Hooks, Plugins",
+  "Reinforcement Learning",
+  "Context & Memory Systems",
+  "Prompt Engineering & Architecture",
+  "Evals & Benchmarks",
+];
+
+const focus = [
+  { name: "KERNEL", text: "My Claude Code plugin. Persistent memory, agents that split the work instead of stepping on each other, an experiment engine that proves which workflows hold up. Active, open source, installable." },
+  { name: "llm-bench", text: "Practical workflow benchmarks for local and API-hosted language models, graded by programmatic verifiers." },
+  { name: "model-familiarity-engine", text: "Evidence-backed model cards from replayed known-outcome tasks and observed model behavior." },
+  { name: "the-agent-library", text: "A curated library of portable skills for checking your own work, planning, generating novel ideas, research, writing, work management, and code engineering." },
 ];
 
 /**
- * About: The comprehensive introduction
- * 
- * Not a resume. Not a pitch. Just who I am and what I've done.
+ * About: Background. The first-person account, set as editorial body text in a
+ * comfortable reading column, with a marginal sidebar of materials and current
+ * focus. The two short lines about language are pulled out large,
+ * the way a magazine lifts a sentence off the page.
  */
 export default function About() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-
   return (
-    <section ref={containerRef} className="relative py-16 sm:py-24 lg:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-6xl">
-        {/* Hero section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-          className="mb-16 sm:mb-20 lg:mb-24"
+    <section className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-14" style={{ paddingTop: 120 }}>
+      {/* Intro */}
+      <Reveal className="border-b border-[rgba(44,40,35,0.18)] pb-12">
+        <div className="kicker mb-4">About</div>
+        <h1
+          className="m-0 font-serif font-light text-ink"
+          style={{ fontSize: "clamp(40px, 7vw, 84px)", lineHeight: 0.98 }}
         >
-          <p className="text-data tracking-[0.2em] mb-4 sm:mb-6 text-xs sm:text-sm">
-            <span className="text-cognition/60">○</span> ABOUT
-          </p>
-          <h1 className="text-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white/90 mb-6 sm:mb-8 leading-[0.95]">
-            Background
-          </h1>
-          <p className="text-xl sm:text-2xl text-neutral-400 leading-relaxed max-w-3xl">
-            i&apos;ve always been interested in one thing: how language shapes thought.
-          </p>
-        </motion.div>
+          Background
+        </h1>
+        <p
+          className="m-0 mt-6 max-w-[760px] font-serif font-light italic text-ink-soft"
+          style={{ fontSize: "clamp(20px, 2.8vw, 32px)", lineHeight: 1.3 }}
+        >
+          I&apos;ve always been interested in one thing: how language shapes
+          thought.
+        </p>
+      </Reveal>
 
-        {/* Stats grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-3 gap-4 sm:gap-6 mb-16 sm:mb-20 lg:mb-24"
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              className="glass-panel p-5 sm:p-6 lg:p-8 text-center"
-            >
-              <p className="text-3xl sm:text-4xl lg:text-5xl font-extralight text-white/90 mb-1 sm:mb-2">
-                {stat.value}
-              </p>
-              <p className="text-xs sm:text-sm text-neutral-500 uppercase tracking-wider font-mono">
-                {stat.label}
-              </p>
-              {stat.sublabel && (
-                <p className="text-[0.625rem] sm:text-xs text-neutral-600 font-mono">
-                  {stat.sublabel}
-                </p>
-              )}
-            </motion.div>
+      {/* Stats */}
+      <Reveal className="grid grid-cols-3 gap-6 border-b border-[rgba(44,40,35,0.12)] py-10">
+        {stats.map((s) => (
+          <div key={s.label}>
+            <div className="font-serif font-light leading-none text-terracotta" style={{ fontSize: "clamp(36px, 6vw, 64px)" }}>
+              {s.value}
+            </div>
+            <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink">
+              {s.label}
+            </div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+              {s.sub}
+            </div>
+          </div>
+        ))}
+      </Reveal>
+
+      {/* Narrative + sidebar */}
+      <div className="grid gap-12 py-16 lg:grid-cols-[1.5fr_1fr] lg:gap-20">
+        <Reveal className="max-w-prose">
+          {narrative.map((p) => (
+            <p key={p} className="m-0 mb-7 text-[17px] leading-[1.8] text-ink-muted">
+              {p}
+            </p>
           ))}
-        </motion.div>
+          <div className="my-10">
+            {pulls.map((p) => (
+              <p
+                key={p}
+                className="m-0 mb-3 font-serif font-light italic text-ink"
+                style={{ fontSize: "clamp(26px, 3.6vw, 40px)", lineHeight: 1.18 }}
+              >
+                {p}
+              </p>
+            ))}
+          </div>
+          {narrative2.map((p) => (
+            <p key={p} className="m-0 mb-7 text-[17px] leading-[1.8] text-ink-muted">
+              {p}
+            </p>
+          ))}
+        </Reveal>
 
-        {/* Main content */}
-        <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 lg:gap-16">
-          {/* Left column - narrative */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-8 sm:space-y-10"
-          >
-            <div>
-              <div className="space-y-4 text-neutral-400 leading-relaxed">
-                <p>
-                  i started with journalism, essays, stories, and research. then i discovered computer science and realized it wasn&apos;t all that different. code was just another language. another way to describe complex systems with precision.
-                </p>
-                <p>
-                  when large language models arrived, those worlds merged.
-                </p>
-                <p>
-                  for the past two years i&apos;ve been building and shipping ai systems across evaluation, agent infrastructure, memory, research tools, mobile apps, and production workflows. but the more i build, the less interested i become in ai that&apos;s constantly asking for attention.
-                </p>
-                <p>
-                  i don&apos;t think the future is another chatbot.
-                </p>
-                <p>
-                  i think the best ai is ambient.
-                </p>
-                <p>
-                  it quietly organizes information, preserves context, coordinates work, and surfaces the right knowledge at the right moment. it doesn&apos;t interrupt your thinking. it protects it.
-                </p>
-                <p>
-                  that&apos;s what i want to build.
-                </p>
-                <p>
-                  not software that replaces human intelligence, but infrastructure that expands it. tools that disappear into the background so people can spend less time managing information and more time discovering, creating, and solving meaningful problems.
-                </p>
-                <p>
-                  the best technology isn&apos;t the part you notice.
-                </p>
-                <p>
-                  it&apos;s everything you no longer have to think about.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right column - tools & links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="space-y-8"
-          >
-            {/* Tools */}
-            <div className="glass-panel p-5 sm:p-6 lg:p-8">
-              <h3 className="text-xs sm:text-sm font-mono text-neutral-500 uppercase tracking-wider mb-4 sm:mb-6">
-                What I Work With
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {tools.map((tool) => (
-                  <span
-                    key={tool}
-                    className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-[0.625rem] sm:text-xs font-mono
-                             bg-substrate-deep border border-glass-border rounded
-                             text-neutral-400 hover:text-cognition hover:border-cognition/30
-                             transition-colors duration-300"
-                  >
-                    {tool}
+        <Reveal as="aside" delay={120} className="flex flex-col gap-10">
+          <div>
+            <div className="kicker mb-4">What I work with</div>
+            <ul className="flex flex-col gap-2">
+              {worksWith.map((w) => (
+                <li key={w} className="text-[15px] text-ink-faint">
+                  {w}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div className="kicker mb-4">Current focus</div>
+            <div className="flex flex-col gap-5">
+              {focus.map((f) => (
+                <p key={f.name} className="m-0 text-[14.5px] leading-relaxed text-ink-faint">
+                  <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-ink">
+                    {f.name}
                   </span>
-                ))}
-              </div>
+                  <span className="text-ink-ghost">: {f.text}</span>
+                </p>
+              ))}
             </div>
-
-            {/* Current focus */}
-            <div className="glass-panel p-5 sm:p-6 lg:p-8">
-              <h3 className="text-xs sm:text-sm font-mono text-neutral-500 uppercase tracking-wider mb-4">
-                Current Focus
-              </h3>
-              <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-4">
-                <b>KERNEL</b>: my Claude Code plugin for persistent agent memory, multi-agent orchestration, and an experiment engine that proves which workflows actually hold up. Active, open source, and installable.
-              </p>
-              <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-4">
-                <b>llm-bench</b>: practical workflow benchmarks for local and API-hosted language models, with programmatic verifiers and provider adapters.
-              </p>
-              <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-4">
-                <b>model-familiarity-engine</b>: evidence-backed model cards from replayed known-outcome tasks and observed model behavior.
-              </p>
-              <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
-                <b>the-agent-library</b>: a curated library of 34 portable skills for verification, planning, research, writing, work management, and code engineering.
-              </p>
-            </div>
-
-            {/* Location */}
-            <div className="glass-panel p-5 sm:p-6 lg:p-8">
-              <h3 className="text-xs sm:text-sm font-mono text-neutral-500 uppercase tracking-wider mb-4">
-                Location
-              </h3>
-              <p className="text-neutral-300 text-sm sm:text-base">
-                Los Angeles, CA
-              </p>
-            </div>
-          </motion.div>
-        </div>
+          </div>
+          <div>
+            <div className="kicker mb-2">Location</div>
+            <p className="m-0 font-serif text-[20px] text-ink">Los Angeles, CA</p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

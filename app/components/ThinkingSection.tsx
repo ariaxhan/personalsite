@@ -1,388 +1,67 @@
-"use client";
-
-import { motion, useInView } from "framer-motion";
-import { ExternalLink, ArrowUpRight, Sparkles } from "lucide-react";
-import { useRef, useState } from "react";
-
-interface Article {
-  title: string;
-  excerpt: string;
-  description: string;
-  link: string;
-  category: "agents" | "systems" | "philosophy";
-  readTime: string;
-}
-const articlesData: Article[] = [
-  {
-    title: "How to Secure API Keys for AI Agents",
-    excerpt: "When the AI asks you for a key, that's the exact moment to stop. The most dangerous habit in AI coding, and what to do instead.",
-    description: "Two kinds of keys: one buys compute, one buys access to your whole life, and only one has a spending cap. Why pasting keys into chats, .env files, and terminals keeps leaking them, how OAuth, Mac Keychain, and secrets managers actually compare, and the honest takeaway, there is no 'safe,' only less exposed. Ends with an audit prompt you can hand your agent.",
-    link: "https://medium.com/@ariaxhan/how-to-secure-api-keys-for-ai-agents-ca773a66bd84",
-    category: "agents",
-    readTime: "12 min",
-  },
-  {
-    title: "Opus 4.8 vs 4.7 vs Sonnet vs Haiku: When the Expensive Model Is Worth It",
-    excerpt: "A new model dropped with impressive numbers. The only question that matters: will you feel any difference in the work you actually do?",
-    description: "Ran all four Claude tiers through 21 code-graded tasks, back to back, no LLM-as-judge, just verifiers. The finding: on everyday work the cheapest model nearly matches the priciest, so save Opus for the genuinely hard jobs. Defaulting to the biggest model is the most expensive habit in AI.",
-    link: "https://medium.com/@ariaxhan/opus-4-8-vs-4-7-vs-sonnet-vs-haiku-when-the-expensive-model-is-worth-it-44892a75d5c5",
-    category: "systems",
-    readTime: "12 min",
-  },
-  {
-    title: "What an AI Detector Actually Measures",
-    excerpt: "AI detectors promise to tell you if a machine wrote something. What they actually measure is much narrower, and shakier.",
-    description: "These tools score how predictable text is, not whether AI wrote it, so they flag clean writing and famous passages like the Constitution as 'AI.' Why the false-positive rate makes them unfit for any decision that affects a real person.",
-    link: "https://medium.com/@ariaxhan/what-an-ai-detector-actually-measures-86b452979a5a",
-    category: "philosophy",
-    readTime: "6 min",
-  },
-  {
-    title: "Stop Copying Other People's AI Setups. Build One That's Actually Yours.",
-    excerpt: "Borrowed AI workflows aren't accountable to your work. Build one that's tested against your own evidence.",
-    description: "A repeatable method: turn each rule into a falsifiable hypothesis, mine your own work history for cases that support or break it, and keep only what survives. The setup grounded in your track record is the one that actually holds up, and adapts when things change.",
-    link: "https://medium.com/@ariaxhan/stop-copying-other-peoples-ai-setups-build-one-that-s-actually-yours-e1a05ebabc2a",
-    category: "systems",
-    readTime: "10 min",
-  },
-  {
-    title: "How to Make Claude Code Actually Work",
-    excerpt: "The most capable AI coding tool available. Also completely chaotic.",
-    description: "Structure, memory, and multi-agent workflows, the full guide to KERNEL, the plugin I built to give Claude Code guardrails, persistent memory, and a real methodology.",
-    link: "https://medium.com/@ariaxhan/how-to-make-claude-code-actually-work-structure-memory-and-multi-agent-workflows-6d32b1d815d2",
-    category: "systems",
-    readTime: "12 min",
-  },
-  {
-    title: "Engineering the Soul",
-    excerpt: "We ask engineers to explain the ghost in the machine. The novelists have been documenting it for years.",
-    description: "Reading AI consciousness through four novels, Babel, A Psalm for the Wild-Built, Katabasis, The Humans. Every answer to 'can a machine care' ends up sounding like the person answering.",
-    link: "https://medium.com/@ariaxhan/engineering-the-soul-49428c073c4e",
-    category: "philosophy",
-    readTime: "6 min",
-  },
-  {
-    title: "The Agent-Ready Web: A Working Guide to Cloudflare's New Score",
-    excerpt: "I pointed Cloudflare's new agent-readiness scanner at my own site. Zero of thirteen.",
-    description: "What it actually takes to make a site legible to AI agents, llms.txt, markdown negotiation, MCP, content-signals, and why half the checks are business decisions disguised as config.",
-    link: "https://medium.com/@ariaxhan/the-agent-ready-web-a-working-guide-to-cloudflares-new-score-1ed0fce8d760",
-    category: "systems",
-    readTime: "12 min",
-  },
-  {
-    title: "Stop Writing Markdown. Start Writing Memory.",
-    excerpt: "Markdown is optimized for human eyes. Terrible for knowledge agents need to query.",
-    description: "Rebuilt my agent workflow around SQLite. Three tables: context, learnings, errors. No markdown generation unless a human needs to read something.",
-    link: "https://medium.com/@ariaxhan/stop-writing-markdown-start-writing-memory-e4a69c57caa9",
-    category: "systems",
-    readTime: "6 min",
-  },
-  {
-    title: "I Put ChatGPT in Charge of Claude Code",
-    excerpt: "What happens when you use one model to orchestrate another?",
-    description: "Multi-model orchestration experiment. ChatGPT as strategic observer, Claude as executor. The results were unexpected.",
-    link: "https://medium.com/@ariaxhan/i-put-chatgpt-in-charge-of-claude-code-7b9bf5bb8ea9",
-    category: "agents",
-    readTime: "5 min",
-  },
-  {
-    title: "I Tested OpenAI's New Codex Desktop App",
-    excerpt: "OpenAI shipped a genuinely novel interface. Then the model opened its mouth.",
-    description: "The UI is the real product. A review of the Codex desktop app and what it reveals about the future of AI coding tools.",
-    link: "https://medium.com/@ariaxhan/i-tested-openais-new-codex-desktop-app-the-ui-is-the-real-product-c2c59bdcb5f6",
-    category: "philosophy",
-    readTime: "5 min",
-  },
-  {
-    title: "Automations with Claude Code",
-    excerpt: "A pattern for proactive AI on your own machine.",
-    description: "Personalized proactive emails and code-poetry from local context. How I set up automations that run without my intervention.",
-    link: "https://medium.com/@ariaxhan/automations-with-claude-code-personalized-proactive-emails-and-code-poetry-from-local-context-3a7e93bf5a3d",
-    category: "systems",
-    readTime: "4 min",
-  },
-  {
-    title: "KERNEL: Self-Evolving Claude Code Configuration",
-    excerpt: "How I stopped fighting my config and let it learn instead.",
-    description: "A Claude Code plugin that makes your setup evolve automatically based on how you actually work. AgentDB, orchestration, contracts.",
-    link: "https://medium.com/@ariaxhan/kernel-the-ultimate-self-evolving-claude-code-and-cursor-configuration-system-a3ddeb7f4d32",
-    category: "systems",
-    readTime: "6 min",
-  },
-  {
-    title: "From Friction to Flow: Building a Command Library",
-    excerpt: "Commands as cognitive offloading. Stop remembering, start invoking.",
-    description: "How building a command vocabulary for Claude Code changed my workflow from fighting the tool to flowing with it.",
-    link: "https://medium.com/@ariaxhan/from-friction-to-flow-building-a-command-library-for-claude-code-a9eb19f7dce2",
-    category: "systems",
-    readTime: "5 min",
-  },
-  {
-    title: "10 Things I Wish I Knew About AI Coding",
-    excerpt: "Hard-won lessons from daily production use of AI coding tools.",
-    description: "Practical wisdom from production use. What actually matters when you code with AI every day.",
-    link: "https://medium.com/@ariaxhan/10-things-i-wish-i-knew-when-i-started-using-ai-for-coding-887c26a6c1d1",
-    category: "philosophy",
-    readTime: "5 min",
-  },
-  {
-    title: "This AI Analyzes My Entire Life",
-    excerpt: "The Synthesis Pool: a personal AI that costs $0/month to run.",
-    description: "Built a system that connects all my data sources and synthesizes insights. Privacy-first, local-first, zero cloud cost.",
-    link: "https://medium.com/@ariaxhan/the-synthesis-pool-0ce814fdfa5f",
-    category: "agents",
-    readTime: "6 min",
-  },
-];
-
-const categoryColors = {
-  agents: { 
-    text: "text-cognition", 
-    bg: "bg-cognition/10", 
-    border: "border-cognition/30",
-    glow: "rgba(0, 217, 255, 0.15)",
-  },
-  systems: { 
-    text: "text-emergence", 
-    bg: "bg-emergence/10", 
-    border: "border-emergence/30",
-    glow: "rgba(139, 92, 246, 0.15)",
-  },
-  philosophy: { 
-    text: "text-memory", 
-    bg: "bg-memory/10", 
-    border: "border-memory/30",
-    glow: "rgba(251, 191, 36, 0.15)",
-  },
-};
+import SectionHeader from "./studio/SectionHeader";
+import Reveal from "./studio/Reveal";
+import { articles, MEDIUM_PROFILE } from "../utils/studioData";
 
 /**
- * ThinkingStream: Medium articles as flowing thoughts
- * 
- * Concept: Written work represents externalized cognition - thoughts
- * that have been captured and crystallized. Cards float in cognitive
- * space, connected to each other, showing the continuous stream of
- * thinking and exploration.
+ * ThinkingSection: the writing, set as an index.
+ *
+ * Not a card grid, a catalogue of essays. Each entry is a numbered row: the
+ * piece large in serif, its first line beneath, the subject and length kept in
+ * the margin. Reads like the contents page of a magazine.
  */
 export default function ThinkingSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
-    <section 
-      ref={containerRef}
-      className="relative py-32 lg:py-40 overflow-hidden"
-    >
-      {/* Background gradient */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-            radial-gradient(ellipse 50% 50% at 20% 50%, rgba(139, 92, 246, 0.06) 0%, transparent 60%),
-            radial-gradient(ellipse 40% 40% at 80% 50%, rgba(0, 217, 255, 0.04) 0%, transparent 50%)
-          `,
-        }}
+    <section className="mx-auto max-w-[1180px] px-5 pb-24 sm:px-8 lg:px-14 lg:pb-28" style={{ paddingTop: 120 }}>
+      <SectionHeader
+        fig="Fig. 09"
+        label="Writing"
+        title="Essays and field notes"
+        note="Agents, memory, model behavior, and the parts of AI that break in real work. Published on Medium."
       />
 
-      <div className="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
-        {/* Section Header */}
-        <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-        >
-          <p className="text-data tracking-[0.2em] mb-6">
-            <span className="text-data/60">⬡</span> TECHNICAL_WRITING
-          </p>
-          <h2 className="text-display text-4xl lg:text-6xl text-white/90 mb-6">
-            Technical Writing
-          </h2>
-          <p className="text-neutral-400 max-w-2xl text-base leading-relaxed">
-            Deep dives into agent coordination, memory systems, and AI architecture.
-          </p>
-        </motion.div>
-
-        {/* Meta Info - cognitive metadata */}
-        <motion.div
-          className="flex flex-wrap gap-8 lg:gap-16 mb-12"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          {[
-            { label: "Platform", value: "Medium" },
-            { label: "Focus", value: "Systems Architecture" },
-            { label: "Style", value: "Direct & Technical" },
-          ].map((item) => (
-            <div key={item.label} className="group">
-              <p className="text-meta mb-2">{item.label}</p>
-              <p className="text-neutral-300 text-sm group-hover:text-cognition/80 transition-colors">
-                {item.value}
-              </p>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Articles as floating thought cards */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-12 items-stretch">
-          {articlesData.map((article, index) => {
-            const colors = categoryColors[article.category];
-            const isHovered = hoveredIndex === index;
-
-            return (
-              <motion.a
-                key={index}
-                href={article.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30, rotateX: 5 }}
-                animate={isInView ? { 
-                  opacity: 1, 
-                  y: 0, 
-                  rotateX: 0,
-                } : {}}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.3 + index * 0.15,
-                  ease: [0.4, 0, 0.2, 1],
-                }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className="group relative block h-full"
-                style={{ perspective: "1000px" }}
-              >
-                <div 
-                  className={`
-                    glass-panel relative overflow-hidden
-                    p-6 lg:p-8 h-full
-                    flex flex-col
-                    transition-all duration-500 ease-out
-                    ${isHovered ? "scale-[1.02]" : "scale-100"}
-                  `}
-                  style={{
-                    boxShadow: isHovered 
-                      ? `0 0 60px ${colors.glow}, 0 25px 50px rgba(0, 0, 0, 0.4)`
-                      : undefined,
-                    transform: isHovered 
-                      ? "translateY(-4px) rotateX(2deg)" 
-                      : undefined,
-                  }}
-                >
-                  {/* Animated accent line */}
-                  <div 
-                    className={`
-                      absolute left-0 top-0 bottom-0 w-1
-                      bg-gradient-to-b ${colors.border.replace('border-', 'from-')} to-transparent
-                      transition-all duration-500
-                      ${isHovered ? "w-1.5 opacity-100" : "opacity-60"}
-                    `}
-                  />
-
-                  {/* Category tag and read time */}
-                  <div className="flex items-center justify-between mb-6 flex-shrink-0">
-                    <div className="flex items-center gap-2">
-                      <Sparkles className={`w-3 h-3 ${colors.text}`} />
-                      <span className={`
-                        text-xs font-mono uppercase tracking-wider
-                        ${colors.text}
-                      `}>
-                        {article.category}
-                      </span>
-                    </div>
-                    <span className="text-xs text-neutral-500 font-mono">
-                      {article.readTime}
-                    </span>
-                  </div>
-
-                  {/* Content wrapper - grows to fill space */}
-                  <div className="flex-1 flex flex-col">
-                    {/* Title */}
-                    <h3 className={`
-                      text-xl lg:text-2xl text-display font-light mb-3
-                      transition-colors duration-300
-                      ${isHovered ? colors.text : "text-white/90"}
-                    `}>
-                      {article.title}
-                    </h3>
-
-                    {/* Excerpt - brief hook */}
-                    <p className="text-white/70 text-sm leading-relaxed mb-2">
-                      {article.excerpt}
-                    </p>
-
-                    {/* Description - more detail */}
-                    <p className="text-neutral-500 text-sm leading-relaxed mb-8 flex-1">
-                      {article.description}
-                    </p>
-                  </div>
-
-                  {/* Read link - stays at bottom */}
-                  <div className={`
-                    flex items-center gap-2 text-sm font-mono uppercase tracking-wider
-                    transition-all duration-300 flex-shrink-0
-                    ${isHovered ? colors.text : "text-neutral-500"}
-                  `}>
-                    <span>Read on Medium</span>
-                    <ExternalLink className={`
-                      w-3.5 h-3.5 transition-transform duration-300
-                      ${isHovered ? "translate-x-0.5 -translate-y-0.5" : ""}
-                    `} />
-                  </div>
-
-                  {/* Connection dot - suggests network */}
-                  <div className="absolute top-6 right-6">
-                    <div 
-                      className={`
-                        w-2 h-2 rounded-full transition-all duration-300
-                        ${isHovered 
-                          ? `${colors.bg.replace('/10', '')} shadow-[0_0_10px_currentColor] ${colors.text}` 
-                          : "bg-neutral-700"
-                        }
-                      `}
-                    />
-                  </div>
-
-                  {/* Hover background gradient */}
-                  <div 
-                    className={`
-                      absolute inset-0 transition-opacity duration-500 pointer-events-none
-                      bg-gradient-to-br from-transparent via-transparent to-${colors.bg.replace('bg-', '')}
-                      ${isHovered ? "opacity-50" : "opacity-0"}
-                    `}
-                  />
-                </div>
-
-                {/* Connection line between cards (decorative) */}
-                {index === 0 && (
-                  <div className="absolute -right-4 top-1/2 w-8 h-px bg-gradient-to-r from-emergence/30 to-transparent hidden lg:block" />
-                )}
-              </motion.a>
-            );
-          })}
-        </div>
-
-        {/* More articles link */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex justify-center"
-        >
-          <a
-            href="https://medium.com/@ariaxhan"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-6 py-4 glass-panel hover:border-cognition/30"
-          >
-            <span className="text-neutral-400 group-hover:text-cognition transition-colors">
-              All articles on Medium
-            </span>
-            <ArrowUpRight className="w-4 h-4 text-neutral-600 group-hover:text-cognition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-          </a>
-        </motion.div>
+      <div className="mt-8">
+        {articles.map((a, i) => (
+          <Reveal key={a.href} delay={Math.min(i, 6) * 40}>
+            <a
+              href={a.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 border-b border-[rgba(44,40,35,0.16)] py-7 transition-colors sm:grid-cols-[auto_1fr_auto]"
+            >
+              <span className="font-mono text-[12px] text-ink-mute">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="min-w-0">
+                <h3 className="m-0 font-serif text-[clamp(22px,2.8vw,30px)] font-normal leading-[1.12] text-ink transition-colors group-hover:text-terracotta">
+                  {a.title}
+                </h3>
+                <p className="m-0 mt-2 max-w-[70ch] text-[15px] leading-relaxed text-ink-faint">
+                  {a.excerpt}
+                </p>
+              </div>
+              <div className="col-start-2 flex items-center gap-3 sm:col-start-3 sm:flex-col sm:items-end sm:gap-1 sm:text-right">
+                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-terracotta">
+                  {a.category}
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-mute">
+                  {a.read}
+                </span>
+              </div>
+            </a>
+          </Reveal>
+        ))}
       </div>
+
+      <Reveal className="mt-12">
+        <a
+          href={MEDIUM_PROFILE}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[20px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
+        >
+          All articles on Medium {"->"}
+        </a>
+      </Reveal>
     </section>
   );
 }

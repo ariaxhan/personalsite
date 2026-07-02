@@ -1,18 +1,18 @@
 import { Metadata } from "next";
 import ThinkingSection from "../components/ThinkingSection";
+import StudioFooter from "../components/StudioFooter";
 
 export const metadata: Metadata = {
   title: "Writing | Aria Han",
-  description: "Systems thinking + technical depth + clarity. For people who want to understand why things work, not just how to use them.",
+  description:
+    "Essays and field notes by Aria Han on multi-agent systems, memory, model behavior, and what actually survives contact with real work.",
 };
 
 export default function WritingPage() {
   return (
-    <main className="relative min-h-screen pt-20 lg:pt-0 lg:pl-48 pb-24 lg:pb-8">
+    <main className="relative">
       <ThinkingSection />
+      <StudioFooter />
     </main>
   );
 }
-
-
-

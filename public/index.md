@@ -1,8 +1,8 @@
 # Aria Han
 
-AI systems architect. Writer. Systems thinker.
+Builder, writer, researcher. Agent memory, verification, model familiarity, and tools that protect attention.
 
-Three companies. Six hackathon wins. The KERNEL plugin. Building infrastructure for multi-agent coordination, and writing about how AI systems actually work.
+Three companies. Six hackathon wins. The KERNEL plugin. Building systems that make AI work less vague, and writing about what survives contact with real projects.
 
 ## Sections
 - [About](/about)
@@ -10,8 +10,7 @@ Three companies. Six hackathon wins. The KERNEL plugin. Building infrastructure 
 - [Open Source](/open-source)
 - [Systems](/systems)
 - [Timeline](/timeline)
-- [Vector Native](/vn)
-- [Evidence](/evidence)
+- [Hackathons](/hackathons)
 - [Contact](/contact)
 
 ## Agent-friendly resources
