@@ -2,8 +2,9 @@
 // STUDIO DATA
 // One source of truth for the rooms of the studio. Design-authored collections
 // (books, obsessions, curiosity map) sit alongside the
-// real content carried over from the previous site (articles, timeline,
-// hackathons, open-source repos, contact). No em dashes anywhere, by house rule.
+// real content carried over from the previous site (timeline, hackathons,
+// contact, project-review intake). Writing lives in writingData, projects in
+// projectsData. No em dashes anywhere, by house rule.
 // ============================================================================
 
 // ---------------------------------------------------------------------------
@@ -205,37 +206,6 @@ export const mapDefaultBlurb =
   "Eight pursuits that keep finding each other. Hover one, watch what lights up.";
 
 // ---------------------------------------------------------------------------
-// WRITING, articles on Medium (Writing room)
-// ---------------------------------------------------------------------------
-export interface Article {
-  title: string;
-  excerpt: string;
-  category: string;
-  read: string;
-  href: string;
-}
-
-export const articles: Article[] = [
-  { title: "How to Secure API Keys for AI Agents", excerpt: "When the AI asks you for a key, that's the exact moment to stop. The most dangerous habit in AI coding, and what to do instead.", category: "Agents", read: "12 min", href: "https://medium.com/@ariaxhan/how-to-secure-api-keys-for-ai-agents-ca773a66bd84" },
-  { title: "Opus 4.8 vs 4.7 vs Sonnet vs Haiku: When the Expensive Model Is Worth It", excerpt: "A new model dropped with impressive numbers. The only question that matters: will you feel any difference in the work you actually do?", category: "Systems", read: "12 min", href: "https://medium.com/@ariaxhan/opus-4-8-vs-4-7-vs-sonnet-vs-haiku-when-the-expensive-model-is-worth-it-44892a75d5c5" },
-  { title: "What an AI Detector Actually Measures", excerpt: "AI detectors promise to tell you if a machine wrote something. What they actually measure is much narrower, and shakier.", category: "Philosophy", read: "6 min", href: "https://medium.com/@ariaxhan/what-an-ai-detector-actually-measures-86b452979a5a" },
-  { title: "Stop Copying Other People's AI Setups. Build One That's Actually Yours.", excerpt: "Borrowed AI workflows aren't accountable to your work. Build one that's tested against your own evidence.", category: "Systems", read: "10 min", href: "https://medium.com/@ariaxhan/stop-copying-other-peoples-ai-setups-build-one-that-s-actually-yours-e1a05ebabc2a" },
-  { title: "How to Make Claude Code Actually Work", excerpt: "The most capable AI coding tool available. Also completely chaotic.", category: "Systems", read: "12 min", href: "https://medium.com/@ariaxhan/how-to-make-claude-code-actually-work-structure-memory-and-multi-agent-workflows-6d32b1d815d2" },
-  { title: "Engineering the Soul", excerpt: "We ask engineers to explain the ghost in the machine. The novelists have been documenting it for years.", category: "Philosophy", read: "6 min", href: "https://medium.com/@ariaxhan/engineering-the-soul-49428c073c4e" },
-  { title: "The Agent-Ready Web: A Working Guide to Cloudflare's New Score", excerpt: "I pointed Cloudflare's new agent-readiness scanner at my own site. Zero of thirteen.", category: "Systems", read: "12 min", href: "https://medium.com/@ariaxhan/the-agent-ready-web-a-working-guide-to-cloudflares-new-score-1ed0fce8d760" },
-  { title: "Stop Writing Markdown. Start Writing Memory.", excerpt: "Markdown is optimized for human eyes. Terrible for knowledge agents need to query.", category: "Systems", read: "6 min", href: "https://medium.com/@ariaxhan/stop-writing-markdown-start-writing-memory-e4a69c57caa9" },
-  { title: "I Put ChatGPT in Charge of Claude Code", excerpt: "What happens when you use one model to orchestrate another?", category: "Agents", read: "5 min", href: "https://medium.com/@ariaxhan/i-put-chatgpt-in-charge-of-claude-code-7b9bf5bb8ea9" },
-  { title: "I Tested OpenAI's New Codex Desktop App", excerpt: "OpenAI shipped a genuinely novel interface. Then the model opened its mouth.", category: "Philosophy", read: "5 min", href: "https://medium.com/@ariaxhan/i-tested-openais-new-codex-desktop-app-the-ui-is-the-real-product-c2c59bdcb5f6" },
-  { title: "Automations with Claude Code", excerpt: "A pattern for proactive AI on your own machine.", category: "Systems", read: "4 min", href: "https://medium.com/@ariaxhan/automations-with-claude-code-personalized-proactive-emails-and-code-poetry-from-local-context-3a7e93bf5a3d" },
-  { title: "KERNEL: Self-Evolving Claude Code Configuration", excerpt: "How I stopped fighting my config and let it learn instead.", category: "Systems", read: "6 min", href: "https://medium.com/@ariaxhan/kernel-the-ultimate-self-evolving-claude-code-and-cursor-configuration-system-a3ddeb7f4d32" },
-  { title: "From Friction to Flow: Building a Command Library", excerpt: "Commands as cognitive offloading. Stop remembering, start invoking.", category: "Systems", read: "5 min", href: "https://medium.com/@ariaxhan/from-friction-to-flow-building-a-command-library-for-claude-code-a9eb19f7dce2" },
-  { title: "10 Things I Wish I Knew About AI Coding", excerpt: "Hard-won lessons from daily production use of AI coding tools.", category: "Philosophy", read: "5 min", href: "https://medium.com/@ariaxhan/10-things-i-wish-i-knew-when-i-started-using-ai-for-coding-887c26a6c1d1" },
-  { title: "This AI Analyzes My Entire Life", excerpt: "The Synthesis Pool: a personal AI that costs $0/month to run.", category: "Agents", read: "6 min", href: "https://medium.com/@ariaxhan/the-synthesis-pool-0ce814fdfa5f" },
-];
-
-export const MEDIUM_PROFILE = "https://medium.com/@ariaxhan";
-
-// ---------------------------------------------------------------------------
 // TIMELINE, a walk through the years (Timeline room)
 // ---------------------------------------------------------------------------
 export interface Moment {
@@ -381,97 +351,6 @@ export const hackathons: Hackathon[] = [
     metric: "Finalist",
     technologies: ["Groq", "Supabase", "CrewAI", "JigsawStack"],
     link: "https://github.com/ariaxhan/freetime",
-  },
-];
-
-// ---------------------------------------------------------------------------
-// OPEN SOURCE, public work (Open Source room)
-// ---------------------------------------------------------------------------
-export interface Repo {
-  name: string;
-  url: string;
-  description: string[];
-  evidence: string;
-  meta: Record<string, string>;
-  accent: string;
-}
-
-export const repos: Repo[] = [
-  {
-    name: "the-agent-library",
-    url: "https://github.com/ariaxhan/the-agent-library",
-    description: [
-      "The Agent Library is a curated set of portable skills for getting real work out of AI agents, built for Claude, Codex, and any agent that can load a skill file. Most of it isn't code-specific: checking your own work, planning, brainstorming, research, writing, shipping.",
-      "Each skill is a standalone workflow with a clear trigger and a SKILL.md. Real, proven patterns that survived months of usage, constantly updated.",
-    ],
-    evidence: "The useful unit was never a prompt collection. It's a workflow you can copy, run, and trust.",
-    meta: { status: "Active · 34 portable skills", stack: "Claude · Codex · Agent Skills", structure: "Category-first shelves", license: "MIT" },
-    accent: "#56695a",
-  },
-  {
-    name: "KERNEL",
-    url: "https://github.com/ariaxhan/kernel-claude",
-    description: [
-      "KERNEL gives Claude memory, deterministic hooks, skills, and a way to prove which workflows actually work. Specialized agents, SQLite-DB-backed workflows, validation gates. Installs through Claude's plugin marketplace, mirrors into Cursor and Codex.",
-    ],
-    evidence: "Agents don't need more vibes. They need memory and rules that prove themselves.",
-    meta: { status: "Active · Plugin marketplace", stack: "Claude Code · SQLite · Shell", methodology: "AgentDB · Contracts · Orchestration", stars: "11" },
-    accent: "#b56a4f",
-  },
-  {
-    name: "llm-bench",
-    url: "https://github.com/ariaxhan/llm-bench",
-    description: [
-      "Vibes and leaderboard screenshots are not a benchmark.",
-      "LLM-bench runs real workflow tasks: extraction, code, planted bugs, email drafting, prompt injection, each graded by a programmatic verifier. Works with ollama, Apple Intelligence, Claude CLI, Bedrock, any OpenAI-compatible endpoint.",
-    ],
-    evidence: "A benchmark only matters if the measuring stick is explicit enough to argue with.",
-    meta: { status: "Active · Practical workflow benchmark", stack: "Python · Ollama · Bedrock · Claude CLI", scope: "Standard · Hard · Agentic · Adversarial · Messy", license: "MIT" },
-    accent: "#6f8696",
-  },
-  {
-    name: "model-familiarity-engine",
-    url: "https://github.com/ariaxhan/model-familiarity-engine",
-    description: [
-      "Single shot benchmarks don't capture how LLMs are actually used. Onboards language models by simulating real user conversations, then builds evidence-backed model cards from observations instead of a ranking. All benchmarks are drawn from real conversation transcripts.",
-      "The replay-bootstrap loop is shipped: known-outcome tasks, redaction, replay, model cards built from what was actually observed.",
-    ],
-    evidence: "The question was never which model is best. It's what this one has earned.",
-    meta: { status: "Bootstrap Loop Shipped", stack: "Python · Bedrock · Ollama · Claude CLI", scope: "Replay · Redaction · Model Cards", license: "MIT" },
-    accent: "#b08a4c",
-  },
-  {
-    name: "metabrain",
-    url: "https://github.com/ariaxhan/metabrain",
-    description: [
-      "Most memory tools remember. Almost none of them learn.",
-      "Metabrain is a zero-dependency SQLite layer that closes the loop: patterns graduate into hypotheses, outcomes test them, and only what holds up becomes preference.",
-    ],
-    evidence: "Memory should prove itself before it gets promoted.",
-    meta: { status: "Published · PyPI + GitHub", stack: "Python · SQLite · Zero-dependency", install: "pip install metabrain", license: "MIT" },
-    accent: "#8a4b3a",
-  },
-  {
-    name: "Substrate",
-    url: "https://github.com/ariaxhan/substrate",
-    description: [
-      "What happens if you let an AI make art every day for a year?",
-      "Substrate is a generative gallery where Claude Code agents create abstract, interactive computational art pieces through a fully automated daily workflow. 400+ pieces, each a single HTML file. No hands involved.",
-    ],
-    evidence: "This is what happens when agents get to make something, not just talk about it.",
-    meta: { status: "Live · 400+ pieces", stack: "HTML · CSS · JavaScript · Cloudflare Pages", cadence: "Daily Agent Generation", constraint: "Self-contained · ~2KB average" },
-    accent: "#5d7a86",
-  },
-  {
-    name: "latent-diagnostics",
-    url: "https://github.com/ariaxhan/latent-diagnostics",
-    description: [
-      "Can you see the shape of a thought inside a model?",
-      "Latent-diagnostics measures attribution graph geometry instead of only grading answers. Task domains show real signatures after controlling for length. Hallucination detection did not survive the same test. The repo keeps the negative results in.",
-    ],
-    evidence: "Being right and computing something real aren't the same shape.",
-    meta: { status: "Research · Negative Results Preserved", stack: "Python · SAEs · Attribution graphs", finding: "Grammar influence d=1.08 after length control", license: "MIT" },
-    accent: "#6a6470",
   },
 ];
 

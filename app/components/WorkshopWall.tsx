@@ -6,14 +6,25 @@ import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
 import Modal from "./studio/Modal";
 
+export interface WallLink {
+  label: string;
+  href: string;
+}
+
 export interface WallItem {
+  /** Stable slug, used as the in-page anchor id for connection links. */
+  slug: string;
   title: string;
   tag: string;
   accent: string;
-  hook: string;
+  /** One-line thesis. Shown on the card face and as the modal lead line. */
+  thesis: string;
+  /** Short status line printed under the thesis on the card. */
+  status?: string;
   body: string[];
   meta: Record<string, string>;
-  link?: { label: string; href: string };
+  /** External links (repo, store, live site). */
+  links?: WallLink[];
   /** hero image shown in the card plate */
   image?: string;
   /** full set shown as a small gallery in the story modal */
@@ -26,6 +37,17 @@ export interface WallItem {
   poster?: string;
   /** how the plate image sits: cover (fill, default) or contain (padded wordmark) */
   imageFit?: "cover" | "contain";
+  // --- structured evidence, rendered as labeled rows in the story modal ---
+  problem?: string;
+  proofLine?: string;
+  learned?: string;
+  proves?: string;
+  stackLine?: string;
+  themes?: string[];
+  /** in-page links to connected projects */
+  connections?: WallLink[];
+  /** standalone closing line, rendered at the end of the modal */
+  closing?: string;
 }
 
 const rotations = [-2.4, 1.6, -1.1, 2.2, -1.8, 1.4, -3, 2];
@@ -35,7 +57,8 @@ const rotations = [-2.4, 1.6, -1.1, 2.2, -1.8, 1.4, -3, 2];
  *
  * Each piece looks like evidence collected during exploration: a pushpin, a
  * little tilt, a textured plate. Resting on one straightens it and lifts it off
- * the wall; opening it expands into the written story rather than a feature
+ * the wall; opening it expands into the written story, with the problem, proof,
+ * lessons, and connected work laid out as labeled rows rather than a feature
  * list. Shared by the Systems and Open Source rooms.
  */
 export default function WorkshopWall({
@@ -66,11 +89,11 @@ export default function WorkshopWall({
 
   return (
     <section className="mx-auto max-w-wall px-5 sm:px-8 lg:px-14" style={{ paddingTop: "clamp(92px, 12vw, 120px)" }}>
-      <SectionHeader fig={fig} label={label} title={title} note={note} />
+      <SectionHeader as="h1" fig={fig} label={label} title={title} note={note} />
 
       <div className="mt-10 grid grid-cols-1 items-start gap-x-8 gap-y-10 sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] sm:gap-y-12">
         {items.map((p, i) => (
-          <Reveal key={p.title} delay={Math.min(i, 6) * 50}>
+          <Reveal key={p.slug} id={p.slug} delay={Math.min(i, 6) * 50} className="scroll-mt-28">
             <button
               onClick={() => setOpen(i)}
               className="group relative block w-full cursor-pointer border-0 bg-transparent p-0 text-left sm:[transform:var(--wall-tilt)]"
@@ -135,9 +158,14 @@ export default function WorkshopWall({
                 <h3 className="m-0 mb-3 font-serif text-[27px] font-normal leading-[1.05] text-ink">
                   {p.title}
                 </h3>
-                <p className="m-0 mb-4 font-serif text-[17.5px] italic leading-snug text-ink-soft">
-                  {p.hook}
+                <p className="m-0 mb-3 font-serif text-[17.5px] italic leading-snug text-ink-soft">
+                  {p.thesis}
                 </p>
+                {p.status && (
+                  <div className="mb-4 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-mute">
+                    {p.status}
+                  </div>
+                )}
                 <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-ghost">
                   read the story {"->"}
                 </span>
@@ -253,17 +281,84 @@ export default function WorkshopWall({
             )}
 
             <p className="m-0 mb-8 font-serif text-[20px] italic leading-[1.4] text-ink-soft">
-              {active.hook}
+              {active.thesis}
             </p>
 
             <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
-              The work
+              What I built
             </div>
             {active.body.map((para, j) => (
               <p key={j} className="m-0 mb-4 text-[16.5px] leading-[1.7] text-ink-soft">
                 {para}
               </p>
             ))}
+
+            {active.problem && (
+              <div className="mt-7">
+                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+                  The problem
+                </div>
+                <p className="m-0 text-[16.5px] leading-[1.7] text-ink-soft">{active.problem}</p>
+              </div>
+            )}
+            {active.proofLine && (
+              <div className="mt-6">
+                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+                  Proof
+                </div>
+                <p className="m-0 text-[16.5px] leading-[1.7] text-ink-soft">{active.proofLine}</p>
+              </div>
+            )}
+            {active.learned && (
+              <div className="mt-6">
+                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+                  What I learned
+                </div>
+                <p className="m-0 text-[16.5px] leading-[1.7] text-ink-soft">{active.learned}</p>
+              </div>
+            )}
+            {active.proves && (
+              <div className="mt-6">
+                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+                  What this proves
+                </div>
+                <p className="m-0 text-[16.5px] leading-[1.7] text-ink-soft">{active.proves}</p>
+              </div>
+            )}
+
+            {(active.stackLine || (active.themes && active.themes.length > 0)) && (
+              <div className="mt-7 flex flex-col gap-1.5 border-t border-dashed border-[rgba(44,40,35,0.25)] pt-6">
+                {active.stackLine && (
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-mute">
+                    Stack · {active.stackLine}
+                  </div>
+                )}
+                {active.themes && active.themes.length > 0 && (
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-mute">
+                    Themes · {active.themes.join(" · ")}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {active.connections && active.connections.length > 0 && (
+              <div className="mt-6">
+                <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+                  Connected work
+                </div>
+                <div className="flex flex-wrap gap-x-5 gap-y-2">
+                  {active.connections.map((c) => (
+                    <a
+                      key={c.href}
+                      href={c.href}
+                      className="border-b border-[rgba(44,40,35,0.3)] pb-0.5 font-serif text-[16px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
+                    >
+                      {c.label} {"->"}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <dl className="mt-7 grid gap-x-6 gap-y-3 border-t border-dashed border-[rgba(44,40,35,0.25)] pt-6 sm:grid-cols-2">
               {Object.entries(active.meta).map(([k, v]) => (
@@ -276,15 +371,26 @@ export default function WorkshopWall({
               ))}
             </dl>
 
-            {active.link && (
-              <a
-                href={active.link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-block border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[18px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
-              >
-                {active.link.label} {"->"}
-              </a>
+            {active.links && active.links.length > 0 && (
+              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+                {active.links.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[18px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
+                  >
+                    {l.label} {"->"}
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {active.closing && (
+              <p className="mt-10 border-t border-dashed border-[rgba(44,40,35,0.25)] pt-8 font-serif text-[clamp(20px,3vw,26px)] font-light italic leading-[1.35] text-ink">
+                {active.closing}
+              </p>
             )}
           </>
         )}
