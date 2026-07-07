@@ -13,6 +13,7 @@ const links: FootLink[] = [
   { label: "SUBSTRATE", href: "https://nexus-substrate.pages.dev", external: true },
   { label: "Open source", href: "/open-source" },
   { label: "Writing", href: "/writing" },
+  { label: "Proof of motion", href: "/proof/" },
   { label: "Contact", href: "/contact" },
 ];
 

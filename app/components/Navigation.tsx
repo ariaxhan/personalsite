@@ -17,10 +17,11 @@ const navItems: NavItem[] = [
   { label: "About", href: "/about", n: "01" },
   { label: "Hackathons", href: "/hackathons", n: "02" },
   { label: "Systems", href: "/systems", n: "03" },
-  { label: "Open Source", href: "/open-source", n: "04" },
-  { label: "Writing", href: "/writing", n: "05" },
-  { label: "Timeline", href: "/timeline", n: "06" },
-  { label: "Contact", href: "/contact", n: "07" },
+  { label: "Proof", href: "/proof/", n: "04" },
+  { label: "Open Source", href: "/open-source", n: "05" },
+  { label: "Writing", href: "/writing", n: "06" },
+  { label: "Timeline", href: "/timeline", n: "07" },
+  { label: "Contact", href: "/contact", n: "08" },
 ];
 
 /**

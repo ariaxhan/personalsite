@@ -1,35 +1,43 @@
 import Image from "next/image";
-import GitHubContribPreview from "./GitHubContribPreview";
+import Link from "next/link";
+import { SITE, proofStats } from "../utils/siteMeta";
+import { projectBySlug } from "../utils/projectsData";
+import SystemDiagram from "./home/SystemDiagram";
 
-const proofStats = [
-  { value: "62", label: "Public repositories" },
-  { value: "6", label: "Hackathon wins" },
-  { value: "3", label: "Live products" },
-  { value: "425", label: "Daily agent artworks" },
-  { value: "39", label: "Portable skills" },
-  { value: "21", label: "Verified benchmark tests" },
+// Hero: the ten-second answer. Who (Aria Han, the role, Los Angeles), what
+// (the one-liner), the strange line that says why the work is different, and
+// four doors to where to go next. The proof-stat grid and the system diagram
+// carry the evidence. Every number is sourced from siteMeta; nothing here is
+// typed twice.
+
+const ctas = [
+  { label: "Explore the systems", href: "/systems/" },
+  { label: "Read the writing", href: "/writing/" },
+  { label: "Follow the trail", href: "/proof/" },
+  { label: "Book a call", href: "/contact/" },
 ];
-
-const badges = ["Open Source", "App Store", "PyPI", "GitHub Actions", "Cloudflare"];
 
 const quickLinks = [
   {
     title: "Paper Rooms",
     href: "https://paper-rooms.com",
     image: "/studio/paperrooms-icon.jpg",
-    note: "Local-first research library",
+    note: projectBySlug("paper-rooms")?.thesis ?? "",
+    initial: null,
   },
   {
     title: "ModelMind",
     href: "https://model-mind.org",
     image: "/studio/modelmind-icon.jpg",
-    note: "Learn how AI actually works",
+    note: projectBySlug("modelmind")?.thesis ?? "",
+    initial: null,
   },
   {
     title: "GitHub",
     href: "https://github.com/ariaxhan",
     image: null,
-    note: "Public systems and experiments",
+    note: `${SITE.proof.publicRepos.value} public repositories`,
+    initial: "G",
   },
 ];
 
@@ -40,27 +48,29 @@ export default function Hero() {
       className="relative grid min-h-[100svh] grid-cols-[minmax(0,1fr)] overflow-hidden px-5 pb-8 sm:px-8 sm:pb-10 lg:px-14"
       style={{ gridTemplateRows: "auto 1fr auto", paddingTop: "clamp(88px, 10vw, 118px)" }}
     >
+      {/* Kicker row: figure label + role on the left, location on the right. */}
       <div className="flex min-w-0 items-start justify-between gap-4">
-        <div className="kicker" style={{ lineHeight: 2 }}>
+        <div className="kicker max-w-[260px]" style={{ lineHeight: 2 }}>
           Fig. 00 · Entrance
-          <br />Proof before prose.
+          <br />
+          {SITE.role}
         </div>
         <div
-          className="kicker max-w-[150px] text-right sm:max-w-[230px]"
+          className="kicker max-w-[160px] text-right sm:max-w-[230px]"
           style={{ lineHeight: 2, letterSpacing: "0.14em" }}
         >
-          Los Angeles, CA
+          {SITE.location}
           <br />
           Building since 2024
         </div>
       </div>
 
-      <div className="grid min-w-0 max-w-[1320px] gap-8 self-center py-10 sm:w-full lg:grid-cols-[minmax(0,0.92fr)_minmax(430px,0.72fr)] lg:items-center lg:gap-12">
-        <div className="grid min-w-0 gap-7">
+      <div className="grid min-w-0 max-w-[1320px] gap-8 self-center py-10 sm:w-full lg:grid-cols-[minmax(0,0.94fr)_minmax(420px,0.7fr)] lg:items-center lg:gap-12">
+        <div className="grid min-w-0 gap-6">
           <h1
             className="m-0 font-serif font-light text-ink"
             style={{
-              fontSize: "clamp(62px, 12.5vw, 176px)",
+              fontSize: "clamp(54px, 9vw, 120px)",
               lineHeight: 0.94,
               paddingTop: "0.06em",
             }}
@@ -69,19 +79,40 @@ export default function Hero() {
           </h1>
 
           <p
-            className="m-0 max-w-[650px] font-serif font-light italic text-ink-soft"
-            style={{ fontSize: "clamp(24px, 3.1vw, 42px)", lineHeight: 1.2 }}
+            className="m-0 max-w-[680px] font-serif font-light text-ink"
+            style={{ fontSize: "clamp(23px, 2.9vw, 38px)", lineHeight: 1.2 }}
           >
-            AI systems architect building memory, evaluation, and tools that make agents more reliable.
+            {SITE.oneLiner}
           </p>
 
-          <div className="grid grid-cols-2 border-y border-[rgba(44,40,35,0.16)] sm:grid-cols-3">
+          <p
+            className="m-0 max-w-[620px] font-serif font-light italic text-ink-soft"
+            style={{ fontSize: "clamp(18px, 2vw, 25px)", lineHeight: 1.3 }}
+          >
+            {SITE.strangeLine}
+          </p>
+
+          {/* Where next: four text doors. */}
+          <div className="flex flex-wrap items-baseline gap-x-8 gap-y-3">
+            {ctas.map((c) => (
+              <Link
+                key={c.href}
+                href={c.href}
+                className="border-b border-[rgba(44,40,35,0.3)] pb-0.5 font-serif text-[17px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
+              >
+                {c.label} &rarr;
+              </Link>
+            ))}
+          </div>
+
+          {/* Proof grid, sourced from siteMeta. */}
+          <div className="mt-1 grid grid-cols-2 border-y border-[rgba(44,40,35,0.16)] sm:grid-cols-3">
             {proofStats.map((stat) => (
               <div
                 key={stat.label}
-                className="min-h-[102px] border-b border-r border-[rgba(44,40,35,0.12)] px-4 py-5 [&:nth-child(2n)]:border-r-0 [&:nth-last-child(-n+2)]:border-b-0 sm:min-h-[112px] sm:px-6 sm:py-5 sm:[&:nth-child(2n)]:border-r sm:[&:nth-child(3n)]:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b sm:[&:nth-last-child(-n+3)]:border-b-0"
+                className="min-h-[96px] border-b border-r border-[rgba(44,40,35,0.12)] px-4 py-4 [&:nth-child(2n)]:border-r-0 [&:nth-last-child(-n+2)]:border-b-0 sm:min-h-[104px] sm:px-6 sm:py-5 sm:[&:nth-child(2n)]:border-r sm:[&:nth-child(3n)]:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b sm:[&:nth-last-child(-n+3)]:border-b-0"
               >
-                <div className="font-serif text-[38px] font-light leading-none text-ink sm:text-[46px]">
+                <div className="font-serif text-[36px] font-light leading-none text-ink sm:text-[44px]">
                   {stat.value}
                 </div>
                 <div className="mt-2 max-w-[130px] font-mono text-[9px] uppercase leading-4 tracking-[0.16em] text-ink-mute">
@@ -90,24 +121,16 @@ export default function Hero() {
               </div>
             ))}
           </div>
-
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            {badges.map((badge) => (
-              <span
-                key={badge}
-                className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint"
-              >
-                {badge}
-              </span>
-            ))}
-          </div>
         </div>
 
-        <div className="hidden sm:block">
-          <GitHubContribPreview />
+        {/* Right column, large screens: the system diagram. On small screens it
+            renders as its own section from the homepage. */}
+        <div className="hidden lg:block">
+          <SystemDiagram />
         </div>
       </div>
 
+      {/* Three quick doors, notes sourced from the project theses and the repo count. */}
       <div className="grid gap-3 border-t border-[rgba(44,40,35,0.16)] pt-4 lg:grid-cols-3">
         {quickLinks.map((link) => (
           <a
@@ -131,14 +154,14 @@ export default function Hero() {
                 className="grid h-14 w-14 place-items-center bg-ink font-serif text-[28px] italic text-studio-paper"
                 aria-hidden="true"
               >
-                G
+                {link.initial}
               </span>
             )}
             <span className="grid gap-1">
-              <span className="font-serif text-[24px] font-light leading-none text-ink transition-colors group-hover:text-terracotta">
+              <span className="font-serif text-[22px] font-light leading-none text-ink transition-colors group-hover:text-terracotta">
                 {link.title}
               </span>
-              <span className="font-mono text-[9px] uppercase leading-4 tracking-[0.14em] text-ink-mute">
+              <span className="max-w-[38ch] font-serif text-[13px] italic leading-snug text-ink-mute">
                 {link.note}
               </span>
             </span>
