@@ -2,12 +2,12 @@ import Image from "next/image";
 import GitHubContribPreview from "./GitHubContribPreview";
 
 const proofStats = [
-  { value: "47", label: "Public repositories" },
+  { value: "62", label: "Public repositories" },
   { value: "6", label: "Hackathon wins" },
-  { value: "2", label: "Live solo apps" },
-  { value: "400+", label: "Daily agent artworks" },
-  { value: "34", label: "Portable skills" },
-  { value: "21", label: "Benchmark tasks" },
+  { value: "3", label: "Live products" },
+  { value: "425", label: "Daily agent artworks" },
+  { value: "39", label: "Portable skills" },
+  { value: "21", label: "Verified benchmark tests" },
 ];
 
 const badges = ["Open Source", "App Store", "PyPI", "GitHub Actions", "Cloudflare"];
