@@ -54,3 +54,6 @@ _meta/agentdb/*.db-journal
 
 # claude hook runtime state (per-session, not repo content)
 .claude/.killswitch/
+
+# agent worktrees are never content
+.claude/worktrees/
