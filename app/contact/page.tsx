@@ -3,9 +3,9 @@ import Contact from "../components/Contact";
 import StudioFooter from "../components/StudioFooter";
 
 export const metadata: Metadata = {
-  title: "Contact | Aria Han",
+  title: "Work With Me | Aria Han",
   description:
-    "Contact Aria Han or submit an AI build, repo, prototype, or coding workflow for an async project review.",
+    "Hire Aria Han, an AI systems architect in Los Angeles, for AI workflow implementation, internal AI tools and automation, agentic system architecture, evals and monitoring, Claude Code workflow hardening, memory and context systems, and Dify low-code apps.",
 };
 
 export default function ContactPage() {

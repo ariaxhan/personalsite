@@ -100,8 +100,8 @@ export default function ProjectReviewForm() {
       setState("sent");
       setMessage(
         result?.submissionId
-          ? `Saved. Submission #${result.submissionId}. I’ll reply by email.`
-          : "Saved. I’ll reply by email.",
+          ? `Got it. I'll reply by email. Reference #${result.submissionId}.`
+          : "Got it. I'll reply by email.",
       );
     } catch (error) {
       setState("error");
