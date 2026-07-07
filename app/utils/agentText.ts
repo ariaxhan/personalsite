@@ -22,6 +22,12 @@ import {
 } from "./writingData";
 import { engagements, goodFit, notAFit, workingStyle } from "./workWithMeData";
 import { moments, hackathons } from "./studioData";
+import {
+  motionData,
+  buildBands,
+  ERAS,
+  monthLabel,
+} from "../components/motion/motionShared";
 
 // ---------------------------------------------------------------------------
 // Canonical route map. The single list every surface cites.
@@ -404,6 +410,38 @@ export function renderHackathonsMd(): string {
     lines.push(`- Link: ${h.link}`);
     lines.push(``);
   }
+  return lines.join("\n");
+}
+
+// ===========================================================================
+// Proof of motion. Compact markdown of the git-history motion record, generated
+// from app/utils/motionData.json so it cannot drift from the visualization.
+// ===========================================================================
+export function renderProofMd(): string {
+  const bands = buildBands();
+  const total = motionData.grandTotal.toLocaleString();
+  const span = `${monthLabel(motionData.firstMonth)} to ${monthLabel(motionData.lastMonth)}`;
+  const lines: string[] = [
+    `# Proof of Motion, ${SITE.name}`,
+    ``,
+    `> Real commit history from the machine this site is built on, grouped into constellations. Client work and private experiments appear as activity, never as names.`,
+    ``,
+    `- Total commits: ${total}`,
+    `- Repositories on this machine: ${motionData.repoCount}`,
+    `- Span: ${span}`,
+    `- Generated: ${motionData.generated}`,
+    ``,
+    `## Constellations`,
+    ...bands.map(
+      (b) => `- ${b.label}: ${b.total.toLocaleString()} commits, ${monthLabel(b.first)} to ${monthLabel(b.last)}. ${b.note}`,
+    ),
+    ``,
+    `## Eras`,
+    ...ERAS.map((e) => `- ${e.name} (${e.range}): ${e.caption}`),
+    ``,
+    `Full history: ${SITE.socials.github}`,
+    ``,
+  ];
   return lines.join("\n");
 }
 

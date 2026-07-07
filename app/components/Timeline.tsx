@@ -23,6 +23,7 @@ export default function Timeline() {
     >
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-14">
         <SectionHeader
+          as="h1"
           fig="Fig. 06"
           label="Timeline"
           title="A walk through the years"

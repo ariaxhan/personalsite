@@ -1,14 +1,15 @@
 import { Metadata } from "next";
+import { pageMeta } from "../utils/pageMeta";
 import SectionHeader from "../components/studio/SectionHeader";
 import StudioFooter from "../components/StudioFooter";
 import MotionStrata from "../components/motion/MotionStrata";
 import { GRAND_TOTAL, REPO_COUNT, motionData, monthLabel } from "../components/motion/motionShared";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Proof of Motion | Aria Han",
-  description:
-    "An archaeological build record generated from real git history on the machine this site is built on. Commit activity across products, agents, memory systems, evals, and client work, grouped into constellations. Bursts and continuity, not a single launch.",
-};
+  description: "An archaeological build record generated from real git history on the machine this site is built on. Commit activity across products, agents, memory systems, evals, and client work, grouped into constellations. Bursts and continuity, not a single launch.",
+  path: "/proof/",
+});
 
 export default function ProofPage() {
   const total = GRAND_TOTAL.toLocaleString();
@@ -18,6 +19,7 @@ export default function ProofPage() {
     <main className="relative">
       <section className="mx-auto max-w-[1280px] px-5 pt-32 pb-4 sm:px-8 sm:pt-40 lg:px-14">
         <SectionHeader
+          as="h1"
           fig="Fig. 06"
           label="Proof of Motion"
           title="The record of motion"

@@ -1,20 +1,24 @@
 import { Metadata } from "next";
+import { pageMeta } from "../utils/pageMeta";
+import JsonLd from "../components/studio/JsonLd";
+import { projectListSchema } from "../utils/jsonLd";
 import WorkshopWall, { WallItem } from "../components/WorkshopWall";
 import StudioFooter from "../components/StudioFooter";
 import { openSourceProjects } from "../utils/projectsData";
 import { projectsToWallItems } from "../utils/wallItems";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Open Source | Aria Han",
-  description:
-    "Public and research work from Aria Han, each with the problem, what was built, the stack, repository links, verifiable proof, and what it proves. KERNEL, llm-bench, the-agent-library, model-familiarity-engine, metabrain, Substrate, and latent-diagnostics: agent memory, LLM evaluation, and a daily generative-art pipeline.",
-};
+  description: "Public and research work from Aria Han, each with the problem, what was built, the stack, repository links, verifiable proof, and what it proves. KERNEL, llm-bench, the-agent-library, model-familiarity-engine, metabrain, Substrate, and latent-diagnostics: agent memory, LLM evaluation, and a daily generative-art pipeline.",
+  path: "/open-source/",
+});
 
 const items: WallItem[] = projectsToWallItems(openSourceProjects);
 
 export default function OpenSourcePage() {
   return (
     <main className="relative">
+      <JsonLd data={projectListSchema(openSourceProjects, "/open-source/")} />
       <WorkshopWall
         fig="Fig. 02b"
         label="Open Source"

@@ -14,6 +14,7 @@ export default function HackathonsGrid() {
   return (
     <section className="mx-auto max-w-wall px-5 sm:px-8 lg:px-14" style={{ paddingTop: 120 }}>
       <SectionHeader
+        as="h1"
         fig="Fig. 02c"
         label="Hackathons"
         title="Built under pressure"

@@ -1,20 +1,22 @@
 import { Metadata } from "next";
+import { pageMeta } from "../utils/pageMeta";
 import ProjectReviewForm from "../components/ProjectReviewForm";
 import StudioFooter from "../components/StudioFooter";
 import SectionHeader from "../components/studio/SectionHeader";
 import Reveal from "../components/studio/Reveal";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Project Review | Aria Han",
-  description:
-    "Submit an AI project, idea, repo, architecture, or tool choice for a one-time async review.",
-};
+  description: "Submit an AI project, idea, repo, architecture, or tool choice for a one-time async review.",
+  path: "/project-review/",
+});
 
 export default function ProjectReviewPage() {
   return (
     <main className="relative">
       <section className="mx-auto max-w-[1120px] px-5 sm:px-8 lg:px-14" style={{ paddingTop: 120 }}>
         <SectionHeader
+          as="h1"
           fig="Fig. 10A"
           label="Project Review"
           title="Send the idea."

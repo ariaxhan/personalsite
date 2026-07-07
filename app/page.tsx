@@ -10,10 +10,23 @@ import Manifesto from "./components/Manifesto";
 import Thesis from "./components/Thesis";
 import LivingDesk from "./components/LivingDesk";
 import StudioFooter from "./components/StudioFooter";
+import type { Metadata } from "next";
+import { pageMeta } from "./utils/pageMeta";
+import JsonLd from "./components/studio/JsonLd";
+import { personSchema, webSiteSchema } from "./utils/jsonLd";
+import { SITE } from "./utils/siteMeta";
+
+export const metadata: Metadata = pageMeta({
+  title: `${SITE.name}, ${SITE.role}`,
+  description: SITE.tldr,
+  path: "/",
+});
 
 export default function Home() {
   return (
     <main className="relative">
+      <JsonLd data={personSchema()} />
+      <JsonLd data={webSiteSchema()} />
       <Hero />
 
       {/* The system diagram rides in the hero's right column on large screens;

@@ -5,6 +5,7 @@ import "./globals.css";
 import Navigation from "./components/Navigation";
 import PaperGrain from "./components/PaperGrain";
 import { mcpBioMd, mcpProjectsMd, mcpWritingMd } from "./utils/agentText";
+import { SITE } from "./utils/siteMeta";
 
 // WebMCP browser tools, generated from the same data layer as the site and the
 // MCP server so all three tell one story. Built once at module scope; the strings
@@ -40,36 +41,47 @@ const spaceMono = Space_Mono({
   display: "swap",
 });
 
+const OG_IMAGE = {
+  url: "/og.png",
+  width: 1200,
+  height: 630,
+  alt: `${SITE.name}, ${SITE.role}`,
+};
+
 export const metadata: Metadata = {
-  title: "Aria Han | AI Systems Architect & Researcher",
-  description:
-    "Aria Han is an AI systems architect, researcher, and builder creating memory systems, multi-agent infrastructure, evaluation frameworks, and AI tools that help language models work more reliably. Explore open-source projects, essays, experiments, and production systems.",
+  metadataBase: new URL(SITE.url),
+  title: `${SITE.name}, ${SITE.role}`,
+  description: SITE.tldr,
   keywords: [
     "Aria Han",
-    "AI systems",
+    "AI systems architect",
     "agent coordination",
     "memory systems",
+    "evals",
     "Claude Code",
     "KERNEL",
-    "research studio",
+    "Los Angeles",
   ],
-  authors: [{ name: "Aria Han" }],
+  authors: [{ name: SITE.name }],
+  creator: SITE.name,
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Aria Han | AI Systems Architect",
-    description:
-      "Memory systems, multi-agent workflows, AI infrastructure, open-source tools. Essays, experiments, and the thinking behind them.",
+    title: `${SITE.name}, ${SITE.role}`,
+    description: SITE.tldr,
     type: "website",
+    url: SITE.url,
+    siteName: SITE.name,
     locale: "en_US",
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aria Han | AI Systems Architect",
-    description:
-      "Building AI systems that remember, coordinate, and improve. Open Source. Essays. Experiments.",
+    title: `${SITE.name}, ${SITE.role}`,
+    description: SITE.tldr,
+    images: ["/og.png"],
   },
   robots: {
     index: true,

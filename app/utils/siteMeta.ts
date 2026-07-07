@@ -14,14 +14,14 @@ export const SITE = {
 
   /** First hero sentence. Maximally concrete. */
   oneLiner:
-    "I turn messy workflows into reliable AI systems: memory, context, evals, agent coordination.",
+    "Most AI problems aren’t model problems.",
 
   /** Second hero sentence. The philosophy, no quotes. */
-  strangeLine: "The kind that keep working after the model stops talking.",
+  strangeLine: "They’re problems with the system around the model.",
 
   /** The one-sentence description a stranger should repeat after ten seconds. */
   tldr:
-    "Aria Han is an AI systems architect in Los Angeles who turns messy workflows into reliable AI systems, with memory, context, evals, and agent coordination as the working parts.",
+    "Aria Han is an AI systems architect in Los Angeles who builds reliable AI systems, with memory, context, evals, and agent coordination as the working parts.",
 
   /** Longer bio for llms-full, MCP, about surfaces. */
   bio: [
