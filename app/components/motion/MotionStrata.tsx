@@ -228,7 +228,7 @@ export default function MotionStrata() {
                         </a>
                       ) : (
                         <span>
-                          {s.label} {s.total}
+                          {s.label} {s.total} <span className="text-ink-mute">(private repo)</span>
                         </span>
                       )}
                     </li>

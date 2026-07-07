@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { pageMeta } from "../utils/pageMeta";
+import { SITE } from "../utils/siteMeta";
 import SectionHeader from "../components/studio/SectionHeader";
 import StudioFooter from "../components/StudioFooter";
 import MotionStrata from "../components/motion/MotionStrata";
@@ -39,7 +40,9 @@ export default function ProofPage() {
             {REPO_COUNT} repositories on this machine, {span}, and the way the bursts move from one
             constellation to the next as the work changes. Continuity is the claim. The months that spike are
             real weeks I remember. Client work and private experiments are counted as activity and left
-            unnamed, because the point is the motion, not the names.
+            unnamed, because the point is the motion, not the names. For scope: the public GitHub
+            account holds {SITE.proof.publicRepos.value} repositories; the {REPO_COUNT} here are the
+            ones whose history lives on this machine in this window.
           </p>
         </div>
       </section>

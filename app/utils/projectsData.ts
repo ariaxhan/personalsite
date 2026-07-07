@@ -421,7 +421,10 @@ export const projects: Project[] = [
       "A zero-dependency SQLite layer that closes the loop: patterns graduate into hypotheses, outcomes test them, and only what holds up becomes preference.",
     ],
     stack: "Python · SQLite · Zero-dependency",
-    links: [{ label: "GitHub", href: "https://github.com/ariaxhan/metabrain" }],
+    links: [
+      { label: "GitHub", href: "https://github.com/ariaxhan/metabrain" },
+      { label: "PyPI", href: "https://pypi.org/project/metabrain/" },
+    ],
     proof: "Published: pip install metabrain. Zero dependencies by design.",
     learned:
       "The graduation loop (pattern, then hypothesis, then tested preference) is the same shape as good consulting: observe, propose, verify.",

@@ -1,14 +1,14 @@
 import Reveal from "./studio/Reveal";
 
 const stats = [
-  { value: "3x", label: "Companies", sub: "Founded" },
-  { value: "6", label: "Hackathons", sub: "Won" },
-  { value: "34", label: "Skills", sub: "Packaged" },
+  { value: "3x", label: "Companies", sub: "Brink · HeyContent · HeyContext" },
+  { value: "5", label: "Hackathons", sub: "Won · 6 finals" },
+  { value: "39", label: "Skills", sub: "Packaged" },
 ];
 
 const narrative = [
   "I started as a language person. Journalism, essays, stories, poems, research rabbit holes, and constant reading.",
-  "Computer science did not feel like leaving that behind. It felt like picking up one more language. Variables, files, interfaces, loops: all of it was another way to arrange meaning so it could turn meaning into something real.",
+  "Computer science didn't feel like leaving that behind. It felt like picking up one more language. Variables, files, interfaces, loops: all of it was another way to arrange meaning so it could turn meaning into something real.",
   "Then language models arrived, and it all came full circle.",
 ];
 

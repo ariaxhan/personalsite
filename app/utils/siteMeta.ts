@@ -19,6 +19,10 @@ export const SITE = {
   /** Second hero sentence. The philosophy, no quotes. */
   strangeLine: "They’re problems with the system around the model.",
 
+  /** The concrete what-I-do line, rendered under the hero pair. */
+  whatIDo:
+    "I turn messy workflows into reliable AI systems: memory, context, evals, agent coordination.",
+
   /** The one-sentence description a stranger should repeat after ten seconds. */
   tldr:
     "Aria Han is an AI systems architect in Los Angeles who builds reliable AI systems, with memory, context, evals, and agent coordination as the working parts.",
@@ -33,7 +37,7 @@ export const SITE = {
   /** Verified numbers. Source + date for every claim; re-verify before changing. */
   proof: {
     publicRepos: { value: "62", label: "Public repositories", source: "api.github.com/users/ariaxhan", verified: "2026-07-06" },
-    hackathonWins: { value: "6", label: "Hackathon wins", source: "Devpost links on /hackathons", verified: "2026-07-06" },
+    hackathonWins: { value: "5", label: "Hackathon wins", source: "Devpost and GitHub links on /hackathons; 5 wins, 1 finalist", verified: "2026-07-06" },
     liveProducts: { value: "3", label: "Live products", source: "ModelMind + Paper Rooms (App Store), our4cuts (web)", verified: "2026-07-06" },
     substratePieces: { value: "425", label: "Daily agent artworks", source: "github.com/ariaxhan/substrate tree", verified: "2026-07-06" },
     portableSkills: { value: "39", label: "Portable agent skills", source: "SKILL.md count, the-agent-library", verified: "2026-07-06" },

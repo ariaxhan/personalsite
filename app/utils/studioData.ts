@@ -221,7 +221,7 @@ export const moments: Moment[] = [
     year: "2026",
     period: "May 2026 to Present",
     title: "AI Implementation Specialist · Blink Build Studios",
-    body: "Working with enterprises and founders to deploy, refine, and monitor agentic workflows and build distinctive AI products. The real question is what happens six months after you start putting AI to work in your company.",
+    body: "Building internal AI workflows for founders and enterprises: Dify apps, automations, and the eval layers that keep them honest. The real question is what happens six months after you start putting AI to work in your company.",
     type: "company",
   },
   {
@@ -262,8 +262,8 @@ export const moments: Moment[] = [
   {
     year: "2024",
     period: "2024 to 2025",
-    title: "Six Hackathon Wins",
-    body: "Darwin (AWS). Armature (RL Track). Content Creator Connector. TheraVoice. HotAgents. Freetime. Each one built in 24 to 48 hours, validating ideas under pressure.",
+    title: "Five Hackathon Wins",
+    body: "Darwin (AWS). Armature (RL Track). Content Creator Connector. TheraVoice. HotAgents. Plus a finalist run with Freetime. Each one built in 24 to 48 hours, validating ideas under pressure.",
     type: "achievement",
   },
   {

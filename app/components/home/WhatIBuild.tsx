@@ -13,8 +13,8 @@ export default function WhatIBuild() {
       <SectionHeader
         fig="Fig. 01"
         label="What I build"
-        title="Seven ways to put me to work"
-        note="Concrete engagements, not a service menu. Each one is a door to a short intake."
+        title="Ways that I can help you"
+        note="Each one is a door to a short intake."
       />
 
       <div className="mt-10 grid grid-cols-1 gap-x-12 gap-y-1 lg:grid-cols-2">

@@ -185,6 +185,8 @@
   },
   "active": "a4e96c6d20365025",
   "lastOpenFiles": [
+    "app/api/stats.json/route.ts",
+    "app/api/stats.json",
     "out/og.png",
     "out/_next/static/ptkn4tMB_nyfsxg8WXkm_/_ssgManifest.js",
     "out/_next/static/ptkn4tMB_nyfsxg8WXkm_/_buildManifest.js",
@@ -197,7 +199,6 @@
     "out/_next/static/chunks/app/timeline/index.md/route-50db0cfd5d96c2a5.js",
     "out/_next/static/chunks/app/hackathons/index.md/route-50db0cfd5d96c2a5.js",
     "out/_next/static/chunks/app/contact/index.md/route-50db0cfd5d96c2a5.js",
-    "out/_next/static/chunks/app/systems/index.md/route-50db0cfd5d96c2a5.js",
     "out/_next/static/chunks/app/proof/index.md",
     "app/proof/index.md",
     "out/timeline/index.md",

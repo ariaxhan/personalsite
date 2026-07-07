@@ -92,6 +92,10 @@ export default function Hero() {
             {SITE.strangeLine}
           </p>
 
+          <p className="m-0 max-w-[560px] text-[15.5px] leading-[1.7] text-ink-muted">
+            {SITE.whatIDo}
+          </p>
+
           {/* Where next: four text doors. */}
           <div className="flex flex-wrap items-baseline gap-x-8 gap-y-3">
             {ctas.map((c) => (
