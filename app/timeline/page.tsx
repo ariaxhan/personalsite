@@ -2,11 +2,10 @@ import { Metadata } from "next";
 import { pageMeta } from "../utils/pageMeta";
 import Timeline from "../components/Timeline";
 import StudioFooter from "../components/StudioFooter";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 export const metadata: Metadata = pageMeta({
-  title: "Timeline | Aria Han",
-  description: "A walk through the years: journalism, code, three companies, six hackathon wins, a poetry collection, and a long obsession with memory systems.",
-  path: "/timeline/",
+  ...PAGE_COPY.metadata.timeline,
 });
 
 export default function TimelinePage() {

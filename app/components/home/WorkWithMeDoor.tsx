@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Reveal from "../studio/Reveal";
 import { SITE } from "../../utils/siteMeta";
+import { PAGE_COPY } from "../../utils/siteCopy";
 
 // WorkWithMeDoor: a single quiet block. The booking line set as a serif
 // sentence, and two ways through: a short call, or the contact page for the
@@ -10,7 +11,7 @@ export default function WorkWithMeDoor() {
   return (
     <section className="mx-auto max-w-content px-5 py-20 sm:px-8 lg:px-14 lg:py-24">
       <Reveal className="border-t border-[rgba(44,40,35,0.16)] pt-12">
-        <div className="kicker mb-6">Work with me</div>
+        <div className="kicker mb-6">{PAGE_COPY.sections.workWithMeDoor.label}</div>
         <p
           className="m-0 max-w-[820px] font-serif font-light text-ink"
           style={{ fontSize: "clamp(26px, 3.6vw, 44px)", lineHeight: 1.2 }}
@@ -24,13 +25,13 @@ export default function WorkWithMeDoor() {
             rel="noopener noreferrer"
             className="border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[19px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
           >
-            Book a short call &rarr;
+            {PAGE_COPY.sections.workWithMeDoor.call} &rarr;
           </a>
           <Link
             href="/contact/"
             className="border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[19px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
           >
-            What I take on &rarr;
+            {PAGE_COPY.sections.workWithMeDoor.takeOn} &rarr;
           </Link>
         </div>
       </Reveal>

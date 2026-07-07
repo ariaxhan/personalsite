@@ -1,4 +1,5 @@
 import Reveal from "./studio/Reveal";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 export default function Thesis() {
   return (
@@ -8,10 +9,10 @@ export default function Thesis() {
           className="m-0 max-w-[960px] font-serif font-light text-ink"
           style={{ fontSize: "clamp(34px, 5.6vw, 68px)", lineHeight: 1.06 }}
         >
-          The interesting problem isn&apos;t making models smarter.
+          {PAGE_COPY.thesis.line1}
           <br />
           <span className="italic text-ink-soft">
-            It&apos;s building environments where intelligence compounds.
+            {PAGE_COPY.thesis.line2}
           </span>
         </p>
       </Reveal>

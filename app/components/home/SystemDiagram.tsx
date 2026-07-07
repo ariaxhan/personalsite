@@ -1,4 +1,5 @@
 import { SITE } from "../../utils/siteMeta";
+import { PAGE_COPY } from "../../utils/siteCopy";
 
 // SystemDiagram: a blueprint of the work, left to right. A messy workflow on the
 // left (drawn as a terracotta scribble), flowing through four labeled chambers
@@ -8,10 +9,10 @@ import { SITE } from "../../utils/siteMeta";
 // prefers-reduced-motion. Every label is real DOM text inside the SVG.
 
 const CHAMBERS = [
-  { label: "memory", cx: 205, rot: -1.1 },
-  { label: "context", cx: 300, rot: 1.2 },
-  { label: "evals", cx: 395, rot: -0.9 },
-  { label: "agents", cx: 490, rot: 1.4 },
+  { label: PAGE_COPY.systemDiagram.chambers[0], cx: 205, rot: -1.1 },
+  { label: PAGE_COPY.systemDiagram.chambers[1], cx: 300, rot: 1.2 },
+  { label: PAGE_COPY.systemDiagram.chambers[2], cx: 395, rot: -0.9 },
+  { label: PAGE_COPY.systemDiagram.chambers[3], cx: 490, rot: 1.4 },
 ];
 
 const CH_W = 78;
@@ -22,7 +23,7 @@ export default function SystemDiagram() {
   return (
     <figure className="m-0">
       <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-mute">
-        How the work flows
+        {PAGE_COPY.systemDiagram.label}
       </div>
       <div
         className="relative overflow-hidden rounded-[4px] border border-[rgba(44,40,35,0.16)] bg-studio-card shadow-paper"
@@ -35,7 +36,7 @@ export default function SystemDiagram() {
           viewBox="0 0 640 240"
           className="block h-auto w-full"
           role="img"
-          aria-label="A messy workflow flows left to right through four chambers labeled memory, context, evals, and agents, and becomes a working implementation."
+          aria-label={PAGE_COPY.systemDiagram.aria}
           style={{ transform: "rotate(-0.5deg)" }}
         >
           {/* Left node: the messy workflow, a terracotta scribble. */}
@@ -122,10 +123,10 @@ export default function SystemDiagram() {
             fill="#8a8275"
           >
             <tspan x={78} dy={0}>
-              messy
+              {PAGE_COPY.systemDiagram.messy[0]}
             </tspan>
             <tspan x={78} dy={15}>
-              workflow
+              {PAGE_COPY.systemDiagram.messy[1]}
             </tspan>
           </text>
           <text
@@ -138,18 +139,16 @@ export default function SystemDiagram() {
             fill="#8a8275"
           >
             <tspan x={585} dy={0}>
-              working
+              {PAGE_COPY.systemDiagram.working[0]}
             </tspan>
             <tspan x={585} dy={15}>
-              implementation
+              {PAGE_COPY.systemDiagram.working[1]}
             </tspan>
           </text>
         </svg>
       </div>
       <figcaption className="mt-4 max-w-[560px] text-[14.5px] leading-[1.65] text-ink-soft">
-        Left to right: I take a workflow that only lives in someone&apos;s head and
-        build the memory, context, evals, and agent coordination that turn it into
-        software that keeps running. {SITE.strangeLine}
+        {PAGE_COPY.systemDiagram.captionStart} {SITE.strangeLine}
       </figcaption>
     </figure>
   );

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SITE, proofStats } from "../utils/siteMeta";
 import { projectBySlug } from "../utils/projectsData";
+import { PAGE_COPY } from "../utils/siteCopy";
 import SystemDiagram from "./home/SystemDiagram";
 
 // Hero: the ten-second answer. Who (Aria Han, the role, Los Angeles), what
@@ -9,13 +10,6 @@ import SystemDiagram from "./home/SystemDiagram";
 // four doors to where to go next. The proof-stat grid and the system diagram
 // carry the evidence. Every number is sourced from siteMeta; nothing here is
 // typed twice.
-
-const ctas = [
-  { label: "Explore the systems", href: "/systems/" },
-  { label: "Read the writing", href: "/writing/" },
-  { label: "Follow the trail", href: "/proof/" },
-  { label: "Book a call", href: "/contact/" },
-];
 
 const quickLinks = [
   {
@@ -33,11 +27,11 @@ const quickLinks = [
     initial: null,
   },
   {
-    title: "GitHub",
+    title: PAGE_COPY.hero.githubTitle,
     href: "https://github.com/ariaxhan",
     image: null,
-    note: `${SITE.proof.publicRepos.value} public repositories`,
-    initial: "G",
+    note: `${SITE.proof.publicRepos.value} ${PAGE_COPY.hero.githubNoteSuffix}`,
+    initial: PAGE_COPY.hero.githubInitial,
   },
 ];
 
@@ -61,7 +55,7 @@ export default function Hero() {
         >
           {SITE.location}
           <br />
-          Building since 2024
+          {PAGE_COPY.hero.builtSince}
         </div>
       </div>
 
@@ -92,13 +86,9 @@ export default function Hero() {
             {SITE.strangeLine}
           </p>
 
-          <p className="m-0 max-w-[560px] text-[15.5px] leading-[1.7] text-ink-muted">
-            {SITE.whatIDo}
-          </p>
-
           {/* Where next: four text doors. */}
           <div className="flex flex-wrap items-baseline gap-x-8 gap-y-3">
-            {ctas.map((c) => (
+            {PAGE_COPY.hero.ctas.map((c) => (
               <Link
                 key={c.href}
                 href={c.href}

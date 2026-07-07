@@ -5,6 +5,7 @@ import Link from "next/link";
 import SectionHeader from "../studio/SectionHeader";
 import Reveal from "../studio/Reveal";
 import { projects, projectBySlug, type Project } from "../../utils/projectsData";
+import { PAGE_COPY } from "../../utils/siteCopy";
 
 // ProjectConstellation: the thirteen projects as a constellation, not a grid.
 // Nodes sit in theme neighborhoods (memory NW, evals NE, agents center,
@@ -40,9 +41,6 @@ function targetHref(p: Project): string {
   const page = p.kind === "product" || p.kind === "company" ? "systems" : "open-source";
   return `/${page}/#${p.slug}`;
 }
-
-const DEFAULT_CAPTION =
-  "Thirteen projects, grouped by what they are about. Memory to the north-west, evals to the north-east, agents in the middle, products and companies to the south. Rest on one to see how it connects.";
 
 export default function ProjectConstellation() {
   const [active, setActive] = useState<string | null>(null);
@@ -80,7 +78,7 @@ export default function ProjectConstellation() {
   }, [edges]);
 
   const activeProject = active ? projectBySlug(active) : undefined;
-  const caption = activeProject ? activeProject.thesis : DEFAULT_CAPTION;
+  const caption = activeProject ? activeProject.thesis : PAGE_COPY.sections.projectMap.defaultCaption;
 
   return (
     <section
@@ -89,10 +87,10 @@ export default function ProjectConstellation() {
     >
       <div className="mx-auto max-w-content">
         <SectionHeader
-          fig="Fig. 02"
-          label="Project map"
-          title="How the work connects"
-          note="A constellation of thirteen projects. The same ideas keep reappearing across products, companies, and open source."
+          fig={PAGE_COPY.sections.projectMap.fig}
+          label={PAGE_COPY.sections.projectMap.label}
+          title={PAGE_COPY.sections.projectMap.title}
+          note={PAGE_COPY.sections.projectMap.note}
         />
 
         <Reveal
@@ -189,7 +187,7 @@ export default function ProjectConstellation() {
 
         {/* plain-text index: same data, readable and crawlable */}
         <div className="mt-12 border-t border-[rgba(44,40,35,0.16)] pt-8">
-          <div className="kicker mb-5">The map in plain text</div>
+          <div className="kicker mb-5">{PAGE_COPY.sections.projectMap.plainText}</div>
           <ul className="grid list-none grid-cols-1 gap-x-12 gap-y-4 p-0 sm:grid-cols-2">
             {nodes.map(({ p }) => (
               <li key={p.slug} className="border-b border-[rgba(44,40,35,0.1)] pb-4">

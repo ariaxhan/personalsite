@@ -14,6 +14,7 @@ import {
   type Band,
   type BandMonth,
 } from "./motionShared";
+import { PAGE_COPY } from "../../utils/siteCopy";
 
 // Strata: build activity read like sediment. Time runs left to right, one
 // horizontal band per constellation, each month a mark whose size is its commit
@@ -33,7 +34,7 @@ function markSize(count: number, peak: number): number {
 
 function captionFor(band: Band, month: string, cell: BandMonth): string {
   const parts = cell.parts.map((p) => `${p.label} ${p.count}`).join(", ");
-  const many = cell.parts.length > 1 ? ` (${cell.total} commits)` : "";
+  const many = cell.parts.length > 1 ? ` (${cell.total} ${PAGE_COPY.motion.commits})` : "";
   return `${band.label} · ${monthLabel(month)}: ${parts}${many}`;
 }
 
@@ -47,10 +48,11 @@ export default function MotionStrata() {
   const bands = buildBands();
   const peak = globalPeak(bands);
   const cols = MONTHS.length;
+  const copy = PAGE_COPY.motion;
 
-  const defaultCaption = `${GRAND_TOTAL.toLocaleString()} commits across ${REPO_COUNT} repositories, ${monthLabel(
+  const defaultCaption = `${GRAND_TOTAL.toLocaleString()} ${copy.stripSummaryMiddle} ${REPO_COUNT} ${copy.stripSummarySuffix}, ${monthLabel(
     motionData.firstMonth
-  )} to ${monthLabel(motionData.lastMonth)}. Hover or focus a mark for the month.`;
+  )} to ${monthLabel(motionData.lastMonth)}. ${copy.strataDefaultSuffix}`;
 
   const [caption, setCaption] = useState<string | null>(null);
 
@@ -118,7 +120,7 @@ export default function MotionStrata() {
                     {band.label}
                   </span>
                   <span className="pl-[18px] font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-mute">
-                    {band.total.toLocaleString()} commits
+                    {band.total.toLocaleString()} {copy.commits}
                   </span>
                 </div>
 
@@ -193,7 +195,7 @@ export default function MotionStrata() {
       {/* Text alternative: the same record, read as a list. This is the
           accessible source of truth, not a fallback afterthought. */}
       <div className="mt-14">
-        <h3 className="kicker mb-6">The record, in plain text</h3>
+        <h3 className="kicker mb-6">{copy.textRecord}</h3>
         <dl className="grid gap-x-10 gap-y-7 sm:grid-cols-2">
           {bands.map((band) => (
             <div
@@ -210,7 +212,7 @@ export default function MotionStrata() {
               </dt>
               <dd className="m-0 text-[14px] leading-relaxed text-ink-faint">
                 <span className="text-ink">
-                  {band.total.toLocaleString()} commits
+                  {band.total.toLocaleString()} {copy.commits}
                 </span>
                 , {activeSpan(band)}.{" "}
                 <span className="text-ink-ghost">{band.note}</span>
@@ -228,7 +230,7 @@ export default function MotionStrata() {
                         </a>
                       ) : (
                         <span>
-                          {s.label} {s.total} <span className="text-ink-mute">(private repo)</span>
+                          {s.label} {s.total} <span className="text-ink-mute">({copy.privateRepo})</span>
                         </span>
                       )}
                     </li>

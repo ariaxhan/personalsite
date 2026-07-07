@@ -7,6 +7,7 @@ const BASE = "https://ariaxhan.com";
 const routes = [
   "/",
   "/about/",
+  "/reading/",
   "/contact/",
   "/hackathons/",
   "/open-source/",

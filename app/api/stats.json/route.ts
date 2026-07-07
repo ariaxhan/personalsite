@@ -1,5 +1,6 @@
 import { SITE, proofStats } from "../../utils/siteMeta";
 import motionData from "../../utils/motionData.json";
+import { PAGE_COPY } from "../../utils/siteCopy";
 
 export const dynamic = "force-static";
 
@@ -13,10 +14,10 @@ export async function GET() {
       motion: {
         totalCommits: motionData.grandTotal,
         repositories: motionData.repoCount,
-        note: "Counted by scripts/proof-of-motion.mjs from local git history; see /proof/",
+        note: PAGE_COPY.statsApi.motionNote,
         generated: motionData.generated,
       },
-      hackathons: { wins: 5, finals: 6, note: "5 wins plus 1 finalist; evidence on /hackathons/" },
+      hackathons: { wins: 5, finals: 6, note: PAGE_COPY.statsApi.hackathonNote },
     },
     { headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "public, max-age=3600" } }
   );

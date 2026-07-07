@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
 import { topics, topicEdges, mapDefaultBlurb } from "../utils/studioData";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 /**
  * CuriosityMap: Fig. 04, ideas that recognize each other.
@@ -35,10 +36,7 @@ export default function CuriosityMap() {
     >
       <div className="mx-auto max-w-[1280px]">
         <SectionHeader
-          fig="Fig. 04"
-          label="Curiosity Map"
-          title="Ideas that recognize each other"
-          note="A constellation, not a network. Hover a point."
+          {...PAGE_COPY.sections.curiosityMap}
         />
 
         <Reveal

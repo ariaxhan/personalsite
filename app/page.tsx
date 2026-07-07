@@ -15,11 +15,12 @@ import { pageMeta } from "./utils/pageMeta";
 import JsonLd from "./components/studio/JsonLd";
 import { personSchema, webSiteSchema } from "./utils/jsonLd";
 import { SITE } from "./utils/siteMeta";
+import { PAGE_COPY } from "./utils/siteCopy";
 
 export const metadata: Metadata = pageMeta({
   title: `${SITE.name}, ${SITE.role}`,
   description: SITE.tldr,
-  path: "/",
+  path: PAGE_COPY.metadata.home.path,
 });
 
 export default function Home() {

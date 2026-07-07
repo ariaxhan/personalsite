@@ -8,6 +8,7 @@ import {
   monthLabel,
   mergedByMonth,
 } from "./motionShared";
+import { PAGE_COPY } from "../../utils/siteCopy";
 
 // MotionStrip: the proof-of-motion record, compressed to a single band for the
 // homepage. All constellations merge into one per-month total, drawn as small
@@ -25,9 +26,10 @@ export default function MotionStrip() {
   const monthCol = (m: string) => MONTHS.indexOf(m) + 1; // 1-based
   const gridTemplateColumns = `repeat(${cols}, minmax(6px, 1fr))`;
 
-  const summary = `Proof of motion: ${GRAND_TOTAL.toLocaleString()} commits across ${REPO_COUNT} repositories, ${monthLabel(
+  const copy = PAGE_COPY.motion;
+  const summary = `${copy.stripSummaryPrefix} ${GRAND_TOTAL.toLocaleString()} ${copy.stripSummaryMiddle} ${REPO_COUNT} ${copy.stripSummarySuffix}, ${monthLabel(
     motionData.firstMonth
-  )} to ${monthLabel(motionData.lastMonth)}. View the full record.`;
+  )} to ${monthLabel(motionData.lastMonth)}. ${copy.stripSummaryCta}`;
 
   return (
     <Link
@@ -38,10 +40,10 @@ export default function MotionStrip() {
       {/* Header row. */}
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
         <span className="kicker text-ink-faint transition-colors group-hover:text-terracotta">
-          Proof of motion · live from git
+          {copy.stripLabel}
         </span>
         <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-mute">
-          {GRAND_TOTAL.toLocaleString()} commits · {REPO_COUNT} repositories
+          {GRAND_TOTAL.toLocaleString()} {copy.commits} · {REPO_COUNT} {copy.stripSummarySuffix}
         </span>
       </div>
 
@@ -93,10 +95,10 @@ export default function MotionStrip() {
 
       <div className="mt-4 flex items-center justify-between">
         <span className="font-serif text-[15px] italic text-ink-ghost">
-          The record, not the claim.
+          {copy.stripClaim}
         </span>
         <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint transition-colors group-hover:text-terracotta">
-          See the strata &rarr;
+          {copy.stripCta} &rarr;
         </span>
       </div>
     </Link>

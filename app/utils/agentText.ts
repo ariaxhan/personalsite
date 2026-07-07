@@ -28,73 +28,54 @@ import {
   ERAS,
   monthLabel,
 } from "../components/motion/motionShared";
+import { PAGE_COPY } from "./siteCopy";
 
 // ---------------------------------------------------------------------------
 // Canonical route map. The single list every surface cites.
 // ---------------------------------------------------------------------------
-export const CANONICAL_ROUTES: { path: string; purpose: string }[] = [
-  { path: "/", purpose: "Home. The ten-second introduction to Aria and the work." },
-  { path: "/about/", purpose: "Who Aria is, the working pattern, and the verified numbers." },
-  { path: "/systems/", purpose: "Shipped products and companies, each with proof." },
-  { path: "/open-source/", purpose: "Public repositories and research, each with proof." },
-  { path: "/writing/", purpose: "Essays grouped by theme, links stay on Medium." },
-  { path: "/proof/", purpose: "Proof of motion, an archaeological build record." },
-  { path: "/timeline/", purpose: "Roles and milestones by year." },
-  { path: "/hackathons/", purpose: "Builds under pressure and hackathon wins." },
-  { path: "/contact/", purpose: "Engagement types, fit filter, and booking." },
-  { path: "/project-review/", purpose: "Structured intake for a paid project review." },
-];
+export const CANONICAL_ROUTES: { path: string; purpose: string }[] = [...PAGE_COPY.agentText.canonicalRoutes];
 
-export const AGENT_ENDPOINTS: { path: string; purpose: string }[] = [
-  { path: "/llms.txt", purpose: "Concise agent guide to this site." },
-  { path: "/llms-full.txt", purpose: "Complete markdown mirror of the whole site." },
-  { path: "/api/site-index.json", purpose: "Site identity, route map, and endpoint list." },
-  { path: "/api/projects.json", purpose: "Structured records for every project." },
-  { path: "/api/writing.json", purpose: "Articles grouped by theme." },
-  { path: "/api/work-with-me.json", purpose: "Engagement types, fit filter, and booking." },
-  { path: "/.well-known/agent-card.json", purpose: "A2A agent card." },
-  { path: "/.well-known/mcp/server-card.json", purpose: "MCP server card." },
-  { path: "/.well-known/api-catalog", purpose: "Linkset of machine endpoints." },
-  { path: "/.well-known/agent-skills/index.json", purpose: "Agent skills index." },
-  { path: "/mcp", purpose: "MCP endpoint, JSON-RPC over streamable HTTP." },
-];
+export const AGENT_ENDPOINTS: { path: string; purpose: string }[] = [...PAGE_COPY.agentText.endpoints];
 
 export const AGENT_PREFERENCES = {
-  aiTrain: "no",
+  aiTrain: PAGE_COPY.agentText.preferences.aiTrain,
   aiInput: `yes, cite ${SITE.url}`,
-  search: "yes",
+  search: PAGE_COPY.agentText.preferences.search,
 } as const;
+
+const T = PAGE_COPY.agentText.labels;
+const NOTES = PAGE_COPY.agentText.notes;
 
 // ---------------------------------------------------------------------------
 // Small shared fragments.
 // ---------------------------------------------------------------------------
 function identityLines(): string[] {
   return [
-    `- Name: ${SITE.name}`,
-    `- Role: ${SITE.role}`,
-    `- Location: ${SITE.location}`,
-    `- Site: ${SITE.url}`,
-    `- Email: ${SITE.email}`,
+    `- ${T.name}: ${SITE.name}`,
+    `- ${T.role}: ${SITE.role}`,
+    `- ${T.location}: ${SITE.location}`,
+    `- ${T.site}: ${SITE.url}`,
+    `- ${T.email}: ${SITE.email}`,
   ];
 }
 
 function socialLines(): string[] {
   return [
-    `- GitHub: ${SITE.socials.github}`,
-    `- Medium: ${SITE.socials.medium}`,
-    `- LinkedIn: ${SITE.socials.linkedin}`,
-    `- X: ${SITE.socials.x}`,
+    `- ${T.github}: ${SITE.socials.github}`,
+    `- ${T.medium}: ${SITE.socials.medium}`,
+    `- ${T.linkedIn}: ${SITE.socials.linkedin}`,
+    `- ${T.x}: ${SITE.socials.x}`,
   ];
 }
 
 function proofLines(): string[] {
   return proofStats.map(
-    (s) => `- ${s.value} ${s.label} (source: ${s.source}, verified ${s.verified})`,
+    (s) => `- ${s.value} ${s.label} (${T.source}: ${s.source}, ${T.verified} ${s.verified})`,
   );
 }
 
 function linkList(links: Project["links"]): string {
-  if (links.length === 0) return "none public";
+  if (links.length === 0) return T.nonePublic;
   return links.map((l) => `[${l.label}](${l.href})`).join(", ");
 }
 
@@ -110,10 +91,10 @@ function projectCompactMd(p: Project): string[] {
     `### ${p.name}`,
     `${p.thesis}`,
     ``,
-    `- Status: ${p.status}`,
-    `- Proof: ${p.proof}`,
-    `- Stack: ${p.stack}`,
-    `- Links: ${linkList(p.links)}`,
+    `- ${T.status}: ${p.status}`,
+    `- ${T.proof}: ${p.proof}`,
+    `- ${T.stack}: ${p.stack}`,
+    `- ${T.links}: ${linkList(p.links)}`,
     ``,
   ];
 }
@@ -121,20 +102,20 @@ function projectCompactMd(p: Project): string[] {
 function projectFullMd(p: Project): string[] {
   return [
     `### ${p.name}`,
-    `Thesis: ${p.thesis}`,
+    `${T.thesis}: ${p.thesis}`,
     ``,
-    `- Kind: ${p.kind}`,
-    `- Status: ${p.status}`,
-    `- Problem: ${p.problem}`,
-    `- What I built: ${p.built.join(" ")}`,
-    `- Stack: ${p.stack}`,
-    `- Proof: ${p.proof}`,
-    `- Learned: ${p.learned}`,
-    `- Proves: ${p.proves}`,
-    `- Themes: ${themeList(p.themes)}`,
-    `- Connects to: ${p.connections.join(", ") || "none"}`,
-    `- Links: ${linkList(p.links)}`,
-    `- Closing: ${p.closing}`,
+    `- ${T.kind}: ${p.kind}`,
+    `- ${T.status}: ${p.status}`,
+    `- ${T.problem}: ${p.problem}`,
+    `- ${T.built}: ${p.built.join(" ")}`,
+    `- ${T.stack}: ${p.stack}`,
+    `- ${T.proof}: ${p.proof}`,
+    `- ${T.learned}: ${p.learned}`,
+    `- ${T.proves}: ${p.proves}`,
+    `- ${T.themes}: ${themeList(p.themes)}`,
+    `- ${T.connectsTo}: ${p.connections.join(", ") || T.none}`,
+    `- ${T.links}: ${linkList(p.links)}`,
+    `- ${T.closing}: ${p.closing}`,
     ``,
   ];
 }
@@ -167,13 +148,13 @@ export function renderLlmsTxt(): string {
     ``,
     `${SITE.role}. ${SITE.location}.`,
     ``,
-    `## Pages`,
+    `## ${T.pages}`,
     ...CANONICAL_ROUTES.map((r) => `- ${r.path} : ${r.purpose}`),
     ``,
-    `## Agent resources`,
+    `## ${T.agentResources}`,
     ...AGENT_ENDPOINTS.map((e) => `- ${e.path} : ${e.purpose}`),
     ``,
-    `## Preferences`,
+    `## ${T.preferences}`,
     `- ai-train: ${AGENT_PREFERENCES.aiTrain}`,
     `- ai-input: ${AGENT_PREFERENCES.aiInput}`,
     `- search: ${AGENT_PREFERENCES.search}`,
@@ -189,47 +170,47 @@ export function renderLlmsTxt(): string {
 export function renderLlmsFullTxt(): string {
   const lines: string[] = [];
 
-  lines.push(`# ${SITE.name}, Full Site Mirror`);
+  lines.push(`# ${SITE.name}, ${T.fullSiteMirror}`);
   lines.push(``);
   lines.push(`> ${SITE.tldr}`);
   lines.push(``);
 
-  lines.push(`## Identity`);
+  lines.push(`## ${T.identity}`);
   lines.push(...identityLines());
   lines.push(``);
-  lines.push(`## Elsewhere`);
+  lines.push(`## ${T.elsewhere}`);
   lines.push(...socialLines());
-  lines.push(`- Booking: ${SITE.booking.url}`);
+  lines.push(`- ${T.booking}: ${SITE.booking.url}`);
   lines.push(``);
 
-  lines.push(`## Bio`);
+  lines.push(`## ${T.bio}`);
   for (const para of SITE.bio) {
     lines.push(para);
     lines.push(``);
   }
 
-  lines.push(`## Verified numbers`);
-  lines.push(`Each number traces to a source and is re-verified before it changes.`);
+  lines.push(`## ${T.verifiedNumbers}`);
+  lines.push(NOTES.verifiedNumbers);
   lines.push(...proofLines());
   lines.push(``);
 
-  lines.push(`## Products and companies`);
+  lines.push(`## ${T.products}`);
   lines.push(``);
   for (const p of productProjects) {
     lines.push(...projectFullMd(p));
   }
 
-  lines.push(`## Open source and research`);
+  lines.push(`## ${T.openSource}`);
   lines.push(``);
   for (const p of openSourceProjects) {
     lines.push(...projectFullMd(p));
   }
 
-  lines.push(`## Writing`);
+  lines.push(`## ${T.writing}`);
   lines.push(``);
   lines.push(...writingThemedMd());
 
-  lines.push(`## Timeline`);
+  lines.push(`## ${T.timeline}`);
   lines.push(``);
   for (const m of moments) {
     lines.push(`### ${m.title} (${m.period})`);
@@ -237,50 +218,50 @@ export function renderLlmsFullTxt(): string {
     lines.push(``);
   }
 
-  lines.push(`## Hackathons`);
+  lines.push(`## ${T.hackathons}`);
   lines.push(``);
   for (const h of hackathons) {
     const award = h.award ? `${h.award}, ${h.metric}` : h.metric;
     lines.push(`### ${h.name}, ${h.hackathon} (${h.year})`);
     lines.push(`${h.description}`);
-    lines.push(`- Result: ${award}`);
-    lines.push(`- Tech: ${h.technologies.join(", ")}`);
-    lines.push(`- Link: ${h.link}`);
+    lines.push(`- ${T.result}: ${award}`);
+    lines.push(`- ${T.tech}: ${h.technologies.join(", ")}`);
+    lines.push(`- ${T.link}: ${h.link}`);
     lines.push(``);
   }
 
-  lines.push(`## Work with me`);
+  lines.push(`## ${T.workWithMe}`);
   lines.push(``);
   lines.push(workingStyle);
   lines.push(``);
-  lines.push(`### Engagement types`);
+  lines.push(`### ${T.engagementTypes}`);
   for (const e of engagements) {
     lines.push(`- ${e.title}: ${e.detail}`);
   }
   lines.push(``);
-  lines.push(`### A good fit`);
+  lines.push(`### ${T.goodFit}`);
   for (const g of goodFit) lines.push(`- ${g}`);
   lines.push(``);
-  lines.push(`### Not a fit`);
+  lines.push(`### ${T.notFit}`);
   for (const n of notAFit) lines.push(`- ${n}`);
   lines.push(``);
-  lines.push(`### Booking`);
+  lines.push(`### ${T.booking}`);
   lines.push(`${SITE.booking.line} ${SITE.booking.url}`);
-  lines.push(`Structured project review intake: ${SITE.url}/project-review/`);
+  lines.push(`${NOTES.projectReviewIntake}: ${SITE.url}/project-review/`);
   lines.push(``);
 
-  lines.push(`## Contact`);
+  lines.push(`## ${T.contact}`);
   lines.push(...identityLines());
   lines.push(...socialLines());
   lines.push(``);
 
-  lines.push(`## Agent preferences`);
-  lines.push(`- Training: ${AGENT_PREFERENCES.aiTrain === "no" ? "disallowed" : "allowed"}`);
-  lines.push(`- Inference and grounding with citation: allowed`);
-  lines.push(`- Search indexing: allowed`);
+  lines.push(`## ${T.agentPreferences}`);
+  lines.push(`- ${T.training}: ${AGENT_PREFERENCES.aiTrain === "no" ? T.disallowed : T.allowed}`);
+  lines.push(`- ${T.inference}: ${T.allowed}`);
+  lines.push(`- ${T.searchIndexing}: ${T.allowed}`);
   lines.push(``);
   lines.push(`---`);
-  lines.push(`Machine-readable endpoints:`);
+  lines.push(T.machineEndpoints);
   for (const e of AGENT_ENDPOINTS) {
     lines.push(`- ${SITE.url}${e.path}`);
   }
@@ -303,10 +284,10 @@ export function renderHomeMd(): string {
     ``,
     `${SITE.role}. ${SITE.location}.`,
     ``,
-    `## Pages`,
+    `## ${T.pages}`,
     ...CANONICAL_ROUTES.map((r) => `- [${r.path}](${r.path}): ${r.purpose}`),
     ``,
-    `## Agent resources`,
+    `## ${T.agentResources}`,
     ...AGENT_ENDPOINTS.map((e) => `- ${e.path}: ${e.purpose}`),
     ``,
   ];
@@ -314,15 +295,15 @@ export function renderHomeMd(): string {
 }
 
 export function renderAboutMd(): string {
-  const lines: string[] = [`# About ${SITE.name}`, ``];
+  const lines: string[] = [`# ${T.aboutPrefix} ${SITE.name}`, ``];
   for (const para of SITE.bio) {
     lines.push(para);
     lines.push(``);
   }
-  lines.push(`## Verified numbers`);
+  lines.push(`## ${T.verifiedNumbers}`);
   lines.push(...proofLines());
   lines.push(``);
-  lines.push(`## Links`);
+  lines.push(`## ${T.links}`);
   lines.push(...identityLines());
   lines.push(...socialLines());
   lines.push(``);
@@ -338,18 +319,18 @@ function projectsPageMd(title: string, list: Project[]): string {
 }
 
 export function renderSystemsMd(): string {
-  return projectsPageMd(`Systems, ${SITE.name}`, productProjects);
+  return projectsPageMd(`${T.systemsPrefix}, ${SITE.name}`, productProjects);
 }
 
 export function renderOpenSourceMd(): string {
-  return projectsPageMd(`Open Source, ${SITE.name}`, openSourceProjects);
+  return projectsPageMd(`${T.openSourcePrefix}, ${SITE.name}`, openSourceProjects);
 }
 
 export function renderWritingMd(): string {
   const lines: string[] = [
-    `# Writing, ${SITE.name}`,
+    `# ${T.writingPrefix}, ${SITE.name}`,
     ``,
-    `Essays on agents, memory, evals, AI coding workflows, and the questions underneath.`,
+    NOTES.writingIntro,
     ``,
     ...writingThemedMd(),
   ];
@@ -358,28 +339,28 @@ export function renderWritingMd(): string {
 
 export function renderContactMd(): string {
   const lines: string[] = [
-    `# Work with ${SITE.name}`,
+    `# ${T.workWithMe} ${SITE.name}`,
     ``,
     workingStyle,
     ``,
-    `## Engagement types`,
+    `## ${T.engagementTypes}`,
   ];
   for (const e of engagements) {
     lines.push(`- ${e.title}: ${e.detail}`);
   }
   lines.push(``);
-  lines.push(`## A good fit`);
+  lines.push(`## ${T.goodFit}`);
   for (const g of goodFit) lines.push(`- ${g}`);
   lines.push(``);
-  lines.push(`## Not a fit`);
+  lines.push(`## ${T.notFit}`);
   for (const n of notAFit) lines.push(`- ${n}`);
   lines.push(``);
-  lines.push(`## Booking`);
+  lines.push(`## ${T.booking}`);
   lines.push(`${SITE.booking.line}`);
-  lines.push(`- Call: ${SITE.booking.url}`);
-  lines.push(`- Project review intake: ${SITE.url}/project-review/`);
+  lines.push(`- ${T.call}: ${SITE.booking.url}`);
+  lines.push(`- ${T.projectReviewIntake}: ${SITE.url}/project-review/`);
   lines.push(``);
-  lines.push(`## Links`);
+  lines.push(`## ${T.links}`);
   lines.push(...identityLines());
   lines.push(...socialLines());
   lines.push(``);
@@ -387,7 +368,7 @@ export function renderContactMd(): string {
 }
 
 export function renderTimelineMd(): string {
-  const lines: string[] = [`# Timeline, ${SITE.name}`, ``];
+  const lines: string[] = [`# ${T.timelinePrefix}, ${SITE.name}`, ``];
   for (const m of moments) {
     lines.push(`## ${m.title}`);
     lines.push(`${m.period}`);
@@ -399,15 +380,15 @@ export function renderTimelineMd(): string {
 }
 
 export function renderHackathonsMd(): string {
-  const lines: string[] = [`# Hackathons, ${SITE.name}`, ``];
+  const lines: string[] = [`# ${T.hackathonsPrefix}, ${SITE.name}`, ``];
   for (const h of hackathons) {
     const award = h.award ? `${h.award}, ${h.metric}` : h.metric;
     lines.push(`## ${h.name}, ${h.hackathon} (${h.year})`);
     lines.push(h.description);
     lines.push(``);
-    lines.push(`- Result: ${award}`);
-    lines.push(`- Tech: ${h.technologies.join(", ")}`);
-    lines.push(`- Link: ${h.link}`);
+    lines.push(`- ${T.result}: ${award}`);
+    lines.push(`- ${T.tech}: ${h.technologies.join(", ")}`);
+    lines.push(`- ${T.link}: ${h.link}`);
     lines.push(``);
   }
   return lines.join("\n");
@@ -422,24 +403,24 @@ export function renderProofMd(): string {
   const total = motionData.grandTotal.toLocaleString();
   const span = `${monthLabel(motionData.firstMonth)} to ${monthLabel(motionData.lastMonth)}`;
   const lines: string[] = [
-    `# Proof of Motion, ${SITE.name}`,
+    `# ${T.proofPrefix}, ${SITE.name}`,
     ``,
-    `> Real commit history from the machine this site is built on, grouped into constellations. Client work and private experiments appear as activity, never as names.`,
+    `> ${NOTES.proofIntro}`,
     ``,
-    `- Total commits: ${total}`,
-    `- Repositories on this machine: ${motionData.repoCount}`,
-    `- Span: ${span}`,
-    `- Generated: ${motionData.generated}`,
+    `- ${T.totalCommits}: ${total}`,
+    `- ${T.repositoriesOnMachine}: ${motionData.repoCount}`,
+    `- ${T.span}: ${span}`,
+    `- ${T.generated}: ${motionData.generated}`,
     ``,
-    `## Constellations`,
+    `## ${T.constellations}`,
     ...bands.map(
-      (b) => `- ${b.label}: ${b.total.toLocaleString()} commits, ${monthLabel(b.first)} to ${monthLabel(b.last)}. ${b.note}`,
+      (b) => `- ${b.label}: ${b.total.toLocaleString()} ${PAGE_COPY.motion.commits}, ${monthLabel(b.first)} to ${monthLabel(b.last)}. ${b.note}`,
     ),
     ``,
-    `## Eras`,
+    `## ${T.eras}`,
     ...ERAS.map((e) => `- ${e.name} (${e.range}): ${e.caption}`),
     ``,
-    `Full history: ${SITE.socials.github}`,
+    `${T.fullHistory}: ${SITE.socials.github}`,
     ``,
   ];
   return lines.join("\n");
@@ -493,29 +474,29 @@ export function mcpBioMd(): string {
     lines.push(para);
     lines.push(``);
   }
-  lines.push(`## Verified numbers`);
+  lines.push(`## ${T.verifiedNumbers}`);
   lines.push(...proofLines());
   lines.push(``);
-  lines.push(`Full bio and links: ${SITE.url}/about/`);
+  lines.push(`${T.fullBioLinks}: ${SITE.url}/about/`);
   return lines.join("\n");
 }
 
 export function mcpProjectsMd(): string {
-  const lines: string[] = [`# Projects, ${SITE.name}`, ``];
+  const lines: string[] = [`# ${T.projectsPrefix}, ${SITE.name}`, ``];
   for (const p of projects) {
     lines.push(`- ${p.name} (${p.status}): ${p.thesis} ${linkList(p.links)}`);
   }
   lines.push(``);
-  lines.push(`Full records: ${SITE.url}/api/projects.json`);
+  lines.push(`${T.fullRecords}: ${SITE.url}/api/projects.json`);
   return lines.join("\n");
 }
 
 export function mcpWritingMd(): string {
-  const lines: string[] = [`# Writing, ${SITE.name}`, ``];
+  const lines: string[] = [`# ${T.writingPrefix}, ${SITE.name}`, ``];
   for (const a of articles as Article[]) {
     lines.push(`- [${a.title}](${a.href}) (${a.read})`);
   }
   lines.push(``);
-  lines.push(`Grouped by theme: ${SITE.url}/writing/  Structured: ${SITE.url}/api/writing.json`);
+  lines.push(`${T.groupedByTheme}: ${SITE.url}/writing/  ${T.structured}: ${SITE.url}/api/writing.json`);
   return lines.join("\n");
 }

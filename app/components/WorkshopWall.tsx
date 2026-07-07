@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
 import Modal from "./studio/Modal";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 export interface WallLink {
   label: string;
@@ -143,7 +144,7 @@ export default function WorkshopWall({
                   >
                     <span className="h-1 w-9 rounded-sm" style={{ background: p.accent }} />
                     <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-ink-mute">
-                      studio · {p.title}
+                      {PAGE_COPY.workshopWall.cardPrefix} · {p.title}
                     </span>
                   </div>
                 )}
@@ -167,7 +168,7 @@ export default function WorkshopWall({
                   </div>
                 )}
                 <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-ghost">
-                  read the story {"->"}
+                  {PAGE_COPY.workshopWall.cardCta} {"->"}
                 </span>
               </div>
             </button>
@@ -233,7 +234,7 @@ export default function WorkshopWall({
                         type="button"
                         onClick={() => setSelectedImage(null)}
                         className="relative overflow-hidden rounded-[2px] bg-[#ece4d4] p-0"
-                        aria-label={`Play ${active.title} demo`}
+                        aria-label={`${PAGE_COPY.workshopWall.videoPlayPrefix} ${active.title} demo`}
                         aria-pressed={showVideo}
                         style={{ border: showVideo ? "2px solid #b56a4f" : "1px solid rgba(44,40,35,.1)" }}
                       >
@@ -254,7 +255,7 @@ export default function WorkshopWall({
                           type="button"
                           onClick={() => setSelectedImage(src)}
                           className="overflow-hidden rounded-[2px] bg-[#ece4d4] p-0"
-                          aria-label={`Show ${active.title} screenshot ${k + 1}`}
+                          aria-label={`${PAGE_COPY.workshopWall.screenshotPrefix} ${active.title} ${PAGE_COPY.workshopWall.screenshotSuffix} ${k + 1}`}
                           aria-pressed={selected}
                           style={{
                             border: selected ? "2px solid #b56a4f" : "1px solid rgba(44,40,35,.1)",
@@ -274,7 +275,7 @@ export default function WorkshopWall({
                     rel="noopener noreferrer"
                     className="self-start border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[16px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
                   >
-                    Open screenshot full size {"->"}
+                    {PAGE_COPY.workshopWall.openScreenshot} {"->"}
                   </a>
                 )}
               </div>
@@ -285,7 +286,7 @@ export default function WorkshopWall({
             </p>
 
             <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
-              What I built
+              {PAGE_COPY.workshopWall.sections.built}
             </div>
             {active.body.map((para, j) => (
               <p key={j} className="m-0 mb-4 text-[16.5px] leading-[1.7] text-ink-soft">
@@ -296,7 +297,7 @@ export default function WorkshopWall({
             {active.problem && (
               <div className="mt-7">
                 <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
-                  The problem
+                  {PAGE_COPY.workshopWall.sections.problem}
                 </div>
                 <p className="m-0 text-[16.5px] leading-[1.7] text-ink-soft">{active.problem}</p>
               </div>
@@ -304,7 +305,7 @@ export default function WorkshopWall({
             {active.proofLine && (
               <div className="mt-6">
                 <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
-                  Proof
+                  {PAGE_COPY.workshopWall.sections.proof}
                 </div>
                 <p className="m-0 text-[16.5px] leading-[1.7] text-ink-soft">{active.proofLine}</p>
               </div>
@@ -312,7 +313,7 @@ export default function WorkshopWall({
             {active.learned && (
               <div className="mt-6">
                 <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
-                  What I learned
+                  {PAGE_COPY.workshopWall.sections.learned}
                 </div>
                 <p className="m-0 text-[16.5px] leading-[1.7] text-ink-soft">{active.learned}</p>
               </div>
@@ -320,7 +321,7 @@ export default function WorkshopWall({
             {active.proves && (
               <div className="mt-6">
                 <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
-                  What this proves
+                  {PAGE_COPY.workshopWall.sections.proves}
                 </div>
                 <p className="m-0 text-[16.5px] leading-[1.7] text-ink-soft">{active.proves}</p>
               </div>
@@ -330,12 +331,12 @@ export default function WorkshopWall({
               <div className="mt-7 flex flex-col gap-1.5 border-t border-dashed border-[rgba(44,40,35,0.25)] pt-6">
                 {active.stackLine && (
                   <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-mute">
-                    Stack · {active.stackLine}
+                    {PAGE_COPY.workshopWall.sections.stack} · {active.stackLine}
                   </div>
                 )}
                 {active.themes && active.themes.length > 0 && (
                   <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-mute">
-                    Themes · {active.themes.join(" · ")}
+                    {PAGE_COPY.workshopWall.sections.themes} · {active.themes.join(" · ")}
                   </div>
                 )}
               </div>
@@ -344,7 +345,7 @@ export default function WorkshopWall({
             {active.connections && active.connections.length > 0 && (
               <div className="mt-6">
                 <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
-                  Connected work
+                  {PAGE_COPY.workshopWall.sections.connected}
                 </div>
                 <div className="flex flex-wrap gap-x-5 gap-y-2">
                   {active.connections.map((c) => (

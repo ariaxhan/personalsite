@@ -2,6 +2,7 @@ import Link from "next/link";
 import Reveal from "./studio/Reveal";
 import SectionHeader from "./studio/SectionHeader";
 import { deskObjects, DeskObject } from "../utils/studioData";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 /**
  * LivingDesk: Fig. 01, the desk.
@@ -15,10 +16,7 @@ export default function LivingDesk() {
   return (
     <section className="mx-auto max-w-wall px-5 pb-24 pt-10 sm:px-8 lg:px-14">
       <SectionHeader
-        fig="Fig. 01"
-        label="The Desk"
-        title="Everything within reach"
-        note="Each object opens a room. Pick one up."
+        {...PAGE_COPY.sections.livingDesk}
       />
 
       {/* The desk surface, md and up */}

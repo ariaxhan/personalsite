@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, ReactNode, useState } from "react";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 type FormState = "idle" | "sending" | "sent" | "error";
 
@@ -20,20 +21,9 @@ type ProjectReviewPayload = {
   company: string;
 };
 
-const STAGES = ["Idea", "Prototype", "Messy but real", "Live", "Rebuild?"];
+const STAGES = [...PAGE_COPY.projectReviewForm.stages];
 
-const PROJECT_TYPES = [
-  "Idea Direction",
-  "Architecture",
-  "Tool Choice",
-  "Claude Code",
-  "Codex",
-  "Cursor",
-  "Agents",
-  "AI Code Cleanup",
-  "Open Source",
-  "Portfolio / Product",
-];
+const PROJECT_TYPES = [...PAGE_COPY.projectReviewForm.projectTypes];
 
 const initialPayload: ProjectReviewPayload = {
   name: "",
@@ -77,7 +67,7 @@ export default function ProjectReviewForm() {
 
     if (!payload.projectStage) {
       setState("error");
-      setMessage("Pick a stage first.");
+      setMessage(PAGE_COPY.projectReviewForm.validation.missingStage);
       return;
     }
 
@@ -93,19 +83,19 @@ export default function ProjectReviewForm() {
       const result = await response.json().catch(() => null);
 
       if (!response.ok) {
-        throw new Error(result?.error || "Something broke while sending this.");
+        throw new Error(result?.error || PAGE_COPY.projectReviewForm.validation.sendError);
       }
 
       setPayload(initialPayload);
       setState("sent");
       setMessage(
         result?.submissionId
-          ? `Got it. I'll reply by email. Reference #${result.submissionId}.`
-          : "Got it. I'll reply by email.",
+          ? `${PAGE_COPY.projectReviewForm.validation.sentWithReference}${result.submissionId}.`
+          : PAGE_COPY.projectReviewForm.validation.sent,
       );
     } catch (error) {
       setState("error");
-      setMessage(error instanceof Error ? error.message : "Could not send this. Email me directly if it keeps failing.");
+      setMessage(error instanceof Error ? error.message : PAGE_COPY.projectReviewForm.validation.fallbackError);
     }
   }
 
@@ -117,19 +107,18 @@ export default function ProjectReviewForm() {
     >
       <div className="grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:gap-16">
         <div>
-          <div className="kicker mb-4">Send the build</div>
+          <div className="kicker mb-4">{PAGE_COPY.projectReviewForm.introLabel}</div>
           <p className="m-0 font-serif text-[24px] leading-snug text-ink">
-            I care about the story first, then the system.
+            {PAGE_COPY.projectReviewForm.introTitle}
           </p>
           <p className="m-0 mt-5 text-[15.5px] leading-relaxed text-ink-muted">
-            Send AGENTS.md, CLAUDE.md, prompts, diagrams, notes, or code if they
-            exist. Mess is fine.
+            {PAGE_COPY.projectReviewForm.introNote}
           </p>
         </div>
 
         <div className="grid gap-5">
           <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="Name" required>
+            <Field label={PAGE_COPY.projectReviewForm.fields.name} required>
               <input
                 required
                 value={payload.name}
@@ -138,7 +127,7 @@ export default function ProjectReviewForm() {
                 autoComplete="name"
               />
             </Field>
-            <Field label="Email" required>
+            <Field label={PAGE_COPY.projectReviewForm.fields.email} required>
               <input
                 required
                 type="email"
@@ -150,7 +139,7 @@ export default function ProjectReviewForm() {
             </Field>
           </div>
 
-          <Field label="Project name">
+          <Field label={PAGE_COPY.projectReviewForm.fields.projectName}>
             <input
               value={payload.projectName}
               onChange={(event) => updateField("projectName", event.target.value)}
@@ -160,7 +149,7 @@ export default function ProjectReviewForm() {
 
           <fieldset className="m-0 border-0 p-0">
             <legend className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute">
-              Stage *
+              {PAGE_COPY.projectReviewForm.fields.stage} *
             </legend>
             <div className="flex flex-wrap gap-2">
               {STAGES.map((stage) => {
@@ -186,7 +175,7 @@ export default function ProjectReviewForm() {
 
           <fieldset className="m-0 border-0 p-0">
             <legend className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute">
-              What should I look at?
+              {PAGE_COPY.projectReviewForm.fields.lookAt}
             </legend>
             <div className="flex flex-wrap gap-2">
               {PROJECT_TYPES.map((type) => {
@@ -210,75 +199,75 @@ export default function ProjectReviewForm() {
             </div>
           </fieldset>
 
-          <Field label="What inspired this?" required>
+          <Field label={PAGE_COPY.projectReviewForm.fields.origin} required>
             <textarea
               required
               value={payload.origin}
               onChange={(event) => updateField("origin", event.target.value)}
               className="field-input min-h-[108px] resize-y"
-              placeholder="Where did the idea come from? What made you want to build it?"
+              placeholder={PAGE_COPY.projectReviewForm.placeholders.origin}
             />
           </Field>
 
-          <Field label="What makes it yours?" required>
+          <Field label={PAGE_COPY.projectReviewForm.fields.uniqueContribution} required>
             <textarea
               required
               value={payload.uniqueContribution}
               onChange={(event) => updateField("uniqueContribution", event.target.value)}
               className="field-input min-h-[108px] resize-y"
-              placeholder="Your taste, obsession, domain knowledge, weird constraint, lived experience, anything a template would miss."
+              placeholder={PAGE_COPY.projectReviewForm.placeholders.uniqueContribution}
             />
           </Field>
 
-          <Field label="What is it meant to be?" required>
+          <Field label={PAGE_COPY.projectReviewForm.fields.artifactIntent} required>
             <textarea
               required
               value={payload.artifactIntent}
               onChange={(event) => updateField("artifactIntent", event.target.value)}
               className="field-input min-h-[92px] resize-y"
-              placeholder="Open Source, portfolio piece, product, internal tool, research toy, proof of taste, not sure yet?"
+              placeholder={PAGE_COPY.projectReviewForm.placeholders.artifactIntent}
             />
           </Field>
 
-          <Field label="Architecture / tools">
+          <Field label={PAGE_COPY.projectReviewForm.fields.architecture}>
             <textarea
               value={payload.architecture}
               onChange={(event) => updateField("architecture", event.target.value)}
               className="field-input min-h-[108px] resize-y"
-              placeholder="Agents, memory, evals, database, hosting, Cloudflare vs AWS/GCP, repo structure, AI coding setup."
+              placeholder={PAGE_COPY.projectReviewForm.placeholders.architecture}
             />
           </Field>
 
-          <Field label="Links / docs">
+          <Field label={PAGE_COPY.projectReviewForm.fields.links}>
             <textarea
               value={payload.links}
               onChange={(event) => updateField("links", event.target.value)}
               className="field-input min-h-[84px] resize-y"
-              placeholder="Repo, demo, screenshots, AGENTS.md, CLAUDE.md, README, Loom, diagrams, notes."
+              placeholder={PAGE_COPY.projectReviewForm.placeholders.links}
             />
           </Field>
 
-          <Field label="What do you want help deciding?" required>
+          <Field label={PAGE_COPY.projectReviewForm.fields.question} required>
             <textarea
               required
               value={payload.question}
               onChange={(event) => updateField("question", event.target.value)}
               className="field-input min-h-[108px] resize-y"
-              placeholder="Make it less generic, clean up AI slop, choose tools, rethink the architecture, decide whether it should be a product/Open Source/portfolio piece."
+              placeholder={PAGE_COPY.projectReviewForm.placeholders.question}
             />
           </Field>
 
-          <Field label="Timeline">
+          <Field label={PAGE_COPY.projectReviewForm.fields.timeline}>
             <input
               value={payload.timeline}
               onChange={(event) => updateField("timeline", event.target.value)}
               className="field-input"
-              placeholder="This week, flexible, urgent..."
+              placeholder={PAGE_COPY.projectReviewForm.placeholders.timeline}
             />
           </Field>
 
           <label className="hidden">
-            Company
+            {PAGE_COPY.projectReviewForm.fields.company}
             <input
               tabIndex={-1}
               autoComplete="off"
@@ -293,7 +282,7 @@ export default function ProjectReviewForm() {
               disabled={state === "sending"}
               className="inline-flex min-h-11 items-center justify-center border border-ink bg-ink px-5 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-studio-paper transition-colors hover:border-terracotta hover:bg-terracotta disabled:cursor-wait disabled:opacity-60 sm:text-[11px] sm:tracking-[0.18em]"
             >
-              {state === "sending" ? "Sending" : "Submit project"}
+              {state === "sending" ? PAGE_COPY.projectReviewForm.sending : PAGE_COPY.projectReviewForm.submit}
             </button>
             <p
               aria-live="polite"
@@ -305,7 +294,7 @@ export default function ProjectReviewForm() {
                     : "border-transparent text-ink-muted"
               }`}
             >
-              {message || "First review is free. Follow-up is case by case."}
+              {message || PAGE_COPY.projectReviewForm.idle}
             </p>
           </div>
         </div>

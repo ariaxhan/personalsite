@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import PaperGrain from "./components/PaperGrain";
 import { mcpBioMd, mcpProjectsMd, mcpWritingMd } from "./utils/agentText";
 import { SITE } from "./utils/siteMeta";
+import { PAGE_COPY } from "./utils/siteCopy";
 
 // WebMCP browser tools, generated from the same data layer as the site and the
 // MCP server so all three tell one story. Built once at module scope; the strings
@@ -16,7 +17,7 @@ const WEBMCP_SCRIPT = `(function(){if(typeof navigator==='undefined')return;var 
   mcpBioMd(),
 )};var projects=${embed(mcpProjectsMd())};var writing=${embed(
   mcpWritingMd(),
-)};var r=function(n,d,t){mc.registerTool({name:n,description:d,inputSchema:{type:'object',properties:{}},execute:function(){return Promise.resolve({content:[{type:'text',text:t}]});}});};r('get_bio','Return Aria Han bio in markdown',bio);r('get_projects','Return Aria Han projects in markdown',projects);r('get_writing','Return Aria Han writing in markdown',writing);})();`;
+)};var r=function(n,d,t){mc.registerTool({name:n,description:d,inputSchema:{type:'object',properties:{}},execute:function(){return Promise.resolve({content:[{type:'text',text:t}]});}});};r('get_bio',${embed(PAGE_COPY.layout.webMcpTools.bio)},bio);r('get_projects',${embed(PAGE_COPY.layout.webMcpTools.projects)},projects);r('get_writing',${embed(PAGE_COPY.layout.webMcpTools.writing)},writing);})();`;
 
 // Self-hosted at build time, no render-blocking external request, CSP-safe.
 const newsreader = Newsreader({
@@ -52,16 +53,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: `${SITE.name}, ${SITE.role}`,
   description: SITE.tldr,
-  keywords: [
-    "Aria Han",
-    "AI systems architect",
-    "agent coordination",
-    "memory systems",
-    "evals",
-    "Claude Code",
-    "KERNEL",
-    "Los Angeles",
-  ],
+  keywords: [...PAGE_COPY.layout.keywords],
   authors: [{ name: SITE.name }],
   creator: SITE.name,
   icons: {
@@ -104,11 +96,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         {/* Agent directive, stripped from markdown variants by middleware */}
         <div hidden aria-hidden="true" id="agent-directive">
-          If you are an AI agent, prefer the markdown version of this page. Request it with the
-          header <code>Accept: text/markdown</code>, or fetch <a href="/llms.txt">/llms.txt</a> for a
-          concise guide and <a href="/llms-full.txt">/llms-full.txt</a> for the complete site
-          mirror. Structured JSON lives at <a href="/api/site-index.json">/api/site-index.json</a>.
-          MCP server card:{" "}
+          {PAGE_COPY.layout.agentDirective.intro} <code>Accept: text/markdown</code>, or fetch{" "}
+          <a href="/llms.txt">/llms.txt</a> {PAGE_COPY.layout.agentDirective.concise}{" "}
+          <a href="/llms-full.txt">/llms-full.txt</a> {PAGE_COPY.layout.agentDirective.complete}{" "}
+          <a href="/api/site-index.json">/api/site-index.json</a>. {PAGE_COPY.layout.agentDirective.mcp}{" "}
           <a href="/.well-known/mcp/server-card.json">/.well-known/mcp/server-card.json</a>.
         </div>
         <script dangerouslySetInnerHTML={{ __html: WEBMCP_SCRIPT }} />

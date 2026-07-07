@@ -4,11 +4,10 @@ import About from "../components/About";
 import CuriosityMap from "../components/CuriosityMap";
 import Obsessions from "../components/Obsessions";
 import StudioFooter from "../components/StudioFooter";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 export const metadata: Metadata = pageMeta({
-  title: "About | Aria Han",
-  description: "From journalism to AI systems architecture. Aria Han on language, memory, and building AI tools worth trusting.",
-  path: "/about/",
+  ...PAGE_COPY.metadata.about,
 });
 
 export default function AboutPage() {

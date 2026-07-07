@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
 import { hackathons } from "../utils/studioData";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 /**
  * HackathonsGrid: Fig. 02c, built under pressure.
@@ -15,10 +16,7 @@ export default function HackathonsGrid() {
     <section className="mx-auto max-w-wall px-5 sm:px-8 lg:px-14" style={{ paddingTop: 120 }}>
       <SectionHeader
         as="h1"
-        fig="Fig. 02c"
-        label="Hackathons"
-        title="Built under pressure"
-        note="Six hackathon wins in two years. Each built in 24 to 48 hours, judged by strangers. A few kept going into production."
+        {...PAGE_COPY.sections.hackathons}
       />
 
       <div className="mt-12 grid grid-cols-[repeat(auto-fill,minmax(min(100%,290px),1fr))] items-start gap-x-8 gap-y-12">

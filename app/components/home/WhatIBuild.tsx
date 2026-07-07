@@ -2,6 +2,7 @@ import Link from "next/link";
 import SectionHeader from "../studio/SectionHeader";
 import Reveal from "../studio/Reveal";
 import { engagements } from "../../utils/workWithMeData";
+import { PAGE_COPY } from "../../utils/siteCopy";
 
 // WhatIBuild: Fig. 01, the seven kinds of engagement, sourced from
 // workWithMeData. Each row is a compact typographic entry (a tiny CSS-drawn
@@ -11,10 +12,10 @@ export default function WhatIBuild() {
   return (
     <section className="mx-auto max-w-content px-5 py-20 sm:px-8 lg:px-14 lg:py-28">
       <SectionHeader
-        fig="Fig. 01"
-        label="What I build"
-        title="Ways that I can help you"
-        note="Each one is a door to a short intake."
+        fig={PAGE_COPY.sections.whatIBuild.fig}
+        label={PAGE_COPY.sections.whatIBuild.label}
+        title={PAGE_COPY.sections.whatIBuild.title}
+        note={PAGE_COPY.sections.whatIBuild.note}
       />
 
       <div className="mt-10 grid grid-cols-1 gap-x-12 gap-y-1 lg:grid-cols-2">
@@ -57,7 +58,7 @@ export default function WhatIBuild() {
               </span>
             </span>
             <span className="font-serif text-[19px] italic leading-tight text-ink-ghost transition-colors group-hover:text-terracotta">
-              Not sure which one fits? Start with a short note.
+              {PAGE_COPY.sections.whatIBuild.unsure}
             </span>
           </Link>
         </Reveal>

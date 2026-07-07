@@ -7,6 +7,7 @@
 // ============================================================================
 
 import motion from "../../utils/motionData.json";
+import { PAGE_COPY } from "../../utils/siteCopy";
 
 export type MotionSeries = {
   label: string;
@@ -118,32 +119,10 @@ export type Era = {
   end: string;
 };
 
-export const ERAS: Era[] = [
-  {
-    key: "founder",
-    name: "Founder era",
-    range: "Nov 2024 to Jan 2026",
-    caption: "AI startup founder in San Francisco.",
-    start: "2024-11",
-    end: "2025-12",
-  },
-  {
-    key: "independent",
-    name: "Independent research",
-    range: "Jan to Apr 2026",
-    caption: "Independent in LA. Memory, evals, agent tooling.",
-    start: "2026-01",
-    end: "2026-03",
-  },
-  {
-    key: "implementation",
-    name: "Implementation era",
-    range: "Apr 2026 onward",
-    caption: "Client and internal AI implementation work.",
-    start: "2026-04",
-    end: AXIS_END,
-  },
-];
+export const ERAS: Era[] = PAGE_COPY.motion.eras.map((era) => ({
+  ...era,
+  end: era.end === "AXIS_END" ? AXIS_END : era.end,
+}));
 
 // ---------------------------------------------------------------------------
 // Bands. One per constellation, carrying its per-month breakdown (which named

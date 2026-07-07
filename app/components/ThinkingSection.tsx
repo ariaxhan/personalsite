@@ -1,6 +1,7 @@
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
 import { WRITING_THEMES, articlesByTheme, MEDIUM_PROFILE } from "../utils/writingData";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 /**
  * ThinkingSection: the writing, set as a map.
@@ -17,10 +18,10 @@ export default function ThinkingSection() {
     <section className="mx-auto max-w-[1180px] px-5 pb-24 sm:px-8 lg:px-14 lg:pb-28" style={{ paddingTop: 120 }}>
       <SectionHeader
         as="h1"
-        fig="Fig. 09"
-        label="Writing"
-        title="Writing"
-        note="Essays and field notes on agents, memory, model behavior, and the parts of AI that break in real work. Every essay lives on Medium."
+        fig={PAGE_COPY.sections.writing.fig}
+        label={PAGE_COPY.sections.writing.label}
+        title={PAGE_COPY.sections.writing.title}
+        note={PAGE_COPY.sections.writing.note}
       />
 
       <Reveal className="mt-6">
@@ -30,7 +31,7 @@ export default function ThinkingSection() {
           rel="noopener noreferrer"
           className="inline-block border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[18px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
         >
-          All essays on Medium {"->"}
+          {PAGE_COPY.sections.writing.allMedium} {"->"}
         </a>
       </Reveal>
 

@@ -1,6 +1,7 @@
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
 import { moments, timelineTerminus } from "../utils/studioData";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 const typeColor: Record<string, string> = {
   company: "#b56a4f",
@@ -24,10 +25,7 @@ export default function Timeline() {
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-14">
         <SectionHeader
           as="h1"
-          fig="Fig. 06"
-          label="Timeline"
-          title="A walk through the years"
-          note="Three companies, six wins, hundreds of builders met. A few markers from the path."
+          {...PAGE_COPY.sections.timeline}
         />
       </div>
 

@@ -6,6 +6,7 @@ import {
   WRITING_THEMES,
   type WritingTheme,
 } from "../../utils/writingData";
+import { PAGE_COPY } from "../../utils/siteCopy";
 
 // WritingHighlights: one strongest essay per working theme, sent to Medium. The
 // full archive lives on the writing page. Sourced from writingData, so the four
@@ -29,10 +30,10 @@ export default function WritingHighlights() {
   return (
     <section className="mx-auto max-w-content px-5 py-20 sm:px-8 lg:px-14 lg:py-28">
       <SectionHeader
-        fig="Fig. 03"
-        label="Writing"
-        title="Notes from the work"
-        note="One essay from each thread I keep pulling on. The rest of the archive is one click away."
+        fig={PAGE_COPY.sections.writingHighlights.fig}
+        label={PAGE_COPY.sections.writingHighlights.label}
+        title={PAGE_COPY.sections.writingHighlights.title}
+        note={PAGE_COPY.sections.writingHighlights.note}
       />
 
       <div className="mt-10 grid grid-cols-1 gap-x-12 gap-y-2 lg:grid-cols-2">
@@ -59,7 +60,7 @@ export default function WritingHighlights() {
                 {article.excerpt}
               </span>
               <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-ghost">
-                Read on Medium &rarr;
+                {PAGE_COPY.sections.writingHighlights.readOnMedium} &rarr;
               </span>
             </a>
           </Reveal>
@@ -71,7 +72,7 @@ export default function WritingHighlights() {
           href="/writing/"
           className="inline-block border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[19px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
         >
-          All writing &rarr;
+          {PAGE_COPY.sections.writingHighlights.allWriting} &rarr;
         </Link>
       </div>
     </section>

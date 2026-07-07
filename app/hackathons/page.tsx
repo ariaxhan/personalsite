@@ -2,11 +2,10 @@ import { Metadata } from "next";
 import { pageMeta } from "../utils/pageMeta";
 import HackathonsGrid from "../components/HackathonsGrid";
 import StudioFooter from "../components/StudioFooter";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 export const metadata: Metadata = pageMeta({
-  title: "Hackathons | Aria Han",
-  description: "Six hackathon wins in two years. Darwin (AWS). Armature (RL Track). Content Creator Connector. TheraVoice. HotAgents. Freetime. Each built in 24 to 48 hours under pressure.",
-  path: "/hackathons/",
+  ...PAGE_COPY.metadata.hackathons,
 });
 
 export default function HackathonsPage() {

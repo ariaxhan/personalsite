@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 interface NavItem {
   label: string;
@@ -10,19 +11,7 @@ interface NavItem {
   n: string;
 }
 
-// The studio index. Each room is a tab; order mirrors the way the site has
-// always read.
-const navItems: NavItem[] = [
-  { label: "Entrance", href: "/", n: "00" },
-  { label: "About", href: "/about", n: "01" },
-  { label: "Hackathons", href: "/hackathons", n: "02" },
-  { label: "Systems", href: "/systems", n: "03" },
-  { label: "Proof", href: "/proof/", n: "04" },
-  { label: "Open Source", href: "/open-source", n: "05" },
-  { label: "Writing", href: "/writing", n: "06" },
-  { label: "Timeline", href: "/timeline", n: "07" },
-  { label: "Contact", href: "/contact", n: "08" },
-];
+const navItems: NavItem[] = [...PAGE_COPY.navigation.items];
 
 /**
  * Navigation: the studio masthead.
@@ -97,9 +86,9 @@ export default function Navigation() {
           onClick={() => setOpen((v) => !v)}
           className="nav-index-toggle inline-flex h-10 min-h-0 appearance-none items-center justify-center border-0 bg-transparent p-0 font-mono text-[11px] leading-none uppercase tracking-[0.2em] text-ink-mute transition-colors hover:text-terracotta lg:hidden"
           aria-expanded={open}
-          aria-label="Toggle studio index"
+          aria-label={PAGE_COPY.navigation.ariaToggle}
         >
-          {open ? "Close" : "Index"}
+          {open ? PAGE_COPY.navigation.close : PAGE_COPY.navigation.open}
         </button>
       </div>
 
