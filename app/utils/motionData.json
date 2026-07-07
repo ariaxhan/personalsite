@@ -1,0 +1,288 @@
+{
+  "generated": "2026-07-07",
+  "grandTotal": 3387,
+  "repoCount": 35,
+  "firstMonth": "2025-01",
+  "lastMonth": "2026-07",
+  "series": [
+    {
+      "label": "ModelMind",
+      "constellation": "products",
+      "months": {
+        "2026-06": 81,
+        "2026-05": 81,
+        "2026-04": 183,
+        "2026-03": 186
+      },
+      "total": 531,
+      "first": "2026-03",
+      "last": "2026-06"
+    },
+    {
+      "label": "Paper Rooms",
+      "constellation": "products",
+      "months": {
+        "2026-07": 4,
+        "2026-06": 165
+      },
+      "total": 169,
+      "first": "2026-06",
+      "last": "2026-07"
+    },
+    {
+      "label": "our4cuts",
+      "constellation": "products",
+      "months": {
+        "2026-07": 4,
+        "2026-06": 201,
+        "2026-05": 230
+      },
+      "total": 435,
+      "first": "2026-05",
+      "last": "2026-07"
+    },
+    {
+      "label": "Brink Mind",
+      "constellation": "products",
+      "months": {
+        "2026-01": 2
+      },
+      "total": 2,
+      "first": "2026-01",
+      "last": "2026-01",
+      "github": "https://github.com/ariaxhan/brink-mind"
+    },
+    {
+      "label": "HeyContent",
+      "constellation": "companies",
+      "months": {
+        "2026-01": 1,
+        "2025-12": 1,
+        "2025-11": 33,
+        "2025-10": 34,
+        "2025-09": 27,
+        "2025-08": 24,
+        "2025-07": 45
+      },
+      "total": 165,
+      "first": "2025-07",
+      "last": "2026-01"
+    },
+    {
+      "label": "KERNEL",
+      "constellation": "agents",
+      "months": {
+        "2026-07": 8,
+        "2026-06": 58,
+        "2026-05": 31,
+        "2026-04": 42,
+        "2026-03": 104,
+        "2026-02": 46,
+        "2026-01": 71
+      },
+      "total": 360,
+      "first": "2026-01",
+      "last": "2026-07",
+      "github": "https://github.com/ariaxhan/kernel-claude"
+    },
+    {
+      "label": "Armature",
+      "constellation": "agents",
+      "months": {
+        "2026-03": 52,
+        "2026-02": 1,
+        "2026-01": 4,
+        "2025-11": 4,
+        "2025-10": 23
+      },
+      "total": 84,
+      "first": "2025-10",
+      "last": "2026-03",
+      "github": "https://github.com/ariaxhan/armature-ai"
+    },
+    {
+      "label": "the-agent-library",
+      "constellation": "agents",
+      "months": {
+        "2026-07": 17,
+        "2026-06": 11
+      },
+      "total": 28,
+      "first": "2026-06",
+      "last": "2026-07",
+      "github": "https://github.com/ariaxhan/the-agent-library"
+    },
+    {
+      "label": "llm-bench",
+      "constellation": "evals",
+      "months": {
+        "2026-06": 139,
+        "2026-04": 9
+      },
+      "total": 148,
+      "first": "2026-04",
+      "last": "2026-06",
+      "github": "https://github.com/ariaxhan/llm-bench"
+    },
+    {
+      "label": "model-familiarity-engine",
+      "constellation": "evals",
+      "months": {
+        "2026-06": 2
+      },
+      "total": 2,
+      "first": "2026-06",
+      "last": "2026-06",
+      "github": "https://github.com/ariaxhan/model-familiarity-engine"
+    },
+    {
+      "label": "latent-diagnostics",
+      "constellation": "evals",
+      "months": {
+        "2026-06": 5,
+        "2026-03": 11,
+        "2026-02": 64,
+        "2025-12": 28
+      },
+      "total": 108,
+      "first": "2025-12",
+      "last": "2026-06",
+      "github": "https://github.com/ariaxhan/latent-diagnostics"
+    },
+    {
+      "label": "metabrain",
+      "constellation": "memory",
+      "months": {
+        "2026-07": 1,
+        "2026-06": 5
+      },
+      "total": 6,
+      "first": "2026-06",
+      "last": "2026-07",
+      "github": "https://github.com/ariaxhan/metabrain"
+    },
+    {
+      "label": "memory-pool",
+      "constellation": "memory",
+      "months": {
+        "2026-02": 3,
+        "2026-01": 37,
+        "2025-12": 20
+      },
+      "total": 60,
+      "first": "2025-12",
+      "last": "2026-02",
+      "github": "https://github.com/ariaxhan/memory-pool"
+    },
+    {
+      "label": "vector-native",
+      "constellation": "memory",
+      "months": {
+        "2026-03": 1,
+        "2026-02": 2,
+        "2025-12": 2,
+        "2025-11": 15
+      },
+      "total": 20,
+      "first": "2025-11",
+      "last": "2026-03",
+      "github": "https://github.com/ariaxhan/vector-native"
+    },
+    {
+      "label": "This site",
+      "constellation": "meta",
+      "months": {
+        "2026-07": 7,
+        "2026-06": 17,
+        "2026-05": 1,
+        "2026-04": 3,
+        "2026-02": 2,
+        "2025-12": 2,
+        "2025-11": 24,
+        "2025-10": 8,
+        "2025-08": 1,
+        "2025-04": 1,
+        "2025-02": 4,
+        "2025-01": 11
+      },
+      "total": 81,
+      "first": "2025-01",
+      "last": "2026-07",
+      "github": "https://github.com/ariaxhan/personalsite"
+    },
+    {
+      "label": "Client & internal implementation",
+      "constellation": "implementation",
+      "months": {
+        "2026-07": 39,
+        "2026-06": 280,
+        "2026-04": 9,
+        "2026-02": 3,
+        "2026-01": 79,
+        "2026-05": 22,
+        "2026-03": 70
+      },
+      "total": 502,
+      "first": "2026-01",
+      "last": "2026-07"
+    },
+    {
+      "label": "Private experiments",
+      "constellation": "experiments",
+      "months": {
+        "2026-06": 149,
+        "2026-05": 78,
+        "2025-12": 135,
+        "2025-11": 38,
+        "2026-07": 211,
+        "2026-03": 11,
+        "2026-02": 64
+      },
+      "total": 686,
+      "first": "2025-11",
+      "last": "2026-07"
+    }
+  ],
+  "constellations": [
+    {
+      "key": "memory",
+      "label": "Memory & context",
+      "note": "What an agent keeps across sessions: memory stores, context engines, retrieval."
+    },
+    {
+      "key": "evals",
+      "label": "Evals & diagnostics",
+      "note": "Measuring model behavior: benchmarks, verifiers, familiarity and diagnostic probes."
+    },
+    {
+      "key": "agents",
+      "label": "Agents & harnesses",
+      "note": "The scaffolding around agents: coordination frameworks, skill libraries, coding harnesses."
+    },
+    {
+      "key": "products",
+      "label": "Products",
+      "note": "Shipped apps and their companion sites, from first commit to store."
+    },
+    {
+      "key": "companies",
+      "label": "Companies",
+      "note": "Company platforms and the web systems behind them."
+    },
+    {
+      "key": "implementation",
+      "label": "Client & internal",
+      "note": "Client and internal implementation work. Counted as activity, never named."
+    },
+    {
+      "key": "experiments",
+      "label": "Experiments",
+      "note": "Private research spikes and prototypes. Themes and counts only, no names."
+    },
+    {
+      "key": "meta",
+      "label": "Meta",
+      "note": "This site and the record of its own construction."
+    }
+  ]
+}
