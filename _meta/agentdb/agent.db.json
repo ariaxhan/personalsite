@@ -25,6 +25,22 @@
         "id": "CP-20260701151352-59136-16731",
         "ts": "2026-07-01T22:13:52.563Z",
         "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"agent\":\"main-6437\",\"event\":\"session-end\",\"branch\":\"main\",\"uncommitted_files\":1}",
+        "contract_id": null,
+        "id": "CP-20260701211440-81210-22505",
+        "ts": "2026-07-02T04:14:40.399Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"agent\":\"main-9940\",\"event\":\"session-end\",\"branch\":\"main\",\"uncommitted_files\":3}",
+        "contract_id": null,
+        "id": "CP-20260701212912-10167-10254",
+        "ts": "2026-07-02T04:29:12.861Z",
+        "type": "checkpoint"
       }
     ],
     "context_sessions": [],
@@ -92,6 +108,15 @@
         "id": 7,
         "tool": "Bash",
         "ts": "2026-07-01T04:00:05.993Z"
+      },
+      {
+        "context": null,
+        "domain": "coordination",
+        "error": "Exit code 1\nerror: the following files have staged content different from both the\nfile and the HEAD:\n    _meta/agentdb/agent.db\n    _meta/agentdb/agent.db-shm\n(use -f to force removal)",
+        "file": "",
+        "id": 8,
+        "tool": "Bash",
+        "ts": "2026-07-02T02:37:52.073Z"
       }
     ],
     "events": [
@@ -1624,6 +1649,176 @@
         "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/WorkshopWall.tsx\"}",
         "session_id": "",
         "ts": "2026-07-01T17:04:25.452Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:end",
+        "id": 154,
+        "metadata": "{\"branch\":\"main\",\"files_changed\":57,\"agent\":\"main-91032\",\"duration_s\":}",
+        "session_id": "",
+        "ts": "2026-07-01T22:13:52.735Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 819,
+        "event": "session-end",
+        "id": 155,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260630161528-91032",
+        "ts": "2026-07-01T22:13:53.343Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 156,
+        "metadata": "{\"branch\":\"main\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260701192608-75406",
+        "ts": "2026-07-02T02:26:12.385Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 3545,
+        "event": "session-start",
+        "id": 157,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260701192608-75406",
+        "ts": "2026-07-02T02:26:12.401Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 158,
+        "metadata": "{\"branch\":\"main\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260701193032-89836",
+        "ts": "2026-07-02T02:30:33.455Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 1478,
+        "event": "session-start",
+        "id": 159,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260701193032-89836",
+        "ts": "2026-07-02T02:30:33.473Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 160,
+        "metadata": "{\"branch\":\"main\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260701193330-99517",
+        "ts": "2026-07-02T02:33:32.531Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 1666,
+        "event": "session-start",
+        "id": 161,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260701193330-99517",
+        "ts": "2026-07-02T02:33:32.546Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 162,
+        "metadata": "{\"branch\":\"main\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260701193643-6437",
+        "ts": "2026-07-02T02:36:44.572Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 1528,
+        "event": "session-start",
+        "id": 163,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260701193643-6437",
+        "ts": "2026-07-02T02:36:44.593Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 33,
+        "event": "post-compact-restore",
+        "id": 164,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260701193643-6437",
+        "ts": "2026-07-02T02:37:21.481Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 103,
+        "event": "capture-error",
+        "id": 165,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260701193643-6437",
+        "ts": "2026-07-02T02:37:52.128Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 37,
+        "event": "log-write",
+        "id": 166,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/.gitignore\"}",
+        "session_id": "",
+        "ts": "2026-07-02T02:38:05.094Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 35,
+        "event": "log-write",
+        "id": 167,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/.gitignore\"}",
+        "session_id": "",
+        "ts": "2026-07-02T02:38:07.914Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 168,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/.gitignore\"}",
+        "session_id": "",
+        "ts": "2026-07-02T02:38:38.030Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": 5877000,
+        "event": "session:end",
+        "id": 169,
+        "metadata": "{\"branch\":\"main\",\"files_changed\":1,\"agent\":\"main-6437\",\"duration_s\":5877}",
+        "session_id": "",
+        "ts": "2026-07-02T04:14:40.588Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 742,
+        "event": "session-end",
+        "id": 170,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260701193643-6437",
+        "ts": "2026-07-02T04:14:41.068Z"
       }
     ],
     "execution_traces": [],

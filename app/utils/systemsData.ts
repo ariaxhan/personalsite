@@ -29,6 +29,7 @@ export const systemsData: SystemData[] = [
       stack: "React Native · TypeScript · MMKV",
     },
     appStore: "https://apps.apple.com/us/app/modelmind/id6761348536",
+    website: "https://model-mind.org",
   },
   {
     name: "Paper Rooms",
@@ -45,6 +46,7 @@ export const systemsData: SystemData[] = [
       stack: "Capacitor · Local storage",
     },
     appStore: "https://apps.apple.com/us/app/paper-rooms/id6780741814",
+    website: "https://paper-rooms.com",
   },
   {
     name: "our4cuts",

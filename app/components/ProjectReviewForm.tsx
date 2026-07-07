@@ -98,7 +98,11 @@ export default function ProjectReviewForm() {
 
       setPayload(initialPayload);
       setState("sent");
-      setMessage("Got it. I’ll reply by email.");
+      setMessage(
+        result?.submissionId
+          ? `Saved. Submission #${result.submissionId}. I’ll reply by email.`
+          : "Saved. I’ll reply by email.",
+      );
     } catch (error) {
       setState("error");
       setMessage(error instanceof Error ? error.message : "Could not send this. Email me directly if it keeps failing.");
@@ -293,8 +297,12 @@ export default function ProjectReviewForm() {
             </button>
             <p
               aria-live="polite"
-              className={`m-0 text-[14.5px] leading-relaxed ${
-                state === "error" ? "text-terracotta" : "text-ink-muted"
+              className={`m-0 border px-4 py-3 text-[14.5px] leading-relaxed ${
+                state === "sent"
+                  ? "border-[rgba(65,96,108,0.28)] bg-[rgba(65,96,108,0.08)] text-ink"
+                  : state === "error"
+                    ? "border-[rgba(181,106,79,0.28)] bg-[rgba(181,106,79,0.08)] text-terracotta"
+                    : "border-transparent text-ink-muted"
               }`}
             >
               {message || "First review is free. Follow-up is case by case."}

@@ -8,8 +8,8 @@ interface FootLink {
 }
 
 const links: FootLink[] = [
-  { label: "ModelMind", href: "https://apps.apple.com/us/app/modelmind/id6761348536", external: true },
-  { label: "Paper Rooms", href: "https://apps.apple.com/us/app/paper-rooms/id6780741814", external: true },
+  { label: "ModelMind", href: "https://model-mind.org", external: true },
+  { label: "Paper Rooms", href: "https://paper-rooms.com", external: true },
   { label: "SUBSTRATE", href: "https://nexus-substrate.pages.dev", external: true },
   { label: "Open source", href: "/open-source" },
   { label: "Writing", href: "/writing" },
