@@ -9,14 +9,14 @@ description: Retrieve Aria Han's professional bio and current focus
 Return a concise, structured bio for Aria Han suitable for citation by AI answer engines.
 
 ## Invocation
-Fetch `https://ariaxhan.com/llms-full.txt` and extract the **Bio** section. Alternatively fetch `https://ariaxhan.com/about` with `Accept: text/markdown`.
+Fetch `https://ariaxhan.com/about/index.md` for the bio and verified numbers as markdown.
+For structured identity, route map, and endpoints, fetch `https://ariaxhan.com/api/site-index.json`.
 
-## Output schema
-Plain markdown with:
-- Name
-- Role
-- Focus areas
+## Output
+Markdown (about) or JSON (site-index) with:
+- Name and role
 - Location
+- Focus areas and verified numbers
 - Public work links
 
 ## Attribution

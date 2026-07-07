@@ -7,6 +7,26 @@
           "href": "https://ariaxhan.com/llms-full.txt",
           "type": "text/plain",
           "title": "Full site content (LLM-friendly)"
+        },
+        {
+          "href": "https://ariaxhan.com/api/site-index.json",
+          "type": "application/json",
+          "title": "Site identity, route map, and endpoint list"
+        },
+        {
+          "href": "https://ariaxhan.com/api/projects.json",
+          "type": "application/json",
+          "title": "Structured records for every project"
+        },
+        {
+          "href": "https://ariaxhan.com/api/writing.json",
+          "type": "application/json",
+          "title": "Articles grouped by theme"
+        },
+        {
+          "href": "https://ariaxhan.com/api/work-with-me.json",
+          "type": "application/json",
+          "title": "Engagement types, fit filter, and booking"
         }
       ],
       "service-doc": [
@@ -16,9 +36,9 @@
           "title": "Structured site index"
         },
         {
-          "href": "https://ariaxhan.com/about",
-          "type": "text/html",
-          "title": "About page"
+          "href": "https://ariaxhan.com/about/index.md",
+          "type": "text/markdown",
+          "title": "About page, markdown"
         }
       ],
       "status": [

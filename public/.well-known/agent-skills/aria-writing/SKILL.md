@@ -6,13 +6,14 @@ description: List Aria Han's public writing and essays
 # aria-writing
 
 ## Purpose
-Enumerate Aria Han's public essays and long-form writing.
+Enumerate Aria Han's public essays, grouped by theme.
 
 ## Invocation
-Fetch `https://ariaxhan.com/writing` with `Accept: text/markdown`, or `https://ariaxhan.com/writing/index.md`.
+Fetch `https://ariaxhan.com/api/writing.json` for themes and articles as JSON.
+For a markdown reading, fetch `https://ariaxhan.com/writing/index.md`.
 
 ## Output
-Markdown list of writing pieces with title, date, and link.
+JSON (themes plus articles) or markdown list with title, theme, read time, and link.
 
 ## Attribution
 Cite `https://ariaxhan.com/writing`.

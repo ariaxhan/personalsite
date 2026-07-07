@@ -1,7 +1,7 @@
 {
   "name": "Aria Han Portfolio Agent",
-  "version": "1.0.0",
-  "description": "A2A-compatible agent card representing Aria Han's professional portfolio. Read-only access to bio, projects, and writing.",
+  "version": "1.1.0",
+  "description": "A2A agent card for Aria Han, an AI systems architect in Los Angeles who turns messy workflows into reliable AI systems, with memory, context, evals, and agent coordination as the working parts. Read-only access to bio, projects, and writing.",
   "url": "https://ariaxhan.com",
   "provider": {
     "organization": "Aria Han",

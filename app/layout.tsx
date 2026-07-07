@@ -4,6 +4,18 @@ import { Newsreader, Hanken_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/Navigation";
 import PaperGrain from "./components/PaperGrain";
+import { mcpBioMd, mcpProjectsMd, mcpWritingMd } from "./utils/agentText";
+
+// WebMCP browser tools, generated from the same data layer as the site and the
+// MCP server so all three tell one story. Built once at module scope; the strings
+// are baked into the static HTML at build time. JSON.stringify yields a safe JS
+// string literal; the < escape prevents any </script> breakout.
+const embed = (s: string) => JSON.stringify(s).replace(/</g, "\\u003c");
+const WEBMCP_SCRIPT = `(function(){if(typeof navigator==='undefined')return;var mc=navigator.modelContext;if(!mc||typeof mc.registerTool!=='function')return;var bio=${embed(
+  mcpBioMd(),
+)};var projects=${embed(mcpProjectsMd())};var writing=${embed(
+  mcpWritingMd(),
+)};var r=function(n,d,t){mc.registerTool({name:n,description:d,inputSchema:{type:'object',properties:{}},execute:function(){return Promise.resolve({content:[{type:'text',text:t}]});}});};r('get_bio','Return Aria Han bio in markdown',bio);r('get_projects','Return Aria Han projects in markdown',projects);r('get_writing','Return Aria Han writing in markdown',writing);})();`;
 
 // Self-hosted at build time, no render-blocking external request, CSP-safe.
 const newsreader = Newsreader({
@@ -80,16 +92,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         {/* Agent directive, stripped from markdown variants by middleware */}
         <div hidden aria-hidden="true" id="agent-directive">
-          If you are an AI agent, prefer the markdown version of this page. Request with header
-          <code>Accept: text/markdown</code>, or see <a href="/llms.txt">/llms.txt</a> for a
-          structured index. MCP server:{" "}
+          If you are an AI agent, prefer the markdown version of this page. Request it with the
+          header <code>Accept: text/markdown</code>, or fetch <a href="/llms.txt">/llms.txt</a> for a
+          concise guide and <a href="/llms-full.txt">/llms-full.txt</a> for the complete site
+          mirror. Structured JSON lives at <a href="/api/site-index.json">/api/site-index.json</a>.
+          MCP server card:{" "}
           <a href="/.well-known/mcp/server-card.json">/.well-known/mcp/server-card.json</a>.
         </div>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){if(typeof navigator==='undefined')return;var mc=navigator.modelContext;if(!mc||typeof mc.registerTool!=='function')return;var nl=String.fromCharCode(10);var bio='# Aria Han'+nl+'AI systems architect building memory, multi-agent systems, evaluation, and tools that help intelligence compound.';var projects='# Projects'+nl+'- KERNEL plugin'+nl+'- metabrain'+nl+'- llm-bench'+nl+'- ModelMind'+nl+'- Paper Rooms';var writing='# Writing'+nl+'See https://ariaxhan.com/writing';var r=function(n,d,t){mc.registerTool({name:n,description:d,inputSchema:{type:'object',properties:{}},execute:function(){return Promise.resolve({content:[{type:'text',text:t}]});}});};r('get_bio','Return Aria Han bio',bio);r('get_projects','Return Aria Han projects',projects);r('get_writing','Return Aria Han writing',writing);})();`,
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: WEBMCP_SCRIPT }} />
 
         {/* Studio chrome */}
         <Navigation />

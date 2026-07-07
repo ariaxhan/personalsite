@@ -185,12 +185,18 @@
   },
   "active": "a4e96c6d20365025",
   "lastOpenFiles": [
+    "scripts/proof-of-motion.mjs",
+    "scripts",
+    "app/utils/motionData.json",
+    "app/proof/page.tsx",
+    "app/proof",
+    "app/components/motion/motionShared.ts",
+    "app/components/motion/MotionStrip.tsx",
+    "app/components/motion/MotionStrata.tsx",
+    "app/components/motion",
     "app/utils/wallItems.ts",
     "_meta/chronicles/2026/2026-07-06-proof-engine-session1.md",
     "app/utils/workWithMeData.ts",
-    "app/utils/writingData.ts",
-    "app/utils/projectsData.ts",
-    "app/utils/siteMeta.ts",
     "_meta/commissions/active/2026-06-30-mobile-first-redesign-hardening.md"
   ]
 }
