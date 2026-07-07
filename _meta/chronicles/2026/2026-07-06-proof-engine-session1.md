@@ -31,3 +31,12 @@
 Everything the successor needs, including ready-to-spawn briefs for the homepage and SEO
 lanes, merge procedure, taste ledger, and the acceptance-gate spec:
 `Vaults/_meta/handoffs/proof-engine-personalsite-2026-07-06.md`
+
+## Addendum: the session did not end at the handoff
+Usage held long enough to finish. All six lanes merged (opus agents, worktree isolation),
+build/lint/typecheck/crawl green, four-visitor acceptance gate PASSED 4/4, persona-flagged
+truth defects fixed (5 wins not 6, 39 skills, concrete hero third line, stats.json endpoint,
+repo-scope reconciliation). PR opened, not merged: https://github.com/ariaxhan/personalsite/pull/14
+Extra failure for the record: a lane spawned while the shell cwd sat in Vaults/ got a
+Vaults worktree (worktree isolation keys off cwd); and `git add -A` once staged live agent
+worktrees as gitlinks (fixed, .claude/worktrees/ now gitignored).
