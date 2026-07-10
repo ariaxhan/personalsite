@@ -3,4 +3,8 @@ name = "personalsite"
 pages_build_output_dir = "out"
 compatibility_date = "2025-01-14"
 
-[env.production]
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "personalsite-project-review"
+database_id = "1ff4e095-5d24-4471-bf26-be904b10ad07"
+migrations_dir = "migrations"

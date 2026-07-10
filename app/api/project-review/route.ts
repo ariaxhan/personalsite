@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { PAGE_COPY } from "../../utils/siteCopy";
 
 const MAX_FIELD_LENGTH = 4000;
 const MAX_BODY_LENGTH = 24000;
@@ -26,13 +27,13 @@ export async function OPTIONS() {
 export async function POST(request: NextRequest) {
   const contentType = request.headers.get("content-type") || "";
   if (!contentType.includes("application/json")) {
-    return NextResponse.json({ error: "Send JSON, not form encoding." }, { status: 415 });
+    return NextResponse.json({ error: PAGE_COPY.projectReviewApi.errors.jsonOnly }, { status: 415 });
   }
 
   const rawBody = await request.text();
   if (rawBody.length > MAX_BODY_LENGTH) {
     return NextResponse.json(
-      { error: "That submission is too long. Send the shorter version first." },
+      { error: PAGE_COPY.projectReviewApi.errors.tooLong },
       { status: 413 },
     );
   }
@@ -41,7 +42,7 @@ export async function POST(request: NextRequest) {
   try {
     body = JSON.parse(rawBody);
   } catch {
-    return NextResponse.json({ error: "Could not read the form payload." }, { status: 400 });
+    return NextResponse.json({ error: PAGE_COPY.projectReviewApi.errors.unreadable }, { status: 400 });
   }
 
   if (stringValue(body.company)) {
@@ -55,10 +56,7 @@ export async function POST(request: NextRequest) {
   }
 
   return NextResponse.json(
-    {
-      error:
-        "Local Next dev received this form, but email delivery runs through Cloudflare Pages. Use wrangler pages dev or the deployed site to test delivery.",
-    },
+    { error: PAGE_COPY.projectReviewApi.errors.localEmail },
     { status: 503 },
   );
 }
@@ -85,13 +83,13 @@ function normalizeSubmission(body: ProjectReviewSubmission) {
 function validateSubmission(submission: ReturnType<typeof normalizeSubmission>): string[] {
   const errors: string[] = [];
 
-  if (!submission.name) errors.push("Name is required.");
-  if (!isEmail(submission.email)) errors.push("A valid email is required.");
-  if (!submission.projectStage) errors.push("Project stage is required.");
-  if (!submission.origin) errors.push("Origin story is required.");
-  if (!submission.uniqueContribution) errors.push("What makes it yours is required.");
-  if (!submission.artifactIntent) errors.push("What it is meant to be is required.");
-  if (!submission.question) errors.push("What you want help deciding is required.");
+  if (!submission.name) errors.push(PAGE_COPY.projectReviewApi.errors.missingName);
+  if (!isEmail(submission.email)) errors.push(PAGE_COPY.projectReviewApi.errors.invalidEmail);
+  if (!submission.projectStage) errors.push(PAGE_COPY.projectReviewApi.errors.missingStage);
+  if (!submission.origin) errors.push(PAGE_COPY.projectReviewApi.errors.missingOrigin);
+  if (!submission.uniqueContribution) errors.push(PAGE_COPY.projectReviewApi.errors.missingUniqueContribution);
+  if (!submission.artifactIntent) errors.push(PAGE_COPY.projectReviewApi.errors.missingArtifactIntent);
+  if (!submission.question) errors.push(PAGE_COPY.projectReviewApi.errors.missingQuestion);
 
   return errors;
 }

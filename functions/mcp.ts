@@ -1,33 +1,22 @@
 // Minimal stateless MCP endpoint for ariaxhan.com.
 // Streamable HTTP transport. Exposes get_bio, get_projects, get_writing.
+// Content is generated from the shared data layer (app/utils/*), the same
+// source the human pages and llms-full.txt read, so nothing drifts. No em dashes.
+
+import { mcpBioMd, mcpProjectsMd, mcpWritingMd } from "../app/utils/agentText";
 
 type Env = Record<string, unknown>;
 
 const PROTOCOL_VERSION = "2025-06-18";
 
-const BIO_MD = `# Aria Han
+// Matches /.well-known/mcp/server-card.json exactly.
+const SERVER_INFO = {
+  name: "ariaxhan-portfolio",
+  title: "Aria Han Portfolio",
+  version: "1.0.0",
+};
 
-AI systems architect. Writer. Systems thinker.
-
-Three companies. Six hackathon wins. The KERNEL plugin. Based in San Francisco.
-Focus: multi-agent coordination, vector native notation, agent infrastructure, and writing about how AI systems actually work.
-`;
-
-const PROJECTS_MD = `# Projects
-
-- **KERNEL plugin**, orchestration, fault tolerance, context transfer for Claude Code.
-- **AgentDB**, persistent agent memory: learnings, timelines, contracts.
-- **Vector native research**, notation for model internals, SAE spectroscopy.
-- **ModelMind**, Duolingo-style app for understanding how AI actually works (in development).
-
-See https://ariaxhan.com/open-source for current list.
-`;
-
-const WRITING_MD = `# Writing
-
-Essays on AI systems, agents, and vector native interfaces.
-See https://ariaxhan.com/writing for the full list.
-`;
+const CAPABILITIES = { tools: { listChanged: false } };
 
 const TOOLS = [
   {
@@ -55,9 +44,9 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
 
   if (request.method === "GET") {
     return json({
-      serverInfo: { name: "ariaxhan-portfolio", version: "1.0.0" },
+      serverInfo: SERVER_INFO,
       protocolVersion: PROTOCOL_VERSION,
-      capabilities: { tools: { listChanged: false } },
+      capabilities: CAPABILITIES,
     });
   }
 
@@ -80,8 +69,8 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
       id,
       result: {
         protocolVersion: PROTOCOL_VERSION,
-        serverInfo: { name: "ariaxhan-portfolio", version: "1.0.0" },
-        capabilities: { tools: { listChanged: false } },
+        serverInfo: SERVER_INFO,
+        capabilities: CAPABILITIES,
       },
     });
   }
@@ -93,9 +82,9 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
   if (method === "tools/call") {
     const name = params?.name;
     const text =
-      name === "get_bio" ? BIO_MD :
-      name === "get_projects" ? PROJECTS_MD :
-      name === "get_writing" ? WRITING_MD : null;
+      name === "get_bio" ? mcpBioMd() :
+      name === "get_projects" ? mcpProjectsMd() :
+      name === "get_writing" ? mcpWritingMd() : null;
     if (text === null) {
       return json({ jsonrpc: "2.0", id, error: { code: -32602, message: `Unknown tool: ${name}` } });
     }

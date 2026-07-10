@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import SectionHeader from "./studio/SectionHeader";
 import { obsessions } from "../utils/studioData";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 /**
  * Obsessions: Fig. 07, lately on my mind.
@@ -26,10 +27,10 @@ export default function Obsessions() {
   return (
     <section className="mx-auto max-w-[1120px] px-5 py-24 sm:px-8 lg:px-14 lg:py-28">
       <SectionHeader
-        fig="Fig. 07"
-        label="Current Obsessions"
-        title="Lately, on my mind"
-        note="Reshuffles on its own."
+        fig={PAGE_COPY.sections.obsessions.fig}
+        label={PAGE_COPY.sections.obsessions.label}
+        title={PAGE_COPY.sections.obsessions.title}
+        note={PAGE_COPY.sections.obsessions.note}
       />
 
       <div className="mt-10">
@@ -39,7 +40,7 @@ export default function Obsessions() {
             className="flex items-baseline gap-5 border-b border-dashed border-[rgba(44,40,35,0.16)] py-4 transition-opacity duration-700"
           >
             <span className="shrink-0 font-mono text-[11px] tracking-[0.1em] text-terracotta">
-              Now
+              {PAGE_COPY.sections.obsessions.prefix}
             </span>
             <span
               className="font-serif font-light italic leading-tight text-ink"

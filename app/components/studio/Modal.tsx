@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useEffect } from "react";
+import { PAGE_COPY } from "../../utils/siteCopy";
 
 /**
  * Modal: a sheet of paper lifted off the desk.
@@ -51,10 +52,10 @@ export default function Modal({
       >
         <button
           onClick={onClose}
-          aria-label="Close dialog"
+          aria-label={PAGE_COPY.modal.closeAria}
           className="absolute right-4 top-4 cursor-pointer border-0 bg-transparent font-mono text-[11px] uppercase tracking-[0.14em] text-ink-mute transition-colors hover:text-terracotta sm:right-6 sm:top-6"
         >
-          close &times;
+          {PAGE_COPY.modal.close} &times;
         </button>
         {children}
       </div>

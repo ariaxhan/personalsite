@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "./studio/Reveal";
+import { PAGE_COPY } from "../utils/siteCopy";
 
 interface FootLink {
   label: string;
@@ -7,14 +8,7 @@ interface FootLink {
   external?: boolean;
 }
 
-const links: FootLink[] = [
-  { label: "ModelMind", href: "https://apps.apple.com/us/app/modelmind/id6761348536", external: true },
-  { label: "Paper Rooms", href: "https://apps.apple.com/us/app/paper-rooms/id6780741814", external: true },
-  { label: "SUBSTRATE", href: "https://nexus-substrate.pages.dev", external: true },
-  { label: "Open source", href: "/open-source" },
-  { label: "Writing", href: "/writing" },
-  { label: "Contact", href: "/contact" },
-];
+const links: FootLink[] = [...PAGE_COPY.footer.links];
 
 /**
  * StudioFooter: the colophon. A single conviction set large, a row of doors out,
@@ -28,7 +22,7 @@ export default function StudioFooter() {
           className="m-0 mb-7 max-w-[720px] font-serif font-light italic text-ink"
           style={{ fontSize: "clamp(26px, 4vw, 52px)", lineHeight: 1.18 }}
         >
-          Not software that replaces intelligence. Infrastructure that expands it.
+          {PAGE_COPY.footer.line}
         </p>
         <div className="mb-14 flex flex-wrap items-baseline gap-x-10 gap-y-7">
           {links.map((l) =>
@@ -54,8 +48,8 @@ export default function StudioFooter() {
           )}
         </div>
         <div className="flex flex-wrap items-baseline justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute">
-          <span>Aria Han · Los Angeles · 2026</span>
-          <span>Coordination over intelligence</span>
+          <span>{PAGE_COPY.footer.place}</span>
+          <span>{PAGE_COPY.footer.motto}</span>
         </div>
       </Reveal>
     </footer>

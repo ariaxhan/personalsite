@@ -9,8 +9,18 @@ type EmailBinding = {
   }): Promise<{ messageId?: string }>;
 };
 
+type DatabaseBinding = {
+  prepare(query: string): DatabaseStatement;
+};
+
+type DatabaseStatement = {
+  bind(...values: Array<string | number | null>): DatabaseStatement;
+  run(): Promise<{ meta?: { last_row_id?: number } }>;
+};
+
 type Env = {
   EMAIL?: EmailBinding;
+  DB?: DatabaseBinding;
   PROJECT_REVIEW_TO_EMAIL?: string;
   PROJECT_REVIEW_FROM_EMAIL?: string;
 };
@@ -73,13 +83,27 @@ export default {
       return json({ error: errors.join(" ") }, 400);
     }
 
-    if (!env.EMAIL) {
-      return json({ error: "Email delivery is not configured yet." }, 503);
+    if (!env.DB) {
+      return json({ error: "Submission storage is not configured yet." }, 503);
+    }
+
+    let submissionId: number | null = null;
+    try {
+      submissionId = await saveSubmission(env.DB, submission);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Database write failed.";
+      console.error("Project review database write failed", message);
+      return json({ error: "Could not save the submission. Email me directly if this keeps happening." }, 503);
     }
 
     const to = env.PROJECT_REVIEW_TO_EMAIL || TO_EMAIL;
     const from = env.PROJECT_REVIEW_FROM_EMAIL || FROM_EMAIL;
     const subject = `Project review: ${submission.projectName || submission.name}`;
+
+    if (!env.EMAIL) {
+      await updateEmailStatus(env.DB, submissionId, "not_configured", null, null);
+      return json({ ok: true, submissionId, emailSent: false });
+    }
 
     try {
       const result = await env.EMAIL.send({
@@ -91,14 +115,82 @@ export default {
         html: buildHtmlEmail(submission),
       });
 
-      return json({ ok: true, messageId: result.messageId || null });
+      await updateEmailStatus(env.DB, submissionId, "sent", result.messageId || null, null);
+      return json({ ok: true, submissionId, emailSent: true, messageId: result.messageId || null });
     } catch (error) {
       const message = error instanceof Error ? error.message : "Email delivery failed.";
       console.error("Project review email failed", message);
-      return json({ error: "Could not send the submission. Email me directly if this keeps happening." }, 502);
+      await updateEmailStatus(env.DB, submissionId, "failed", null, message);
+      return json({ ok: true, submissionId, emailSent: false });
     }
   },
 };
+
+async function saveSubmission(
+  db: DatabaseBinding,
+  submission: ReturnType<typeof normalizeSubmission>,
+): Promise<number | null> {
+  const result = await db
+    .prepare(
+      `INSERT INTO project_review_submissions (
+        name,
+        email,
+        project_name,
+        project_stage,
+        project_types_json,
+        origin,
+        unique_contribution,
+        artifact_intent,
+        architecture,
+        links,
+        question,
+        timeline,
+        payload_json
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    )
+    .bind(
+      submission.name,
+      submission.email,
+      submission.projectName || null,
+      submission.projectStage,
+      JSON.stringify(submission.projectTypes),
+      submission.origin,
+      submission.uniqueContribution,
+      submission.artifactIntent,
+      submission.architecture || null,
+      submission.links || null,
+      submission.question,
+      submission.timeline || null,
+      JSON.stringify(submission),
+    )
+    .run();
+
+  return result.meta?.last_row_id ?? null;
+}
+
+async function updateEmailStatus(
+  db: DatabaseBinding,
+  submissionId: number | null,
+  status: string,
+  messageId: string | null,
+  error: string | null,
+): Promise<void> {
+  if (submissionId === null) return;
+
+  try {
+    await db
+      .prepare(
+        `UPDATE project_review_submissions
+         SET email_status = ?, email_message_id = ?, email_error = ?
+         WHERE id = ?`,
+      )
+      .bind(status, messageId, error, submissionId)
+      .run();
+  } catch (updateError) {
+    const message = updateError instanceof Error ? updateError.message : "Database status update failed.";
+    console.error("Project review email status update failed", message);
+  }
+}
 
 function normalizeSubmission(body: ProjectReviewSubmission) {
   return {
