@@ -21,7 +21,12 @@ export type MotionSeries = {
 
 export type MotionData = {
   generated: string;
+  source: string;
+  githubLogin: string;
+  githubWindow: { from: string; to: string };
   grandTotal: number;
+  githubTotalCommitContributions: number;
+  supplementalCommitContributions?: number;
   repoCount: number;
   firstMonth: string;
   lastMonth: string;

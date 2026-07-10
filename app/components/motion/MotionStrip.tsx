@@ -16,6 +16,11 @@ import { PAGE_COPY } from "../../utils/siteCopy";
 // /proof. Self-contained: no props, reads the committed JSON directly.
 
 const BAR_MAX = 72; // px
+const MOBILE_ERA_LABELS: Record<string, string> = {
+  founder: "Founder",
+  independent: "Research",
+  implementation: "Build",
+};
 
 export default function MotionStrip() {
   const merged = mergedByMonth();
@@ -35,14 +40,14 @@ export default function MotionStrip() {
     <Link
       href="/proof/"
       aria-label={summary}
-      className="group block border border-[rgba(44,40,35,0.16)] bg-studio-card px-5 py-5 shadow-paper transition-colors duration-300 ease-paper hover:border-[rgba(44,40,35,0.3)] sm:px-7 sm:py-6"
+      className="group block border border-[rgba(44,40,35,0.16)] bg-studio-card px-4 py-5 shadow-paper transition-colors duration-300 ease-paper hover:border-[rgba(44,40,35,0.3)] sm:px-7 sm:py-6"
     >
       {/* Header row. */}
-      <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+      <div className="mb-4 flex flex-col items-start gap-1.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6">
         <span className="kicker text-ink-faint transition-colors group-hover:text-terracotta">
           {copy.stripLabel}
         </span>
-        <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-mute">
+        <span className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.12em] text-ink-mute sm:text-[11px] sm:tracking-[0.16em]">
           {GRAND_TOTAL.toLocaleString()} {copy.commits} · {REPO_COUNT} {copy.stripSummarySuffix}
         </span>
       </div>
@@ -72,9 +77,22 @@ export default function MotionStrip() {
       </div>
 
       {/* Era markers, aligned under the bars. */}
+      <div aria-hidden="true" className="mt-2 grid grid-cols-3 border-t border-[rgba(44,40,35,0.14)] pt-2 sm:hidden">
+        {ERAS.map((era, i) => (
+          <div
+            key={era.key}
+            className="min-w-0 px-2 first:pl-0 last:pr-0"
+            style={{ borderLeft: i === 0 ? "none" : "1px solid rgba(44,40,35,0.14)" }}
+          >
+            <span className="block truncate font-mono text-[8.5px] uppercase leading-relaxed tracking-[0.08em] text-ink-mute">
+              {MOBILE_ERA_LABELS[era.key] ?? era.name}
+            </span>
+          </div>
+        ))}
+      </div>
       <div
         aria-hidden="true"
-        className="mt-2 grid border-t border-[rgba(44,40,35,0.14)] pt-2"
+        className="mt-2 hidden border-t border-[rgba(44,40,35,0.14)] pt-2 sm:grid"
         style={{ gridTemplateColumns }}
       >
         {ERAS.map((era, i) => (
@@ -93,11 +111,11 @@ export default function MotionStrip() {
         ))}
       </div>
 
-      <div className="mt-4 flex items-center justify-between">
-        <span className="font-serif text-[15px] italic text-ink-ghost">
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <span className="font-serif text-[15px] italic leading-snug text-ink-ghost">
           {copy.stripClaim}
         </span>
-        <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint transition-colors group-hover:text-terracotta">
+        <span className="self-end font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint transition-colors group-hover:text-terracotta sm:self-auto sm:text-[11px] sm:tracking-[0.16em]">
           {copy.stripCta} &rarr;
         </span>
       </div>

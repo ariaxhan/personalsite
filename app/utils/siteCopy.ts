@@ -24,7 +24,7 @@ export const SITE = {
 
   /** First hero sentence. Maximally concrete. */
   oneLiner:
-    "I build AI systems that take on the work people should not be doing, so the human part stays human.",
+    "I build AI systems that do the work people should not be doing, so the human part stays human.",
 
   /** Second hero sentence. The philosophy, no quotes. */
   strangeLine: "Most of my work starts with friction: something keeps getting lost, repeated, misunderstood, or restarted from scratch.",
@@ -50,7 +50,7 @@ export const SITE = {
     publicRepos: { value: "62", label: "Public repositories", source: "api.github.com/users/ariaxhan", verified: "2026-07-06" },
     hackathonWins: { value: "5", label: "Hackathon wins", source: "Devpost and GitHub links on /hackathons; 5 wins, 1 finalist", verified: "2026-07-06" },
     liveProducts: { value: "3", label: "Live products", source: "ModelMind + Paper Rooms (App Store), our4cuts (web)", verified: "2026-07-06" },
-    substratePieces: { value: "425", label: "Daily agent artworks", source: "github.com/ariaxhan/substrate tree", verified: "2026-07-06" },
+    substratePieces: { value: "6", label: "Open source packages", source: "open source packages on GitHub", verified: "2026-07-06" },
     portableSkills: { value: "39", label: "Portable agent skills", source: "SKILL.md count, the-agent-library", verified: "2026-07-06" },
     benchmarkTests: { value: "21", label: "Verified benchmark tests", source: "llm-bench README", verified: "2026-07-06" },
   },
@@ -210,7 +210,7 @@ export const projects: Project[] = [
       { label: "App Store", href: "https://apps.apple.com/us/app/paper-rooms/id6780741814" },
       { label: "paper-rooms.com", href: "https://paper-rooms.com" },
     ],
-    proof: "Live on the App Store for iPhone, iPad, and Mac. Built and shipped solo in under a month.",
+    proof: "Live on the App Store for iPhone, iPad, and Mac. Built and shipped solo in under a week.",
     learned:
       "The tools I keep returning to are usually the ones that solve a small annoyance I hit every day.",
     proves: "Local-first product design: on-device storage, no accounts, real typography, shipped.",
@@ -238,7 +238,7 @@ export const projects: Project[] = [
     name: "our4cuts",
     kind: "product",
     status: "Live",
-    thesis: "A photo booth does not need to be a hardware rental.",
+    thesis: "An iPad and a browser are all you need for a photo booth.",
     problem:
       "Event photo booths are hardware rentals, but a booth is really just a camera, a layout, and a shared gallery, all things a phone browser already has.",
     built: [
@@ -248,7 +248,7 @@ export const projects: Project[] = [
     links: [{ label: "our4cuts.com", href: "https://our4cuts.com" }],
     proof: "Live and used at real events. 435 commits of production hardening.",
     learned:
-      "Consumer-simple surfaces hide the most edge cases: camera APIs across browsers, live galleries, print layouts. Simple is expensive and worth it.",
+      "Consumer-simple surfaces hide the most edge cases: camera APIs across browsers, live galleries, print layouts. The most interesting part is the most invisible part.",
     proves: "Shipping and operating a real consumer web product end to end on Cloudflare.",
     closing: "One QR code turns every phone in the room into the booth.",
     themes: ["tiny-apps", "implementation"],
@@ -274,7 +274,7 @@ export const projects: Project[] = [
     status: "Shipped to production, 2025 to 2026",
     thesis: "Context kept disappearing, so we built a workspace around memory.",
     problem:
-      "AI agents are surprisingly good at individual work and surprisingly bad at teamwork. Nothing routed context between specialized agents working the same project.",
+      "At the time, AI usage was still conversational, not agentic. Going back and forth with a chat assistant was slow and tedious, with context getting lost in the noise.",
     built: [
       "A single user prompt generated a family of agents in a coordinated dependency graph. Each agent had a role, tools, and structured artifacts to work on. They communicated through A2A notes, so agent D could see what agents A, B, and C had learned without paying the time and token cost of direct cross-agent conversation.",
       "My favorite system was the crystal dam: conversational context accumulated until it hit a token count or time threshold. When the dam broke, we processed it into stardust, shards, and crystals, memory artifacts users could actually see and inspect.",
@@ -1003,12 +1003,12 @@ export const engagements: Engagement[] = [
   {
     title: "AI workflow implementation",
     detail:
-      "For the last two years I have been designing and integrating workflows for corporations and founders. You bring the process that keeps getting lost or redone; I turn it into something AI can actually carry, so the mechanical, boring work stops landing on people.",
+      "Designing and integrating workflows for corporations and founders. You bring the process that keeps getting lost or redone; I turn it into something AI can actually carry, so the mechanical, boring work stops landing on people.",
   },
   {
     title: "Internal AI tools and automation",
     detail:
-      "The best AI is behind the scenes, silently doing what it is meant to do. My own daily automation sends me six detailed emails a day and maintains my vaults; I build the same quiet infrastructure for you: research digests, intake flows, report generators, and glue between systems you already use.",
+      "The best AI is behind the scenes, silently doing what it is meant to do. My own daily automation sends me six detailed emails a day and maintains my vaults. I can build the same quiet infrastructure for you: research digests, intake flows, report generators, and glue between systems you already use.",
   },
   {
     title: "Founder scaffolding",
@@ -1018,7 +1018,7 @@ export const engagements: Engagement[] = [
   {
     title: "Agentic system architecture",
     detail:
-      "I built multi-agent coordination when it was still in its infancy: a single prompt fanning out into a family of agents in a coordinated dependency graph, each with its own role and tools, communicating through handoff notes instead of expensive cross-talk. I design that structure so agent work becomes artifacts instead of fog.",
+      "I built multi-agent coordination when it was still in its infancy: a single prompt fanning out into a family of agents in a coordinated dependency graph, each with its own role and tools, communicating through handoff notes instead of expensive cross-talk. I design structure so agent work becomes artifacts instead of fog.",
   },
   {
     title: "Evals, monitoring, and quality layers",
@@ -1038,22 +1038,20 @@ export const engagements: Engagement[] = [
   {
     title: "Dify / low-code AI app implementation",
     detail:
-      "Sometimes the right answer is not a custom stack. It is a maintained workflow people can actually understand and change after I am gone.",
+      "Sometimes the right answer is not a custom stack. It is a maintained workflow people can actually understand and change, hands on or hands off.",
   },
 ];
 
 export const goodFit: string[] = [
-  "You have a real workflow, not just a vague AI feeling",
   "You care about the people using the system",
   "You want to build something meaningful, useful, or quietly life-improving",
   "You are okay starting with the messy version",
+  "You want to learn"
 ];
 
 export const notAFit: string[] = [
-  "Vague AI hype",
   "Growth hacks",
   "Pure marketing funnels",
-  "Anything that requires pretending a prototype is production-ready",
   "Work where the human consequences do not matter",
 ];
 
@@ -1285,7 +1283,7 @@ export const PAGE_COPY = {
     proof: {
       title: "Proof of Motion | Aria Han",
       description:
-        "An archaeological build record generated from real git history on the machine this site is built on. Commit activity across products, agents, memory systems, evals, and client work. Continuity, not a single launch.",
+        "An archaeological build record generated from Aria Han's git history, including private and organization repositories available to the build. Commit activity across products, agents, memory systems, evals, and client work. Continuity, not a single launch.",
       path: "/proof/",
     },
     systems: {
@@ -1391,12 +1389,13 @@ export const PAGE_COPY = {
       "Since then, my career has been a sequence of frictions. I live with something until it annoys me enough to build a system around it, usually one that does the mechanical work so the person does not have to.",
     ],
     pulls: [
-      "I do not think my differentiator is memory, evals, or agents.",
+      "I don't think my differentiator is memory, evals, or agents.",
       "It is why I keep building them.",
     ],
     narrative2: [
-      "After HeyContext, I spent months interviewing for AI engineer roles and doing technicals. It accidentally became a tour through the industry's confusion: every company had a different idea of what AI work was supposed to be. That made my consulting sharper. I was not just bringing my own projects. I had seen the shape of the questions other teams were asking too.",
-      "Now I work with founders, engineers, and teams trying to adapt to a world changing faster than anyone expected. AI engineer is the conventional title; AI implementation specialist is closer to the truth. The human element only keeps getting more important, more of a premium. The thread is people. It always has been.",
+      "After my third startup, I spent months interviewing for AI engineer roles and doing over a dozen technicals. It accidentally became a tour through the industry's confusion: every company had a different idea of what AI work was supposed to be.",
+      "It was the range of problems that intrigued me, and that's when I decided to work as a consultant so I could work with more than just one problem at a time. Now I'm not just bringing my own projects. I've seen the shape of the questions other teams are asking too.",
+      "Now I work with founders, engineers, and teams trying to adapt to a world changing faster than anyone expected. AI engineer is the conventional title, AI implementation specialist is closer to the truth, and the language is still evolving. The human element only keeps getting more important, more of a premium. The thread is people. It always has been.",
     ],
     worksWithLabel: "What I work with",
     worksWith: [
@@ -1423,9 +1422,7 @@ export const PAGE_COPY = {
   manifesto: {
     label: "Before you explore",
     lead: [
-      "This is not really a portfolio in the clean, polished sense.",
-      "It is a record of recurring frictions. Learning AI felt backwards. Research papers kept disappearing into tabs. Context kept getting lost. Work kept restarting every morning.",
-      "Each project is one attempt to keep something from evaporating.",
+      "This is a record of recurring frictions. Learning AI felt backwards. Research papers kept disappearing into tabs. Context kept getting lost. Work kept restarting every morning.",
     ],
     columns: [
       [
@@ -1434,21 +1431,20 @@ export const PAGE_COPY = {
         "The difference is whether the system helps people keep learning, keep context, keep evidence, or keep a conversation alive.",
       ],
       [
-        "I do not seem to be motivated by novelty for its own sake, or by profit. I am motivated by meaning, and by the question underneath all of it: how to use AI to make humans more human.",
+        "I'm motivated by meaning, and by the question underneath all of it: how to use AI to make humans more human.",
         "So I build for continuity: memory that accumulates, tools that disappear into the background, names that make systems easier to think with, and AI that does the work people should not, leaving the human part more intact.",
       ],
     ],
   },
   thesis: {
-    line1: "The work is not really about novelty.",
-    line2: "It is about continuity in a world that keeps fragmenting.",
+    line1: "Building continuity in a world that keeps fragmenting.",
   },
   sections: {
     whatIBuild: {
       fig: "Fig. 01",
       label: "What I build",
       title: "Ways we might work together",
-      note: "Every project is different. That is the part I like.",
+      note: "Every project is different. That's the fun part",
       unsure: "Not sure where it fits? Send the messy version.",
     },
     projectMap: {
@@ -1541,7 +1537,7 @@ export const PAGE_COPY = {
   },
   contact: {
     fig: "Fig. 10 · Work With Me",
-    title: "Perhaps we could work together.",
+    title: "Let's talk",
     intro: "I like collaborative, meaningful work. The kind where the AI matters, but the people matter more.",
     takeOn: "What I like taking on",
     goodFit: "A good fit",
@@ -1642,20 +1638,20 @@ export const PAGE_COPY = {
       fig: "Fig. 06",
       label: "Proof of Motion",
       title: "The record of motion",
-      note: "Real commit history from the machine this site is built on, grouped into constellations. Client work and private experiments appear as activity, never as names.",
+      note: "Real git history, grouped into constellations. Private repos, client work, and internal experiments appear as activity, never as exposed names.",
     },
     paragraph1Start:
-      "Most portfolios claim motion. This page shows the ledger. Every mark below comes from a",
+      "This ledger is generated from my git history:",
     paragraph1End:
-      "on my own machine, bucketed by month, then grouped by what the work was for: memory, evals, agents, products, companies, implementation, experiments. Nothing here is typed by hand. A script reads the history and writes the numbers, so the picture cannot drift from the truth without the commits drifting first.",
-    paragraph2Start: "What I want you to read is not any single launch. It is the shape:",
+      "bucketed by month and grouped by memory, evals, agents, products, companies, implementation, and experiments; read it as motion, not a launch list, with private, client, and internal work counted but unnamed.",
+    paragraph2Start: "",
     paragraph2CommitsAcross: "commits across",
-    paragraph2RepositoriesOnMachine: "repositories on this machine,",
+    paragraph2RepositoriesOnMachine: "repositories,",
     paragraph2AfterSpan:
-      "and the way the bursts move from one constellation to the next as the work changes. Continuity is the claim. The months that spike are real weeks I remember. Client work and private experiments are counted as activity and left unnamed, because the point is the motion, not the names.",
-    paragraph2ScopeStart: "For scope: the public GitHub account holds",
+      "",
+    paragraph2ScopeStart: "For public scope: the GitHub profile shows",
     paragraph2ScopeMiddle: "repositories; the",
-    paragraph2ScopeEnd: "here are the ones whose history lives on this machine in this window.",
+    paragraph2ScopeEnd: "here are repositories with commit contributions credited to this account in this window, including private repositories visible to the authenticated token.",
   },
   systemDiagram: {
     label: "How the work flows",
@@ -1665,7 +1661,7 @@ export const PAGE_COPY = {
     messy: ["messy", "workflow"],
     working: ["working", "implementation"],
     captionStart:
-      "Left to right: I take the friction, something that keeps getting lost, repeated, or restarted from scratch, and build the memory, context, evals, and agent coordination that turn it into software that keeps running.",
+      "Left to right: From messy workflows to the memory, context, evals, and agent coordination that turn it into a working implementation.",
   },
   workshopWall: {
     cardPrefix: "studio",
@@ -1782,7 +1778,7 @@ export const PAGE_COPY = {
       hackathonsPrefix: "Hackathons",
       proofPrefix: "Proof of Motion",
       totalCommits: "Total commits",
-      repositoriesOnMachine: "Repositories on this machine",
+      repositoriesOnMachine: "Repositories",
       span: "Span",
       generated: "Generated",
       constellations: "Constellations",
@@ -1799,11 +1795,11 @@ export const PAGE_COPY = {
       writingIntro: "Essays on agents, memory, evals, AI coding workflows, and the questions underneath.",
       projectReviewIntake: "Structured project review intake",
       proofIntro:
-        "Real commit history from the machine this site is built on, grouped into constellations. Client work and private experiments appear as activity, never as names.",
+        "Real git history, grouped into constellations. Private repos, client work, and internal experiments appear as activity, never as exposed names.",
     },
   },
   statsApi: {
-    motionNote: "Counted by scripts/proof-of-motion.mjs from local git history; see /proof/",
+    motionNote: "Counted by scripts/proof-of-motion.mjs from GitHub contribution history plus explicit supplemental git repos available to the build; see /proof/",
     hackathonNote: "5 wins plus 1 finalist; evidence on /hackathons/",
   },
   modal: {
@@ -1821,7 +1817,7 @@ export const PAGE_COPY = {
     strataDefaultSuffix: "Hover or focus a mark for the month.",
     textRecord: "The record, in plain text",
     commits: "commits",
-    privateRepo: "private repo",
+    privateRepo: "unnamed/private",
     eras: [
       {
         key: "founder",

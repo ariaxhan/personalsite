@@ -9,6 +9,7 @@ import {
   REPO_COUNT,
   motionData,
   monthLabel,
+  monthShort,
   buildBands,
   globalPeak,
   type Band,
@@ -22,9 +23,9 @@ import { PAGE_COPY } from "../../utils/siteCopy";
 // picture is a bonus, never the only way in.
 
 const GUTTER = 148; // px, left label column
-const ROW_H = 54; // px, band row height
+const ROW_H = 68; // px, band row height
 const MIN_MARK = 5;
-const MAX_MARK = 34;
+const MAX_MARK = 30;
 
 function markSize(count: number, peak: number): number {
   if (count <= 0) return 0;
@@ -44,6 +45,10 @@ function activeSpan(band: Band): string {
     : `${monthLabel(band.first)} to ${monthLabel(band.last)}`;
 }
 
+function monthTick(m: string): string {
+  return monthShort(m);
+}
+
 export default function MotionStrata() {
   const bands = buildBands();
   const peak = globalPeak(bands);
@@ -57,7 +62,7 @@ export default function MotionStrata() {
   const [caption, setCaption] = useState<string | null>(null);
 
   const monthCol = (m: string) => MONTHS.indexOf(m) + 2; // +1 gutter, +1 one-based
-  const gridTemplateColumns = `${GUTTER}px repeat(${cols}, minmax(20px, 1fr))`;
+  const gridTemplateColumns = `${GUTTER}px repeat(${cols}, minmax(46px, 1fr))`;
 
   return (
     <div>
@@ -70,7 +75,7 @@ export default function MotionStrata() {
       </p>
 
       <div className="-mx-5 overflow-x-auto px-5 pb-2 sm:mx-0 sm:px-0">
-        <div style={{ minWidth: GUTTER + cols * 22 }}>
+        <div style={{ minWidth: GUTTER + cols * 46 }}>
           {/* Era header: three spans marking the shape of the years. */}
           <div
             className="grid"
@@ -97,6 +102,27 @@ export default function MotionStrata() {
                 <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-mute">
                   {era.range}
                 </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Month axis. */}
+          <div
+            className="grid border-t border-[rgba(44,40,35,0.16)]"
+            style={{ gridTemplateColumns }}
+            aria-hidden="true"
+          >
+            <div className="py-2 pr-4 text-right font-mono text-[9px] uppercase tracking-[0.14em] text-ink-mute">
+              Month
+            </div>
+            {MONTHS.map((m) => (
+              <div
+                key={m}
+                className="flex min-h-8 items-center justify-center border-l border-[rgba(44,40,35,0.08)] px-1"
+              >
+                <span className="font-mono text-[9.5px] uppercase leading-none tracking-[0.08em] text-ink-mute">
+                  {monthTick(m)}
+                </span>
               </div>
             ))}
           </div>
@@ -152,17 +178,16 @@ export default function MotionStrata() {
                   return (
                     <div
                       key={m}
-                      className="relative flex h-full items-center justify-center"
+                      className="grid h-full items-center justify-items-center"
+                      style={{ gridTemplateRows: "16px 1fr" }}
                     >
-                      {burst && (
-                        <span
-                          aria-hidden="true"
-                          className="pointer-events-none absolute top-1 left-1/2 -translate-x-1/2 font-mono text-[9px] leading-none"
-                          style={{ color: band.accent }}
-                        >
-                          {cell.total}
-                        </span>
-                      )}
+                      <span
+                        aria-hidden="true"
+                        className="pointer-events-none font-mono text-[9px] leading-none"
+                        style={{ color: burst ? band.accent : "transparent" }}
+                      >
+                        {burst ? cell.total : 0}
+                      </span>
                       <button
                         type="button"
                         aria-label={label}

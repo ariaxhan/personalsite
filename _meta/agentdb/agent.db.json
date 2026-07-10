@@ -13,7 +13,8 @@
     "010_normalize_timestamps",
     "011_drop_sync_log",
     "012_learnings_fts",
-    "013_learning_load_count"
+    "013_learning_load_count",
+    "014_memory_events_and_softdelete"
   ],
   "tables": {
     "compaction_events": [],
@@ -48,6 +49,38 @@
         "contract_id": null,
         "id": "CP-20260706211225-24084-22668",
         "ts": "2026-07-07T04:12:25.759Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"did\":\"proof-engine complete: 6 lanes merged, acceptance gate 4/4 PASS, truth fixes, PR #14 opened\",\"learned\":[\"worktree isolation keys off shell cwd at spawn\",\"git add -A near agent worktrees stages gitlinks, stage with :!.claude\",\"acceptance personas reading only rendered output catch truth drift the builder cannot see\"]}",
+        "contract_id": null,
+        "id": "CP-20260706215829-85118-6825",
+        "ts": "2026-07-07T04:58:29.831Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"agent\":\"main-27289\",\"event\":\"session-end\",\"branch\":\"feat/proof-engine\",\"uncommitted_files\":56}",
+        "contract_id": null,
+        "id": "CP-20260706231513-81688-15893",
+        "ts": "2026-07-07T06:15:13.025Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"did\":\"Probed ariaxhan.com public live surface after deploy\",\"learned\":[\"Live site exposes intended agent-readable surfaces: llms.txt, llms-full.txt, JSON APIs, .well-known agent/MCP metadata, Agent Skills, and MCP tools get_bio/get_projects/get_writing\",\"Sensitive source/config probes such as .env, .git/config, wrangler.toml, _meta logs, workers, migrations, and source files returned 404\",\"/books/ returns HTTP 200 with __next_error__ shell, while /reading/ is the valid reading page\"]}",
+        "contract_id": null,
+        "id": "CP-20260707191810-28666-18227",
+        "ts": "2026-07-08T02:18:10.643Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"skill\":\"build/testing/quality\",\"did\":\"Made homepage Proof of Motion strip mobile friendly\",\"files\":[\"app/components/motion/MotionStrip.tsx\"],\"verified\":[\"npm run build\",\"in-app browser mobile 390x844 no overflow\",\"desktop 1280x900 no overflow\"],\"learned\":[\"Mobile strip needs a separate short era legend; full desktop era labels stay aligned under the bars\"]}",
+        "contract_id": null,
+        "id": "CP-20260707202039-62272-31401",
+        "ts": "2026-07-08T03:20:39.754Z",
         "type": "checkpoint"
       }
     ],
@@ -143,6 +176,15 @@
         "id": 10,
         "tool": "Bash",
         "ts": "2026-07-07T03:47:51.812Z"
+      },
+      {
+        "context": null,
+        "domain": "coordination",
+        "error": "Exit code 1\nimport Reveal from \"./studio/Reveal\";\n\nconst stats = [\n  { value: \"3x\", label: \"Companies\", sub: \"Founded\" },\n  { value: \"6\", label: \"Hackathons\", sub: \"Won\" },\n  { value: \"34\", label: \"Skills\", sub: \"Packaged\" },\n];\n\nconst narrative = [\n  \"I started as a language person. Journalism, essays, stories, poems, research rabbit holes, and constant reading.\",\n  \"Computer science didn't feel like leaving that behind. It felt like picking up one more language. Variables, files, interfaces, loops: all of it was another way to arrange meaning so it could turn meaning into something real.\",\n  \"Then language models arrived, and it all came full circle.\",\n];\n\nconst pulls = [\n  \"Language was never decoration.\",\n  \"It was the first machine I learned to build with.\",\n];\n\nconst narrative2 = [\n  \"Since then: companies founded, hackathons won, apps shipped, research tools built, obsessive writing about where current systems fail. My philosophy: follow the weird question until it becomes something real: a repo, an essay, an app.\",\n];\n\nconst worksWith = [\n  \"Claude Code, Codex, etc.\",\n  \"Self-improving Systems\",\n  \"Multi-agent Orchestration\",\n  \"Coordination Protocols\",\n  \"Skills, Hooks, Plugins\",\n  \"Reinforcement Learning\",\n(eval):1: == not found",
+        "file": "",
+        "id": 11,
+        "tool": "Bash",
+        "ts": "2026-07-07T04:55:02.338Z"
       }
     ],
     "events": [
@@ -2035,12 +2077,293 @@
         "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/.claude/projects/-Users-slowember-Documents-Vaults-CodingVault-personalsite/memory/proof-engine-handoff.md\"}",
         "session_id": "",
         "ts": "2026-07-07T04:12:16.707Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 190,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260706211346-27289",
+        "ts": "2026-07-07T04:13:48.048Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 1634,
+        "event": "session-start",
+        "id": 191,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706211346-27289",
+        "ts": "2026-07-07T04:13:48.066Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "post-compact-restore",
+        "id": 192,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706211346-27289",
+        "ts": "2026-07-07T04:15:49.748Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 31,
+        "event": "log-write",
+        "id": 193,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/Hero.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-07T04:20:57.967Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 50,
+        "event": "post-compact-restore",
+        "id": 194,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706211346-27289",
+        "ts": "2026-07-07T04:37:23.238Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 59,
+        "event": "post-compact-restore",
+        "id": 195,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706211346-27289",
+        "ts": "2026-07-07T04:49:16.048Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 196,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260706215207-61369",
+        "ts": "2026-07-07T04:52:11.387Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 3762,
+        "event": "session-start",
+        "id": 197,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706215207-61369",
+        "ts": "2026-07-07T04:52:11.407Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 43,
+        "event": "post-compact-restore",
+        "id": 198,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706215207-61369",
+        "ts": "2026-07-07T04:53:04.390Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 50,
+        "event": "post-compact-restore",
+        "id": 199,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706215207-61369",
+        "ts": "2026-07-07T04:53:37.460Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 32,
+        "event": "post-compact-restore",
+        "id": 200,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706215207-61369",
+        "ts": "2026-07-07T04:53:52.790Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 97,
+        "event": "capture-error",
+        "id": 201,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706215207-61369",
+        "ts": "2026-07-07T04:55:02.394Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": 7287000,
+        "event": "session:end",
+        "id": 202,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"files_changed\":56,\"agent\":\"main-27289\",\"duration_s\":7287}",
+        "session_id": "",
+        "ts": "2026-07-07T06:15:13.187Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 718,
+        "event": "session-end",
+        "id": 203,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706215207-61369",
+        "ts": "2026-07-07T06:15:13.713Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 204,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260706232203-189",
+        "ts": "2026-07-07T06:22:07.486Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 3697,
+        "event": "session-start",
+        "id": 205,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706232203-189",
+        "ts": "2026-07-07T06:22:07.516Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 206,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260706232541-11240",
+        "ts": "2026-07-07T06:25:42.751Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 1662,
+        "event": "session-start",
+        "id": 207,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706232541-11240",
+        "ts": "2026-07-07T06:25:42.768Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 208,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260706232555-13058",
+        "ts": "2026-07-07T06:25:57.124Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 1155,
+        "event": "session-start",
+        "id": 209,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706232555-13058",
+        "ts": "2026-07-07T06:25:57.140Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 210,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260706232626-15173",
+        "ts": "2026-07-07T06:26:27.786Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 1230,
+        "event": "session-start",
+        "id": 211,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260706232626-15173",
+        "ts": "2026-07-07T06:26:27.801Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 212,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260707191641-20593",
+        "ts": "2026-07-08T02:16:45.039Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 3812,
+        "event": "session-start",
+        "id": 213,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260707191641-20593",
+        "ts": "2026-07-08T02:16:45.065Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 46,
+        "event": "post-compact-restore",
+        "id": 214,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260707191641-20593",
+        "ts": "2026-07-08T02:16:45.229Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 215,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260707201342-46009",
+        "ts": "2026-07-08T03:13:44.371Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 1514,
+        "event": "session-start",
+        "id": 216,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260707201342-46009",
+        "ts": "2026-07-08T03:13:44.397Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 48,
+        "event": "post-compact-restore",
+        "id": 217,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260707201342-46009",
+        "ts": "2026-07-08T03:13:44.574Z"
       }
     ],
     "execution_traces": [],
     "experiments": [],
     "hypotheses": [],
     "learnings": [],
+    "memory_events": [],
     "nodes": []
   }
 }

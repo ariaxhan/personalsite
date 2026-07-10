@@ -23,9 +23,6 @@ export default function Contact() {
       </Reveal>
 
       <Reveal className="mt-8 max-w-3xl">
-        <p className="m-0 font-serif text-[clamp(20px,2.6vw,28px)] leading-[1.3] text-ink">
-          {SITE.oneLiner}
-        </p>
         <p className="m-0 mt-4 text-[16px] leading-relaxed text-ink-muted">
           {PAGE_COPY.contact.intro}
         </p>

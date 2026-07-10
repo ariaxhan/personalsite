@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { pageMeta } from "../utils/pageMeta";
-import { SITE } from "../utils/siteMeta";
 import SectionHeader from "../components/studio/SectionHeader";
 import StudioFooter from "../components/StudioFooter";
 import MotionStrata from "../components/motion/MotionStrata";
@@ -25,15 +24,9 @@ export default function ProofPage() {
 
         <div className="mt-12 max-w-prose space-y-5 text-[17px] leading-relaxed text-ink-soft sm:mt-16">
           <p>
-            {PAGE_COPY.proof.paragraph1Start}{" "}
-            <span className="font-mono text-[15px] text-ink">git log</span> {PAGE_COPY.proof.paragraph1End}
-          </p>
-          <p>
-            {PAGE_COPY.proof.paragraph2Start} {total} {PAGE_COPY.proof.paragraph2CommitsAcross}{" "}
+            {PAGE_COPY.proof.paragraph1Start} {total} {PAGE_COPY.proof.paragraph2CommitsAcross}{" "}
             {REPO_COUNT} {PAGE_COPY.proof.paragraph2RepositoriesOnMachine} {span},{" "}
-            {PAGE_COPY.proof.paragraph2AfterSpan} {PAGE_COPY.proof.paragraph2ScopeStart}{" "}
-            {SITE.proof.publicRepos.value} {PAGE_COPY.proof.paragraph2ScopeMiddle} {REPO_COUNT}{" "}
-            {PAGE_COPY.proof.paragraph2ScopeEnd}
+            {PAGE_COPY.proof.paragraph1End}
           </p>
         </div>
       </section>

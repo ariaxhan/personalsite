@@ -1,4 +1,3 @@
-import { SITE } from "../../utils/siteMeta";
 import { PAGE_COPY } from "../../utils/siteCopy";
 
 // SystemDiagram: a blueprint of the work, left to right. A messy workflow on the
@@ -148,7 +147,7 @@ export default function SystemDiagram() {
         </svg>
       </div>
       <figcaption className="mt-4 max-w-[560px] text-[14.5px] leading-[1.65] text-ink-soft">
-        {PAGE_COPY.systemDiagram.captionStart} {SITE.strangeLine}
+        {PAGE_COPY.systemDiagram.captionStart}
       </figcaption>
     </figure>
   );
