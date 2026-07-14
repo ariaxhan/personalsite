@@ -50,7 +50,7 @@ export const SITE = {
     publicRepos: { value: "62", label: "Public repositories", source: "api.github.com/users/ariaxhan", verified: "2026-07-06" },
     hackathonWins: { value: "5", label: "Hackathon wins", source: "Devpost and GitHub links on /hackathons; 5 wins, 1 finalist", verified: "2026-07-06" },
     liveProducts: { value: "3", label: "Live products", source: "ModelMind + Paper Rooms (App Store), our4cuts (web)", verified: "2026-07-06" },
-    substratePieces: { value: "6", label: "Open source packages", source: "open source packages on GitHub", verified: "2026-07-06" },
+    substratePieces: { value: "7", label: "Open source packages", source: "open source packages on GitHub", verified: "2026-07-13" },
     portableSkills: { value: "39", label: "Portable agent skills", source: "SKILL.md count, the-agent-library", verified: "2026-07-06" },
     benchmarkTests: { value: "21", label: "Verified benchmark tests", source: "llm-bench README", verified: "2026-07-06" },
   },
@@ -366,6 +366,39 @@ export const projects: Project[] = [
   },
 
   // ------------------------------------------------------------ open source
+  {
+    slug: "site-spec",
+    name: "site-spec",
+    kind: "open-source",
+    status: "Active, auditor and compiler shipped",
+    thesis: "A website can look finished while everything machines need is quietly broken.",
+    problem:
+      "The browser only shows the visible layer. Search crawlers and AI answer engines depend on another one: robots policy, structured data, response headers, accessibility semantics, sitemaps, and real server-rendered content.",
+    built: [
+      "site-spec audits that invisible layer. It crawls a live URL or a local build, reads the pages and HTTP headers machines actually receive, and reports concrete errors across AI searchability, SEO, structured data, accessibility, privacy, security, performance, and link integrity.",
+      "It also includes a deterministic site compiler. A validated SiteSpec becomes deployable HTML with the machine-readable foundation built in, keeping model-written markup and invented facts out of the compile path.",
+    ],
+    stack: "TypeScript · Node.js · Vitest",
+    links: [{ label: "GitHub", href: "https://github.com/ariaxhan/site-spec" }],
+    proof:
+      "v0.2.0 ships live-URL and local-directory audits, JSON output, CI-ready exit codes, and deterministic site builds.",
+    learned:
+      "The invisible parts of a website need the same kind of tests as the visible ones. If the foundation is explicit, it can be audited and compiled instead of hoped for.",
+    proves:
+      "Turning web standards into a deterministic tool that can inspect existing sites and build new ones correctly by construction.",
+    closing: "The page is only finished when machines can understand it too.",
+    themes: ["verification", "implementation"],
+    connections: ["llm-bench", "substrate"],
+    accent: "#4f7680",
+    meta: {
+      status: "Active · v0.2.0",
+      stack: "TypeScript · Node.js · Vitest",
+      scope: "Audit · Build · Handoff",
+      license: "Apache-2.0",
+    },
+    plate: "/studio/repo-site-spec.jpg",
+    gallery: ["/studio/repo-site-spec.jpg"],
+  },
   {
     slug: "kernel",
     name: "KERNEL",
