@@ -41,8 +41,8 @@ export const SITE = {
   bio: [
     "Hi, I'm Aria. I spend a vast majority of my time talking to Claude Code, reading books, and writing everything from prompts to poetry. For two years I have been chasing one question: how to use AI to make humans more human.",
     "My work usually begins with a small irritation that will not leave me alone. Safari tabs ate my research papers, so I built Paper Rooms. AI education felt backwards, so I built ModelMind. Context kept disappearing between people and agents, so I built memory systems, handoff protocols, and HeyContext. I think AI should do the work people should not be doing, the mechanical and boring stuff, and that the best AI stays behind the scenes, silently making our lives easier.",
-    "I care about continuity: how knowledge accumulates, how conversations keep their shape, how tools remember enough to make tomorrow less like starting over. Memory, evals, and agents are mechanisms. The deeper question is what they help people keep. I build to make meaning, not to make profit.",
-    "Previously I was a startup founder in San Francisco, where I built three AI products one after another. After wrapping up HeyContext, I spent months interviewing for AI engineer roles, which became its own strange field study of what companies think AI work is. Then I moved to Los Angeles to work with people outside the AI bubble: founders, engineers, artists, scientists, filmmakers. Now I consult as an AI implementation specialist, designing and integrating workflows for companies and building the architecture and scaffolding that founders iterate on. The thread is always people. It always will be.",
+    "I care about continuity: how knowledge accumulates, how conversations keep their shape, how tools remember enough to make tomorrow less like starting over. Memory, evals, and agents are mechanisms. The deeper question is what they help people keep. Meaning matters more to me than novelty or growth for its own sake.",
+    "Previously I was a startup founder in San Francisco, where I built three AI products one after another. After wrapping up HeyContext, I spent months interviewing for AI engineer roles, which became its own strange field study of what companies think AI work is. Then I moved to Los Angeles and started working with founders, engineers, artists, scientists, and filmmakers outside the AI bubble. I am always interested in thoughtful teams working on technically ambitious problems, especially when the hard part is figuring out how the system and the people should work together. The thread is always people. It always will be.",
   ],
 
   /** Verified numbers. Source + date for every claim; re-verify before changing. */
@@ -64,7 +64,7 @@ export const SITE = {
 
   booking: {
     url: "https://cal.com/aria-han/15min",
-    line: "For projects, collaborations, or implementation work, we can start with a short conversation.",
+    line: "If your team is working through one of these problems, I would like to hear about it.",
   },
 } as const;
 
@@ -1036,17 +1036,17 @@ export const engagements: Engagement[] = [
   {
     title: "AI workflow implementation",
     detail:
-      "Designing and integrating workflows for corporations and founders. You bring the process that keeps getting lost or redone; I turn it into something AI can actually carry, so the mechanical, boring work stops landing on people.",
+      "I design and integrate workflows for teams with a process that keeps getting lost or redone. The goal is to make it something AI can actually carry, so the mechanical, boring work stops landing on people.",
   },
   {
     title: "Internal AI tools and automation",
     detail:
-      "The best AI is behind the scenes, silently doing what it is meant to do. My own daily automation sends me six detailed emails a day and maintains my vaults. I can build the same quiet infrastructure for you: research digests, intake flows, report generators, and glue between systems you already use.",
+      "The best AI is behind the scenes, silently doing what it is meant to do. My own daily automation sends me six detailed emails a day and maintains my vaults. I build that kind of quiet infrastructure: research digests, intake flows, report generators, and glue between systems a team already uses.",
   },
   {
-    title: "Founder scaffolding",
+    title: "Early product architecture",
     detail:
-      "Working directly with founders, taking an idea and building the architecture and scaffolding for AI and the founder to iterate on. You keep the vision; I build the structure underneath it so the product can actually move.",
+      "I like the stage where an idea is real enough to test but still loose enough to change. I can turn it into an architecture and working scaffold that gives the people shaping the product something concrete to iterate on.",
   },
   {
     title: "Agentic system architecture",
@@ -1089,7 +1089,7 @@ export const notAFit: string[] = [
 ];
 
 export const workingStyle =
-  "I like written context first, then short calls when they help. The best work usually starts with the messy truth: what you are trying to build, what already exists, what keeps breaking, and what you cannot quite name yet.";
+  "I like written context first, then short calls when they help. I work best close to the people making the decisions, starting with the messy truth: what the team is trying to build, what already exists, what keeps breaking, and what nobody can quite name yet.";
 
 
 // ---------------------------------------------------------------------------
@@ -1427,10 +1427,10 @@ export const PAGE_COPY = {
     ],
     narrative2: [
       "After my third startup, I spent months interviewing for AI engineer roles and doing over a dozen technicals. It accidentally became a tour through the industry's confusion: every company had a different idea of what AI work was supposed to be.",
-      "It was the range of problems that intrigued me, and that's when I decided to work as a consultant so I could work with more than just one problem at a time. Now I'm not just bringing my own projects. I've seen the shape of the questions other teams are asking too.",
-      "Now I work with founders, engineers, and teams trying to adapt to a world changing faster than anyone expected. AI engineer is the conventional title, AI implementation specialist is closer to the truth, and the language is still evolving. The human element only keeps getting more important, more of a premium. The thread is people. It always has been.",
+      "What stayed with me was the range of problems. Since then I have worked inside other people's systems as well as my own, with founders, engineers, and teams trying to make AI useful without letting it flatten the work around it.",
+      "AI engineer is the conventional title. AI implementation specialist is closer to the truth, though the language is still evolving. I am always interested in thoughtful teams working on technically ambitious problems, especially when the hard part is not just the model but how everything around it fits together. The human element only keeps getting more important. The thread is people. It always has been.",
     ],
-    worksWithLabel: "What I work with",
+    worksWithLabel: "What I bring to a team",
     worksWith: [
       "Claude Code, Codex, etc.",
       "Self-improving Systems",
@@ -1475,10 +1475,10 @@ export const PAGE_COPY = {
   sections: {
     whatIBuild: {
       fig: "Fig. 01",
-      label: "What I build",
-      title: "Ways we might work together",
-      note: "Every project is different. That's the fun part",
-      unsure: "Not sure where it fits? Send the messy version.",
+      label: "Things I can do",
+      title: "Where I tend to be useful",
+      note: "I like technically ambitious work with thoughtful people.",
+      unsure: "Working on something adjacent? I would still like to hear about it.",
     },
     projectMap: {
       fig: "Fig. 02",
@@ -1571,8 +1571,8 @@ export const PAGE_COPY = {
   contact: {
     fig: "Fig. 10 · Work With Me",
     title: "Let's talk",
-    intro: "I like collaborative, meaningful work. The kind where the AI matters, but the people matter more.",
-    takeOn: "What I like taking on",
+    intro: "I like technically ambitious work with thoughtful people, especially when the AI matters but the people matter more.",
+    takeOn: "Things I know how to do",
     goodFit: "A good fit",
     notFit: "Not a fit",
     booking: "Let's talk",
