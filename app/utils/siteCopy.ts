@@ -557,6 +557,39 @@ export const projects: Project[] = [
     gallery: ["/studio/repo-metabrain.jpg"],
   },
   {
+    slug: "agentmailkit",
+    name: "agentmailkit",
+    kind: "open-source",
+    status: "Open source, MIT",
+    thesis: "A scheduled email should look the same every day, even when a model writes the words.",
+    problem:
+      "Cloud assistants can schedule an email but cannot read the files on your laptop or send from your own inbox. Local agents can do both, and then drift: the same job returns a different shape every morning, so you stop trusting it and stop reading it.",
+    built: [
+      "An email is two files: a JSON job and a markdown prompt. Everything type-specific is a named plugin, so adding a digest means adding data, never code.",
+      "The split that makes it stable is that the model writes only the words. A deterministic renderer owns every piece of presentation, so the same job produces the same shaped email on every run and only the sentences change.",
+      "A seen-ledger keyed by job and item URL filters sources before the prompt is ever built and records only after a send succeeds, so day two never repeats day one.",
+    ],
+    stack: "Python · Append-only JSONL ledger · Zero required dependencies",
+    links: [
+      { label: "GitHub", href: "https://github.com/ariaxhan/agentmailkit" },
+      { label: "Sample emails", href: "https://ariaxhan.github.io/agentmailkit/" },
+    ],
+    proof:
+      "Five example jobs ship with it, so the first command after installing renders real digests from live weather, news, and arXiv feeds. 36 tests, offline and deterministic. Dry runs and the quickstart gallery cannot send, enforced in code rather than by convention.",
+    learned:
+      "Splitting content from presentation is what makes AI output look stable. Determinism was the feature; autonomy would have been the bug.",
+    proves: "Extracting a battle-tested private system into a portable, installable tool other people can run.",
+    closing: "The model writes the words. The engine owns everything else.",
+    themes: ["agents", "local-first", "implementation"],
+    connections: ["kernel", "metabrain", "substrate"],
+    accent: "#a97448",
+    meta: {
+      status: "Open source · GitHub",
+      stack: "Python · Zero required dependencies",
+      license: "MIT",
+    },
+  },
+  {
     slug: "substrate",
     name: "Substrate",
     kind: "open-source",
