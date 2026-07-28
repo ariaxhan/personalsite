@@ -42,7 +42,7 @@ export const SITE = {
     "Hi, I'm Aria. I spend a vast majority of my time talking to Claude Code, reading books, and writing everything from prompts to poetry. For two years I have been chasing one question: how to use AI to make humans more human.",
     "My work usually begins with a small irritation that will not leave me alone. Safari tabs ate my research papers, so I built Paper Rooms. AI education felt backwards, so I built ModelMind. Context kept disappearing between people and agents, so I built memory systems, handoff protocols, and HeyContext. I think AI should do the work people should not be doing, the mechanical and boring stuff, and that the best AI stays behind the scenes, silently making our lives easier.",
     "I care about continuity: how knowledge accumulates, how conversations keep their shape, how tools remember enough to make tomorrow less like starting over. Memory, evals, and agents are mechanisms. The deeper question is what they help people keep. Meaning matters more to me than novelty or growth for its own sake.",
-    "Previously I was a startup founder in San Francisco, where I built three AI products one after another. After wrapping up HeyContext, I spent months interviewing for AI engineer roles, which became its own strange field study of what companies think AI work is. Then I moved to Los Angeles and started working with founders, engineers, artists, scientists, and filmmakers outside the AI bubble. I like working with thoughtful teams on technically ambitious problems, especially when the hard part is figuring out how the system and the people should work together. For the right team, I am also looking to dive into a long-term full-time role. The thread is always people. It always will be.",
+    "Previously I was a startup founder in San Francisco, where I built three AI products one after another. After wrapping up HeyContext, I spent months interviewing for AI engineer roles, which became its own strange field study of what companies think AI work is. Then I moved to Los Angeles and started working with founders, engineers, artists, scientists, and filmmakers outside the AI bubble. I like working with thoughtful teams on technically ambitious problems, especially when the hard part is figuring out how the system and the people should work together. The thread is always people. It always will be.",
   ],
 
   /** Verified numbers. Source + date for every claim; re-verify before changing. */
@@ -1106,11 +1106,6 @@ export const engagements: Engagement[] = [
     detail:
       "Sometimes the right answer is not a custom stack. It is a maintained workflow people can actually understand and change, hands on or hands off.",
   },
-  {
-    title: "Long-term full-time role",
-    detail:
-      "For the right team, I am also looking to dive into a long-term full-time role on technically ambitious work where the people using the system still matter.",
-  },
 ];
 
 export const goodFit: string[] = [
@@ -1466,7 +1461,7 @@ export const PAGE_COPY = {
     narrative2: [
       "After my third startup, I spent months interviewing for AI engineer roles and doing over a dozen technicals. It accidentally became a tour through the industry's confusion: every company had a different idea of what AI work was supposed to be.",
       "What stayed with me was the range of problems. Since then I have worked inside other people's systems as well as my own, with founders, engineers, and teams trying to make AI useful without letting it flatten the work around it.",
-      "AI engineer is the conventional title. AI implementation specialist is closer to the truth, though the language is still evolving. I like working with thoughtful teams on technically ambitious problems, especially when the hard part is not just the model but how everything around it fits together. For the right team, I am also looking to dive into a long-term full-time role. The human element only keeps getting more important. The thread is people. It always has been.",
+      "AI engineer is the conventional title. AI implementation specialist is closer to the truth, though the language is still evolving. I like working with thoughtful teams on technically ambitious problems, especially when the hard part is not just the model but how everything around it fits together. The human element only keeps getting more important. The thread is people. It always has been.",
     ],
     worksWithLabel: "What I bring to a team",
     worksWith: [
@@ -1609,7 +1604,7 @@ export const PAGE_COPY = {
   contact: {
     fig: "Fig. 10 · Work With Me",
     title: "Let's talk",
-    intro: "I like technically ambitious work with thoughtful people, especially when the AI matters but the people matter more. For the right team, I am also looking to dive into a long-term full-time role.",
+    intro: "I like technically ambitious work with thoughtful people, especially when the AI matters but the people matter more.",
     takeOn: "What I like taking on",
     goodFit: "A good fit",
     notFit: "Not a fit",
