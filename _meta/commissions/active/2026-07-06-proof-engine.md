@@ -1,3 +1,9 @@
+---
+type: note
+status: active
+created: 2026-07-06
+---
+
 # Commission: Proof Engine, ariaxhan.com
 
 > Turn the site from "beautiful portfolio" into a proof engine for Aria Han,
