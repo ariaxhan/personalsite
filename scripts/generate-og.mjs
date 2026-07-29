@@ -54,17 +54,26 @@ function wrap(text, maxChars) {
 }
 
 async function main() {
-  let name = "Aria Han";
-  let role = "AI systems architect and implementation specialist";
-  let oneLiner =
-    "I turn messy workflows into reliable AI systems: memory, context, evals, agent coordination.";
-  try {
-    const meta = await readFile(join(root, "app", "utils", "siteMeta.ts"), "utf8");
-    name = extract(meta, "name") || name;
-    role = extract(meta, "role") || role;
-    oneLiner = extract(meta, "oneLiner") || oneLiner;
-  } catch {
-    // Fall back to the defaults above.
+  // Read from siteCopy.ts, where SITE actually lives. This used to read
+  // siteMeta.ts, which became a bare re-export, so every extract() returned
+  // nothing and the card silently rendered hardcoded defaults. The published
+  // OG image still said "AI systems architect and implementation specialist"
+  // long after the site said otherwise, and the build stayed green the whole
+  // time. Verified 2026-07-29 against the thumbnail LinkedIn fetched.
+  //
+  // No defaults now: if the fields cannot be read, fail the build rather than
+  // ship a card that disagrees with the site.
+  const source = await readFile(join(root, "app", "utils", "siteCopy.ts"), "utf8");
+  const name = extract(source, "name");
+  const role = extract(source, "role");
+  const oneLiner = extract(source, "oneLiner");
+  for (const [field, value] of Object.entries({ name, role, oneLiner })) {
+    if (!value) {
+      throw new Error(
+        `generate-og: could not read SITE.${field} from app/utils/siteCopy.ts. ` +
+          `Refusing to render an OG card from stale defaults.`
+      );
+    }
   }
 
   const serif = "Georgia, 'Times New Roman', 'Noto Serif', serif";
