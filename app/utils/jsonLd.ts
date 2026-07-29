@@ -72,16 +72,25 @@ export function professionalServiceSchema() {
       "memory and context infrastructure, and custom AI software.",
     url: SITE.url,
     image: `${SITE.url}/og.png`,
-    provider: { "@id": PERSON_ID },
+    // ProfessionalService inherits from LocalBusiness, not Service, so
+    // `provider` and `availableChannel` are not valid here. Google's validator
+    // flagged both as UNKNOWN_FIELD on 2026-07-29. founder/email/address are.
     founder: { "@id": PERSON_ID },
+    email: `mailto:${SITE.email}`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Los Angeles",
+      addressRegion: "CA",
+      addressCountry: "US",
+    },
     areaServed: [
       { "@type": "City", name: "Los Angeles" },
       { "@type": "Country", name: "United States" },
     ],
-    availableChannel: {
-      "@type": "ServiceChannel",
-      serviceUrl: `${SITE.url}/contact/`,
-      availableLanguage: "en",
+    potentialAction: {
+      "@type": "ScheduleAction",
+      name: "Book a short call",
+      target: SITE.booking.url,
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
