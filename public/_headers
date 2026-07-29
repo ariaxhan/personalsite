@@ -86,3 +86,8 @@
 
 /robots.txt
   Content-Type: text/plain; charset=utf-8
+
+# IndexNow ownership key. Lets Bing, Yandex, Seznam and Naver be told about new
+# URLs directly, without a webmaster-console login.
+/9a79f8953f812ee9fe4f9add21dfdec1.txt
+  Content-Type: text/plain; charset=utf-8
