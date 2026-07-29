@@ -44,10 +44,23 @@ PyPI / Devpost, which need a human at a login screen.
 - [x] robots.txt passes validation
 - [x] Preview hosts are not indexable
 - [x] Verified against production, not against a commit
-- [ ] Search Console: sitemap submitted, three unindexed pages requested (needs a login)
-- [ ] Profile bios unified to one title across six platforms (needs a login)
-- [ ] PyPI `project_urls` point at ariaxhan.com (needs a release per package)
-- [ ] `www.ariaxhan.com` DNS record added (needs the Cloudflare dashboard)
+- [x] Search Console verified, sitemap submitted, `/open-source/`, `/hackathons/` and
+      `/project-review/` each returned "Indexing requested". Inspection confirmed the audit:
+      `/open-source/` and `/project-review/` were "URL is unknown to Google", never crawled
+- [x] IndexNow key hosted, all 26 URLs submitted to Bing, Yandex, Seznam and Naver: 202 Accepted
+- [x] GitHub: name "Aria" to "Aria Han", bio to the AI consultant line, location set, four
+      sameAs profile links added. Verified through api.github.com
+- [x] LinkedIn headline replaced. Verified on a profile reload
+- [x] PyPI `project_urls` Homepage points at ariaxhan.com in agentmailkit and metabrain.
+      Takes effect on each package's next release
+- [x] Dependency advisories: 4 dependabot PRs merged, transitives pinned, `npm audit` 0
+- [ ] X and Medium bios: both sessions were signed out
+- [ ] `www.ariaxhan.com`: the Cloudflare dashboard was at a password prompt
+
+**Why the last two stopped.** Browser automation here does not authenticate. GitHub and
+LinkedIn had live sessions and both edits landed and were verified; Cloudflare, X and Medium
+presented sign-in screens, and Cloudflare's had the password already autofilled. Clicking
+through would still have been signing in on someone's behalf, so it did not happen.
 
 ## Escalate if
 
