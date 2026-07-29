@@ -1155,7 +1155,7 @@ export const notAFit: string[] = [
 ];
 
 export const workingStyle =
-  "I like written context first, then short calls when they help. I work best close to the people making the decisions, starting with the messy truth: what the team is trying to build, what already exists, what keeps breaking, and what nobody can quite name yet.";
+  "Send me the details in writing first. Calls when they help. I work with the people making the decisions, and I want the real state of things, not the tidy version.";
 
 
 // ---------------------------------------------------------------------------
