@@ -37,33 +37,36 @@ export const SITE = {
 
   /** Sellable engagements. Drives ProfessionalService/OfferCatalog JSON-LD. */
   services: [
-    "AI implementation consulting",
-    "AI agent and workflow automation",
-    "Custom AI software development",
-    "AI systems architecture",
+    "AI product building and repair",
+    "AI project reviews",
+    "Practical AI workflow design and training",
+    "Internal AI workflow automation",
   ],
 
   /** First hero sentence. Maximally concrete. */
   oneLiner:
-    "I build AI systems that do the work people should not be doing, so the human part stays human.",
+    "I build and repair AI products for founders and independent builders. For companies, I create internal AI workflows for operations.",
 
   /** Second hero sentence. The philosophy, no quotes. */
-  strangeLine: "Most of my work starts with friction: something keeps getting lost, repeated, misunderstood, or restarted from scratch.",
+  strangeLine:
+    "I also teach practical AI workflows and review AI-assisted products that have become hard to debug, extend, or trust.",
 
   /** The concrete what-I-do line, rendered under the hero pair. */
   whatIDo:
-    "I stay with the annoyance until it turns into a tool, a workflow, an app, or a way for people to keep going with more context than they had before. The best of it runs behind the scenes, quietly doing what it is meant to do.",
+    "I review new models, tools, methods, and research every week, then update existing work when a better approach becomes practical.",
 
   /** The one-sentence description a stranger should repeat after ten seconds. */
   tldr:
-    "Aria Han is an AI consultant in Los Angeles who builds and ships production AI systems: agent workflows, automation, and custom AI software for teams who need the thing to actually work.",
+    "Aria Han is an AI consultant in Los Angeles who builds and repairs AI products for founders and independent builders, and creates internal AI workflows for operations teams.",
 
   /** Longer bio for llms-full, MCP, about surfaces. */
   bio: [
-    "Hi, I'm Aria. I spend a vast majority of my time talking to Claude Code, reading books, and writing everything from prompts to poetry. For two years I have been chasing one question: how to use AI to make humans more human.",
-    "My work usually begins with a small irritation that will not leave me alone. Safari tabs ate my research papers, so I built Paper Rooms. AI education felt backwards, so I built ModelMind. Context kept disappearing between people and agents, so I built memory systems, handoff protocols, and HeyContext. I think AI should do the work people should not be doing, the mechanical and boring stuff, and that the best AI stays behind the scenes, silently making our lives easier.",
-    "I care about continuity: how knowledge accumulates, how conversations keep their shape, how tools remember enough to make tomorrow less like starting over. Memory, evals, and agents are mechanisms. The deeper question is what they help people keep. Meaning matters more to me than novelty or growth for its own sake.",
-    "Previously I was a startup founder in San Francisco, where I built three AI products one after another. After wrapping up HeyContext, I spent months interviewing for AI engineer roles, which became its own strange field study of what companies think AI work is. Then I moved to Los Angeles and started working with founders, engineers, artists, scientists, and filmmakers outside the AI bubble. I like working with thoughtful teams on technically ambitious problems, especially when the hard part is figuring out how the system and the people should work together. The thread is always people. It always will be.",
+    "I'm an AI consultant in Los Angeles. I work with founders, independent builders, and operations teams that want to put AI to work now.",
+    "For founders and other builders, that can mean building an AI product, repairing one that got stuck after an AI-assisted build, or setting up AI workflows for research, writing, operations, and decision-making. If you have something that mostly works but has become hard to debug, extend, or trust, that is exactly what a project review is for. I can teach the workflow, build it, or do both.",
+    "For companies, I focus on internal operations. I get close to the process as it actually runs, find where context is lost or work keeps getting repeated, and build an AI workflow around the tools and information the team already uses.",
+    "Before consulting, I built three AI products in San Francisco and led the teams that built them. My public work includes App Store apps, Python packages, open source evaluation and memory tools, and KERNEL, the plugin I use to run coding agents on real repositories.",
+    "I get a daily research digest and built a research paper reading app because I want the papers themselves to be one of my main sources, not only posts about them. I review new models, tools, methods, and research every week, then update existing work when a better approach becomes practical.",
+    "My work and writing are public at ariaxhan.com, including the experiments that failed. I'm available for a quick call or a project review.",
   ],
 
   /** Verified numbers. Source + date for every claim; re-verify before changing. */
@@ -93,7 +96,7 @@ export const SITE = {
 
   booking: {
     url: "https://cal.com/aria-han/15min",
-    line: "If your team is working through one of these problems, or you think we might be a long-term fit, I would like to hear about it.",
+    line: "I'm available for a quick call or a project review.",
   },
 } as const;
 
@@ -895,8 +898,8 @@ export const moments: Moment[] = [
   {
     year: "2026",
     period: "May 2026 to Present",
-    title: "AI Implementation Specialist · Blink Build Studios",
-    body: "Building internal AI workflows for founders and enterprises: Dify apps, automations, and the eval layers that keep them honest. The real question is what happens six months after you start putting AI to work in your company.",
+    title: "AI consultant · Blink Build Studios",
+    body: "My current work focuses on internal AI workflows. Outside that engagement, I also review and repair AI products for founders and independent builders. I follow new models, tools, methods, and research closely, then update the work when they make a better approach practical.",
     type: "company",
   },
   {
@@ -1100,19 +1103,19 @@ export interface Engagement {
 
 export const engagements: Engagement[] = [
   {
-    title: "AI workflow implementation",
+    title: "Practical AI workflows",
     detail:
-      "I design and integrate workflows for teams with a process that keeps getting lost or redone. The goal is to make it something AI can actually carry, so the mechanical, boring work stops landing on people.",
+      "I teach and build AI workflows for founders and independent builders: research, writing, operations, and decision-making systems they can keep using themselves.",
   },
   {
-    title: "Internal AI tools and automation",
+    title: "Internal operations workflows",
     detail:
-      "The best AI is behind the scenes, silently doing what it is meant to do. My own daily automation sends me six detailed emails a day and maintains my vaults. I build that kind of quiet infrastructure: research digests, intake flows, report generators, and glue between systems a team already uses.",
+      "For companies, I build internal workflows that connect AI to the tools, files, and knowledge already in use. The work starts with the operation as it runs now, including where context gets lost and effort gets repeated.",
   },
   {
-    title: "Early product architecture",
+    title: "AI products for founders",
     detail:
-      "I like the stage where an idea is real enough to test but still loose enough to change. I can turn it into an architecture and working scaffold that gives the people shaping the product something concrete to iterate on.",
+      "I work with founders and independent builders from an early idea through a working AI product. The implementation stays close to the person making the decisions, so the product can change as the problem becomes clearer.",
   },
   {
     title: "Agentic system architecture",
@@ -1135,9 +1138,9 @@ export const engagements: Engagement[] = [
       "Context is, in fact, everything, and it should not depend on whoever happens to remember it that week. I build the memory and knowledge layers that let people and agents hold their context: structured artifacts, richer recall, and transparency into exactly what the AI is referencing.",
   },
   {
-    title: "Dify / low-code AI app implementation",
+    title: "AI product review and repair",
     detail:
-      "Sometimes the right answer is not a custom stack. It is a maintained workflow people can actually understand and change, hands on or hands off.",
+      "If an AI-assisted build mostly works but has become hard to debug, extend, or trust, I can review the product, trace where it is failing, and help turn the prototype into something you can keep building.",
   },
 ];
 
@@ -1155,7 +1158,7 @@ export const notAFit: string[] = [
 ];
 
 export const workingStyle =
-  "Send me the details in writing first. Calls when they help. I work with the people making the decisions, and I want the real state of things, not the tidy version.";
+  "I'm available for a quick call or a project review. I work with the people making the decisions, and I want the real state of things, not the tidy version.";
 
 
 // ---------------------------------------------------------------------------
@@ -1437,8 +1440,10 @@ export const PAGE_COPY = {
       "AI implementation consulting",
       "AI agent development",
       "workflow automation consultant",
-      "custom AI software development",
-      "AI implementation specialist",
+      "AI product repair",
+      "AI project review",
+      "AI workflows for founders",
+      "internal AI workflow automation",
       "AI continuity systems",
       "agent coordination",
       "memory systems",
@@ -1531,7 +1536,7 @@ export const PAGE_COPY = {
     narrative2: [
       "After my third startup, I spent months interviewing for AI engineer roles and doing over a dozen technicals. It accidentally became a tour through the industry's confusion: every company had a different idea of what AI work was supposed to be.",
       "What stayed with me was the range of problems. Since then I have worked inside other people's systems as well as my own, with founders, engineers, and teams trying to make AI useful without letting it flatten the work around it.",
-      "AI engineer is the conventional title. AI implementation specialist is closer to the truth, though the language is still evolving. I like working with thoughtful teams on technically ambitious problems, especially when the hard part is not just the model but how everything around it fits together. The human element only keeps getting more important. The thread is people. It always has been.",
+      "My work covers AI product building and repair, personal AI workflows for founders and independent builders, and internal operations workflows for companies. I follow current models, tools, methods, and research, then review existing work when they make a materially better approach practical.",
     ],
     worksWithLabel: "What I bring to a team",
     worksWith: [
@@ -1987,7 +1992,7 @@ export const PAGE_COPY = {
       name: "Aria Han Portfolio Agent",
       version: "1.1.0",
       description:
-        "A2A agent card for Aria Han, an AI consultant in Los Angeles who builds and ships production AI systems: agent workflows, automation, and custom AI software. Read-only access to bio, projects, and writing.",
+        "A2A agent card for Aria Han, an AI consultant in Los Angeles who builds and repairs AI products for founders and independent builders, and creates internal AI workflows for operations teams. Read-only access to bio, projects, and writing.",
       skills: {
         bio: {
           id: "get_bio",
