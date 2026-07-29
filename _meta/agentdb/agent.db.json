@@ -15,7 +15,10 @@
     "012_learnings_fts",
     "013_learning_load_count",
     "014_graph_receipt_projection",
-    "014_memory_events_and_softdelete"
+    "014_memory_events_and_softdelete",
+    "015_learning_embeddings",
+    "016_learning_graph",
+    "017_recall_aliases"
   ],
   "tables": {
     "compaction_events": [],
@@ -139,6 +142,22 @@
         "id": "CP-20260714144801-90692-13918",
         "ts": "2026-07-14T21:48:01.250Z",
         "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"agent\":\"main-15155\",\"event\":\"session-end\",\"branch\":\"feat/proof-engine\",\"uncommitted_files\":0}",
+        "contract_id": null,
+        "id": "CP-20260729103900-94372-31772",
+        "ts": "2026-07-29T17:39:00.796Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"agent\":\"main-41361\",\"event\":\"session-end\",\"branch\":\"feat/proof-engine\",\"uncommitted_files\":2}",
+        "contract_id": null,
+        "id": "CP-20260729111217-43697-2680",
+        "ts": "2026-07-29T18:12:17.117Z",
+        "type": "checkpoint"
       }
     ],
     "context_sessions": [],
@@ -251,6 +270,42 @@
         "id": 12,
         "tool": "Bash",
         "ts": "2026-07-10T18:33:56.171Z"
+      },
+      {
+        "context": null,
+        "domain": "coordination",
+        "error": "Exit code 1\n=== file?\nls: /Users/slowember/Documents/Vaults/CodingVault/personalsite/public/studio/repo-agentmailkit.svg: No such file or directory",
+        "file": "",
+        "id": 13,
+        "tool": "Bash",
+        "ts": "2026-07-28T23:54:44.074Z"
+      },
+      {
+        "context": null,
+        "domain": "",
+        "error": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    d=json.loads(raw)\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\njson.decoder.JSONDecodeError: Expecting ',' delimiter: line 1 column 108758 (char 108757)\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    d=json.loads(raw)\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\njson.decoder.JSONDecodeError: Expecting ',' delimiter: line 1 column 39600 (char 39599)\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    d=json.loads(raw)\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\njson.decoder.JSONDecodeError: Expecting ',' delimiter: line 1 column 51018 (char 51017)\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    d=json.loads(raw)\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\njson.decoder.JSONDecodeError: Expecting ',' delimiter: line 1 column 44538 (char 44537)\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    d=json.loads(raw)\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\njson.decoder.JSONDecodeError: Expecting ',' delimiter: line 1 column 70205 (char 70204)",
+        "file": "",
+        "id": 14,
+        "tool": "Bash",
+        "ts": "2026-07-29T00:05:56.395Z"
+      },
+      {
+        "context": null,
+        "domain": "security",
+        "error": "Exit code 1\n=== app/sitemap.ts:\nimport type { MetadataRoute } from \"next\";\n\nexport const dynamic = \"force-static\";\n\nconst BASE = \"https://ariaxhan.com\";\n\nconst routes = [\n  \"/\",\n  \"/about/\",\n  \"/reading/\",\n  \"/contact/\",\n  \"/hackathons/\",\n  \"/open-source/\",\n  \"/project-review/\",\n  \"/proof/\",\n  \"/systems/\",\n  \"/timeline/\",\n  \"/writing/\",\n];\n\nexport default function sitemap(): MetadataRoute.Sitemap {\n  const now = new Date();\n  return routes.map((r) => ({\n    url: `${BASE}${r}`,\n    lastModified: now,\n    changeFrequency: \"weekly\" as const,\n    priority: r === \"/\" ? 1.0 : 0.7,\n  }));\n}\n\n=== app/utils/jsonLd.ts (first 60):\n// ============================================================================\n// JSON-LD\n// Structured data generated from the same data layer the pages read, so the\n// schema.org graph can never drift from what a human sees. Every builder\n// returns a plain object; the JsonLd server component serializes it. No em\n// dashes.\n// ============================================================================\n\nimport { SITE } from \"./siteMeta\";\nimport type { Project } from \"./projectsData\";\nimport { articles } from \"./writingData\";\n\nconst PERSON_ID = `${SITE.url}/#person`;\n\n/** Aria as a schema.org Person. Reused across home and contact. */\nexport function personSchema() {\n  return {\n    \"@context\": \"https://schema.org\",\n    \"@type\": \"Person\",\n    \"@id\": PERSON_ID,\n    name: SITE.name,\n    jobTitle: SITE.role,\n    description: SITE.tldr,\n    url: SITE.url,\n    email: `mailto:${SITE.email}`,\n    address: {\n      \"@type\": \"PostalAddress\",\n      addressLocality: \"Los Angeles\",\n      addressRegion: \"CA\",\n      addressCountry: \"US\",\n    },\n    sameAs: [\n      SITE.socials.github,\n      SITE.socials.medium,\n      SITE.socials.linkedin,\n      SITE.socials.x,\n    ],\n  };\n}\n\n/** The site itself. */\nexport function webSiteSchema() {\n  return {\n    \"@context\": \"https://schema.org\",\n    \"@type\": \"WebSite\",\n    name: SITE.name,\n    url: SITE.url,\n    author: { \"@id\": PERSON_ID },\n  };\n}\n\n/** Contact-page Person: adds a ContactPoint and the booking action. */\nexport function contactSchema() {\n  return {\n    ...personSchema(),\n    contactPoint: {\n      \"@type\": \"ContactPoint\",\n      email: SITE.email,\n      contactType: \"business inquiries\",\n      url: `${SITE.url}/contact/`,\n=== pageMeta.ts head:\n// ============================================================================\n// PAGE META\n// One builder for every route's <head>. Next merges metadata shallowly, so a\n// page that redefines openGraph loses the layout's images unless it restates\n// them. This helper restates the shared bits (canonical, OG image, twitter\n// card) so every page inherits a complete, non-drifting head from the data\n// layer. Paths must be absolute and end with a trailing slash (\"/\" for home).\n// No em dashes.\n// ============================================================================\n\nimport type { Metadata } from \"next\";\nimport { SITE } from \"./siteMeta\";\n\n/** Shared Open Graph image. Rasterized to /og.png at build by scripts/generate-og.mjs. */\nexport const OG_IMAGE = {\n  url: \"/og.png\",\n  width: 1200,\n  height: 630,\n  alt: `${SITE.name}, ${SITE.role}`,\n};\n\nexport function pageMeta(opts: {\n  /** Full <title> string. */\n  title: string;\n  /** Open Graph and Twitter title. Defaults to title. */\n  ogTitle?: string;\n  description: string;\n  /** Canonical path, trailing slash required (\"/\" for home). */\n  path: string;\n  type?: \"website\" | \"article\" | \"profile\";\n}): Metadata {\n  const ogTitle = opts.ogTitle ?? opts.title;\n  return {\n    title: opts.title,\n    description: opts.description,\n    alternates: { canonical: opts.path },\n    openGraph: {\n      title: ogTitle,\n      description: opts.description,\n      url: opts.path,\n=== robots source:\nls: app/robots.ts: No such file or directory\npublic/robots.txt",
+        "file": "",
+        "id": 15,
+        "tool": "Bash",
+        "ts": "2026-07-29T00:07:38.170Z"
+      },
+      {
+        "context": null,
+        "domain": "infrastructure",
+        "error": "Exit code 1\n/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/slowember/Documents/Vaults/CodingVault/personalsite/_meta/services/backfill-frontmatter.py': [Errno 2] No such file or directory\n✋ [vault-meta-frontmatter-guard] These _meta docs lack the metadata contract (type + status + created):\n  _meta/research/2026-07-28-discoverability-audit.md\nThe doc-graph discipline: every _meta note is born typed + linkable.\nFix (deterministic, free):\n  python3 _meta/services/backfill-frontmatter.py . --apply && git add -u\nOverride (rare):  ALLOW_UNTYPED=1 git commit ...",
+        "file": "",
+        "id": 16,
+        "tool": "Bash",
+        "ts": "2026-07-29T00:11:22.284Z"
       }
     ],
     "events": [
@@ -2593,6 +2648,496 @@
         "metadata": "{\"exit_code\":0,\"file\":\"\"}",
         "session_id": "",
         "ts": "2026-07-14T21:47:38.146Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 200,
+        "event": "post-compact-restore",
+        "id": 235,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260714144214-88114",
+        "ts": "2026-07-14T21:51:06.348Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 236,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260717144111-42863",
+        "ts": "2026-07-17T21:41:16.183Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 4965,
+        "event": "session-start",
+        "id": 237,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260717144111-42863",
+        "ts": "2026-07-17T21:41:16.203Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 238,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260717144138-45245",
+        "ts": "2026-07-17T21:41:39.156Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 849,
+        "event": "session-start",
+        "id": 239,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260717144138-45245",
+        "ts": "2026-07-17T21:41:39.173Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 44,
+        "event": "log-write",
+        "id": 240,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/siteCopy.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-27T22:52:42.124Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 39,
+        "event": "log-write",
+        "id": 241,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/siteCopy.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-27T22:52:52.934Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 41,
+        "event": "log-write",
+        "id": 242,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/ariaxhan/README.MD\"}",
+        "session_id": "",
+        "ts": "2026-07-27T22:53:50.877Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 243,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260728164227-15155",
+        "ts": "2026-07-28T23:42:33.496Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 5942,
+        "event": "session-start",
+        "id": 244,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260728164227-15155",
+        "ts": "2026-07-28T23:42:33.618Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 368,
+        "event": "post-compact-restore",
+        "id": 245,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260728164227-15155",
+        "ts": "2026-07-28T23:42:39.929Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 1884,
+        "event": "post-compact-restore",
+        "id": 246,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260728164227-15155",
+        "ts": "2026-07-28T23:46:58.284Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 126,
+        "event": "log-write",
+        "id": 247,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/scripts/proof-of-motion.mjs\"}",
+        "session_id": "",
+        "ts": "2026-07-28T23:48:08.436Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 237,
+        "event": "log-write",
+        "id": 248,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/scripts/proof-of-motion.mjs\"}",
+        "session_id": "",
+        "ts": "2026-07-28T23:48:12.665Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 61,
+        "event": "log-write",
+        "id": 249,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/scripts/proof-of-motion.mjs\"}",
+        "session_id": "",
+        "ts": "2026-07-28T23:48:16.714Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 65,
+        "event": "log-write",
+        "id": 250,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/scripts/proof-of-motion.mjs\"}",
+        "session_id": "",
+        "ts": "2026-07-28T23:48:20.091Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 108,
+        "event": "log-write",
+        "id": 251,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/.github/workflows/proof-of-motion.yml\"}",
+        "session_id": "",
+        "ts": "2026-07-28T23:48:29.136Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 70,
+        "event": "log-write",
+        "id": 252,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/siteCopy.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-28T23:53:22.576Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 105,
+        "event": "log-write",
+        "id": 253,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/siteCopy.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-28T23:53:26.871Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 90,
+        "event": "log-write",
+        "id": 254,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/siteCopy.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-28T23:53:30.778Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 148,
+        "event": "log-write",
+        "id": 255,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/siteCopy.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-28T23:53:35.273Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 882,
+        "event": "capture-error",
+        "id": 256,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260728164227-15155",
+        "ts": "2026-07-28T23:54:44.260Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 773,
+        "event": "post-compact-restore",
+        "id": 257,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260728164227-15155",
+        "ts": "2026-07-29T00:02:26.455Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 636,
+        "event": "capture-error",
+        "id": 258,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260728164227-15155",
+        "ts": "2026-07-29T00:05:56.562Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 877,
+        "event": "capture-error",
+        "id": 259,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260728164227-15155",
+        "ts": "2026-07-29T00:07:38.392Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 127,
+        "event": "log-write",
+        "id": 260,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/_meta/research/2026-07-28-discoverability-audit.md\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:11:06.177Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 672,
+        "event": "capture-error",
+        "id": 261,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260728164227-15155",
+        "ts": "2026-07-29T00:11:22.457Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 82,
+        "event": "log-write",
+        "id": 262,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/siteCopy.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:17:14.195Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 62,
+        "event": "log-write",
+        "id": 263,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/siteCopy.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:17:18.543Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 58,
+        "event": "log-write",
+        "id": 264,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/siteCopy.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:17:27.996Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 60,
+        "event": "log-write",
+        "id": 265,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/siteCopy.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:17:31.858Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 103,
+        "event": "log-write",
+        "id": 266,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/siteCopy.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:17:36.224Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 127,
+        "event": "log-write",
+        "id": 267,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/siteCopy.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:17:43.275Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 131,
+        "event": "log-write",
+        "id": 268,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/jsonLd.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:18:03.072Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 140,
+        "event": "log-write",
+        "id": 269,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/projects/[slug]/page.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:19:22.266Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 140,
+        "event": "log-write",
+        "id": 270,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/jsonLd.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:19:29.436Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 284,
+        "event": "log-write",
+        "id": 271,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/jsonLd.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:19:37.890Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 56,
+        "event": "log-write",
+        "id": 272,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/sitemap.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:19:50.444Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 134,
+        "event": "log-write",
+        "id": 273,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/functions/_middleware.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:19:58.184Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 175,
+        "event": "log-write",
+        "id": 274,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/next.config.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:20:03.986Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 368,
+        "event": "log-write",
+        "id": 275,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/public/studio/repo-agentmailkit.svg\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:21:33.704Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 256,
+        "event": "log-write",
+        "id": 276,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/components/home/Elsewhere.tsx\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:25:07.935Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 83,
+        "event": "log-write",
+        "id": 277,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/scripts/content-dates.mjs\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:34:51.550Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 81,
+        "event": "log-write",
+        "id": 278,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/sitemap.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:35:07.843Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 119,
+        "event": "log-write",
+        "id": 279,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite/app/utils/jsonLd.ts\"}",
+        "session_id": "",
+        "ts": "2026-07-29T00:48:43.825Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:end",
+        "id": 280,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"files_changed\":0,\"agent\":\"main-15155\",\"duration_s\":}",
+        "session_id": "",
+        "ts": "2026-07-29T17:39:01.264Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 1232,
+        "event": "session-end",
+        "id": 281,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260728164227-15155",
+        "ts": "2026-07-29T17:39:01.765Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 282,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260729111210-41361",
+        "ts": "2026-07-29T18:12:14.115Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 4000,
+        "event": "session-start",
+        "id": 283,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260729111210-41361",
+        "ts": "2026-07-29T18:12:14.163Z"
       }
     ],
     "execution_traces": [],
@@ -2632,6 +3177,7 @@
       }
     ],
     "memory_events": [],
-    "nodes": []
+    "nodes": [],
+    "recall_aliases": []
   }
 }

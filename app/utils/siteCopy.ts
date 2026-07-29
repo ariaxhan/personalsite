@@ -1213,6 +1213,14 @@ export interface Article {
 export const articles: Article[] = [
   // agents
   {
+    title: "Your AI Harness Is the Real Product",
+    excerpt:
+      "The model writes the code. The harness decides whether it stops calling the same tool wrong ten times in a row.",
+    theme: "agents",
+    read: "9 min",
+    href: "https://medium.com/@ariaxhan/your-ai-harness-is-the-real-product-f0fabb3614c4",
+  },
+  {
     title: "How to Secure API Keys for AI Agents",
     excerpt:
       "When the AI asks you for a key, that's the exact moment to stop. The most dangerous habit in AI coding, and what to do instead.",
@@ -1326,6 +1334,22 @@ export const articles: Article[] = [
     theme: "philosophy-language",
     read: "5 min",
     href: "https://medium.com/@ariaxhan/i-tested-openais-new-codex-desktop-app-the-ui-is-the-real-product-c2c59bdcb5f6",
+  },
+  {
+    title: "I Run 25 Websites, 10 Databases, and a Fleet of Apps for $0",
+    excerpt:
+      "An honest inventory of everything I have running on the internet, and the free tiers that carry all of it.",
+    theme: "ai-coding-workflows",
+    read: "9 min",
+    href: "https://medium.com/@ariaxhan/i-run-25-websites-10-databases-and-a-fleet-of-apps-for-0-27ec36756668",
+  },
+  {
+    title: "What a Year of AI Taught Me About Freedom",
+    excerpt:
+      "There is a version of the future where AI makes corporations stronger, and one where it makes them irrelevant.",
+    theme: "philosophy-language",
+    read: "4 min",
+    href: "https://medium.com/@ariaxhan/what-a-year-of-ai-taught-me-about-freedom-86b2bd4e31c8",
   },
 ];
 
