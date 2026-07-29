@@ -18,9 +18,30 @@
 export const SITE = {
   url: "https://ariaxhan.com",
   name: "Aria Han",
-  role: "AI implementation specialist",
+  /**
+   * Positioning string. Every indexable surface uses this: <title>, meta
+   * description, JSON-LD jobTitle, OG alt, llms.txt.
+   *
+   * Why not "AI implementation specialist": measured 2026-07-28, the query
+   * "ai implementation specialist los angeles" returns 20 of 20 job listings
+   * (ZipRecruiter, LinkedIn Jobs, Indeed, Greenhouse, Built In LA). Google
+   * reads that phrase as hiring intent, so a consulting site cannot rank
+   * commercially against it. "AI consultant" carries buyer intent.
+   * Evidence: _meta/research/2026-07-28-discoverability-audit.md
+   */
+  role: "AI consultant",
+  /** The username every other platform ranks for. Claimed in Person.alternateName. */
+  handle: "ariaxhan",
   location: "Los Angeles, California",
   email: "ariaxhan@gmail.com",
+
+  /** Sellable engagements. Drives ProfessionalService/OfferCatalog JSON-LD. */
+  services: [
+    "AI implementation consulting",
+    "AI agent and workflow automation",
+    "Custom AI software development",
+    "AI systems architecture",
+  ],
 
   /** First hero sentence. Maximally concrete. */
   oneLiner:
@@ -35,7 +56,7 @@ export const SITE = {
 
   /** The one-sentence description a stranger should repeat after ten seconds. */
   tldr:
-    "Aria Han is an AI implementation specialist in Los Angeles who builds systems that preserve continuity as human work and AI tools keep fragmenting.",
+    "Aria Han is an AI consultant in Los Angeles who builds and ships production AI systems: agent workflows, automation, and custom AI software for teams who need the thing to actually work.",
 
   /** Longer bio for llms-full, MCP, about surfaces. */
   bio: [
@@ -60,6 +81,14 @@ export const SITE = {
     medium: "https://medium.com/@ariaxhan",
     linkedin: "https://www.linkedin.com/in/ariahan/",
     x: "https://x.com/aria__han",
+    /**
+     * Profiles that already rank for "ariaxhan". Listed in Person.sameAs so
+     * search engines consolidate them onto this domain instead of treating
+     * them as separate entities. Measured 2026-07-28.
+     */
+    pypi: "https://pypi.org/user/ariaxhan/",
+    devpost: "https://devpost.com/ariaxhan",
+    huggingface: "https://huggingface.co/ariaxhan",
   },
 
   booking: {
@@ -560,7 +589,7 @@ export const projects: Project[] = [
     slug: "agentmailkit",
     name: "agentmailkit",
     kind: "open-source",
-    status: "Open source, MIT",
+    status: "Published on PyPI, MIT",
     thesis: "A scheduled email should look the same every day, even when a model writes the words.",
     problem:
       "Cloud assistants can schedule an email but cannot read the files on your laptop or send from your own inbox. Local agents can do both, and then drift: the same job returns a different shape every morning, so you stop trusting it and stop reading it.",
@@ -571,6 +600,7 @@ export const projects: Project[] = [
     ],
     stack: "Python · Append-only JSONL ledger · Zero required dependencies",
     links: [
+      { label: "PyPI", href: "https://pypi.org/project/agentmailkit/" },
       { label: "GitHub", href: "https://github.com/ariaxhan/agentmailkit" },
       { label: "Sample emails", href: "https://ariaxhan.github.io/agentmailkit/" },
     ],
@@ -584,10 +614,13 @@ export const projects: Project[] = [
     connections: ["kernel", "metabrain", "substrate"],
     accent: "#a97448",
     meta: {
-      status: "Open source · GitHub",
+      status: "Published · PyPI + GitHub",
       stack: "Python · Zero required dependencies",
+      install: "pip install agentmailkit",
       license: "MIT",
     },
+    plate: "/studio/repo-agentmailkit.svg",
+    gallery: ["/studio/repo-agentmailkit.svg"],
   },
   {
     slug: "substrate",
@@ -1374,6 +1407,13 @@ export const PAGE_COPY = {
   layout: {
     keywords: [
       "Aria Han",
+      "ariaxhan",
+      "AI consultant",
+      "AI consultant Los Angeles",
+      "AI implementation consulting",
+      "AI agent development",
+      "workflow automation consultant",
+      "custom AI software development",
       "AI implementation specialist",
       "AI continuity systems",
       "agent coordination",
@@ -1425,6 +1465,12 @@ export const PAGE_COPY = {
       { label: "Contact", href: "/contact" },
     ],
     place: "Aria Han · Los Angeles · 2026",
+    /**
+     * The handle claimed as visible text. "ariaxhan" is what Instagram,
+     * Devpost, GitHub, Hugging Face and PyPI all rank for, and it appeared
+     * zero times as readable content on this site. Measured 2026-07-28.
+     */
+    handleLine: "Elsewhere I am ariaxhan on GitHub, PyPI and Devpost.",
     motto: "Continuity over novelty",
   },
   hero: {
@@ -1732,6 +1778,7 @@ export const PAGE_COPY = {
   workshopWall: {
     cardPrefix: "studio",
     cardCta: "read the story",
+    permalinkCta: "permalink:",
     videoPlayPrefix: "Play",
     screenshotPrefix: "Show",
     screenshotSuffix: "screenshot",
@@ -1916,7 +1963,7 @@ export const PAGE_COPY = {
       name: "Aria Han Portfolio Agent",
       version: "1.1.0",
       description:
-        "A2A agent card for Aria Han, an AI implementation specialist in Los Angeles who builds systems that preserve continuity as human work and AI tools keep fragmenting. Read-only access to bio, projects, and writing.",
+        "A2A agent card for Aria Han, an AI consultant in Los Angeles who builds and ships production AI systems: agent workflows, automation, and custom AI software. Read-only access to bio, projects, and writing.",
       skills: {
         bio: {
           id: "get_bio",

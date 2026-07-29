@@ -15,9 +15,6 @@ const kindTag: Record<Project["kind"], string> = {
   research: "Research",
 };
 
-// Connections point at whichever room renders the target project.
-const kindPath = (kind: Project["kind"]) =>
-  kind === "open-source" || kind === "research" ? "/open-source" : "/systems";
 
 export function projectToWallItem(p: Project): WallItem {
   return {
@@ -45,7 +42,7 @@ export function projectToWallItem(p: Project): WallItem {
     connections: p.connections
       .map((slug) => projectBySlug(slug))
       .filter((c): c is Project => Boolean(c))
-      .map((c) => ({ label: c.name, href: `${kindPath(c.kind)}/#${c.slug}` })),
+      .map((c) => ({ label: c.name, href: `/projects/${c.slug}/` })),
     closing: p.closing,
   };
 }

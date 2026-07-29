@@ -8,6 +8,13 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
+  experimental: {
+    // Two render-blocking stylesheets cost 326ms and pushed mobile LCP to 4.1s
+    // against a text element whose render delay was 93% of the metric. The CSS
+    // is only ~10KB combined, so inlining it removes both requests outright.
+    // Measured 2026-07-28, see _meta/research/2026-07-28-discoverability-audit.md.
+    inlineCss: true,
+  },
   images: {
     unoptimized: true,
     remotePatterns: [

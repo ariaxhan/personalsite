@@ -1,9 +1,10 @@
 # ariaxhan.com, robots policy
 # Policy: allow search/answer bots (they cite), disallow training-only crawlers.
+# The ai-train/ai-input/search content signal is served as an HTTP header
+# (see public/_headers). It is not a robots.txt directive and parsers reject it.
 
 User-agent: *
 Allow: /
-Content-Signal: ai-train=no, ai-input=yes, search=yes
 
 # Training-only crawlers: disallowed
 User-agent: GPTBot
@@ -36,7 +37,6 @@ Disallow: /
 # Search/answer crawlers: allowed (cite source)
 User-agent: ClaudeBot
 Allow: /
-Content-Signal: ai-train=no, ai-input=yes, search=yes
 
 User-agent: Claude-Web
 Allow: /

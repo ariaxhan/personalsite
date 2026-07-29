@@ -172,6 +172,17 @@ export default function WorkshopWall({
                 </span>
               </div>
             </button>
+
+            {/* The card itself is a button that opens the story modal, which no
+                crawler can follow. This is the same story as a real URL, so the
+                narrative is indexable and shareable. Measured 2026-07-28, see
+                _meta/research/2026-07-28-discoverability-audit.md. */}
+            <a
+              href={`/projects/${p.slug}/`}
+              className="mt-2 block text-center font-mono text-[9px] uppercase tracking-[0.14em] text-ink-ghost underline-offset-4 hover:text-terracotta hover:underline"
+            >
+              {PAGE_COPY.workshopWall.permalinkCta} {p.title}
+            </a>
           </Reveal>
         ))}
       </div>
