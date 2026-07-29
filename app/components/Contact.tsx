@@ -2,7 +2,7 @@ import Link from "next/link";
 import Reveal from "./studio/Reveal";
 import CalEmbed from "./CalEmbed";
 import { SITE } from "../utils/siteMeta";
-import { engagements, goodFit, notAFit, workingStyle } from "../utils/workWithMeData";
+import { engagements, goodFit, notAFit } from "../utils/workWithMeData";
 import { contactLinks, projectReviewBullets } from "../utils/studioData";
 import { PAGE_COPY } from "../utils/siteCopy";
 
@@ -125,9 +125,6 @@ export default function Contact() {
             </a>
           ))}
         </div>
-        <p className="m-0 mt-8 max-w-2xl font-serif italic text-[18px] leading-snug text-ink-ghost">
-          {workingStyle}
-        </p>
       </Reveal>
     </section>
   );

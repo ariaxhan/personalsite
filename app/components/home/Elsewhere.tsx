@@ -11,7 +11,6 @@
 
 import Reveal from "../studio/Reveal";
 import { PAGE_COPY, contactLinks } from "../../utils/siteCopy";
-import { workingStyle } from "../../utils/workWithMeData";
 
 const email = contactLinks.find((l) => l.href.startsWith("mailto:"));
 const profiles = contactLinks.filter((l) => !l.href.startsWith("mailto:"));
@@ -44,10 +43,6 @@ export default function Elsewhere() {
             </a>
           ))}
         </div>
-
-        <p className="m-0 mt-10 max-w-2xl font-serif text-[18px] italic leading-snug text-ink-ghost">
-          {workingStyle}
-        </p>
       </Reveal>
     </section>
   );
