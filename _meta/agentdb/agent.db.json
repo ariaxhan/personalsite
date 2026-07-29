@@ -14,6 +14,7 @@
     "011_drop_sync_log",
     "012_learnings_fts",
     "013_learning_load_count",
+    "014_graph_receipt_projection",
     "014_memory_events_and_softdelete"
   ],
   "tables": {
@@ -81,6 +82,62 @@
         "contract_id": null,
         "id": "CP-20260707202039-62272-31401",
         "ts": "2026-07-08T03:20:39.754Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"skill\":\"build+imagegen\",\"feature\":\"add site-spec open-source project\",\"files\":[\"app/utils/siteCopy.ts\",\"public/studio/repo-site-spec.jpg\"],\"approach\":\"add one unified project record and a style-matched generated plate\",\"verified\":[\"npm run build\",\"4:3 card crop inspection\",\"static open-source HTML includes project and image\",\"machine-readable project surfaces include site-spec\"],\"learned\":[\"site-spec v0.2.0 is private in package metadata and not published to npm despite the README npx example\"]}",
+        "contract_id": null,
+        "id": "CP-20260713235406-22742-7544",
+        "ts": "2026-07-14T06:54:06.936Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"command\":\"validate\",\"status\":\"ready\",\"checks\":{\"build\":\"pass\",\"types\":\"pass\",\"lint\":\"pass\",\"tests\":\"not_configured\",\"security\":\"pass_high_threshold\",\"big5\":\"pass\"}}",
+        "contract_id": null,
+        "id": "CP-20260713235936-44772-7754",
+        "ts": "2026-07-14T06:59:36.196Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"skill\":\"quality\",\"big5_checked\":true,\"violations\":0}",
+        "contract_id": null,
+        "id": "CP-20260713235936-44836-4062",
+        "ts": "2026-07-14T06:59:36.426Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"skill\":\"ship\",\"branch\":\"feat/proof-engine\",\"commits\":0,\"validate\":\"pass\",\"review\":\"approve\",\"pushed\":false,\"tagged\":\"none\",\"deployed\":true,\"deployment_id\":\"3e0eb7e8-d899-4a77-bdd0-3c5dac48ead6\"}",
+        "contract_id": null,
+        "id": "CP-20260713235936-44934-15816",
+        "ts": "2026-07-14T06:59:36.688Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"skill\":\"git\",\"commits\":1,\"atomic\":true,\"convention\":\"pass\",\"commit\":\"2f6a38e7db7c29421bfcb72547da1654f4bd1837\",\"pr\":15,\"merge_commit\":\"33a9280d74c7504907ffc6abdf0bf43dec5425ee\"}",
+        "contract_id": null,
+        "id": "CP-20260714001144-73273-32018",
+        "ts": "2026-07-14T07:11:44.158Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"skill\":\"ship\",\"branch\":\"feat/proof-engine\",\"commits\":1,\"validate\":\"pass\",\"review\":\"approve\",\"pushed\":true,\"tagged\":\"none\",\"pr\":15,\"merged_to_main\":true}",
+        "contract_id": null,
+        "id": "CP-20260714001144-73337-28326",
+        "ts": "2026-07-14T07:11:44.378Z",
+        "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"skill\":\"design\",\"variant\":\"none\",\"fonts\":[\"existing site fonts\"],\"aesthetic\":\"editorial technical\",\"dominant_color\":\"warm paper\"}",
+        "contract_id": null,
+        "id": "CP-20260714144801-90692-13918",
+        "ts": "2026-07-14T21:48:01.250Z",
         "type": "checkpoint"
       }
     ],
@@ -185,6 +242,15 @@
         "id": 11,
         "tool": "Bash",
         "ts": "2026-07-07T04:55:02.338Z"
+      },
+      {
+        "context": null,
+        "domain": "testing",
+        "error": "Exit code 1\n/Users/slowember/Documents/Vaults/CodingVault/personalsite/next.config.ts\nimport bundleAnalyzer from '@next/bundle-analyzer';\nimport type { NextConfig } from \"next\";\n\nconst withBundleAnalyzer = bundleAnalyzer({\n  enabled: process.env.ANALYZE === 'true',\n});\n\nconst nextConfig: NextConfig = {\n  output: 'export',\n  trailingSlash: true,\n  images: {\n    unoptimized: true,\n    remotePatterns: [\n      {\n        protocol: 'https',\n        hostname: '**',\n      },\n    ],\n  },\n  webpack: (config, { dev, isServer }) => {\n    // Production optimizations\n    if (!dev && !isServer) {\n      config.optimization = {\n        ...config.optimization,\n        moduleIds: 'deterministic',\n        chunkIds: 'deterministic',\n        minimize: true,\n        splitChunks: {\n          chunks: 'all',\n          minSize: 10000,\n          maxSize: 20000,\n          minChunks: 1,\n          maxAsyncRequests: 50,\n          maxInitialRequests: 50,\n          cacheGroups: {\n            vendor: {\n              test: /[\\\\/]node_modules[\\\\/]/,\n              name(module: any, chunks: any) {\n                // next/font and other virtual modules have no node_modules path.\n                const match = module.context?.match(\n_meta\napp\nBLUEPRINT.md\ncontent\neslint.config.mjs\nfunctions\nmigrations\nnext-env.d.ts\nnext.config.ts\nnode_modules\nout\npackage-lock.json\npackage.json\npostcss.config.mjs\npublic\nREADME.md\nscripts\ntailwind.config.ts\ntsconfig.json\ntsconfig.tsbuildinfo\nworkers\nwrangler.project-review.toml\nwrangler.toml\n# Generated by Wrangler on Wed Jul 01 2026 16:09:28 GMT-0700 (Pacific Daylight Time)\nname = \"personalsite\"\npages_build_output_dir = \"out\"\ncompatibility_date = \"2025-01-14\"\n\n[[env.production.d1_databases]]\nbinding = \"DB\"\ndatabase_name = \"personalsite-project-review\"\ndatabase_id = \"1ff4e095-5d24-4471-bf26-be904b10ad07\"\nmigrations_dir = \"migrations\"",
+        "file": "",
+        "id": 12,
+        "tool": "Bash",
+        "ts": "2026-07-10T18:33:56.171Z"
       }
     ],
     "events": [
@@ -2357,12 +2423,214 @@
         "metadata": "{\"exit_code\":0}",
         "session_id": "sess-20260707201342-46009",
         "ts": "2026-07-08T03:13:44.574Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 218,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260708093538-83268",
+        "ts": "2026-07-08T16:35:41.860Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 3720,
+        "event": "session-start",
+        "id": 219,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260708093538-83268",
+        "ts": "2026-07-08T16:35:41.891Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 38,
+        "event": "post-compact-restore",
+        "id": 220,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260708093538-83268",
+        "ts": "2026-07-08T16:35:42.039Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 93,
+        "event": "capture-error",
+        "id": 221,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260710110108-32339",
+        "ts": "2026-07-10T18:33:56.225Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 35,
+        "event": "log-write",
+        "id": 222,
+        "metadata": "{\"exit_code\":0,\"file\":\"/Users/slowember/Documents/Vaults/CollabVault/content/medium/articles/drafts/fail-loudly.md\"}",
+        "session_id": "",
+        "ts": "2026-07-10T18:37:15.220Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 223,
+        "metadata": "{\"branch\":\"feat/proof-engine\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Documents/Vaults/CodingVault/personalsite\"}",
+        "session_id": "sess-20260713234818-98565",
+        "ts": "2026-07-14T06:48:22.168Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 4115,
+        "event": "session-start",
+        "id": 224,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260713234818-98565",
+        "ts": "2026-07-14T06:48:22.217Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 242,
+        "event": "post-compact-restore",
+        "id": 225,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260713234818-98565",
+        "ts": "2026-07-14T06:48:22.670Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 55,
+        "event": "log-write",
+        "id": 226,
+        "metadata": "{\"exit_code\":0,\"file\":\"\"}",
+        "session_id": "",
+        "ts": "2026-07-14T06:51:35.114Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 51,
+        "event": "log-write",
+        "id": 227,
+        "metadata": "{\"exit_code\":0,\"file\":\"\"}",
+        "session_id": "",
+        "ts": "2026-07-14T06:53:07.825Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 275,
+        "event": "post-compact-restore",
+        "id": 228,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260713234818-98565",
+        "ts": "2026-07-14T06:56:56.951Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 287,
+        "event": "post-compact-restore",
+        "id": 229,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260713234818-98565",
+        "ts": "2026-07-14T07:07:24.716Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 48,
+        "event": "log-write",
+        "id": 230,
+        "metadata": "{\"exit_code\":0,\"file\":\"\"}",
+        "session_id": "",
+        "ts": "2026-07-14T07:10:13.087Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 204,
+        "event": "post-compact-restore",
+        "id": 231,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260714144214-88114",
+        "ts": "2026-07-14T21:42:26.749Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 192,
+        "event": "post-compact-restore",
+        "id": 232,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260714144214-88114",
+        "ts": "2026-07-14T21:45:27.420Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 45,
+        "event": "log-write",
+        "id": 233,
+        "metadata": "{\"exit_code\":0,\"file\":\"\"}",
+        "session_id": "",
+        "ts": "2026-07-14T21:47:03.193Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 42,
+        "event": "log-write",
+        "id": 234,
+        "metadata": "{\"exit_code\":0,\"file\":\"\"}",
+        "session_id": "",
+        "ts": "2026-07-14T21:47:38.146Z"
       }
     ],
     "execution_traces": [],
     "experiments": [],
+    "graph_receipts": [],
     "hypotheses": [],
-    "learnings": [],
+    "learnings": [
+      {
+        "archived_at": null,
+        "archived_reason": null,
+        "domain": "personalsite",
+        "evidence": "validate=pass review=pass cloudflare_pages=ok custom_domain=verified",
+        "hit_count": 0,
+        "id": "LRN-20260713235936-44900-369",
+        "insight": "deploy: personalsite production 3e0eb7e8",
+        "last_hit": null,
+        "load_count": 0,
+        "sensitivity": "low",
+        "ts": "2026-07-14T06:59:36.663Z",
+        "type": "pattern",
+        "visibility": "agent"
+      },
+      {
+        "archived_at": null,
+        "archived_reason": null,
+        "domain": "personalsite",
+        "evidence": "validate=pass review=pass pr=15 checks=pass merge=ok push=ok",
+        "hit_count": 0,
+        "id": "LRN-20260714001144-73239-16572",
+        "insight": "ship: feat/proof-engine 2f6a38e main 33a9280",
+        "last_hit": null,
+        "load_count": 0,
+        "sensitivity": "low",
+        "ts": "2026-07-14T07:11:44.129Z",
+        "type": "pattern",
+        "visibility": "agent"
+      }
+    ],
     "memory_events": [],
     "nodes": []
   }

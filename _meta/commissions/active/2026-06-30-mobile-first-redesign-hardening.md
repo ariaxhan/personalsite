@@ -1,3 +1,9 @@
+---
+type: note
+status: active
+created: 2026-06-30
+---
+
 # Commission — Mobile-first redesign hardening
 
 ## Telos of this commission

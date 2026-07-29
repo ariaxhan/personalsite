@@ -17,7 +17,7 @@ const items: WallItem[] = projectsToWallItems(openSourceProjects);
 export default function OpenSourcePage() {
   return (
     <main className="relative">
-      <JsonLd data={projectListSchema(openSourceProjects, "/open-source/")} />
+      <JsonLd data={projectListSchema(openSourceProjects)} />
       <WorkshopWall
         {...PAGE_COPY.sections.openSource}
         items={items}

@@ -18,9 +18,30 @@
 export const SITE = {
   url: "https://ariaxhan.com",
   name: "Aria Han",
-  role: "AI implementation specialist",
+  /**
+   * Positioning string. Every indexable surface uses this: <title>, meta
+   * description, JSON-LD jobTitle, OG alt, llms.txt.
+   *
+   * Why not "AI implementation specialist": measured 2026-07-28, the query
+   * "ai implementation specialist los angeles" returns 20 of 20 job listings
+   * (ZipRecruiter, LinkedIn Jobs, Indeed, Greenhouse, Built In LA). Google
+   * reads that phrase as hiring intent, so a consulting site cannot rank
+   * commercially against it. "AI consultant" carries buyer intent.
+   * Evidence: _meta/research/2026-07-28-discoverability-audit.md
+   */
+  role: "AI consultant",
+  /** The username every other platform ranks for. Claimed in Person.alternateName. */
+  handle: "ariaxhan",
   location: "Los Angeles, California",
   email: "ariaxhan@gmail.com",
+
+  /** Sellable engagements. Drives ProfessionalService/OfferCatalog JSON-LD. */
+  services: [
+    "AI implementation consulting",
+    "AI agent and workflow automation",
+    "Custom AI software development",
+    "AI systems architecture",
+  ],
 
   /** First hero sentence. Maximally concrete. */
   oneLiner:
@@ -35,14 +56,14 @@ export const SITE = {
 
   /** The one-sentence description a stranger should repeat after ten seconds. */
   tldr:
-    "Aria Han is an AI implementation specialist in Los Angeles who builds systems that preserve continuity as human work and AI tools keep fragmenting.",
+    "Aria Han is an AI consultant in Los Angeles who builds and ships production AI systems: agent workflows, automation, and custom AI software for teams who need the thing to actually work.",
 
   /** Longer bio for llms-full, MCP, about surfaces. */
   bio: [
     "Hi, I'm Aria. I spend a vast majority of my time talking to Claude Code, reading books, and writing everything from prompts to poetry. For two years I have been chasing one question: how to use AI to make humans more human.",
     "My work usually begins with a small irritation that will not leave me alone. Safari tabs ate my research papers, so I built Paper Rooms. AI education felt backwards, so I built ModelMind. Context kept disappearing between people and agents, so I built memory systems, handoff protocols, and HeyContext. I think AI should do the work people should not be doing, the mechanical and boring stuff, and that the best AI stays behind the scenes, silently making our lives easier.",
-    "I care about continuity: how knowledge accumulates, how conversations keep their shape, how tools remember enough to make tomorrow less like starting over. Memory, evals, and agents are mechanisms. The deeper question is what they help people keep. I build to make meaning, not to make profit.",
-    "Previously I was a startup founder in San Francisco, where I built three AI products one after another. After wrapping up HeyContext, I spent months interviewing for AI engineer roles, which became its own strange field study of what companies think AI work is. Then I moved to Los Angeles to work with people outside the AI bubble: founders, engineers, artists, scientists, filmmakers. Now I consult as an AI implementation specialist, designing and integrating workflows for companies and building the architecture and scaffolding that founders iterate on. The thread is always people. It always will be.",
+    "I care about continuity: how knowledge accumulates, how conversations keep their shape, how tools remember enough to make tomorrow less like starting over. Memory, evals, and agents are mechanisms. The deeper question is what they help people keep. Meaning matters more to me than novelty or growth for its own sake.",
+    "Previously I was a startup founder in San Francisco, where I built three AI products one after another. After wrapping up HeyContext, I spent months interviewing for AI engineer roles, which became its own strange field study of what companies think AI work is. Then I moved to Los Angeles and started working with founders, engineers, artists, scientists, and filmmakers outside the AI bubble. I like working with thoughtful teams on technically ambitious problems, especially when the hard part is figuring out how the system and the people should work together. The thread is always people. It always will be.",
   ],
 
   /** Verified numbers. Source + date for every claim; re-verify before changing. */
@@ -60,11 +81,19 @@ export const SITE = {
     medium: "https://medium.com/@ariaxhan",
     linkedin: "https://www.linkedin.com/in/ariahan/",
     x: "https://x.com/aria__han",
+    /**
+     * Profiles that already rank for "ariaxhan". Listed in Person.sameAs so
+     * search engines consolidate them onto this domain instead of treating
+     * them as separate entities. Measured 2026-07-28.
+     */
+    pypi: "https://pypi.org/user/ariaxhan/",
+    devpost: "https://devpost.com/ariaxhan",
+    huggingface: "https://huggingface.co/ariaxhan",
   },
 
   booking: {
     url: "https://cal.com/aria-han/15min",
-    line: "For projects, collaborations, or implementation work, we can start with a short conversation.",
+    line: "If your team is working through one of these problems, or you think we might be a long-term fit, I would like to hear about it.",
   },
 } as const;
 
@@ -557,6 +586,43 @@ export const projects: Project[] = [
     gallery: ["/studio/repo-metabrain.jpg"],
   },
   {
+    slug: "agentmailkit",
+    name: "agentmailkit",
+    kind: "open-source",
+    status: "Published on PyPI, MIT",
+    thesis: "A scheduled email should look the same every day, even when a model writes the words.",
+    problem:
+      "Cloud assistants can schedule an email but cannot read the files on your laptop or send from your own inbox. Local agents can do both, and then drift: the same job returns a different shape every morning, so you stop trusting it and stop reading it.",
+    built: [
+      "An email is two files: a JSON job and a markdown prompt. Everything type-specific is a named plugin, so adding a digest means adding data, never code.",
+      "The split that makes it stable is that the model writes only the words. A deterministic renderer owns every piece of presentation, so the same job produces the same shaped email on every run and only the sentences change.",
+      "A seen-ledger keyed by job and item URL filters sources before the prompt is ever built and records only after a send succeeds, so day two never repeats day one.",
+    ],
+    stack: "Python · Append-only JSONL ledger · Zero required dependencies",
+    links: [
+      { label: "PyPI", href: "https://pypi.org/project/agentmailkit/" },
+      { label: "GitHub", href: "https://github.com/ariaxhan/agentmailkit" },
+      { label: "Sample emails", href: "https://ariaxhan.github.io/agentmailkit/" },
+    ],
+    proof:
+      "Five example jobs ship with it, so the first command after installing renders real digests from live weather, news, and arXiv feeds. 36 tests, offline and deterministic. Dry runs and the quickstart gallery cannot send, enforced in code rather than by convention.",
+    learned:
+      "Splitting content from presentation is what makes AI output look stable. Determinism was the feature; autonomy would have been the bug.",
+    proves: "Extracting a battle-tested private system into a portable, installable tool other people can run.",
+    closing: "The model writes the words. The engine owns everything else.",
+    themes: ["agents", "local-first", "implementation"],
+    connections: ["kernel", "metabrain", "substrate"],
+    accent: "#a97448",
+    meta: {
+      status: "Published · PyPI + GitHub",
+      stack: "Python · Zero required dependencies",
+      install: "pip install agentmailkit",
+      license: "MIT",
+    },
+    plate: "/studio/repo-agentmailkit.svg",
+    gallery: ["/studio/repo-agentmailkit.svg"],
+  },
+  {
     slug: "substrate",
     name: "Substrate",
     kind: "open-source",
@@ -1036,17 +1102,17 @@ export const engagements: Engagement[] = [
   {
     title: "AI workflow implementation",
     detail:
-      "Designing and integrating workflows for corporations and founders. You bring the process that keeps getting lost or redone; I turn it into something AI can actually carry, so the mechanical, boring work stops landing on people.",
+      "I design and integrate workflows for teams with a process that keeps getting lost or redone. The goal is to make it something AI can actually carry, so the mechanical, boring work stops landing on people.",
   },
   {
     title: "Internal AI tools and automation",
     detail:
-      "The best AI is behind the scenes, silently doing what it is meant to do. My own daily automation sends me six detailed emails a day and maintains my vaults. I can build the same quiet infrastructure for you: research digests, intake flows, report generators, and glue between systems you already use.",
+      "The best AI is behind the scenes, silently doing what it is meant to do. My own daily automation sends me six detailed emails a day and maintains my vaults. I build that kind of quiet infrastructure: research digests, intake flows, report generators, and glue between systems a team already uses.",
   },
   {
-    title: "Founder scaffolding",
+    title: "Early product architecture",
     detail:
-      "Working directly with founders, taking an idea and building the architecture and scaffolding for AI and the founder to iterate on. You keep the vision; I build the structure underneath it so the product can actually move.",
+      "I like the stage where an idea is real enough to test but still loose enough to change. I can turn it into an architecture and working scaffold that gives the people shaping the product something concrete to iterate on.",
   },
   {
     title: "Agentic system architecture",
@@ -1089,7 +1155,7 @@ export const notAFit: string[] = [
 ];
 
 export const workingStyle =
-  "I like written context first, then short calls when they help. The best work usually starts with the messy truth: what you are trying to build, what already exists, what keeps breaking, and what you cannot quite name yet.";
+  "I like written context first, then short calls when they help. I work best close to the people making the decisions, starting with the messy truth: what the team is trying to build, what already exists, what keeps breaking, and what nobody can quite name yet.";
 
 
 // ---------------------------------------------------------------------------
@@ -1341,6 +1407,13 @@ export const PAGE_COPY = {
   layout: {
     keywords: [
       "Aria Han",
+      "ariaxhan",
+      "AI consultant",
+      "AI consultant Los Angeles",
+      "AI implementation consulting",
+      "AI agent development",
+      "workflow automation consultant",
+      "custom AI software development",
       "AI implementation specialist",
       "AI continuity systems",
       "agent coordination",
@@ -1392,6 +1465,12 @@ export const PAGE_COPY = {
       { label: "Contact", href: "/contact" },
     ],
     place: "Aria Han · Los Angeles · 2026",
+    /**
+     * The handle claimed as visible text. "ariaxhan" is what Instagram,
+     * Devpost, GitHub, Hugging Face and PyPI all rank for, and it appeared
+     * zero times as readable content on this site. Measured 2026-07-28.
+     */
+    handleLine: "Elsewhere I am ariaxhan on GitHub, PyPI and Devpost.",
     motto: "Continuity over novelty",
   },
   hero: {
@@ -1427,10 +1506,10 @@ export const PAGE_COPY = {
     ],
     narrative2: [
       "After my third startup, I spent months interviewing for AI engineer roles and doing over a dozen technicals. It accidentally became a tour through the industry's confusion: every company had a different idea of what AI work was supposed to be.",
-      "It was the range of problems that intrigued me, and that's when I decided to work as a consultant so I could work with more than just one problem at a time. Now I'm not just bringing my own projects. I've seen the shape of the questions other teams are asking too.",
-      "Now I work with founders, engineers, and teams trying to adapt to a world changing faster than anyone expected. AI engineer is the conventional title, AI implementation specialist is closer to the truth, and the language is still evolving. The human element only keeps getting more important, more of a premium. The thread is people. It always has been.",
+      "What stayed with me was the range of problems. Since then I have worked inside other people's systems as well as my own, with founders, engineers, and teams trying to make AI useful without letting it flatten the work around it.",
+      "AI engineer is the conventional title. AI implementation specialist is closer to the truth, though the language is still evolving. I like working with thoughtful teams on technically ambitious problems, especially when the hard part is not just the model but how everything around it fits together. The human element only keeps getting more important. The thread is people. It always has been.",
     ],
-    worksWithLabel: "What I work with",
+    worksWithLabel: "What I bring to a team",
     worksWith: [
       "Claude Code, Codex, etc.",
       "Self-improving Systems",
@@ -1475,10 +1554,10 @@ export const PAGE_COPY = {
   sections: {
     whatIBuild: {
       fig: "Fig. 01",
-      label: "What I build",
-      title: "Ways we might work together",
-      note: "Every project is different. That's the fun part",
-      unsure: "Not sure where it fits? Send the messy version.",
+      label: "Things I can do",
+      title: "Where I tend to be useful",
+      note: "I like technically ambitious work with thoughtful people.",
+      unsure: "Working on something adjacent? I would still like to hear about it.",
     },
     projectMap: {
       fig: "Fig. 02",
@@ -1500,7 +1579,7 @@ export const PAGE_COPY = {
     workWithMeDoor: {
       label: "Work with me",
       call: "Let's talk",
-      takeOn: "What I like working on",
+      takeOn: "What I like taking on",
     },
     livingDesk: {
       fig: "Fig. 01",
@@ -1571,7 +1650,7 @@ export const PAGE_COPY = {
   contact: {
     fig: "Fig. 10 · Work With Me",
     title: "Let's talk",
-    intro: "I like collaborative, meaningful work. The kind where the AI matters, but the people matter more.",
+    intro: "I like technically ambitious work with thoughtful people, especially when the AI matters but the people matter more.",
     takeOn: "What I like taking on",
     goodFit: "A good fit",
     notFit: "Not a fit",
@@ -1699,6 +1778,7 @@ export const PAGE_COPY = {
   workshopWall: {
     cardPrefix: "studio",
     cardCta: "read the story",
+    permalinkCta: "permalink:",
     videoPlayPrefix: "Play",
     screenshotPrefix: "Show",
     screenshotSuffix: "screenshot",
@@ -1883,7 +1963,7 @@ export const PAGE_COPY = {
       name: "Aria Han Portfolio Agent",
       version: "1.1.0",
       description:
-        "A2A agent card for Aria Han, an AI implementation specialist in Los Angeles who builds systems that preserve continuity as human work and AI tools keep fragmenting. Read-only access to bio, projects, and writing.",
+        "A2A agent card for Aria Han, an AI consultant in Los Angeles who builds and ships production AI systems: agent workflows, automation, and custom AI software. Read-only access to bio, projects, and writing.",
       skills: {
         bio: {
           id: "get_bio",

@@ -39,6 +39,20 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
 
   const response = await next();
 
+  // Preview builds and the project alias serve the whole site on *.pages.dev,
+  // returning 200 with "index, follow". The canonical tag points home, which
+  // mitigates but does not prevent crawling of every preview hash. Only the
+  // apex is indexable. Measured 2026-07-28, see the discoverability audit.
+  if (url.hostname.endsWith(".pages.dev")) {
+    const headers = new Headers(response.headers);
+    headers.set("x-robots-tag", "noindex, nofollow");
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers,
+    });
+  }
+
   // Add Link headers to the homepage.
   if (url.pathname === "/" || url.pathname === "/index.html") {
     const headers = new Headers(response.headers);

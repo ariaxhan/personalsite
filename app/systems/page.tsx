@@ -17,7 +17,7 @@ const items: WallItem[] = projectsToWallItems(productProjects);
 export default function SystemsPage() {
   return (
     <main className="relative">
-      <JsonLd data={projectListSchema(productProjects, "/systems/")} />
+      <JsonLd data={projectListSchema(productProjects)} />
       <WorkshopWall
         {...PAGE_COPY.sections.systems}
         items={items}

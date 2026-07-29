@@ -1,0 +1,50 @@
+name: proof of motion
+
+# Regenerates app/utils/motionData.json from GitHub contribution history and
+# commits it to main. Cloudflare Pages builds production from main, so a
+# committed change here is what actually updates the live ledger.
+
+on:
+  schedule:
+    - cron: "17 9 * * 1" # Mondays 09:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: proof-of-motion
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Regenerate motion data
+        # PROOF_GH_TOKEN is a PAT with read access to the private repos that
+        # should be counted. The default GITHUB_TOKEN only sees this repo, so
+        # using it would silently shrink the ledger.
+        env:
+          GH_TOKEN: ${{ secrets.PROOF_GH_TOKEN }}
+        run: node scripts/proof-of-motion.mjs
+
+      - name: Commit if changed
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- app/utils/motionData.json app/utils/motionSupplemental.json; then
+            echo "no change in motion data"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/utils/motionData.json app/utils/motionSupplemental.json
+          git commit -m "data(proof): refresh motion ledger from GitHub contributions"
+          git push origin HEAD:main

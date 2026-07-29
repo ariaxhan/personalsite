@@ -1,3 +1,9 @@
+---
+type: note
+status: active
+created: 2026-06-30
+---
+
 # Chronicle — Mobile-first redesign hardening
 
 **Commission:** `_meta/commissions/active/2026-06-30-mobile-first-redesign-hardening.md`  

@@ -1,3 +1,9 @@
+---
+type: note
+status: active
+created: 2026-07-06
+---
+
 # Chronicle: Proof Engine, session 1 (recon, commission, data layer, lane fan-out)
 
 **Date:** 2026-07-06 · **Branch:** feat/proof-engine · **Agent:** Fable (wound down at usage cap, handed off to Opus)

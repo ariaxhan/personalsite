@@ -1,3 +1,9 @@
+---
+type: note
+status: active
+created: 2026-07-01
+---
+
 # Failure map — mobile-first redesign hardening
 
 ## Scope

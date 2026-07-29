@@ -9,7 +9,7 @@
 // links reach the output.
 
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -224,11 +224,30 @@ function readLocalRepoMonths(repoPath) {
   return { months, total };
 }
 
+// Supplemental repos live only on Aria's machine (iCloud, not GitHub), so a CI
+// run cannot read them. The last local run writes their per-repo months to a
+// committed snapshot; CI reuses it so scheduled regenerations never silently
+// drop those commits from the ledger.
+const snapshotPath = resolve(scriptDir, "..", "app", "utils", "motionSupplemental.json");
+
+function readSupplementalSnapshot() {
+  if (!existsSync(snapshotPath)) return {};
+  try {
+    return JSON.parse(readFileSync(snapshotPath, "utf8")).repos || {};
+  } catch {
+    return {};
+  }
+}
+
 function addSupplementalRepos(repoRecords) {
   const added = [];
+  const snapshot = readSupplementalSnapshot();
+  const nextSnapshot = {};
 
   for (const repo of SUPPLEMENTAL_REPOS) {
-    const record = readLocalRepoMonths(repo.path);
+    const local = readLocalRepoMonths(repo.path);
+    const record = local || snapshot[repo.key] || null;
+    if (record) nextSnapshot[repo.key] = record;
     if (!record) continue;
 
     if (!repoRecords.has(repo.key)) {
@@ -244,7 +263,11 @@ function addSupplementalRepos(repoRecords) {
     const target = repoRecords.get(repo.key);
     mergeMonths(target.months, record.months);
     target.total += record.total;
-    added.push({ key: repo.key, total: record.total });
+    added.push({ key: repo.key, total: record.total, source: local ? "local" : "snapshot" });
+  }
+
+  if (Object.keys(nextSnapshot).length) {
+    writeFileSync(snapshotPath, JSON.stringify({ repos: nextSnapshot }, null, 2) + "\n");
   }
 
   return added;
@@ -413,7 +436,7 @@ console.log(`wrote: ${outPath}`);
 console.log(`grand total commits in rendered series: ${grandTotal} across ${github.repos.size} repositories`);
 console.log(`GitHub contribution API total: ${github.totalCommitContributions}`);
 if (supplemental.length) {
-  console.log(`supplemental git repos: ${supplemental.map((repo) => `${repo.key} (${repo.total})`).join(", ")}`);
+  console.log(`supplemental git repos: ${supplemental.map((repo) => `${repo.key} (${repo.total}, ${repo.source})`).join(", ")}`);
 }
 console.log(`span: ${data.firstMonth} to ${data.lastMonth}`);
 if (biggest) console.log(`biggest month: ${biggest.m} (${biggest.series}, ${biggest.c} commits)`);

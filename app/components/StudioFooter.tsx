@@ -49,6 +49,7 @@ export default function StudioFooter() {
         </div>
         <div className="flex flex-wrap items-baseline justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute">
           <span>{PAGE_COPY.footer.place}</span>
+          <span className="normal-case tracking-[0.06em]">{PAGE_COPY.footer.handleLine}</span>
           <span>{PAGE_COPY.footer.motto}</span>
         </div>
       </Reveal>
