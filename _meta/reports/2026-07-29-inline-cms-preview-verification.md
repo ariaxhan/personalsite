@@ -1,6 +1,6 @@
 ---
 type: verification-report
-status: preview-access-configured-production-blocked
+status: preview-authenticated-verified-production-blocked
 created: 2026-07-29
 commission:
   - _meta/commissions/active/2026-07-29-inline-cms-portfolio-v1.md
@@ -24,16 +24,17 @@ Saving is deliberately manual:
 - no autosave, debounce, timer, or background draft write exists.
 
 Cloudflare Access now protects `/edit/start/*` with an exact-email allow policy
-for `tiredlillies@gmail.com`. Unauthenticated requests reach the Access login,
-and the Worker validates the resulting assertion again before serving editor
-state or accepting mutations.
+for `tiredlillies@gmail.com` and `ariaxhan@gmail.com`. Unauthenticated requests
+reach the Access login, and the Worker validates the resulting assertion
+against the same two-address allowlist before serving editor state or accepting
+mutations.
 
 Preview Worker version:
-`45df81a3-7ab1-4ad4-9b1a-251e2b913e42`.
+`d19b46f9-83e0-428c-a475-790cb1993024`.
 
 Current local and live proof:
 
-- 28 Vitest checks, ESLint, TypeScript, generated binding types, OpenNext
+- 30 Vitest checks, ESLint, TypeScript, generated binding types, OpenNext
   production build, and Worker startup analysis pass;
 - the live verifier passes 26 HTML routes, 25 machine routes, Markdown
   negotiation, MCP, preview noindex, and unauthenticated private-route
@@ -46,10 +47,26 @@ Current local and live proof:
   rejected until the new copy was explicitly saved;
 - all three adversarial re-reviews returned `PROCEED`.
 
-The final authenticated remote mutation drill is waiting only for the
-one-time Access code sent to `tiredlillies@gmail.com`. Production remains
-untouched, and Phase-B migration `0004` remains outside the active migration
-directory.
+The authenticated remote mutation drill completed through Cloudflare Access
+with `ariaxhan@gmail.com`. Typing and waiting left the database at 14
+revisions. **Save draft** created revision
+`rev_d8f5b3bf-eae1-478b-8f01-be532525c55c` while the published pointer remained
+on the seed. **Publish** moved the pointer once, and the full live verifier
+passed at
+`rev_d8f5b3bf-eae1-478b-8f01-be532525c55c:pub_fc6c5ad6-9c24-4fe7-93fe-61d0d643e0fc`.
+The exact original copy was then saved and published again. Desktop and mobile
+initial HTML both resolve the restored snapshot
+`rev_99b651c0-5e71-4b61-8c7a-c6d7eb52c390:pub_35d41b73-0ea5-466b-830a-c86b751d93b8`,
+and neither contains the temporary test marker.
+
+The Safari redirect loop was traced to the Worker handoff cookie using
+`SameSite=Strict` after Cloudflare Access returned from a different site. The
+cookie now uses `SameSite=Lax`, which permits the top-level login return while
+remaining `HttpOnly` and `Secure`. A fresh emailed code completed the full
+redirect into the inline editor.
+
+Production remains untouched, and Phase-B migration `0004` remains outside the
+active migration directory.
 
 ## Current deployment
 
@@ -61,11 +78,11 @@ directory.
 - Project-review store: `personalsite-cms-review-preview`
 - Canonical page key: `site`
 - Canonical published revision at final verification:
-  `rev_seed_fabe3e2ea184c102a6c9`
+  `rev_99b651c0-5e71-4b61-8c7a-c6d7eb52c390`
 - Canonical publication at final verification:
-  `pub_3aaff6a4-d046-4f35-aaf2-c8ad220c2934`
-- Preview Worker version used for the restart drill:
-  `092b7f9c-9a42-4371-bcc0-a5e5626b9b7d`
+  `pub_35d41b73-0ea5-466b-830a-c86b751d93b8`
+- Preview Worker version used for the authenticated editor drill:
+  `d19b46f9-83e0-428c-a475-790cb1993024`
 
 Production `https://ariaxhan.com` remains on the pre-migration deployment.
 
@@ -173,14 +190,11 @@ D1 regenerated the published page and populated local R2.
 
 ## Remaining cutover blocker
 
-Cloudflare Access is configured on the isolated preview. The final
-authenticated remote mutation drill requires completing the one-time email
-code challenge, then proving manual draft save, publish, restore, metadata,
-JSON-LD, listings, sitemap, and mobile output against the Access session.
-
-Production still requires the explicit custom-domain approval defined by the
-commission. The temporary preview-token path remains enabled only on the
-isolated Worker and is not an acceptable production authentication mode.
+Cloudflare Access and the authenticated remote mutation drill are complete on
+the isolated preview. Production still requires the explicit custom-domain
+approval defined by the commission. The temporary preview-token path remains
+enabled only on the isolated Worker and is not an acceptable production
+authentication mode.
 
 No production route, custom domain, external profile, or external email
 delivery was changed during this preview pass.
