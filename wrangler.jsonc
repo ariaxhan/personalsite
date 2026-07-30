@@ -71,6 +71,7 @@
   "vars": {
     "NEXTJS_ENV": "production",
     "CMS_EDITOR_EMAIL": "tiredlillies@gmail.com",
+    "CMS_EDITOR_ENABLED": "true",
     "CMS_PREVIEW_DEV_AUTH": "enabled",
     "PROJECT_REVIEW_TO_EMAIL": "ariaxhan@gmail.com",
     "PROJECT_REVIEW_FROM_EMAIL": "reviews@ariaxhan.com"

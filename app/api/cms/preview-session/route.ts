@@ -1,6 +1,11 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { NextResponse } from "next/server";
-import { CmsAuthError, cmsErrorResponse, requireSameOrigin } from "@/app/content/auth";
+import {
+  CmsAuthError,
+  cmsErrorResponse,
+  isCmsEditorEnabled,
+  requireSameOrigin,
+} from "@/app/content/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -18,10 +23,12 @@ export async function POST(request: Request) {
     const { env: cloudflareEnv } = await getCloudflareContext({ async: true });
     const env = cloudflareEnv as CloudflareEnv & {
       CMS_DEV_TOKEN?: string;
+      CMS_EDITOR_ENABLED?: string;
       CMS_PREVIEW_DEV_AUTH?: string;
     };
     if (
       url.hostname !== "personalsite-cms-preview.ariaxhan.workers.dev" ||
+      !isCmsEditorEnabled(env.CMS_EDITOR_ENABLED) ||
       env.CMS_PREVIEW_DEV_AUTH !== "enabled" ||
       !env.CMS_DEV_TOKEN
     ) {

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   CmsAuthError,
+  isCmsEditorEnabled,
   requireJsonRequest,
   requireSameOrigin,
 } from "../app/content/auth";
@@ -45,5 +46,11 @@ describe("CMS mutation request guards", () => {
       ),
     ).toThrow("application/json required");
   });
-});
 
+  it("requires an explicit editor-enable switch", () => {
+    expect(isCmsEditorEnabled("true")).toBe(true);
+    expect(isCmsEditorEnabled("false")).toBe(false);
+    expect(isCmsEditorEnabled("enabled")).toBe(false);
+    expect(isCmsEditorEnabled(undefined)).toBe(false);
+  });
+});

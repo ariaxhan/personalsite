@@ -41,13 +41,21 @@ async function cmsEnv() {
     CMS_ACCESS_TEAM?: string;
     CMS_ACCESS_AUD?: string;
     CMS_EDITOR_EMAIL?: string;
+    CMS_EDITOR_ENABLED?: string;
     CMS_DEV_TOKEN?: string;
     CMS_PREVIEW_DEV_AUTH?: string;
   };
 }
 
+export function isCmsEditorEnabled(value: string | undefined): boolean {
+  return value === "true";
+}
+
 export async function authorizeCms(request: Request): Promise<CmsIdentity> {
   const env = await cmsEnv();
+  if (!isCmsEditorEnabled(env.CMS_EDITOR_ENABLED)) {
+    throw new CmsAuthError("Not found", 404);
+  }
   const url = new URL(request.url);
   const cookieToken = request.headers
     .get("cookie")
