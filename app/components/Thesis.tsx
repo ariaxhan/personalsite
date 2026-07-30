@@ -1,7 +1,8 @@
 import Reveal from "./studio/Reveal";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
-export default function Thesis() {
+export default async function Thesis() {
+  const { content: { PAGE_COPY } } = await getSiteContent();
   const line2 = "line2" in PAGE_COPY.thesis ? String(PAGE_COPY.thesis.line2) : null;
 
   return (

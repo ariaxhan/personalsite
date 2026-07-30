@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { projects } from "./utils/projectsData";
 import contentDates from "./utils/contentDates.json";
+import { getSiteContent } from "./content/repository";
 
 export const dynamic = "force-static";
 
@@ -31,14 +31,16 @@ const ROUTES = [
   "/writing/",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const resolved = await getSiteContent();
+  const publishedAt = resolved.updatedAt ? new Date(resolved.updatedAt) : null;
   const pages = ROUTES.map((route) => ({
     url: `${BASE}${route}`,
-    lastModified: new Date(dates[route]),
+    lastModified: publishedAt ?? new Date(dates[route]),
   }));
 
-  const projectDate = new Date(dates.projects);
-  const projectPages = projects.map((p) => ({
+  const projectDate = publishedAt ?? new Date(dates.projects);
+  const projectPages = resolved.content.projects.map((p) => ({
     url: `${BASE}/projects/${p.slug}/`,
     lastModified: projectDate,
   }));

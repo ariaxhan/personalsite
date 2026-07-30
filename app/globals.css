@@ -79,6 +79,29 @@ body {
     background: rgba(248, 244, 234, 0.82);
     box-shadow: 0 0 0 3px rgba(181, 106, 79, 0.12);
   }
+
+  .field-button {
+    min-height: 44px;
+    border: 1px solid rgba(44, 40, 35, 0.24);
+    background: var(--studio-card);
+    padding: 0.65rem 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .field-button:hover:not(:disabled) {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+  }
+
+  .field-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
 }
 
 /* ----------------------------------------------------------------------------

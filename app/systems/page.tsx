@@ -4,22 +4,22 @@ import JsonLd from "../components/studio/JsonLd";
 import { projectListSchema } from "../utils/jsonLd";
 import WorkshopWall, { WallItem } from "../components/WorkshopWall";
 import StudioFooter from "../components/StudioFooter";
-import { productProjects } from "../utils/projectsData";
 import { projectsToWallItems } from "../utils/wallItems";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
-export const metadata: Metadata = pageMeta({
-  ...PAGE_COPY.metadata.systems,
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const { content } = await getSiteContent();
+  return pageMeta({ ...content.PAGE_COPY.metadata.systems }, content.SITE);
+}
 
-const items: WallItem[] = projectsToWallItems(productProjects);
-
-export default function SystemsPage() {
+export default async function SystemsPage() {
+  const { content } = await getSiteContent();
+  const items: WallItem[] = projectsToWallItems(content.productProjects, content);
   return (
     <main className="relative">
-      <JsonLd data={projectListSchema(productProjects)} />
+      <JsonLd data={projectListSchema(content, content.productProjects)} />
       <WorkshopWall
-        {...PAGE_COPY.sections.systems}
+        {...content.PAGE_COPY.sections.systems}
         items={items}
       />
       <StudioFooter />

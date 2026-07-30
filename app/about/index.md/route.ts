@@ -1,9 +1,9 @@
-import { renderAboutMd } from "@/app/utils/agentText";
+import { renderAboutMd, markdownResponse } from "@/app/content/machine";
+import { getSiteContent } from "@/app/content/repository";
 
 export const dynamic = "force-static";
 
-export function GET() {
-  return new Response(renderAboutMd(), {
-    headers: { "content-type": "text/markdown; charset=utf-8" },
-  });
+export async function GET() {
+  const { content } = await getSiteContent();
+  return markdownResponse(renderAboutMd(content));
 }

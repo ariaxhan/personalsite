@@ -1,7 +1,9 @@
 import { agentCardJson, jsonResponse } from "../../utils/wellKnown";
+import { getSiteContent } from "../../content/repository";
 
 export const dynamic = "force-static";
 
-export function GET() {
-  return jsonResponse(agentCardJson());
+export async function GET() {
+  const { content } = await getSiteContent();
+  return jsonResponse(agentCardJson(content));
 }

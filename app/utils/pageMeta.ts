@@ -9,14 +9,14 @@
 // ============================================================================
 
 import type { Metadata } from "next";
-import { SITE } from "./siteMeta";
+import { SITE as DEFAULT_SITE } from "./siteMeta";
 
 /** Shared Open Graph image. Rasterized to /og.png at build by scripts/generate-og.mjs. */
 export const OG_IMAGE = {
   url: "/og.png",
   width: 1200,
   height: 630,
-  alt: `${SITE.name}, ${SITE.role}`,
+  alt: `${DEFAULT_SITE.name}, ${DEFAULT_SITE.role}`,
 };
 
 export function pageMeta(opts: {
@@ -28,7 +28,7 @@ export function pageMeta(opts: {
   /** Canonical path, trailing slash required ("/" for home). */
   path: string;
   type?: "website" | "article" | "profile";
-}): Metadata {
+}, site: typeof DEFAULT_SITE = DEFAULT_SITE): Metadata {
   const ogTitle = opts.ogTitle ?? opts.title;
   return {
     title: opts.title,
@@ -39,9 +39,9 @@ export function pageMeta(opts: {
       description: opts.description,
       url: opts.path,
       type: opts.type ?? "website",
-      siteName: SITE.name,
+      siteName: site.name,
       locale: "en_US",
-      images: [OG_IMAGE],
+      images: [{ ...OG_IMAGE, alt: `${site.name}, ${site.role}` }],
     },
     twitter: {
       card: "summary_large_image",

@@ -3,8 +3,7 @@
 import { useMemo, useState } from "react";
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
-import { topics, topicEdges, mapDefaultBlurb } from "../utils/studioData";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { useSiteContent } from "../content/SiteContentProvider";
 
 /**
  * CuriosityMap: Fig. 04, ideas that recognize each other.
@@ -15,6 +14,7 @@ import { PAGE_COPY } from "../utils/siteCopy";
  * are looking at.
  */
 export default function CuriosityMap() {
+  const { PAGE_COPY, topics, topicEdges, mapDefaultBlurb } = useSiteContent();
   const [active, setActive] = useState<number | null>(null);
 
   const adj = useMemo(() => {
@@ -25,7 +25,7 @@ export default function CuriosityMap() {
       a[y].add(x);
     });
     return a;
-  }, []);
+  }, [topicEdges, topics]);
 
   const blurb = active != null ? topics[active].blurb : mapDefaultBlurb;
 

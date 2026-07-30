@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Reveal from "../studio/Reveal";
-import { moments } from "../../utils/studioData";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import { getSiteContent } from "../../content/repository";
 
 // NowBlock: a small, dated status line. Current focus is sourced from the top of
 // the timeline (moments[0]); the active-work line names what is running right
 // now. Honest and quiet, no hype. Links to the full timeline.
-export default function NowBlock() {
+export default async function NowBlock() {
+  const { content: { moments, PAGE_COPY } } = await getSiteContent();
   const now = moments[0];
 
   return (

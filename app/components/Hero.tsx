@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SITE, proofStats } from "../utils/siteMeta";
-import { projectBySlug } from "../utils/projectsData";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 import SystemDiagram from "./home/SystemDiagram";
 
 // Hero: the ten-second answer. Who (Aria Han, the role, Los Angeles), what
@@ -11,31 +9,31 @@ import SystemDiagram from "./home/SystemDiagram";
 // carry the evidence. Every number is sourced from siteMeta; nothing here is
 // typed twice.
 
-const quickLinks = [
-  {
-    title: "Paper Rooms",
-    href: "https://paper-rooms.com",
-    image: "/studio/paperrooms-icon.jpg",
-    note: projectBySlug("paper-rooms")?.thesis ?? "",
-    initial: null,
-  },
-  {
-    title: "ModelMind",
-    href: "https://model-mind.org",
-    image: "/studio/modelmind-icon.jpg",
-    note: projectBySlug("modelmind")?.thesis ?? "",
-    initial: null,
-  },
-  {
-    title: PAGE_COPY.hero.githubTitle,
-    href: "https://github.com/ariaxhan",
-    image: null,
-    note: `${SITE.proof.publicRepos.value} ${PAGE_COPY.hero.githubNoteSuffix}`,
-    initial: PAGE_COPY.hero.githubInitial,
-  },
-];
-
-export default function Hero() {
+export default async function Hero() {
+  const { content: { SITE, PAGE_COPY, proofStats, projectBySlug } } = await getSiteContent();
+  const quickLinks = [
+    {
+      title: "Paper Rooms",
+      href: "https://paper-rooms.com",
+      image: "/studio/paperrooms-icon.jpg",
+      note: projectBySlug("paper-rooms")?.thesis ?? "",
+      initial: null,
+    },
+    {
+      title: "ModelMind",
+      href: "https://model-mind.org",
+      image: "/studio/modelmind-icon.jpg",
+      note: projectBySlug("modelmind")?.thesis ?? "",
+      initial: null,
+    },
+    {
+      title: PAGE_COPY.hero.githubTitle,
+      href: "https://github.com/ariaxhan",
+      image: null,
+      note: `${SITE.proof.publicRepos.value} ${PAGE_COPY.hero.githubNoteSuffix}`,
+      initial: PAGE_COPY.hero.githubInitial,
+    },
+  ];
   return (
     <section
       id="entrance"

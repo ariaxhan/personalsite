@@ -3,7 +3,6 @@
 import { useState } from "react";
 import {
   MONTHS,
-  ERAS,
   BURST_THRESHOLD,
   GRAND_TOTAL,
   REPO_COUNT,
@@ -11,11 +10,13 @@ import {
   monthLabel,
   monthShort,
   buildBands,
+  buildEras,
   globalPeak,
   type Band,
   type BandMonth,
 } from "./motionShared";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import { useSiteContent } from "../../content/SiteContentProvider";
+import type { SiteContent } from "../../content/defaultContent";
 
 // Strata: build activity read like sediment. Time runs left to right, one
 // horizontal band per constellation, each month a mark whose size is its commit
@@ -33,9 +34,14 @@ function markSize(count: number, peak: number): number {
   return MIN_MARK + t * (MAX_MARK - MIN_MARK);
 }
 
-function captionFor(band: Band, month: string, cell: BandMonth): string {
+function captionFor(
+  band: Band,
+  month: string,
+  cell: BandMonth,
+  motionCopy: SiteContent["PAGE_COPY"]["motion"],
+): string {
   const parts = cell.parts.map((p) => `${p.label} ${p.count}`).join(", ");
-  const many = cell.parts.length > 1 ? ` (${cell.total} ${PAGE_COPY.motion.commits})` : "";
+  const many = cell.parts.length > 1 ? ` (${cell.total} ${motionCopy.commits})` : "";
   return `${band.label} · ${monthLabel(month)}: ${parts}${many}`;
 }
 
@@ -50,10 +56,12 @@ function monthTick(m: string): string {
 }
 
 export default function MotionStrata() {
+  const { PAGE_COPY } = useSiteContent();
   const bands = buildBands();
   const peak = globalPeak(bands);
   const cols = MONTHS.length;
   const copy = PAGE_COPY.motion;
+  const eras = buildEras(copy);
 
   const defaultCaption = `${GRAND_TOTAL.toLocaleString()} ${copy.stripSummaryMiddle} ${REPO_COUNT} ${copy.stripSummarySuffix}, ${monthLabel(
     motionData.firstMonth
@@ -83,7 +91,7 @@ export default function MotionStrata() {
             aria-hidden="true"
           >
             <div />
-            {ERAS.map((era, i) => (
+            {eras.map((era, i) => (
               <div
                 key={era.key}
                 className="pb-3"
@@ -174,7 +182,7 @@ export default function MotionStrata() {
                   const size = markSize(cell.total, peak);
                   const t = Math.sqrt(cell.total) / Math.sqrt(peak);
                   const burst = cell.total >= BURST_THRESHOLD;
-                  const label = captionFor(band, m, cell);
+                  const label = captionFor(band, m, cell, copy);
                   return (
                     <div
                       key={m}

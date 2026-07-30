@@ -1,8 +1,7 @@
 import type { CSSProperties } from "react";
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
-import { hackathons } from "../utils/studioData";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
 /**
  * HackathonsGrid: Fig. 02c, built under pressure.
@@ -11,7 +10,8 @@ import { PAGE_COPY } from "../utils/siteCopy";
  * proof: the award, the room it was won in, what it did, and the tools it leaned
  * on. Resting on one lifts it; the title links out to the build.
  */
-export default function HackathonsGrid() {
+export default async function HackathonsGrid() {
+  const { content: { hackathons, PAGE_COPY } } = await getSiteContent();
   return (
     <section className="mx-auto max-w-wall px-5 sm:px-8 lg:px-14" style={{ paddingTop: 120 }}>
       <SectionHeader

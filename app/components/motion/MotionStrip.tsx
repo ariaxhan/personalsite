@@ -1,14 +1,14 @@
 import Link from "next/link";
 import {
   MONTHS,
-  ERAS,
   GRAND_TOTAL,
   REPO_COUNT,
   motionData,
+  buildEras,
   monthLabel,
   mergedByMonth,
 } from "./motionShared";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import { getSiteContent } from "../../content/repository";
 
 // MotionStrip: the proof-of-motion record, compressed to a single band for the
 // homepage. All constellations merge into one per-month total, drawn as small
@@ -16,13 +16,8 @@ import { PAGE_COPY } from "../../utils/siteCopy";
 // /proof. Self-contained: no props, reads the committed JSON directly.
 
 const BAR_MAX = 72; // px
-const MOBILE_ERA_LABELS: Record<string, string> = {
-  founder: "Founder",
-  independent: "Research",
-  implementation: "Build",
-};
-
-export default function MotionStrip() {
+export default async function MotionStrip() {
+  const { content: { PAGE_COPY } } = await getSiteContent();
   const merged = mergedByMonth();
   const cols = MONTHS.length;
   let peak = 1;
@@ -32,6 +27,7 @@ export default function MotionStrip() {
   const gridTemplateColumns = `repeat(${cols}, minmax(6px, 1fr))`;
 
   const copy = PAGE_COPY.motion;
+  const eras = buildEras(copy);
   const summary = `${copy.stripSummaryPrefix} ${GRAND_TOTAL.toLocaleString()} ${copy.stripSummaryMiddle} ${REPO_COUNT} ${copy.stripSummarySuffix}, ${monthLabel(
     motionData.firstMonth
   )} to ${monthLabel(motionData.lastMonth)}. ${copy.stripSummaryCta}`;
@@ -78,14 +74,14 @@ export default function MotionStrip() {
 
       {/* Era markers, aligned under the bars. */}
       <div aria-hidden="true" className="mt-2 grid grid-cols-3 border-t border-[rgba(44,40,35,0.14)] pt-2 sm:hidden">
-        {ERAS.map((era, i) => (
+        {eras.map((era, i) => (
           <div
             key={era.key}
             className="min-w-0 px-2 first:pl-0 last:pr-0"
             style={{ borderLeft: i === 0 ? "none" : "1px solid rgba(44,40,35,0.14)" }}
           >
             <span className="block truncate font-mono text-[8.5px] uppercase leading-relaxed tracking-[0.08em] text-ink-mute">
-              {MOBILE_ERA_LABELS[era.key] ?? era.name}
+              {era.name}
             </span>
           </div>
         ))}
@@ -95,7 +91,7 @@ export default function MotionStrip() {
         className="mt-2 hidden border-t border-[rgba(44,40,35,0.14)] pt-2 sm:grid"
         style={{ gridTemplateColumns }}
       >
-        {ERAS.map((era, i) => (
+        {eras.map((era, i) => (
           <div
             key={era.key}
             style={{

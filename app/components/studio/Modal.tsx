@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, useEffect } from "react";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import { useSiteContent } from "../../content/SiteContentProvider";
 
 /**
  * Modal: a sheet of paper lifted off the desk.
@@ -21,6 +21,7 @@ export default function Modal({
   children: ReactNode;
   maxWidth?: number;
 }) {
+  const { PAGE_COPY } = useSiteContent();
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {

@@ -4,13 +4,15 @@ import SectionHeader from "../components/studio/SectionHeader";
 import StudioFooter from "../components/StudioFooter";
 import MotionStrata from "../components/motion/MotionStrata";
 import { GRAND_TOTAL, REPO_COUNT, motionData, monthLabel } from "../components/motion/motionShared";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
-export const metadata: Metadata = pageMeta({
-  ...PAGE_COPY.metadata.proof,
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const { content } = await getSiteContent();
+  return pageMeta({ ...content.PAGE_COPY.metadata.proof }, content.SITE);
+}
 
-export default function ProofPage() {
+export default async function ProofPage() {
+  const { content: { PAGE_COPY } } = await getSiteContent();
   const total = GRAND_TOTAL.toLocaleString();
   const span = `${monthLabel(motionData.firstMonth)} to ${monthLabel(motionData.lastMonth)}`;
 

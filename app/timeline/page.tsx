@@ -2,11 +2,12 @@ import { Metadata } from "next";
 import { pageMeta } from "../utils/pageMeta";
 import Timeline from "../components/Timeline";
 import StudioFooter from "../components/StudioFooter";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
-export const metadata: Metadata = pageMeta({
-  ...PAGE_COPY.metadata.timeline,
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const { content } = await getSiteContent();
+  return pageMeta({ ...content.PAGE_COPY.metadata.timeline }, content.SITE);
+}
 
 export default function TimelinePage() {
   return (

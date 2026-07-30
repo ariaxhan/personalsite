@@ -1,12 +1,12 @@
-import { SITE, proofStats } from "../../utils/siteMeta";
 import motionData from "../../utils/motionData.json";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import { getSiteContent } from "../../content/repository";
 
 export const dynamic = "force-static";
 
 // Structured stats for agents: every number carries its source and verify date,
 // so machine summaries inherit the receipts, not just the claims.
 export async function GET() {
+  const { content: { SITE, proofStats, PAGE_COPY } } = await getSiteContent();
   return Response.json(
     {
       identity: { name: SITE.name, role: SITE.role, location: SITE.location, url: SITE.url },

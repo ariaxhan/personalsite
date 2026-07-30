@@ -7,7 +7,7 @@
 // ============================================================================
 
 import motion from "../../utils/motionData.json";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import type { SiteContent } from "../../content/defaultContent";
 
 export type MotionSeries = {
   label: string;
@@ -124,10 +124,14 @@ export type Era = {
   end: string;
 };
 
-export const ERAS: Era[] = PAGE_COPY.motion.eras.map((era) => ({
-  ...era,
-  end: era.end === "AXIS_END" ? AXIS_END : era.end,
-}));
+export function buildEras(
+  motionCopy: SiteContent["PAGE_COPY"]["motion"],
+): Era[] {
+  return motionCopy.eras.map((era) => ({
+    ...era,
+    end: era.end === "AXIS_END" ? AXIS_END : era.end,
+  }));
+}
 
 // ---------------------------------------------------------------------------
 // Bands. One per constellation, carrying its per-month breakdown (which named

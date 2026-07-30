@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, ReactNode, useState } from "react";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { useSiteContent } from "../content/SiteContentProvider";
 
 type FormState = "idle" | "sending" | "sent" | "error";
 
@@ -21,10 +21,6 @@ type ProjectReviewPayload = {
   company: string;
 };
 
-const STAGES = [...PAGE_COPY.projectReviewForm.stages];
-
-const PROJECT_TYPES = [...PAGE_COPY.projectReviewForm.projectTypes];
-
 const initialPayload: ProjectReviewPayload = {
   name: "",
   email: "",
@@ -42,6 +38,9 @@ const initialPayload: ProjectReviewPayload = {
 };
 
 export default function ProjectReviewForm() {
+  const { PAGE_COPY } = useSiteContent();
+  const STAGES = [...PAGE_COPY.projectReviewForm.stages];
+  const PROJECT_TYPES = [...PAGE_COPY.projectReviewForm.projectTypes];
   const [payload, setPayload] = useState<ProjectReviewPayload>(initialPayload);
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState("");
@@ -80,7 +79,9 @@ export default function ProjectReviewForm() {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const result = await response.json().catch(() => null);
+      const result = (await response.json().catch(() => null)) as
+        | { error?: string; submissionId?: string }
+        | null;
 
       if (!response.ok) {
         throw new Error(result?.error || PAGE_COPY.projectReviewForm.validation.sendError);

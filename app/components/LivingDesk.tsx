@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Reveal from "./studio/Reveal";
 import SectionHeader from "./studio/SectionHeader";
-import { deskObjects, DeskObject } from "../utils/studioData";
-import { PAGE_COPY } from "../utils/siteCopy";
+import type { DeskObject } from "../utils/studioData";
+import { getSiteContent } from "../content/repository";
 
 /**
  * LivingDesk: Fig. 01, the desk.
@@ -12,7 +12,8 @@ import { PAGE_COPY } from "../utils/siteCopy";
  * the room. On small screens the scatter would collide, so it folds down into a
  * tidy index of the same doors.
  */
-export default function LivingDesk() {
+export default async function LivingDesk() {
+  const { content: { deskObjects, PAGE_COPY } } = await getSiteContent();
   return (
     <section className="mx-auto max-w-wall px-5 pb-24 pt-10 sm:px-8 lg:px-14">
       <SectionHeader

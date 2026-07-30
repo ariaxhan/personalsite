@@ -4,13 +4,15 @@ import ProjectReviewForm from "../components/ProjectReviewForm";
 import StudioFooter from "../components/StudioFooter";
 import SectionHeader from "../components/studio/SectionHeader";
 import Reveal from "../components/studio/Reveal";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
-export const metadata: Metadata = pageMeta({
-  ...PAGE_COPY.metadata.projectReview,
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const { content } = await getSiteContent();
+  return pageMeta({ ...content.PAGE_COPY.metadata.projectReview }, content.SITE);
+}
 
-export default function ProjectReviewPage() {
+export default async function ProjectReviewPage() {
+  const { content: { PAGE_COPY } } = await getSiteContent();
   return (
     <main className="relative">
       <section className="mx-auto max-w-[1120px] px-5 sm:px-8 lg:px-14" style={{ paddingTop: 120 }}>

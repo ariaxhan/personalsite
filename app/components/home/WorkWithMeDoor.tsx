@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Reveal from "../studio/Reveal";
-import { SITE } from "../../utils/siteMeta";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import { getSiteContent } from "../../content/repository";
 
 // WorkWithMeDoor: a single quiet block. The booking line set as a serif
 // sentence, and two ways through: a short call, or the contact page for the
 // fuller picture of what I take on. No embed here; the scheduler lives on the
 // contact page.
-export default function WorkWithMeDoor() {
+export default async function WorkWithMeDoor() {
+  const { content: { SITE, PAGE_COPY } } = await getSiteContent();
   return (
     <section className="mx-auto max-w-content px-5 py-20 sm:px-8 lg:px-14 lg:py-24">
       <Reveal className="border-t border-[rgba(44,40,35,0.16)] pt-12">

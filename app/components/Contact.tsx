@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Reveal from "./studio/Reveal";
 import CalEmbed from "./CalEmbed";
-import { SITE } from "../utils/siteMeta";
-import { engagements, goodFit, notAFit } from "../utils/workWithMeData";
-import { contactLinks, projectReviewBullets } from "../utils/studioData";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
-export default function Contact() {
+export default async function Contact() {
+  const {
+    content: { SITE, engagements, goodFit, notAFit, contactLinks, projectReviewBullets, PAGE_COPY },
+  } = await getSiteContent();
   return (
     <section className="mx-auto max-w-[1120px] px-5 sm:px-8 lg:px-14" style={{ paddingTop: 120 }}>
       {/* a) Opening. SectionHeader rhythm, but a real h1. */}

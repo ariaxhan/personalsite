@@ -1,7 +1,6 @@
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
-import { WRITING_THEMES, articlesByTheme, MEDIUM_PROFILE } from "../utils/writingData";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
 /**
  * ThinkingSection: the writing, set as a map.
@@ -13,7 +12,10 @@ import { PAGE_COPY } from "../utils/siteCopy";
  * on Medium; the anchor text is the article title so agents and screen readers
  * get a meaningful destination.
  */
-export default function ThinkingSection() {
+export default async function ThinkingSection() {
+  const {
+    content: { WRITING_THEMES, articlesByTheme, MEDIUM_PROFILE, PAGE_COPY },
+  } = await getSiteContent();
   return (
     <section className="mx-auto max-w-[1180px] px-5 pb-24 sm:px-8 lg:px-14 lg:pb-28" style={{ paddingTop: 120 }}>
       <SectionHeader

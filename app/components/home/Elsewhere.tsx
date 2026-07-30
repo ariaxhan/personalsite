@@ -10,12 +10,12 @@
 // ============================================================================
 
 import Reveal from "../studio/Reveal";
-import { PAGE_COPY, contactLinks } from "../../utils/siteCopy";
+import { getSiteContent } from "../../content/repository";
 
-const email = contactLinks.find((l) => l.href.startsWith("mailto:"));
-const profiles = contactLinks.filter((l) => !l.href.startsWith("mailto:"));
-
-export default function Elsewhere() {
+export default async function Elsewhere() {
+  const { content: { PAGE_COPY, contactLinks } } = await getSiteContent();
+  const email = contactLinks.find((link) => link.href.startsWith("mailto:"));
+  const profiles = contactLinks.filter((link) => !link.href.startsWith("mailto:"));
   return (
     <section id="elsewhere" className="mx-auto max-w-content px-5 py-16 sm:px-8 sm:py-20">
       <Reveal className="border-t border-[rgba(44,40,35,0.2)] pt-10">

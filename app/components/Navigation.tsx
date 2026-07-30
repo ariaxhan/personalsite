@@ -3,15 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { useSiteContent } from "../content/SiteContentProvider";
 
 interface NavItem {
   label: string;
   href: string;
   n: string;
 }
-
-const navItems: NavItem[] = [...PAGE_COPY.navigation.items];
 
 /**
  * Navigation: the studio masthead.
@@ -22,6 +20,8 @@ const navItems: NavItem[] = [...PAGE_COPY.navigation.items];
  * Index toggle on small screens.
  */
 export default function Navigation() {
+  const { PAGE_COPY } = useSiteContent();
+  const navItems: NavItem[] = [...PAGE_COPY.navigation.items];
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);

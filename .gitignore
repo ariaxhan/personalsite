@@ -57,3 +57,6 @@ _meta/agentdb/*.db-journal
 
 # agent worktrees are never content
 .claude/worktrees/
+.open-next/
+.dev.vars
+.wrangler/

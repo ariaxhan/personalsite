@@ -1,7 +1,6 @@
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
-import { moments, timelineTerminus } from "../utils/studioData";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
 const typeColor: Record<string, string> = {
   company: "#b56a4f",
@@ -16,7 +15,8 @@ const typeColor: Record<string, string> = {
  * A corridor on large screens, a vertical field note stack on mobile. Each
  * year gets a marker, then the room it opened.
  */
-export default function Timeline() {
+export default async function Timeline() {
+  const { content: { moments, timelineTerminus, PAGE_COPY } } = await getSiteContent();
   return (
     <section
       className="py-24 lg:py-28"

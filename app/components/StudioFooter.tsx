@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Reveal from "./studio/Reveal";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
 interface FootLink {
   label: string;
@@ -8,13 +8,13 @@ interface FootLink {
   external?: boolean;
 }
 
-const links: FootLink[] = [...PAGE_COPY.footer.links];
-
 /**
  * StudioFooter: the colophon. A single conviction set large, a row of doors out,
  * and the studio's address. Repeated at the foot of every room.
  */
-export default function StudioFooter() {
+export default async function StudioFooter() {
+  const { content: { PAGE_COPY } } = await getSiteContent();
+  const links: FootLink[] = [...PAGE_COPY.footer.links];
   return (
     <footer className="mx-auto max-w-[1280px] px-5 pb-16 pt-28 sm:px-8 lg:px-14">
       <Reveal className="border-t border-[rgba(44,40,35,0.2)] pt-12 lg:pt-16">

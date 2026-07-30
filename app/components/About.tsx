@@ -1,5 +1,5 @@
 import Reveal from "./studio/Reveal";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
 /**
  * About: Background. The first-person account, set as editorial body text in a
@@ -7,7 +7,8 @@ import { PAGE_COPY } from "../utils/siteCopy";
  * focus. The two short lines about language are pulled out large,
  * the way a magazine lifts a sentence off the page.
  */
-export default function About() {
+export default async function About() {
+  const { content: { PAGE_COPY } } = await getSiteContent();
   const copy = PAGE_COPY.about;
 
   return (

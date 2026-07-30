@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
 import Modal from "./studio/Modal";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { useSiteContent } from "../content/SiteContentProvider";
 
 export interface WallLink {
   label: string;
@@ -75,6 +75,7 @@ export default function WorkshopWall({
   note: string;
   items: WallItem[];
 }) {
+  const { PAGE_COPY } = useSiteContent();
   const [open, setOpen] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const active = open != null ? items[open] : null;

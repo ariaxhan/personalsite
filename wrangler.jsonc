@@ -1,0 +1,81 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "personalsite-cms-preview",
+  "main": "worker.ts",
+  "compatibility_date": "2026-07-29",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "workers_dev": true,
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "personalsite-cms-preview"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "personalsite-cms-cache-preview"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "personalsite-cms-review-preview",
+      "database_id": "ffbd1e69-140f-4502-9e45-ae3e9787db3c",
+      "migrations_dir": "migrations"
+    },
+    {
+      "binding": "CONTENT_DB",
+      "database_name": "personalsite-cms-content-preview",
+      "database_id": "7ca5ae45-89f2-459c-93c3-dac6dd59d598",
+      "migrations_dir": "migrations-content"
+    },
+    {
+      "binding": "NEXT_TAG_CACHE_D1",
+      "database_name": "personalsite-cms-tags-preview",
+      "database_id": "24fd462b-90d5-4c8a-b0b6-742a8c3e2c73"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "destination_address": "ariaxhan@gmail.com",
+      "allowed_sender_addresses": [
+        "reviews@ariaxhan.com"
+      ]
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "class_name": "DOQueueHandler"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "DOQueueHandler"
+      ]
+    }
+  ],
+  "vars": {
+    "NEXTJS_ENV": "production",
+    "CMS_EDITOR_EMAIL": "tiredlillies@gmail.com",
+    "CMS_PREVIEW_DEV_AUTH": "enabled",
+    "PROJECT_REVIEW_TO_EMAIL": "ariaxhan@gmail.com",
+    "PROJECT_REVIEW_FROM_EMAIL": "reviews@ariaxhan.com"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

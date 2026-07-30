@@ -3,14 +3,15 @@
 import { useState } from "react";
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
-import { books, type Book } from "../utils/studioData";
-import { PAGE_COPY } from "../utils/siteCopy";
+import type { Book } from "../utils/studioData";
+import { useSiteContent } from "../content/SiteContentProvider";
 
 function compactTitle(title: string): string {
   return title.replace(", or the Necessity of Violence", "").replace("This Is How You Lose the Time War", "Time War");
 }
 
 export default function Bookshelf() {
+  const { PAGE_COPY, books } = useSiteContent();
   const copy = PAGE_COPY.sections.bookshelf;
   const [active, setActive] = useState(0);
   const selected = books[active] ?? books[0];

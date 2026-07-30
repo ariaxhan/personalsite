@@ -6,7 +6,8 @@
 // ============================================================================
 
 import type { WallItem } from "../components/WorkshopWall";
-import { projectBySlug, THEME_LABELS, type Project } from "./projectsData";
+import type { Project } from "./projectsData";
+import type { DerivedSiteContent } from "../content/defaultContent";
 
 const kindTag: Record<Project["kind"], string> = {
   product: "Product",
@@ -16,7 +17,7 @@ const kindTag: Record<Project["kind"], string> = {
 };
 
 
-export function projectToWallItem(p: Project): WallItem {
+export function projectToWallItem(p: Project, content: DerivedSiteContent): WallItem {
   return {
     slug: p.slug,
     title: p.name,
@@ -38,15 +39,15 @@ export function projectToWallItem(p: Project): WallItem {
     learned: p.learned,
     proves: p.proves,
     stackLine: p.stack,
-    themes: p.themes.map((t) => THEME_LABELS[t]),
+    themes: p.themes.map((t) => content.THEME_LABELS[t]),
     connections: p.connections
-      .map((slug) => projectBySlug(slug))
+      .map((slug) => content.projectBySlug(slug))
       .filter((c): c is Project => Boolean(c))
       .map((c) => ({ label: c.name, href: `/projects/${c.slug}/` })),
     closing: p.closing,
   };
 }
 
-export function projectsToWallItems(list: Project[]): WallItem[] {
-  return list.map(projectToWallItem);
+export function projectsToWallItems(list: Project[], content: DerivedSiteContent): WallItem[] {
+  return list.map((project) => projectToWallItem(project, content));
 }

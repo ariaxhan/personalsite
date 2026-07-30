@@ -2,11 +2,9 @@ import Link from "next/link";
 import SectionHeader from "../studio/SectionHeader";
 import Reveal from "../studio/Reveal";
 import {
-  articlesByTheme,
-  WRITING_THEMES,
   type WritingTheme,
 } from "../../utils/writingData";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import { getSiteContent } from "../../content/repository";
 
 // WritingHighlights: one strongest essay per working theme, sent to Medium. The
 // full archive lives on the writing page. Sourced from writingData, so the four
@@ -18,10 +16,12 @@ const PICKS: WritingTheme[] = [
   "ai-coding-workflows",
 ];
 
-const themeLabel = (key: WritingTheme) =>
-  WRITING_THEMES.find((t) => t.key === key)?.label ?? key;
-
-export default function WritingHighlights() {
+export default async function WritingHighlights() {
+  const {
+    content: { articlesByTheme, WRITING_THEMES, PAGE_COPY },
+  } = await getSiteContent();
+  const themeLabel = (key: WritingTheme) =>
+    WRITING_THEMES.find((theme) => theme.key === key)?.label ?? key;
   const featured = PICKS.map((theme) => ({
     theme,
     article: articlesByTheme(theme)[0],

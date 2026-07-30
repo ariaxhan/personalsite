@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import SectionHeader from "./studio/SectionHeader";
-import { obsessions } from "../utils/studioData";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { useSiteContent } from "../content/SiteContentProvider";
 
 /**
  * Obsessions: Fig. 07, lately on my mind.
@@ -13,6 +12,7 @@ import { PAGE_COPY } from "../utils/siteCopy";
  * just breathes so the section feels alive rather than fixed.
  */
 export default function Obsessions() {
+  const { PAGE_COPY, obsessions } = useSiteContent();
   const [tick, setTick] = useState(0);
 
   useEffect(() => {

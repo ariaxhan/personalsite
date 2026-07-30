@@ -1,4 +1,4 @@
-import { PAGE_COPY } from "../../utils/siteCopy";
+import { getSiteContent } from "../../content/repository";
 
 // SystemDiagram: a blueprint of the work, left to right. A messy workflow on the
 // left (drawn as a terracotta scribble), flowing through four labeled chambers
@@ -7,18 +7,18 @@ import { PAGE_COPY } from "../../utils/siteCopy";
 // .sd-draw rule in globals.css) and collapses to a static drawing under
 // prefers-reduced-motion. Every label is real DOM text inside the SVG.
 
-const CHAMBERS = [
-  { label: PAGE_COPY.systemDiagram.chambers[0], cx: 205, rot: -1.1 },
-  { label: PAGE_COPY.systemDiagram.chambers[1], cx: 300, rot: 1.2 },
-  { label: PAGE_COPY.systemDiagram.chambers[2], cx: 395, rot: -0.9 },
-  { label: PAGE_COPY.systemDiagram.chambers[3], cx: 490, rot: 1.4 },
-];
-
 const CH_W = 78;
 const CH_H = 56;
 const MID_Y = 120;
 
-export default function SystemDiagram() {
+export default async function SystemDiagram() {
+  const { content: { PAGE_COPY } } = await getSiteContent();
+  const CHAMBERS = [
+    { label: PAGE_COPY.systemDiagram.chambers[0], cx: 205, rot: -1.1 },
+    { label: PAGE_COPY.systemDiagram.chambers[1], cx: 300, rot: 1.2 },
+    { label: PAGE_COPY.systemDiagram.chambers[2], cx: 395, rot: -0.9 },
+    { label: PAGE_COPY.systemDiagram.chambers[3], cx: 490, rot: 1.4 },
+  ];
   return (
     <figure className="m-0">
       <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-mute">

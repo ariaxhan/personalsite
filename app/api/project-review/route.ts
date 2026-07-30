@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { getSiteContent } from "../../content/repository";
 
 const MAX_FIELD_LENGTH = 4000;
 const MAX_BODY_LENGTH = 24000;
@@ -25,6 +26,7 @@ export async function OPTIONS() {
 }
 
 export async function POST(request: NextRequest) {
+  const { content: { PAGE_COPY } } = await getSiteContent();
   const contentType = request.headers.get("content-type") || "";
   if (!contentType.includes("application/json")) {
     return NextResponse.json({ error: PAGE_COPY.projectReviewApi.errors.jsonOnly }, { status: 415 });
@@ -50,15 +52,82 @@ export async function POST(request: NextRequest) {
   }
 
   const submission = normalizeSubmission(body);
-  const errors = validateSubmission(submission);
+  const errors = validateSubmission(submission, PAGE_COPY.projectReviewApi.errors);
   if (errors.length > 0) {
     return NextResponse.json({ error: errors.join(" ") }, { status: 400 });
   }
 
-  return NextResponse.json(
-    { error: PAGE_COPY.projectReviewApi.errors.localEmail },
-    { status: 503 },
-  );
+  let env: CloudflareEnv;
+  try {
+    ({ env } = await getCloudflareContext({ async: true }));
+  } catch {
+    return NextResponse.json(
+      { error: PAGE_COPY.projectReviewApi.errors.localEmail },
+      { status: 503 },
+    );
+  }
+
+  let submissionId: number | null = null;
+  try {
+    const result = await env.DB.prepare(
+      `INSERT INTO project_review_submissions (
+        name, email, project_name, project_stage, project_types_json,
+        origin, unique_contribution, artifact_intent, architecture,
+        links, question, timeline, payload_json
+      ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13)`,
+    )
+      .bind(
+        submission.name,
+        submission.email,
+        submission.projectName || null,
+        submission.projectStage,
+        JSON.stringify(submission.projectTypes),
+        submission.origin,
+        submission.uniqueContribution,
+        submission.artifactIntent,
+        submission.architecture || null,
+        submission.links || null,
+        submission.question,
+        submission.timeline || null,
+        JSON.stringify(submission),
+      )
+      .run();
+    submissionId = result.meta.last_row_id ?? null;
+  } catch (error) {
+    console.error("Project review database write failed", safeError(error));
+    return NextResponse.json(
+      { error: PAGE_COPY.projectReviewApi.errors.localEmail },
+      { status: 503 },
+    );
+  }
+
+  if (!env.EMAIL) {
+    await updateEmailStatus(env.DB, submissionId, "not_configured", null, null);
+    return NextResponse.json({ ok: true, submissionId, emailSent: false });
+  }
+
+  try {
+    const result = await env.EMAIL.send({
+      to: env.PROJECT_REVIEW_TO_EMAIL,
+      from: { email: env.PROJECT_REVIEW_FROM_EMAIL, name: "Aria Han" },
+      replyTo: submission.email,
+      subject: `Project review: ${submission.projectName || submission.name}`,
+      text: buildTextEmail(submission),
+      html: buildHtmlEmail(submission),
+    });
+    await updateEmailStatus(env.DB, submissionId, "sent", result.messageId ?? null, null);
+    return NextResponse.json({
+      ok: true,
+      submissionId,
+      emailSent: true,
+      messageId: result.messageId ?? null,
+    });
+  } catch (error) {
+    const message = safeError(error);
+    console.error("Project review email failed", message);
+    await updateEmailStatus(env.DB, submissionId, "failed", null, message);
+    return NextResponse.json({ ok: true, submissionId, emailSent: false });
+  }
 }
 
 function normalizeSubmission(body: ProjectReviewSubmission) {
@@ -80,16 +149,27 @@ function normalizeSubmission(body: ProjectReviewSubmission) {
   };
 }
 
-function validateSubmission(submission: ReturnType<typeof normalizeSubmission>): string[] {
+function validateSubmission(
+  submission: ReturnType<typeof normalizeSubmission>,
+  copy: {
+    missingName: string;
+    invalidEmail: string;
+    missingStage: string;
+    missingOrigin: string;
+    missingUniqueContribution: string;
+    missingArtifactIntent: string;
+    missingQuestion: string;
+  },
+): string[] {
   const errors: string[] = [];
 
-  if (!submission.name) errors.push(PAGE_COPY.projectReviewApi.errors.missingName);
-  if (!isEmail(submission.email)) errors.push(PAGE_COPY.projectReviewApi.errors.invalidEmail);
-  if (!submission.projectStage) errors.push(PAGE_COPY.projectReviewApi.errors.missingStage);
-  if (!submission.origin) errors.push(PAGE_COPY.projectReviewApi.errors.missingOrigin);
-  if (!submission.uniqueContribution) errors.push(PAGE_COPY.projectReviewApi.errors.missingUniqueContribution);
-  if (!submission.artifactIntent) errors.push(PAGE_COPY.projectReviewApi.errors.missingArtifactIntent);
-  if (!submission.question) errors.push(PAGE_COPY.projectReviewApi.errors.missingQuestion);
+  if (!submission.name) errors.push(copy.missingName);
+  if (!isEmail(submission.email)) errors.push(copy.invalidEmail);
+  if (!submission.projectStage) errors.push(copy.missingStage);
+  if (!submission.origin) errors.push(copy.missingOrigin);
+  if (!submission.uniqueContribution) errors.push(copy.missingUniqueContribution);
+  if (!submission.artifactIntent) errors.push(copy.missingArtifactIntent);
+  if (!submission.question) errors.push(copy.missingQuestion);
 
   return errors;
 }
@@ -105,4 +185,95 @@ function stringValue(value: unknown): string {
 
 function isEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+async function updateEmailStatus(
+  db: D1Database,
+  submissionId: number | null,
+  status: string,
+  messageId: string | null,
+  error: string | null,
+) {
+  if (submissionId === null) return;
+  try {
+    await db
+      .prepare(
+        `UPDATE project_review_submissions
+         SET email_status = ?2, email_message_id = ?3, email_error = ?4
+         WHERE id = ?1`,
+      )
+      .bind(submissionId, status, messageId, error)
+      .run();
+  } catch (updateError) {
+    console.error("Project review email status update failed", safeError(updateError));
+  }
+}
+
+function safeError(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function buildTextEmail(submission: ReturnType<typeof normalizeSubmission>): string {
+  return [
+    "New project review submission",
+    "",
+    `Name: ${submission.name}`,
+    `Email: ${submission.email}`,
+    `Project: ${submission.projectName || "Not provided"}`,
+    `Stage: ${submission.projectStage}`,
+    `Review focus: ${submission.projectTypes.join(", ") || "Not selected"}`,
+    `Timeline: ${submission.timeline || "Not provided"}`,
+    "",
+    "What inspired this:",
+    submission.origin,
+    "",
+    "What makes it theirs:",
+    submission.uniqueContribution,
+    "",
+    "What it is meant to be:",
+    submission.artifactIntent,
+    "",
+    "Architecture / tools:",
+    submission.architecture || "Not provided",
+    "",
+    "Links / docs:",
+    submission.links || "Not provided",
+    "",
+    "What they want help deciding:",
+    submission.question,
+  ].join("\n");
+}
+
+function buildHtmlEmail(submission: ReturnType<typeof normalizeSubmission>): string {
+  const rows: Array<[string, string]> = [
+    ["Name", submission.name],
+    ["Email", submission.email],
+    ["Project", submission.projectName || "Not provided"],
+    ["Stage", submission.projectStage],
+    ["Review focus", submission.projectTypes.join(", ") || "Not selected"],
+    ["Timeline", submission.timeline || "Not provided"],
+    ["What inspired this", submission.origin],
+    ["What makes it theirs", submission.uniqueContribution],
+    ["What it is meant to be", submission.artifactIntent],
+    ["Architecture / tools", submission.architecture || "Not provided"],
+    ["Links / docs", submission.links || "Not provided"],
+    ["What they want help deciding", submission.question],
+  ];
+
+  return `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#2c2823">
+    <h1 style="font-size:20px">New project review submission</h1>
+    ${rows
+      .map(
+        ([label, value]) =>
+          `<p><strong>${escapeHtml(label)}</strong><br>${escapeHtml(value).replace(/\n/g, "<br>")}</p>`,
+      )
+      .join("")}
+  </body></html>`;
+}
+
+function escapeHtml(value: string): string {
+  return value.replace(
+    /[&<>"']/g,
+    (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]!,
+  );
 }
