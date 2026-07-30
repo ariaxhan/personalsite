@@ -141,10 +141,15 @@ function validate(
   if (JSON.stringify(sitemapUrls.sort()) !== JSON.stringify([...expectedSitemap].sort())) {
     errors.push("sitemap membership differs from the fixed public route catalog");
   }
-  const lastModified = new Set(
-    [...sitemap.body.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((match) => match[1]),
-  );
-  if (lastModified.size < 2) errors.push("sitemap lastModified has no route-level diversity");
+  const lastModified = [
+    ...sitemap.body.matchAll(/<lastmod>([^<]+)<\/lastmod>/g),
+  ].map((match) => match[1]);
+  if (
+    lastModified.length !== sitemapUrls.length ||
+    lastModified.some((value) => Number.isNaN(Date.parse(value)))
+  ) {
+    errors.push("sitemap lastModified values are missing or invalid");
+  }
 
   if (
     markdownNegotiation.status !== 200 ||
@@ -216,9 +221,9 @@ const mcp = await observe("/mcp/", {
   body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/list", params: {} }),
 });
 const privateRoutes = await Promise.all([
-  observe("/edit/"),
+  observe("/edit/", { redirect: "manual" }),
   observe("/edit/login/"),
-  observe("/api/cms/state"),
+  observe("/api/cms/state", { redirect: "manual" }),
 ]);
 
 const errors = validate(
@@ -259,6 +264,11 @@ if (selfTest) {
     delete seededHuman[0].headers["x-robots-tag"];
   }
   const seededMachine = structuredClone(machine);
+  const seededSitemap = structuredClone(sitemap);
+  seededSitemap.body = seededSitemap.body.replace(
+    /<lastmod>[^<]+<\/lastmod>/,
+    "",
+  );
   const seededCatalog = seededMachine.find(
     (item) => item.path === "/.well-known/api-catalog",
   );
@@ -268,7 +278,7 @@ if (selfTest) {
   const seededErrors = validate(
     seededHuman,
     seededMachine,
-    sitemap,
+    seededSitemap,
     markdownNegotiation,
     mcp,
     privateRoutes,
@@ -286,6 +296,9 @@ if (selfTest) {
     !seededErrors.some((error) =>
       error.includes("public output resolved"),
     ) ||
+    !seededErrors.some((error) =>
+      error.includes("lastModified values are missing or invalid"),
+    ) ||
     (isPreviewHost(baseUrl.hostname) &&
       !seededErrors.some((error) => error.includes("preview is indexable")))
   ) {
@@ -295,7 +308,7 @@ if (selfTest) {
     process.exitCode = 1;
   } else {
     process.stdout.write(
-      "selftest passed: seeded heading, canonical, JSON-LD, media type, preview indexing, and snapshot defects were detected\n",
+      "selftest passed: seeded heading, canonical, JSON-LD, sitemap, media type, preview indexing, and snapshot defects were detected\n",
     );
   }
 }
