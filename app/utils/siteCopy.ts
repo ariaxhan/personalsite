@@ -45,11 +45,11 @@ export const SITE = {
 
   /** First hero sentence. Maximally concrete. */
   oneLiner:
-    "I build and repair AI.",
+    "AI for work, AI for humans.",
 
   /** Second hero sentence. The philosophy, no quotes. */
   strangeLine:
-    "I also teach practical AI workflows and review AI-assisted products that have become hard to debug, extend, or trust.",
+    "Workflows, systems, and everything else to go from “we need AI” to “we have AI.”",
 
   /** The concrete what-I-do line, rendered under the hero pair. */
   whatIDo:
