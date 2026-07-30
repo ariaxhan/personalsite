@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { authorizeCms, cmsErrorResponse } from "@/app/content/auth";
+import {
+  authorizeCms,
+  CMS_ACCESS_COOKIE_OPTIONS,
+  cmsErrorResponse,
+} from "@/app/content/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -18,13 +22,11 @@ export async function GET(request: Request) {
     const assertion = request.headers.get("cf-access-jwt-assertion");
     const response = NextResponse.redirect(new URL(safeReturnPath(request), request.url), 303);
     if (assertion) {
-      response.cookies.set("cms-access-assertion", assertion, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "strict",
-        path: "/",
-        maxAge: 60 * 60,
-      });
+      response.cookies.set(
+        "cms-access-assertion",
+        assertion,
+        CMS_ACCESS_COOKIE_OPTIONS,
+      );
     }
     response.headers.set("cache-control", "private, no-store");
     response.headers.set("x-robots-tag", "noindex, nofollow, noarchive");

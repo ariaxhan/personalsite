@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+  allowedEditorEmails,
+  CMS_ACCESS_COOKIE_OPTIONS,
   CmsAuthError,
   isCmsEditorEnabled,
   requireJsonRequest,
@@ -52,5 +54,26 @@ describe("CMS mutation request guards", () => {
     expect(isCmsEditorEnabled("false")).toBe(false);
     expect(isCmsEditorEnabled("enabled")).toBe(false);
     expect(isCmsEditorEnabled(undefined)).toBe(false);
+  });
+
+  it("normalizes an explicit editor email allowlist", () => {
+    expect(
+      allowedEditorEmails(
+        " tiredlillies@gmail.com, ARIAXHAN@gmail.com, tiredlillies@gmail.com ",
+        "legacy@example.com",
+      ),
+    ).toEqual(["tiredlillies@gmail.com", "ariaxhan@gmail.com"]);
+    expect(allowedEditorEmails(undefined, "LEGACY@example.com")).toEqual([
+      "legacy@example.com",
+    ]);
+  });
+
+  it("uses a cross-site-login-safe assertion cookie", () => {
+    expect(CMS_ACCESS_COOKIE_OPTIONS).toMatchObject({
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax",
+      path: "/",
+    });
   });
 });

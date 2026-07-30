@@ -41,6 +41,7 @@ async function cmsEnv() {
     CMS_ACCESS_TEAM?: string;
     CMS_ACCESS_AUD?: string;
     CMS_EDITOR_EMAIL?: string;
+    CMS_EDITOR_EMAILS?: string;
     CMS_EDITOR_ENABLED?: string;
     CMS_DEV_TOKEN?: string;
     CMS_LOCAL_DEV_AUTH?: string;
@@ -50,6 +51,29 @@ async function cmsEnv() {
 
 export function isCmsEditorEnabled(value: string | undefined): boolean {
   return value === "true";
+}
+
+export const CMS_ACCESS_COOKIE_OPTIONS = {
+  httpOnly: true,
+  secure: true,
+  sameSite: "lax" as const,
+  path: "/",
+  maxAge: 60 * 60,
+};
+
+export function allowedEditorEmails(
+  configured: string | undefined,
+  legacy: string | undefined,
+): string[] {
+  const source = configured ?? legacy ?? "";
+  return [
+    ...new Set(
+      source
+        .split(",")
+        .map((email) => email.trim().toLowerCase())
+        .filter(Boolean),
+    ),
+  ];
 }
 
 function decodeCookieValue(value: string): string {
@@ -66,6 +90,10 @@ export async function authorizeCms(request: Request): Promise<CmsIdentity> {
     throw new CmsAuthError("Not found", 404);
   }
   const url = new URL(request.url);
+  const allowedEmails = allowedEditorEmails(
+    env.CMS_EDITOR_EMAILS,
+    env.CMS_EDITOR_EMAIL,
+  );
   const cookies = new Map(
     (request.headers.get("cookie") ?? "")
       .split(";")
@@ -97,13 +125,15 @@ export async function authorizeCms(request: Request): Promise<CmsIdentity> {
       )
     )
   ) {
-    return { email: env.CMS_EDITOR_EMAIL ?? "local", subject: "local-development" };
+    return {
+      email: allowedEmails[0] ?? "local",
+      subject: "local-development",
+    };
   }
 
   const team = env.CMS_ACCESS_TEAM;
   const audience = env.CMS_ACCESS_AUD;
-  const allowedEmail = env.CMS_EDITOR_EMAIL;
-  if (!team || !audience || !allowedEmail) {
+  if (!team || !audience || allowedEmails.length === 0) {
     throw new CmsAuthError("editor authentication is not configured", 503);
   }
 
@@ -124,7 +154,7 @@ export async function authorizeCms(request: Request): Promise<CmsIdentity> {
   }
 
   const email = typeof payload.email === "string" ? payload.email.toLowerCase() : "";
-  if (email !== allowedEmail.toLowerCase()) {
+  if (!allowedEmails.includes(email)) {
     throw new CmsAuthError("editor identity is not allowed", 403);
   }
 
