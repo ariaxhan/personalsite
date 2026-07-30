@@ -16,8 +16,13 @@ export const metadata: Metadata = {
 export default async function EditorPage() {
   const incoming = await headers();
   const host = incoming.get("host") ?? "localhost";
+  const protocol = incoming.has("cf-ray")
+    ? incoming.get("x-forwarded-proto") ?? "https"
+    : "http";
   try {
-    await authorizeCms(new Request(`https://${host}/edit/`, { headers: incoming }));
+    await authorizeCms(
+      new Request(`${protocol}://${host}/edit/`, { headers: incoming }),
+    );
   } catch {
     notFound();
   }
@@ -32,6 +37,7 @@ export default async function EditorPage() {
     <ContentEditor
       initialContent={state.publishedContent ?? DEFAULT_SITE_CONTENT}
       publishedRevisionId={state.publishedRevisionId}
+      publishedOperationId={state.publishedOperationId}
       revisions={state.revisions}
       initialPendingOperation={
         pendingOperation

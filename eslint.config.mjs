@@ -14,6 +14,7 @@ const eslintConfig = [
     ignores: [
       ".open-next/**",
       ".next/**",
+      ".wrangler/**",
       "_meta/**",
       "cloudflare-env.d.ts",
       "next-env.d.ts",

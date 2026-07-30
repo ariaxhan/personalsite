@@ -18,17 +18,22 @@ type RevisionRow = {
   base_published_revision_id: string | null;
   content_json: string;
   content_sha256: string;
+  save_idempotency_key: string | null;
   created_at: string;
   author_id: string;
 };
 
-export type RevisionSummary = Omit<RevisionRow, "content_json">;
+export type RevisionSummary = Omit<
+  RevisionRow,
+  "content_json" | "save_idempotency_key"
+>;
 
 type OperationRow = {
   id: string;
   page_key: string;
   target_revision_id: string;
   expected_revision_id: string | null;
+  expected_publish_operation_id: string | null;
   previous_revision_id: string | null;
   idempotency_key: string;
   request_fingerprint: string;
@@ -80,46 +85,125 @@ export async function createRevision(input: {
   authorId: string;
   basePublishedRevisionId: string | null;
   parentRevisionId?: string | null;
+  idempotencyKey: string;
 }): Promise<RevisionRow> {
   const db = await getContentDb();
   const canonical = canonicalizeContent(input.content);
+  const parentRevisionId = input.parentRevisionId ?? null;
+  const replay = await revisionBySaveKey(db, input.idempotencyKey);
+  if (replay) {
+    assertRevisionReplay(replay, {
+      contentSha256: canonical.sha256,
+      authorId: input.authorId,
+      basePublishedRevisionId: input.basePublishedRevisionId,
+      parentRevisionId,
+    });
+    return replay;
+  }
   const id = `rev_${randomUUID()}`;
   const createdAt = new Date().toISOString();
-  await db
-    .prepare(
-      `INSERT INTO content_revisions (
-        id, page_key, parent_revision_id, base_published_revision_id,
-        content_json, content_schema_version, content_sha256, created_at, author_id
-      ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)`,
-    )
-    .bind(
-      id,
-      CONTENT_PAGE_KEY,
-      input.parentRevisionId ?? null,
-      input.basePublishedRevisionId,
-      canonical.json,
-      CONTENT_SCHEMA_VERSION,
-      canonical.sha256,
-      createdAt,
-      input.authorId,
-    )
-    .run();
+  try {
+    await db
+      .prepare(
+        `INSERT INTO content_revisions (
+          id, page_key, parent_revision_id, base_published_revision_id,
+          content_json, content_schema_version, content_sha256,
+          save_idempotency_key, created_at, author_id
+        ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)`,
+      )
+      .bind(
+        id,
+        CONTENT_PAGE_KEY,
+        parentRevisionId,
+        input.basePublishedRevisionId,
+        canonical.json,
+        CONTENT_SCHEMA_VERSION,
+        canonical.sha256,
+        input.idempotencyKey,
+        createdAt,
+        input.authorId,
+      )
+      .run();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (
+      message.includes(
+        "UNIQUE constraint failed: content_revisions.save_idempotency_key",
+      )
+    ) {
+      const concurrentReplay = await revisionBySaveKey(
+        db,
+        input.idempotencyKey,
+      );
+      if (concurrentReplay) {
+        assertRevisionReplay(concurrentReplay, {
+          contentSha256: canonical.sha256,
+          authorId: input.authorId,
+          basePublishedRevisionId: input.basePublishedRevisionId,
+          parentRevisionId,
+        });
+        return concurrentReplay;
+      }
+    }
+    throw error;
+  }
 
   return {
     id,
     page_key: CONTENT_PAGE_KEY,
-    parent_revision_id: input.parentRevisionId ?? null,
+    parent_revision_id: parentRevisionId,
     base_published_revision_id: input.basePublishedRevisionId,
     content_json: canonical.json,
     content_sha256: canonical.sha256,
+    save_idempotency_key: input.idempotencyKey,
     created_at: createdAt,
     author_id: input.authorId,
   };
 }
 
+async function revisionBySaveKey(
+  db: D1Database,
+  idempotencyKey: string,
+): Promise<RevisionRow | null> {
+  return db
+    .prepare(
+      `SELECT id, page_key, parent_revision_id, base_published_revision_id,
+              content_json, content_sha256, save_idempotency_key,
+              created_at, author_id
+       FROM content_revisions
+       WHERE save_idempotency_key = ?1`,
+    )
+    .bind(idempotencyKey)
+    .first<RevisionRow>();
+}
+
+function assertRevisionReplay(
+  revision: RevisionRow,
+  request: {
+    contentSha256: string;
+    authorId: string;
+    basePublishedRevisionId: string | null;
+    parentRevisionId: string | null;
+  },
+): void {
+  if (
+    revision.page_key !== CONTENT_PAGE_KEY ||
+    revision.content_sha256 !== request.contentSha256 ||
+    revision.author_id !== request.authorId ||
+    revision.base_published_revision_id !==
+      request.basePublishedRevisionId ||
+    revision.parent_revision_id !== request.parentRevisionId
+  ) {
+    throw new PublicationConflictError(
+      "draft idempotency key was already used for another request",
+    );
+  }
+}
+
 export async function publishRevision(input: {
   targetRevisionId: string;
   expectedRevisionId: string | null;
+  expectedPublicationId: string | null;
   idempotencyKey: string;
   forceInvalidationFailure?: boolean;
 }): Promise<OperationRow> {
@@ -130,6 +214,7 @@ export async function publishRevision(input: {
       pageKey: CONTENT_PAGE_KEY,
       targetRevisionId: input.targetRevisionId,
       expectedRevisionId: input.expectedRevisionId,
+      expectedPublicationId: input.expectedPublicationId,
       dependencies: PUBLIC_DEPENDENCIES,
     }),
   );
@@ -152,15 +237,17 @@ export async function publishRevision(input: {
       .prepare(
         `INSERT INTO publish_operations (
           id, page_key, target_revision_id, expected_revision_id,
-          previous_revision_id, idempotency_key, request_fingerprint,
+          expected_publish_operation_id, previous_revision_id,
+          idempotency_key, request_fingerprint,
           dependency_set_json, dependency_set_sha256, state, created_at
-        ) VALUES (?1, ?2, ?3, ?4, ?4, ?5, ?6, ?7, ?8, 'pointer_moved', ?9)`,
+        ) VALUES (?1, ?2, ?3, ?4, ?5, ?4, ?6, ?7, ?8, ?9, 'pointer_moved', ?10)`,
       )
       .bind(
         id,
         CONTENT_PAGE_KEY,
         input.targetRevisionId,
         input.expectedRevisionId,
+        input.expectedPublicationId,
         input.idempotencyKey,
         fingerprint,
         dependencies,
@@ -182,6 +269,7 @@ export async function publishRevision(input: {
     }
     if (
       message.includes("stale_published_pointer") ||
+      message.includes("stale_published_operation") ||
       message.includes("target_revision_page_mismatch") ||
       message.includes("UNIQUE")
     ) {
@@ -301,7 +389,8 @@ export async function getRevision(revisionId: string): Promise<{
   const row = await db
     .prepare(
       `SELECT id, page_key, parent_revision_id, base_published_revision_id,
-              content_json, content_sha256, created_at, author_id
+              content_json, content_sha256, save_idempotency_key,
+              created_at, author_id
        FROM content_revisions
        WHERE id = ?1 AND page_key = ?2`,
     )

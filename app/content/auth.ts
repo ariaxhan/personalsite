@@ -43,6 +43,7 @@ async function cmsEnv() {
     CMS_EDITOR_EMAIL?: string;
     CMS_EDITOR_ENABLED?: string;
     CMS_DEV_TOKEN?: string;
+    CMS_LOCAL_DEV_AUTH?: string;
     CMS_PREVIEW_DEV_AUTH?: string;
   };
 }
@@ -64,10 +65,15 @@ export async function authorizeCms(request: Request): Promise<CmsIdentity> {
     .find((part) => part.startsWith("cms-preview-session="))
     ?.slice("cms-preview-session=".length);
   const devToken = request.headers.get("x-cms-dev-token") ?? cookieToken;
+  const isExplicitLocalRuntime =
+    env.CMS_LOCAL_DEV_AUTH === "enabled" &&
+    url.protocol === "http:" &&
+    !request.headers.has("cf-ray");
   if (
     env.CMS_DEV_TOKEN &&
     devToken === env.CMS_DEV_TOKEN &&
     (
+      isExplicitLocalRuntime ||
       url.hostname === "localhost" ||
       url.hostname === "127.0.0.1" ||
       (

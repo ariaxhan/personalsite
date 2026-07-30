@@ -13,6 +13,13 @@ export { DOQueueHandler } from "./.open-next/worker.js";
 const worker = {
   async fetch(request: Request, env: CloudflareEnv, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+    if (isCmsPrivatePath(url.pathname) && env.CMS_EDITOR_ENABLED !== "true") {
+      return finalizeResponse(
+        url,
+        new Response("Not found", { status: 404 }),
+        env,
+      );
+    }
     const accept = request.headers.get("accept") ?? "";
     if (
       request.method === "GET" &&
@@ -31,11 +38,15 @@ const worker = {
         if (probe.ok && (await probe.clone().text()).length > 0) {
           const headers = new Headers(probe.headers);
           headers.set("x-served-as", "markdown");
-          return finalizeResponse(url, new Response(probe.body, {
-            status: probe.status,
-            statusText: probe.statusText,
-            headers,
-          }));
+          return finalizeResponse(
+            url,
+            new Response(probe.body, {
+              status: probe.status,
+              statusText: probe.statusText,
+              headers,
+            }),
+            env,
+          );
         }
       }
     }
@@ -43,7 +54,7 @@ const worker = {
     const response = await normalizeRecoveryResponse(
       await openNextWorker.fetch(request, env, ctx),
     );
-    return finalizeResponse(url, response);
+    return finalizeResponse(url, response, env);
   },
 };
 
@@ -53,9 +64,30 @@ function markdownCandidates(pathname: string): string[] {
   return [`${trimmed}/index.md`, `${trimmed}.md`];
 }
 
-function finalizeResponse(url: URL, response: Response): Response {
+function isCmsPrivatePath(pathname: string): boolean {
+  return (
+    pathname === "/edit" ||
+    pathname.startsWith("/edit/") ||
+    pathname === "/api/cms" ||
+    pathname.startsWith("/api/cms/")
+  );
+}
+
+function finalizeResponse(
+  url: URL,
+  response: Response,
+  env: CloudflareEnv,
+): Response {
   const headers = new Headers(response.headers);
-  if (url.hostname.endsWith(".workers.dev") || url.hostname.endsWith(".pages.dev")) {
+  if (isCmsPrivatePath(url.pathname)) {
+    headers.set("cache-control", "private, no-store");
+    headers.set("x-robots-tag", "noindex, nofollow");
+  }
+  if (
+    url.hostname.endsWith(".workers.dev") ||
+    url.hostname.endsWith(".pages.dev") ||
+    url.hostname === env.CMS_PREVIEW_HOSTNAME
+  ) {
     headers.set("x-robots-tag", "noindex, nofollow");
   }
   return new Response(response.body, {

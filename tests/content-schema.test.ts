@@ -10,7 +10,11 @@ const hardeningSchema = readFileSync(
   new URL("../migrations-content/0002_content_hardening.sql", import.meta.url),
   "utf8",
 );
-const schema = `${baseSchema}\n${hardeningSchema}`;
+const operationGuardSchema = readFileSync(
+  new URL("../migrations-content/0003_publish_operation_guard.sql", import.meta.url),
+  "utf8",
+);
+const schema = `${baseSchema}\n${hardeningSchema}\n${operationGuardSchema}`;
 
 function revision(db: DatabaseSync, id: string, pageKey = "site") {
   db.prepare(
@@ -27,22 +31,59 @@ function publish(
   target: string,
   expected: string | null,
   pageKey = "site",
+  expectedOperation?: string | null,
+) {
+  const expectedPublishOperation =
+    expectedOperation === undefined
+      ? (
+          db
+            .prepare(
+              "SELECT publish_operation_id FROM published_content WHERE page_key = ?",
+            )
+            .get(pageKey) as { publish_operation_id?: string } | undefined
+        )?.publish_operation_id ?? null
+      : expectedOperation;
+  db.prepare(
+    `INSERT INTO publish_operations (
+      id, page_key, target_revision_id, expected_revision_id,
+      expected_publish_operation_id, previous_revision_id,
+      idempotency_key, request_fingerprint,
+      dependency_set_json, dependency_set_sha256, state, created_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, '[]', ?, 'pointer_moved', ?)`,
+  ).run(
+    id,
+    pageKey,
+    target,
+    expected,
+    expectedPublishOperation,
+    expected,
+    `idem-${id}`,
+    "b".repeat(64),
+    "c".repeat(64),
+    new Date().toISOString(),
+  );
+}
+
+function legacyPublish(
+  db: DatabaseSync,
+  id: string,
+  target: string,
+  expected: string | null,
 ) {
   db.prepare(
     `INSERT INTO publish_operations (
       id, page_key, target_revision_id, expected_revision_id,
       previous_revision_id, idempotency_key, request_fingerprint,
       dependency_set_json, dependency_set_sha256, state, created_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, '[]', ?, 'pointer_moved', ?)`,
+    ) VALUES (?, 'site', ?, ?, ?, ?, ?, '[]', ?, 'pointer_moved', ?)`,
   ).run(
     id,
-    pageKey,
     target,
     expected,
     expected,
     `idem-${id}`,
     "b".repeat(64),
-    "c".repeat(64),
+    "a".repeat(64),
     new Date().toISOString(),
   );
 }
@@ -71,6 +112,74 @@ describe("D1 publication schema", () => {
     expect(
       db.prepare("SELECT revision_id FROM published_content WHERE page_key='site'").get(),
     ).toEqual({ revision_id: "rev-a" });
+  });
+
+  it("serializes same-revision cache rebuilds by publication operation", () => {
+    const db = new DatabaseSync(":memory:");
+    db.exec(schema);
+    revision(db, "rev-a");
+
+    publish(db, "pub-a", "rev-a", null);
+    publish(db, "pub-rebuild", "rev-a", "rev-a");
+    expect(() =>
+      publish(db, "pub-stale-rebuild", "rev-a", "rev-a", "site", "pub-a"),
+    ).toThrow("stale_published_operation");
+    expect(
+      db
+        .prepare(
+          "SELECT publish_operation_id FROM published_content WHERE page_key='site'",
+        )
+        .get(),
+    ).toEqual({ publish_operation_id: "pub-rebuild" });
+  });
+
+  it("keeps the compatibility migration usable by the previous Worker", () => {
+    const db = new DatabaseSync(":memory:");
+    db.exec(schema);
+    revision(db, "rev-a");
+
+    legacyPublish(db, "pub-a", "rev-a", null);
+    legacyPublish(db, "pub-old-worker-rollback", "rev-a", "rev-a");
+
+    expect(
+      db
+        .prepare(
+          "SELECT publish_operation_id FROM published_content WHERE page_key='site'",
+        )
+        .get(),
+    ).toEqual({ publish_operation_id: "pub-old-worker-rollback" });
+  });
+
+  it("deduplicates draft saves by idempotency key", () => {
+    const db = new DatabaseSync(":memory:");
+    db.exec(schema);
+    db.prepare(
+      `INSERT INTO content_revisions (
+        id, page_key, content_json, content_schema_version, content_sha256,
+        save_idempotency_key, created_at, author_id
+      ) VALUES (?, 'site', '{}', 1, ?, ?, ?, 'test')`,
+    ).run(
+      "rev-a",
+      "a".repeat(64),
+      "save-key",
+      new Date().toISOString(),
+    );
+
+    expect(() =>
+      db
+        .prepare(
+          `INSERT INTO content_revisions (
+            id, page_key, content_json, content_schema_version, content_sha256,
+            save_idempotency_key, created_at, author_id
+          ) VALUES (?, 'site', '{}', 1, ?, ?, ?, 'test')`,
+        )
+        .run(
+          "rev-b",
+          "b".repeat(64),
+          "save-key",
+          new Date().toISOString(),
+        ),
+    ).toThrow("content_revisions.save_idempotency_key");
   });
 
   it("rejects cross-page targets", () => {
@@ -105,7 +214,12 @@ describe("D1 publication schema", () => {
 
   it("fails against a seeded pointer-comparison defect", () => {
     const db = new DatabaseSync(":memory:");
-    db.exec(schema.replace("IS NOT NEW.expected_revision_id", "IS NEW.expected_revision_id"));
+    db.exec(
+      schema.replaceAll(
+        "IS NOT NEW.expected_revision_id",
+        "IS NEW.expected_revision_id",
+      ),
+    );
     revision(db, "rev-a");
     expect(() => publish(db, "pub-a", "rev-a", null)).toThrow(
       "stale_published_pointer",

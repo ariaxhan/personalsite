@@ -24,10 +24,18 @@ export async function POST(request: Request) {
     const env = cloudflareEnv as CloudflareEnv & {
       CMS_DEV_TOKEN?: string;
       CMS_EDITOR_ENABLED?: string;
+      CMS_LOCAL_DEV_AUTH?: string;
       CMS_PREVIEW_DEV_AUTH?: string;
     };
+    const isExplicitLocalRuntime =
+      env.CMS_LOCAL_DEV_AUTH === "enabled" &&
+      url.protocol === "http:" &&
+      !request.headers.has("cf-ray");
     if (
-      url.hostname !== "personalsite-cms-preview.ariaxhan.workers.dev" ||
+      (
+        url.hostname !== "personalsite-cms-preview.ariaxhan.workers.dev" &&
+        !isExplicitLocalRuntime
+      ) ||
       !isCmsEditorEnabled(env.CMS_EDITOR_ENABLED) ||
       env.CMS_PREVIEW_DEV_AUTH !== "enabled" ||
       !env.CMS_DEV_TOKEN
@@ -44,7 +52,7 @@ export async function POST(request: Request) {
     const response = NextResponse.redirect(new URL("/edit/", request.url), 303);
     response.cookies.set("cms-preview-session", token, {
       httpOnly: true,
-      secure: true,
+      secure: !isExplicitLocalRuntime,
       sameSite: "strict",
       path: "/",
       maxAge: 60 * 60,

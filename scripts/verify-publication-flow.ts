@@ -50,13 +50,18 @@ async function state() {
 async function createRevision(
   content: unknown,
   basePublishedRevisionId: string,
+  idempotencyKey = crypto.randomUUID(),
 ) {
   return (
     await api<{ revision: { id: string } }>(
       "/api/cms/revisions",
       {
         method: "POST",
-        body: JSON.stringify({ content, basePublishedRevisionId }),
+        body: JSON.stringify({
+          content,
+          basePublishedRevisionId,
+          idempotencyKey,
+        }),
       },
       [201],
     )
@@ -66,6 +71,7 @@ async function createRevision(
 async function publish(
   targetRevisionId: string,
   expectedRevisionId: string,
+  expectedPublicationId: string,
   idempotencyKey: string,
   forceFailure = false,
 ) {
@@ -84,6 +90,7 @@ async function publish(
       body: JSON.stringify({
         targetRevisionId,
         expectedRevisionId,
+        expectedPublicationId,
         idempotencyKey,
       }),
     },
@@ -175,7 +182,14 @@ async function main() {
     const markerA = ` cms-e2e-a-${runId}`;
     const contentA = structuredClone(originalContent) as MutableSiteContent;
     contentA.SITE.tldr += markerA;
-    const revisionA = await createRevision(contentA, originalRevisionId);
+    const draftSaveKey = crypto.randomUUID();
+    const [revisionA, revisionAReplay] = await Promise.all([
+      createRevision(contentA, originalRevisionId, draftSaveKey),
+      createRevision(contentA, originalRevisionId, draftSaveKey),
+    ]);
+    if (revisionA !== revisionAReplay) {
+      throw new Error("concurrent draft save created two revisions");
+    }
     const publicBeforePublish = await fetch(new URL("/", base)).then((response) =>
       response.text(),
     );
@@ -186,14 +200,15 @@ async function main() {
     const publishA = await publish(
       revisionA,
       originalRevisionId,
+      originalPublicationId,
       crypto.randomUUID(),
     );
     if (publishA.status !== 200 || !publishA.data.operation) {
       throw new Error(`publish A failed: ${JSON.stringify(publishA.data)}`);
     }
-    await converge(publishA.data.operation.id, revisionA);
     currentRevisionId = revisionA;
     currentPublicationId = publishA.data.operation.id;
+    await converge(currentPublicationId, currentRevisionId);
     await assertSnapshot(revisionA, currentPublicationId, markerA);
 
     const markerB = ` cms-e2e-b-${runId}`;
@@ -202,8 +217,8 @@ async function main() {
     const revisionB = await createRevision(contentB, revisionA);
     const idempotencyKey = crypto.randomUUID();
     const [firstB, replayB] = await Promise.all([
-      publish(revisionB, revisionA, idempotencyKey, true),
-      publish(revisionB, revisionA, idempotencyKey, true),
+      publish(revisionB, revisionA, currentPublicationId, idempotencyKey, true),
+      publish(revisionB, revisionA, currentPublicationId, idempotencyKey, true),
     ]);
     if (
       firstB.status !== 200 ||
@@ -220,6 +235,7 @@ async function main() {
     const conflictReplay = await publish(
       revisionA,
       revisionA,
+      currentPublicationId,
       idempotencyKey,
     );
     if (conflictReplay.status !== 409) {
@@ -248,43 +264,62 @@ async function main() {
       createRevision(raceTwo, revisionB),
     ]);
     const raceResults = await Promise.all([
-      publish(raceRevisionOne, revisionB, crypto.randomUUID()),
-      publish(raceRevisionTwo, revisionB, crypto.randomUUID()),
+      publish(raceRevisionOne, revisionB, currentPublicationId, crypto.randomUUID()),
+      publish(raceRevisionTwo, revisionB, currentPublicationId, crypto.randomUUID()),
     ]);
     const winner = raceResults.find((result) => result.status === 200)?.data.operation;
     const loser = raceResults.find((result) => result.status === 409);
     if (!winner || !loser) throw new Error("stale publish race did not produce one winner");
-    await converge(winner.id, winner.target_revision_id);
     currentRevisionId = winner.target_revision_id;
     currentPublicationId = winner.id;
+    await converge(currentPublicationId, currentRevisionId);
 
     const rollback = await publish(
       originalRevisionId,
       currentRevisionId,
+      currentPublicationId,
       crypto.randomUUID(),
     );
     if (rollback.status !== 200 || !rollback.data.operation) {
       throw new Error(`rollback failed: ${JSON.stringify(rollback.data)}`);
     }
-    await converge(rollback.data.operation.id, originalRevisionId);
     currentRevisionId = originalRevisionId;
     currentPublicationId = rollback.data.operation.id;
+    await converge(currentPublicationId, currentRevisionId);
+    await assertSnapshot(originalRevisionId, currentPublicationId);
+
+    const rebuild = await publish(
+      originalRevisionId,
+      originalRevisionId,
+      currentPublicationId,
+      crypto.randomUUID(),
+    );
+    if (rebuild.status !== 200 || !rebuild.data.operation) {
+      throw new Error(`cache rebuild failed: ${JSON.stringify(rebuild.data)}`);
+    }
+    if (rebuild.data.operation.id === currentPublicationId) {
+      throw new Error("cache rebuild reused the previous publication operation");
+    }
+    currentPublicationId = rebuild.data.operation.id;
+    await converge(currentPublicationId, originalRevisionId);
     await assertSnapshot(originalRevisionId, currentPublicationId);
 
     const after = await state();
     if (after.revisions.length !== before.revisions.length + 4) {
       throw new Error("publication drill created an unexpected revision count");
     }
-    if (after.operations.length !== before.operations.length + 4) {
+    if (after.operations.length !== before.operations.length + 5) {
       throw new Error("publication drill created an unexpected operation count");
     }
     process.stdout.write(
       JSON.stringify({
         draftDidNotPublish: true,
+        concurrentDraftSave: true,
         concurrentIdempotency: true,
         retryAfterFailure: true,
         staleRace: true,
         rollback: true,
+        cacheRebuild: true,
         finalRevision: after.publishedRevisionId,
         finalPublication: after.publishedOperationId,
       }) + "\n",
@@ -294,6 +329,7 @@ async function main() {
       const emergencyRollback = await publish(
         originalRevisionId,
         currentRevisionId,
+        currentPublicationId,
         crypto.randomUUID(),
       );
       if (emergencyRollback.status === 200 && emergencyRollback.data.operation) {

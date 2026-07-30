@@ -10,17 +10,26 @@ export async function POST(request: Request) {
     const body = (await request.json()) as {
       targetRevisionId?: string;
       expectedRevisionId?: string | null;
+      expectedPublicationId?: string | null;
       idempotencyKey?: string;
     };
-    if (!body.targetRevisionId || !body.idempotencyKey) {
+    if (
+      !body.targetRevisionId ||
+      !body.idempotencyKey ||
+      !Object.hasOwn(body, "expectedPublicationId")
+    ) {
       return Response.json(
-        { error: "targetRevisionId and idempotencyKey are required" },
+        {
+          error:
+            "targetRevisionId, expectedPublicationId, and idempotencyKey are required",
+        },
         { status: 400 },
       );
     }
     const operation = await publishRevision({
       targetRevisionId: body.targetRevisionId,
       expectedRevisionId: body.expectedRevisionId ?? null,
+      expectedPublicationId: body.expectedPublicationId ?? null,
       idempotencyKey: body.idempotencyKey,
       forceInvalidationFailure:
         identity.subject === "local-development" &&

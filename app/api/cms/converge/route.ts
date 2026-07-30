@@ -1,3 +1,4 @@
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { authorizeCms, cmsErrorResponse, requireJsonRequest } from "@/app/content/auth";
 import { getContentDb } from "@/app/content/repository";
 import { markConverged } from "@/app/content/publication";
@@ -40,11 +41,16 @@ export async function POST(request: Request) {
     }
     const operationId = body.operationId;
     const observedRevisionId = body.observedRevisionId;
+    const { env } = await getCloudflareContext({ async: true });
+    const self = env.WORKER_SELF_REFERENCE;
+    if (!self) throw new Error("Worker self-reference binding is unavailable");
 
     const observations = await Promise.all(
       CONVERGENCE_PATHS.map(async (path) => {
         const target = new URL(path, request.url);
-        const response = await fetch(target);
+        const response = await self.fetch(
+          new Request(target, { method: "GET" }),
+        );
         const publicBody = await response.text();
         return {
           path,

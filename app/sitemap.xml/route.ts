@@ -1,53 +1,46 @@
 import contentDates from "../utils/contentDates.json";
 import {
   contentDiagnosticHeaders,
+  getContentDb,
   getSiteContent,
 } from "../content/repository";
 import {
-  DEFAULT_SITE_CONTENT,
+  CONTENT_PAGE_KEY,
+  CONTENT_SCHEMA_VERSION,
   type SiteContent,
 } from "../content/defaultContent";
 import { canonicalizeContent } from "../content/validation";
+import {
+  calculateSignificantChangeDates,
+  sitemapRoutes,
+  type PublicationSnapshot,
+} from "../content/sitemapHistory";
 
 export const dynamic = "force-static";
 
 const BASE = "https://ariaxhan.com";
 const dates = contentDates as Record<string, string>;
-const DEFAULT_CANONICAL_CONTENT = canonicalizeContent(DEFAULT_SITE_CONTENT).content;
-const ROUTES = [
-  "/",
-  "/about/",
-  "/reading/",
-  "/contact/",
-  "/hackathons/",
-  "/open-source/",
-  "/project-review/",
-  "/proof/",
-  "/systems/",
-  "/timeline/",
-  "/writing/",
-];
-
 export async function GET() {
   const resolved = await getSiteContent();
-  const pages = ROUTES.map((route) => ({
+  const historyDates = resolved.publicationId
+    ? await significantChangeDates(
+        resolved.publicationId,
+        resolved.siteContent,
+      )
+    : new Map(
+        sitemapRoutes(resolved.siteContent).map((route) => [
+          route,
+          route.startsWith("/projects/") ? dates.projects : dates[route],
+        ]),
+      );
+  const pages = sitemapRoutes(resolved.siteContent).map((route) => ({
     url: `${BASE}${route}`,
-    lastModified:
-      routeChanged(route, resolved.siteContent) && resolved.updatedAt
-        ? new Date(resolved.updatedAt)
-        : new Date(dates[route]),
-  }));
-  const projectPages = resolved.content.projects.map((project) => ({
-    url: `${BASE}/projects/${project.slug}/`,
-    lastModified:
-      projectChanged(project.slug, resolved.siteContent) && resolved.updatedAt
-        ? new Date(resolved.updatedAt)
-        : new Date(dates.projects),
+    lastModified: new Date(historyDates.get(route)!),
   }));
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...[...pages, ...projectPages].map(
+    ...pages.map(
       (entry) =>
         `<url><loc>${escapeXml(entry.url)}</loc><lastmod>${entry.lastModified.toISOString()}</lastmod></url>`,
     ),
@@ -62,6 +55,54 @@ export async function GET() {
   });
 }
 
+type HistoryRow = {
+  id: string;
+  pointer_moved_at: string | null;
+  created_at: string;
+  content_json: string;
+  content_schema_version: number;
+  content_sha256: string;
+};
+
+async function significantChangeDates(
+  currentPublicationId: string,
+  currentContent: SiteContent,
+): Promise<Map<string, string>> {
+  const db = await getContentDb();
+  const history = await db
+    .prepare(
+      `SELECT o.id, o.pointer_moved_at, o.created_at,
+              r.content_json, r.content_schema_version, r.content_sha256
+       FROM publish_operations o
+       JOIN content_revisions r
+         ON r.id = o.target_revision_id AND r.page_key = o.page_key
+       WHERE o.page_key = ?1
+       ORDER BY o.created_at ASC, o.id ASC`,
+    )
+    .bind(CONTENT_PAGE_KEY)
+    .all<HistoryRow>();
+  const snapshots: PublicationSnapshot[] = history.results.map((row) => {
+    if (row.content_schema_version !== CONTENT_SCHEMA_VERSION) {
+      throw new Error("sitemap history contains an unsupported revision");
+    }
+    const canonical = canonicalizeContent(JSON.parse(row.content_json));
+    if (canonical.sha256 !== row.content_sha256) {
+      throw new Error("sitemap history contains a corrupt revision");
+    }
+    return {
+      publicationId: row.id,
+      publishedAt: row.pointer_moved_at ?? row.created_at,
+      content: canonical.content,
+    };
+  });
+  return calculateSignificantChangeDates(
+    snapshots,
+    currentPublicationId,
+    currentContent,
+    dates,
+  );
+}
+
 function escapeXml(value: string): string {
   return value
     .replaceAll("&", "&amp;")
@@ -69,103 +110,5 @@ function escapeXml(value: string): string {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&apos;");
-}
-
-function differs(left: unknown, right: unknown): boolean {
-  return JSON.stringify(left) !== JSON.stringify(right);
-}
-
-function routeChanged(route: string, content: SiteContent): boolean {
-  const defaults = DEFAULT_CANONICAL_CONTENT;
-  const pageCopy = content.PAGE_COPY;
-  const defaultCopy = defaults.PAGE_COPY;
-  const dependencies: Record<string, [unknown, unknown][]> = {
-    "/": [
-      [content.SITE, defaults.SITE],
-      [content.engagements, defaults.engagements],
-      [content.projects, defaults.projects],
-      [content.articles, defaults.articles],
-      [content.moments, defaults.moments],
-      [pageCopy.hero, defaultCopy.hero],
-      [pageCopy.manifesto, defaultCopy.manifesto],
-      [pageCopy.thesis, defaultCopy.thesis],
-      [pageCopy.sections.whatIBuild, defaultCopy.sections.whatIBuild],
-      [pageCopy.sections.projectMap, defaultCopy.sections.projectMap],
-      [pageCopy.sections.writingHighlights, defaultCopy.sections.writingHighlights],
-      [pageCopy.sections.workWithMeDoor, defaultCopy.sections.workWithMeDoor],
-      [pageCopy.now, defaultCopy.now],
-      [pageCopy.metadata.home, defaultCopy.metadata.home],
-    ],
-    "/about/": [
-      [pageCopy.about, defaultCopy.about],
-      [pageCopy.metadata.about, defaultCopy.metadata.about],
-    ],
-    "/reading/": [
-      [content.books, defaults.books],
-      [pageCopy.sections.bookshelf, defaultCopy.sections.bookshelf],
-      [pageCopy.metadata.reading, defaultCopy.metadata.reading],
-    ],
-    "/contact/": [
-      [content.SITE.booking, defaults.SITE.booking],
-      [content.contactLinks, defaults.contactLinks],
-      [content.engagements, defaults.engagements],
-      [content.goodFit, defaults.goodFit],
-      [content.notAFit, defaults.notAFit],
-      [content.workingStyle, defaults.workingStyle],
-      [pageCopy.contact, defaultCopy.contact],
-      [pageCopy.metadata.contact, defaultCopy.metadata.contact],
-    ],
-    "/hackathons/": [
-      [content.hackathons, defaults.hackathons],
-      [pageCopy.sections.hackathons, defaultCopy.sections.hackathons],
-      [pageCopy.metadata.hackathons, defaultCopy.metadata.hackathons],
-    ],
-    "/open-source/": [
-      [content.projects, defaults.projects],
-      [pageCopy.sections.openSource, defaultCopy.sections.openSource],
-      [pageCopy.metadata.openSource, defaultCopy.metadata.openSource],
-    ],
-    "/project-review/": [
-      [content.projectReviewBullets, defaults.projectReviewBullets],
-      [content.reviewDeliverables, defaults.reviewDeliverables],
-      [content.reviewAudience, defaults.reviewAudience],
-      [content.notForAudience, defaults.notForAudience],
-      [pageCopy.projectReview, defaultCopy.projectReview],
-      [pageCopy.projectReviewForm, defaultCopy.projectReviewForm],
-      [pageCopy.metadata.projectReview, defaultCopy.metadata.projectReview],
-    ],
-    "/proof/": [
-      [content.SITE.proof, defaults.SITE.proof],
-      [pageCopy.proof, defaultCopy.proof],
-      [pageCopy.metadata.proof, defaultCopy.metadata.proof],
-    ],
-    "/systems/": [
-      [content.projects, defaults.projects],
-      [pageCopy.sections.systems, defaultCopy.sections.systems],
-      [pageCopy.metadata.systems, defaultCopy.metadata.systems],
-    ],
-    "/timeline/": [
-      [content.moments, defaults.moments],
-      [content.timelineTerminus, defaults.timelineTerminus],
-      [pageCopy.sections.timeline, defaultCopy.sections.timeline],
-      [pageCopy.metadata.timeline, defaultCopy.metadata.timeline],
-    ],
-    "/writing/": [
-      [content.articles, defaults.articles],
-      [content.WRITING_THEMES, defaults.WRITING_THEMES],
-      [pageCopy.sections.writing, defaultCopy.sections.writing],
-      [pageCopy.metadata.writing, defaultCopy.metadata.writing],
-    ],
-  };
-  return (dependencies[route] ?? []).some(([current, baseline]) =>
-    differs(current, baseline),
-  );
-}
-
-function projectChanged(slug: string, content: SiteContent): boolean {
-  return differs(
-    content.projects.find((project) => project.slug === slug),
-    DEFAULT_CANONICAL_CONTENT.projects.find((project) => project.slug === slug),
-  );
 }
 

@@ -63,11 +63,13 @@ async function jsonRequest(path: string, body: unknown) {
 export default function ContentEditor({
   initialContent,
   publishedRevisionId,
+  publishedOperationId,
   revisions,
   initialPendingOperation,
 }: {
   initialContent: SiteContent;
   publishedRevisionId: string | null;
+  publishedOperationId: string | null;
   revisions: RevisionSummary[];
   initialPendingOperation: PendingOperation | null;
 }) {
@@ -77,9 +79,11 @@ export default function ContentEditor({
   const [parentRevisionId, setParentRevisionId] = useState<string | null>(null);
   const [pendingOperation, setPendingOperation] =
     useState<PendingOperation | null>(initialPendingOperation);
+  const [saveRequest, setSaveRequest] = useState<string | null>(null);
   const [publishRequest, setPublishRequest] = useState<{
     targetRevisionId: string;
     expectedRevisionId: string | null;
+    expectedPublicationId: string | null;
     idempotencyKey: string;
   } | null>(null);
   const [query, setQuery] = useState("");
@@ -104,14 +108,18 @@ export default function ContentEditor({
     setBusy(true);
     setStatus("Saving draft...");
     try {
+      const idempotencyKey = saveRequest ?? crypto.randomUUID();
+      setSaveRequest(idempotencyKey);
       const result = await jsonRequest("/api/cms/revisions", {
         content,
         basePublishedRevisionId: publishedRevisionId,
         parentRevisionId,
+        idempotencyKey,
       });
       const revision = result.revision as { id: string };
       setSavedRevisionId(revision.id);
       setParentRevisionId(revision.id);
+      setSaveRequest(null);
       setRevisionList((current) => [
         {
           id: revision.id,
@@ -162,11 +170,13 @@ export default function ContentEditor({
     try {
       const request =
         publishRequest?.targetRevisionId === targetRevisionId &&
-        publishRequest.expectedRevisionId === publishedRevisionId
+        publishRequest.expectedRevisionId === publishedRevisionId &&
+        publishRequest.expectedPublicationId === publishedOperationId
           ? publishRequest
           : {
               targetRevisionId,
               expectedRevisionId: publishedRevisionId,
+              expectedPublicationId: publishedOperationId,
               idempotencyKey: crypto.randomUUID(),
             };
       setPublishRequest(request);
@@ -179,6 +189,9 @@ export default function ContentEditor({
         targetRevisionId: rawOperation.target_revision_id,
       };
       setPendingOperation(operation);
+      // The server returned the operation, so any later publish is a new
+      // request. Keep the key only while recovering a lost response.
+      setPublishRequest(null);
       const observed = await observeAndConverge(operation);
       if (observed) {
         setStatus("Published and observed in public HTML. Reloading...");
@@ -229,6 +242,7 @@ export default function ContentEditor({
       setContent(result.content);
       setSavedRevisionId(revisionId);
       setParentRevisionId(revisionId);
+      setSaveRequest(null);
       setPublishRequest(null);
       setDirty(false);
       setStatus(`Loaded ${revisionId}. You can edit it or publish it as a restore.`);
@@ -258,7 +272,7 @@ export default function ContentEditor({
           className="field-input"
         />
         <div className="flex flex-wrap gap-2">
-          <button type="button" disabled={busy} onClick={saveDraft} className="field-button">
+          <button type="button" disabled={busy || !dirty} onClick={saveDraft} className="field-button">
             Save draft
           </button>
           <button type="button" disabled={busy || !savedRevisionId} onClick={() => publish()} className="field-button">
@@ -266,11 +280,24 @@ export default function ContentEditor({
           </button>
           <button
             type="button"
-            disabled={busy || !pendingOperation}
+            disabled={busy || dirty || !pendingOperation}
             onClick={retryInvalidation}
             className="field-button"
           >
             Retry publish
+          </button>
+          <button
+            type="button"
+            disabled={
+              busy ||
+              dirty ||
+              Boolean(pendingOperation) ||
+              !publishedRevisionId
+            }
+            onClick={() => publish(publishedRevisionId)}
+            className="field-button"
+          >
+            Rebuild cache
           </button>
           <button
             type="button"
@@ -279,6 +306,7 @@ export default function ContentEditor({
               setContent(initialContent);
               setSavedRevisionId(null);
               setParentRevisionId(null);
+              setSaveRequest(null);
               setPublishRequest(null);
               setDirty(false);
               setStatus("Local changes discarded.");
@@ -306,6 +334,7 @@ export default function ContentEditor({
                 onChange={(event) => {
                   setContent((current) => replaceAtPath(current, field.path, event.target.value));
                   setSavedRevisionId(null);
+                  setSaveRequest(null);
                   setPublishRequest(null);
                   setDirty(true);
                   setStatus("Unsaved local changes.");
@@ -318,6 +347,7 @@ export default function ContentEditor({
                 onChange={(event) => {
                   setContent((current) => replaceAtPath(current, field.path, event.target.value));
                   setSavedRevisionId(null);
+                  setSaveRequest(null);
                   setPublishRequest(null);
                   setDirty(true);
                   setStatus("Unsaved local changes.");
@@ -340,7 +370,7 @@ export default function ContentEditor({
               <span className="flex gap-2">
                 <button
                   type="button"
-                  disabled={busy}
+                  disabled={busy || dirty}
                   onClick={() => loadRevision(revision.id)}
                   className="field-button"
                 >
@@ -348,7 +378,7 @@ export default function ContentEditor({
                 </button>
                 <button
                   type="button"
-                  disabled={busy || revision.id === publishedRevisionId}
+                  disabled={busy || dirty || revision.id === publishedRevisionId}
                   onClick={() => publish(revision.id)}
                   className="field-button"
                 >
