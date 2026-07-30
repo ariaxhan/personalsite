@@ -45,7 +45,7 @@ export const SITE = {
 
   /** First hero sentence. Maximally concrete. */
   oneLiner:
-    "I build and repair AI products for founders and independent builders. For companies, I create internal AI workflows for operations.",
+    "I build and repair AI.",
 
   /** Second hero sentence. The philosophy, no quotes. */
   strangeLine:
