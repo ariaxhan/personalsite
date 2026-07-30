@@ -12,6 +12,10 @@
     {
       "pattern": "cms-preview.ariaxhan.com",
       "custom_domain": true
+    },
+    {
+      "pattern": "ariaxhan.com/*",
+      "zone_name": "ariaxhan.com"
     }
   ],
   "assets": {
