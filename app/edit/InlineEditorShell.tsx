@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { SiteContent } from "../content/defaultContent";
+import { isDraftSaveDisabled } from "./editorControls";
 import { flattenEditableContent, replaceContentAtPath } from "./inlineContent";
 import styles from "./InlineEditorShell.module.css";
 
@@ -85,8 +86,11 @@ export default function InlineEditorShell({ state }: { state: EditorState }) {
       : null;
   });
   const [dirty, setDirty] = useState(false);
+  const [editing, setEditing] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [status, setStatus] = useState("Double-click any outlined text to edit it.");
+  const [status, setStatus] = useState(
+    "Double-click outlined text, type, then click Save draft.",
+  );
   const contentRef = useRef(content);
   const dirtyRef = useRef(false);
   const savedRevisionRef = useRef<string | null>(null);
@@ -152,6 +156,7 @@ export default function InlineEditorShell({ state }: { state: EditorState }) {
     wrapper.textContent = original;
     wrapper.focus();
     placeCaretAtEnd(wrapper);
+    setEditing(true);
     setStatus(`Editing ${path}`);
 
     let composing = false;
@@ -167,6 +172,7 @@ export default function InlineEditorShell({ state }: { state: EditorState }) {
       const nextValue = commit ? (wrapper.textContent ?? "") : original;
       wrapper.replaceWith(document.createTextNode(nextValue));
       activeCleanup.current = null;
+      setEditing(false);
       if (commit && nextValue !== original) {
         const nextContent = replaceContentAtPath(contentRef.current, path, nextValue);
         contentRef.current = nextContent;
@@ -259,6 +265,10 @@ export default function InlineEditorShell({ state }: { state: EditorState }) {
 
   async function saveDraft() {
     activeCleanup.current?.();
+    if (!dirtyRef.current) {
+      setStatus("No changes to save.");
+      return;
+    }
     setBusy(true);
     setStatus("Saving draft...");
     try {
@@ -400,7 +410,13 @@ export default function InlineEditorShell({ state }: { state: EditorState }) {
         </div>
       )}
       <span className={styles.status} aria-live="polite">{status}</span>
-      <button className={styles.button} type="button" disabled={busy || !dirty} onClick={saveDraft}>
+      <button
+        className={styles.button}
+        type="button"
+        disabled={isDraftSaveDisabled({ busy, dirty, editing })}
+        onMouseDown={(event) => event.preventDefault()}
+        onClick={saveDraft}
+      >
         Save draft
       </button>
       <button className={styles.button} type="button" disabled={busy || !savedRevisionId} onClick={publish}>
