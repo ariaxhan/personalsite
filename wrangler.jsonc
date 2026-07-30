@@ -14,8 +14,8 @@
       "custom_domain": true
     },
     {
-      "pattern": "ariaxhan.com/*",
-      "zone_name": "ariaxhan.com"
+      "pattern": "ariaxhan.com",
+      "custom_domain": true
     }
   ],
   "assets": {
