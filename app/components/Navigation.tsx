@@ -53,7 +53,7 @@ export default function Navigation() {
         {/* Wordmark */}
         <Link
           href="/"
-          className="inline-flex min-h-10 items-center py-1 font-serif text-[19px] leading-normal tracking-[0.01em] text-ink transition-colors hover:text-terracotta"
+          className="inline-flex min-h-11 items-center py-1 font-serif text-[19px] leading-normal tracking-[0.01em] text-ink transition-colors hover:text-terracotta"
         >
           Aria&nbsp;Han
         </Link>
@@ -84,7 +84,7 @@ export default function Navigation() {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="nav-index-toggle inline-flex h-10 min-h-0 appearance-none items-center justify-center border-0 bg-transparent p-0 font-mono text-[11px] leading-none uppercase tracking-[0.2em] text-ink-mute transition-colors hover:text-terracotta lg:hidden"
+          className="nav-index-toggle inline-flex h-11 appearance-none items-center justify-center border-0 bg-transparent p-0 font-mono text-[11px] leading-none uppercase tracking-[0.2em] text-ink-mute transition-colors hover:text-terracotta lg:hidden"
           aria-expanded={open}
           aria-label={PAGE_COPY.navigation.ariaToggle}
         >
@@ -102,7 +102,7 @@ export default function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="flex items-baseline gap-2 py-2.5"
+                  className="flex min-h-11 items-center gap-2 py-2.5"
                   style={{ color: active ? "#b56a4f" : "#5c564c" }}
                 >
                   <span className="font-mono text-[10px] text-ink-mute">{item.n}</span>
