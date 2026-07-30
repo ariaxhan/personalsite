@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { SiteContent } from "../content/defaultContent";
 import { isEditableContentPath } from "../content/editablePaths";
 
@@ -9,6 +9,11 @@ type RevisionSummary = {
   base_published_revision_id: string | null;
   created_at: string;
   author_id: string;
+};
+
+type PendingOperation = {
+  id: string;
+  targetRevisionId: string;
 };
 
 type Field = {
@@ -59,20 +64,41 @@ export default function ContentEditor({
   initialContent,
   publishedRevisionId,
   revisions,
+  initialPendingOperation,
 }: {
   initialContent: SiteContent;
   publishedRevisionId: string | null;
   revisions: RevisionSummary[];
+  initialPendingOperation: PendingOperation | null;
 }) {
   const [content, setContent] = useState(initialContent);
+  const [revisionList, setRevisionList] = useState(revisions);
   const [savedRevisionId, setSavedRevisionId] = useState<string | null>(null);
+  const [parentRevisionId, setParentRevisionId] = useState<string | null>(null);
+  const [pendingOperation, setPendingOperation] =
+    useState<PendingOperation | null>(initialPendingOperation);
+  const [publishRequest, setPublishRequest] = useState<{
+    targetRevisionId: string;
+    expectedRevisionId: string | null;
+    idempotencyKey: string;
+  } | null>(null);
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("No unsaved changes.");
+  const [dirty, setDirty] = useState(false);
   const [busy, setBusy] = useState(false);
   const fields = useMemo(() => flatten(content), [content]);
   const visibleFields = fields.filter((field) =>
     `${field.path} ${field.value}`.toLowerCase().includes(query.toLowerCase()),
   );
+
+  useEffect(() => {
+    const warnBeforeLeaving = (event: BeforeUnloadEvent) => {
+      if (!dirty) return;
+      event.preventDefault();
+    };
+    window.addEventListener("beforeunload", warnBeforeLeaving);
+    return () => window.removeEventListener("beforeunload", warnBeforeLeaving);
+  }, [dirty]);
 
   async function saveDraft() {
     setBusy(true);
@@ -81,16 +107,49 @@ export default function ContentEditor({
       const result = await jsonRequest("/api/cms/revisions", {
         content,
         basePublishedRevisionId: publishedRevisionId,
-        parentRevisionId: savedRevisionId,
+        parentRevisionId,
       });
       const revision = result.revision as { id: string };
       setSavedRevisionId(revision.id);
+      setParentRevisionId(revision.id);
+      setRevisionList((current) => [
+        {
+          id: revision.id,
+          base_published_revision_id: publishedRevisionId,
+          created_at: new Date().toISOString(),
+          author_id: "current editor",
+        },
+        ...current.filter((item) => item.id !== revision.id),
+      ]);
+      setDirty(false);
       setStatus(`Draft saved as ${revision.id}. Public content did not change.`);
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "Draft save failed.");
     } finally {
       setBusy(false);
     }
+  }
+
+  async function observeAndConverge(operation: PendingOperation) {
+    for (let attempt = 0; attempt < 12; attempt += 1) {
+      const response = await fetch("/api/cms/converge", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          operationId: operation.id,
+          observedRevisionId: operation.targetRevisionId,
+        }),
+      });
+      if (response.ok) {
+        return true;
+      }
+      if (response.status !== 409) {
+        const result = (await response.json().catch(() => ({}))) as { error?: string };
+        throw new Error(result.error ?? `convergence check failed (${response.status})`);
+      }
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
+    return false;
   }
 
   async function publish(targetRevisionId = savedRevisionId) {
@@ -101,31 +160,27 @@ export default function ContentEditor({
     setBusy(true);
     setStatus("Publishing and refreshing public pages...");
     try {
+      const request =
+        publishRequest?.targetRevisionId === targetRevisionId &&
+        publishRequest.expectedRevisionId === publishedRevisionId
+          ? publishRequest
+          : {
+              targetRevisionId,
+              expectedRevisionId: publishedRevisionId,
+              idempotencyKey: crypto.randomUUID(),
+            };
+      setPublishRequest(request);
       const result = await jsonRequest("/api/cms/publish", {
-        targetRevisionId,
-        expectedRevisionId: publishedRevisionId,
-        idempotencyKey: crypto.randomUUID(),
+        ...request,
       });
-      const operation = result.operation as { id: string; target_revision_id: string };
-      let observed = false;
-      for (let attempt = 0; attempt < 12; attempt += 1) {
-        const html = await fetch(`/?cms-check=${operation.id}-${attempt}`, {
-          cache: "reload",
-        }).then((response) => response.text());
-        const marker = html.match(
-          /name="aria-content-revision" content="([^"]+)"/,
-        )?.[1];
-        if (marker === operation.target_revision_id) {
-          observed = true;
-          break;
-        }
-        await new Promise((resolve) => setTimeout(resolve, 500));
-      }
+      const rawOperation = result.operation as { id: string; target_revision_id: string };
+      const operation = {
+        id: rawOperation.id,
+        targetRevisionId: rawOperation.target_revision_id,
+      };
+      setPendingOperation(operation);
+      const observed = await observeAndConverge(operation);
       if (observed) {
-        await jsonRequest("/api/cms/converge", {
-          operationId: operation.id,
-          observedRevisionId: operation.target_revision_id,
-        });
         setStatus("Published and observed in public HTML. Reloading...");
         window.location.reload();
       } else {
@@ -133,6 +188,52 @@ export default function ContentEditor({
       }
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "Publish failed.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function retryInvalidation() {
+    if (!pendingOperation) return;
+    setBusy(true);
+    setStatus("Retrying the original invalidation...");
+    try {
+      await jsonRequest("/api/cms/retry", { operationId: pendingOperation.id });
+      if (await observeAndConverge(pendingOperation)) {
+        setStatus("Retry converged across representative public output. Reloading...");
+        window.location.reload();
+      } else {
+        setStatus("Retry dispatched, but public output is still stale.");
+      }
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Invalidation retry failed.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function loadRevision(revisionId: string) {
+    setBusy(true);
+    setStatus(`Loading ${revisionId}...`);
+    try {
+      const response = await fetch(`/api/cms/revisions/${encodeURIComponent(revisionId)}`, {
+        cache: "no-store",
+      });
+      const result = (await response.json()) as {
+        error?: string;
+        content?: SiteContent;
+      };
+      if (!response.ok || !result.content) {
+        throw new Error(result.error ?? "Revision load failed.");
+      }
+      setContent(result.content);
+      setSavedRevisionId(revisionId);
+      setParentRevisionId(revisionId);
+      setPublishRequest(null);
+      setDirty(false);
+      setStatus(`Loaded ${revisionId}. You can edit it or publish it as a restore.`);
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Revision load failed.");
     } finally {
       setBusy(false);
     }
@@ -165,10 +266,21 @@ export default function ContentEditor({
           </button>
           <button
             type="button"
+            disabled={busy || !pendingOperation}
+            onClick={retryInvalidation}
+            className="field-button"
+          >
+            Retry publish
+          </button>
+          <button
+            type="button"
             disabled={busy}
             onClick={() => {
               setContent(initialContent);
               setSavedRevisionId(null);
+              setParentRevisionId(null);
+              setPublishRequest(null);
+              setDirty(false);
               setStatus("Local changes discarded.");
             }}
             className="field-button"
@@ -193,6 +305,9 @@ export default function ContentEditor({
                 rows={Math.min(10, Math.max(3, Math.ceil(field.value.length / 90)))}
                 onChange={(event) => {
                   setContent((current) => replaceAtPath(current, field.path, event.target.value));
+                  setSavedRevisionId(null);
+                  setPublishRequest(null);
+                  setDirty(true);
                   setStatus("Unsaved local changes.");
                 }}
                 className="field-input resize-y"
@@ -202,6 +317,9 @@ export default function ContentEditor({
                 value={field.value}
                 onChange={(event) => {
                   setContent((current) => replaceAtPath(current, field.path, event.target.value));
+                  setSavedRevisionId(null);
+                  setPublishRequest(null);
+                  setDirty(true);
                   setStatus("Unsaved local changes.");
                 }}
                 className="field-input"
@@ -214,19 +332,29 @@ export default function ContentEditor({
       <section className="mt-16 border-t border-[rgba(44,40,35,0.18)] pt-8">
         <h2 className="font-serif text-2xl">Revision history</h2>
         <ul className="mt-5 grid gap-3">
-          {revisions.map((revision) => (
+          {revisionList.map((revision) => (
             <li key={revision.id} className="flex flex-wrap items-center justify-between gap-3 border-b py-3">
               <span className="font-mono text-xs">
                 {new Date(revision.created_at).toLocaleString()} · {revision.id}
               </span>
-              <button
-                type="button"
-                disabled={busy || revision.id === publishedRevisionId}
-                onClick={() => publish(revision.id)}
-                className="field-button"
-              >
-                {revision.id === publishedRevisionId ? "Published" : "Restore"}
-              </button>
+              <span className="flex gap-2">
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={() => loadRevision(revision.id)}
+                  className="field-button"
+                >
+                  Load
+                </button>
+                <button
+                  type="button"
+                  disabled={busy || revision.id === publishedRevisionId}
+                  onClick={() => publish(revision.id)}
+                  className="field-button"
+                >
+                  {revision.id === publishedRevisionId ? "Published" : "Restore"}
+                </button>
+              </span>
             </li>
           ))}
         </ul>

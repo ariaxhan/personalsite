@@ -17,7 +17,9 @@
     "cf:deploy": "opennextjs-cloudflare build && OPEN_NEXT_DEPLOY=true wrangler deploy",
     "cf:typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "cf:local:prepare": "tsx scripts/prepare-local-cms.ts",
-    "cms:seed-sql": "tsx scripts/generate-content-seed.ts"
+    "cms:seed-sql": "tsx scripts/generate-content-seed.ts",
+    "verify:publication": "tsx scripts/verify-publication-flow.ts",
+    "verify:preview": "tsx scripts/verify-public-output.ts"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^15.1.4",

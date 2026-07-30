@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
-import { getSiteContent } from "../../content/repository";
+import { DEFAULT_SITE_CONTENT } from "../../content/defaultContent";
 
 const MAX_FIELD_LENGTH = 4000;
 const MAX_BODY_LENGTH = 24000;
@@ -22,49 +22,43 @@ type ProjectReviewSubmission = {
 };
 
 export async function OPTIONS() {
-  return new Response(null, { status: 204 });
+  return new Response(null, { status: 204, headers: corsHeaders() });
 }
 
 export async function POST(request: NextRequest) {
-  const { content: { PAGE_COPY } } = await getSiteContent();
+  const { PAGE_COPY } = DEFAULT_SITE_CONTENT;
   const contentType = request.headers.get("content-type") || "";
   if (!contentType.includes("application/json")) {
-    return NextResponse.json({ error: PAGE_COPY.projectReviewApi.errors.jsonOnly }, { status: 415 });
+    return json({ error: PAGE_COPY.projectReviewApi.errors.jsonOnly }, 415);
   }
 
   const rawBody = await request.text();
   if (rawBody.length > MAX_BODY_LENGTH) {
-    return NextResponse.json(
-      { error: PAGE_COPY.projectReviewApi.errors.tooLong },
-      { status: 413 },
-    );
+    return json({ error: PAGE_COPY.projectReviewApi.errors.tooLong }, 413);
   }
 
   let body: ProjectReviewSubmission;
   try {
     body = JSON.parse(rawBody);
   } catch {
-    return NextResponse.json({ error: PAGE_COPY.projectReviewApi.errors.unreadable }, { status: 400 });
+    return json({ error: PAGE_COPY.projectReviewApi.errors.unreadable }, 400);
   }
 
   if (stringValue(body.company)) {
-    return NextResponse.json({ ok: true });
+    return json({ ok: true });
   }
 
   const submission = normalizeSubmission(body);
   const errors = validateSubmission(submission, PAGE_COPY.projectReviewApi.errors);
   if (errors.length > 0) {
-    return NextResponse.json({ error: errors.join(" ") }, { status: 400 });
+    return json({ error: errors.join(" ") }, 400);
   }
 
   let env: CloudflareEnv;
   try {
     ({ env } = await getCloudflareContext({ async: true }));
   } catch {
-    return NextResponse.json(
-      { error: PAGE_COPY.projectReviewApi.errors.localEmail },
-      { status: 503 },
-    );
+    return json({ error: PAGE_COPY.projectReviewApi.errors.localEmail }, 503);
   }
 
   let submissionId: number | null = null;
@@ -95,15 +89,12 @@ export async function POST(request: NextRequest) {
     submissionId = result.meta.last_row_id ?? null;
   } catch (error) {
     console.error("Project review database write failed", safeError(error));
-    return NextResponse.json(
-      { error: PAGE_COPY.projectReviewApi.errors.localEmail },
-      { status: 503 },
-    );
+    return json({ error: PAGE_COPY.projectReviewApi.errors.localEmail }, 503);
   }
 
   if (!env.EMAIL) {
     await updateEmailStatus(env.DB, submissionId, "not_configured", null, null);
-    return NextResponse.json({ ok: true, submissionId, emailSent: false });
+    return json({ ok: true, submissionId, emailSent: false });
   }
 
   try {
@@ -116,7 +107,7 @@ export async function POST(request: NextRequest) {
       html: buildHtmlEmail(submission),
     });
     await updateEmailStatus(env.DB, submissionId, "sent", result.messageId ?? null, null);
-    return NextResponse.json({
+    return json({
       ok: true,
       submissionId,
       emailSent: true,
@@ -126,8 +117,20 @@ export async function POST(request: NextRequest) {
     const message = safeError(error);
     console.error("Project review email failed", message);
     await updateEmailStatus(env.DB, submissionId, "failed", null, message);
-    return NextResponse.json({ ok: true, submissionId, emailSent: false });
+    return json({ ok: true, submissionId, emailSent: false });
   }
+}
+
+function corsHeaders() {
+  return {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+}
+
+function json(data: unknown, status = 200) {
+  return NextResponse.json(data, { status, headers: corsHeaders() });
 }
 
 function normalizeSubmission(body: ProjectReviewSubmission) {

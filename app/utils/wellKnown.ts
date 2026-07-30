@@ -1,4 +1,8 @@
 import type { DerivedSiteContent, SiteContent } from "../content/defaultContent";
+import {
+  contentDiagnosticHeaders,
+  type ResolvedSiteContent,
+} from "../content/repository";
 
 const JSON_HEADERS = {
   "content-type": "application/json; charset=utf-8",
@@ -16,12 +20,22 @@ const inputSchema = {
   additionalProperties: false,
 };
 
-export function jsonResponse(data: unknown): Response {
-  return new Response(JSON.stringify(data, null, 2), { headers: JSON_HEADERS });
+export function jsonResponse(
+  data: unknown,
+  resolved: Pick<ResolvedSiteContent, "revisionId" | "publicationId" | "source">,
+): Response {
+  return new Response(JSON.stringify(data, null, 2), {
+    headers: { ...JSON_HEADERS, ...contentDiagnosticHeaders(resolved) },
+  });
 }
 
-export function markdownResponse(markdown: string): Response {
-  return new Response(markdown, { headers: TEXT_HEADERS });
+export function markdownResponse(
+  markdown: string,
+  resolved: Pick<ResolvedSiteContent, "revisionId" | "publicationId" | "source">,
+): Response {
+  return new Response(markdown, {
+    headers: { ...TEXT_HEADERS, ...contentDiagnosticHeaders(resolved) },
+  });
 }
 
 export function agentCardJson(content: DerivedSiteContent) {

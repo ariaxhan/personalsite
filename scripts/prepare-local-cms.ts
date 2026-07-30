@@ -3,8 +3,18 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
+const persistToIndex = process.argv.indexOf("--persist-to");
+const persistTo =
+  persistToIndex >= 0 ? process.argv[persistToIndex + 1] : undefined;
+if (persistToIndex >= 0 && !persistTo) {
+  throw new Error("--persist-to requires a directory");
+}
+const persistenceArgs = persistTo ? ["--persist-to", persistTo] : [];
+
 function run(args: string[]) {
-  execFileSync("npx", ["wrangler", ...args], { stdio: "inherit" });
+  execFileSync("npx", ["wrangler", ...args, ...persistenceArgs], {
+    stdio: "inherit",
+  });
 }
 
 run(["d1", "migrations", "apply", "DB", "--local"]);

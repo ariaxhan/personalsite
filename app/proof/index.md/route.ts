@@ -4,6 +4,6 @@ import { getSiteContent } from "@/app/content/repository";
 export const dynamic = "force-static";
 
 export async function GET() {
-  const { content } = await getSiteContent();
-  return markdownResponse(renderProofMd(content));
+  const resolved = await getSiteContent();
+  return markdownResponse(renderProofMd(resolved.content), resolved);
 }

@@ -1,10 +1,11 @@
-import { authorizeCms, cmsErrorResponse } from "@/app/content/auth";
+import { authorizeCms, cmsErrorResponse, requireJsonRequest } from "@/app/content/auth";
 import { PublicationConflictError, retryInvalidation } from "@/app/content/publication";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   try {
+    requireJsonRequest(request);
     await authorizeCms(request);
     const body = (await request.json()) as { operationId?: string };
     if (!body.operationId) {

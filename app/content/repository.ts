@@ -3,6 +3,7 @@ import { unstable_cache } from "next/cache";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import {
   CONTENT_PAGE_KEY,
+  CONTENT_SCHEMA_VERSION,
   DEFAULT_SITE_CONTENT,
   deriveSiteContent,
   type DerivedSiteContent,
@@ -13,13 +14,19 @@ import { canonicalizeContent } from "./validation";
 type PublishedRow = {
   revision_id: string;
   content_json: string;
+  content_schema_version: number;
+  content_sha256: string;
   updated_at: string;
+  publish_operation_id: string;
+  operation_page_key: string | null;
+  operation_target_revision_id: string | null;
 };
 
 export type ResolvedSiteContent = {
   siteContent: SiteContent;
   content: DerivedSiteContent;
   revisionId: string | null;
+  publicationId: string | null;
   updatedAt: string | null;
   source: "d1" | "git-default";
 };
@@ -48,9 +55,13 @@ async function contentDatabase(): Promise<D1Database | null> {
 async function readPublishedSiteContent(): Promise<CachedSiteContent> {
   const db = await contentDatabase();
   if (!db) {
+    if (process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD) {
+      throw new ContentUnavailableError("CONTENT_DB binding is unavailable");
+    }
     return {
       siteContent: DEFAULT_SITE_CONTENT,
       revisionId: null,
+      publicationId: null,
       updatedAt: null,
       source: "git-default",
     };
@@ -60,10 +71,15 @@ async function readPublishedSiteContent(): Promise<CachedSiteContent> {
   try {
     row = await db
       .prepare(
-        `SELECT p.revision_id, r.content_json, p.updated_at
+        `SELECT p.revision_id, p.publish_operation_id, r.content_json,
+                r.content_schema_version, r.content_sha256, p.updated_at,
+                o.page_key AS operation_page_key,
+                o.target_revision_id AS operation_target_revision_id
          FROM published_content p
          JOIN content_revisions r
            ON r.id = p.revision_id AND r.page_key = p.page_key
+         LEFT JOIN publish_operations o
+           ON o.id = p.publish_operation_id
          WHERE p.page_key = ?1`,
       )
       .bind(CONTENT_PAGE_KEY)
@@ -73,20 +89,26 @@ async function readPublishedSiteContent(): Promise<CachedSiteContent> {
   }
 
   if (!row) {
-    return {
-      siteContent: DEFAULT_SITE_CONTENT,
-      revisionId: null,
-      updatedAt: null,
-      source: "git-default",
-    };
+    throw new ContentUnavailableError("canonical published content is missing");
   }
 
   try {
+    if (
+      row.content_schema_version !== CONTENT_SCHEMA_VERSION ||
+      row.operation_page_key !== CONTENT_PAGE_KEY ||
+      row.operation_target_revision_id !== row.revision_id
+    ) {
+      throw new Error("canonical revision ownership or schema is invalid");
+    }
     const parsed = JSON.parse(row.content_json) as unknown;
-    const { content } = canonicalizeContent(parsed);
+    const canonical = canonicalizeContent(parsed);
+    if (canonical.sha256 !== row.content_sha256) {
+      throw new Error("canonical revision hash mismatch");
+    }
     return {
-      siteContent: content,
+      siteContent: canonical.content,
       revisionId: row.revision_id,
+      publicationId: row.publish_operation_id,
       updatedAt: row.updated_at,
       source: "d1",
     };
@@ -106,6 +128,16 @@ export async function getSiteContent(): Promise<ResolvedSiteContent> {
   return {
     ...resolved,
     content: deriveSiteContent(resolved.siteContent),
+  };
+}
+
+export function contentDiagnosticHeaders(
+  resolved: Pick<ResolvedSiteContent, "revisionId" | "publicationId" | "source">,
+): Record<string, string> {
+  return {
+    "x-content-revision": resolved.revisionId ?? "git-default",
+    "x-content-publication": resolved.publicationId ?? "git-default",
+    "x-content-source": resolved.source,
   };
 }
 

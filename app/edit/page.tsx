@@ -23,11 +23,21 @@ export default async function EditorPage() {
   }
 
   const state = await cmsState();
+  const pendingOperation = state.operations.find(
+    (operation) =>
+      operation.id === state.publishedOperationId &&
+      operation.state !== "invalidations_complete",
+  );
   return (
     <ContentEditor
       initialContent={state.publishedContent ?? DEFAULT_SITE_CONTENT}
       publishedRevisionId={state.publishedRevisionId}
       revisions={state.revisions}
+      initialPendingOperation={
+        pendingOperation
+          ? { id: pendingOperation.id, targetRevisionId: pendingOperation.target_revision_id }
+          : null
+      }
     />
   );
 }

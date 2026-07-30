@@ -16,6 +16,25 @@ export class CmsAuthError extends Error {
   }
 }
 
+export function requireSameOrigin(request: Request): void {
+  const origin = request.headers.get("origin");
+  const expected = new URL(request.url).origin;
+  if (!origin || origin !== expected) {
+    throw new CmsAuthError("same-origin request required", 403);
+  }
+  const fetchSite = request.headers.get("sec-fetch-site");
+  if (fetchSite && fetchSite !== "same-origin") {
+    throw new CmsAuthError("cross-site request rejected", 403);
+  }
+}
+
+export function requireJsonRequest(request: Request): void {
+  requireSameOrigin(request);
+  if (request.headers.get("content-type")?.split(";")[0].trim() !== "application/json") {
+    throw new CmsAuthError("application/json required", 415);
+  }
+}
+
 async function cmsEnv() {
   const { env } = await getCloudflareContext({ async: true });
   return env as CloudflareEnv & {
@@ -69,6 +88,9 @@ export async function authorizeCms(request: Request): Promise<CmsIdentity> {
     audience,
     algorithms: ["RS256"],
   });
+  if (typeof payload.exp !== "number") {
+    throw new CmsAuthError("editor assertion has no expiry", 401);
+  }
 
   const email = typeof payload.email === "string" ? payload.email.toLowerCase() : "";
   if (email !== allowedEmail.toLowerCase()) {

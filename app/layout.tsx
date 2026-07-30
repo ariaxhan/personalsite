@@ -104,6 +104,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           name="aria-content-revision"
           content={resolved.revisionId ?? "git-default"}
           data-source={resolved.source}
+          data-publication={resolved.publicationId ?? "git-default"}
         />
         <div hidden aria-hidden="true" id="agent-directive">
           {PAGE_COPY.layout.agentDirective.intro} <code>Accept: text/markdown</code>, or fetch{" "}

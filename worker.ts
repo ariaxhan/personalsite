@@ -12,9 +12,57 @@ export { DOQueueHandler } from "./.open-next/worker.js";
 
 const worker = {
   async fetch(request: Request, env: CloudflareEnv, ctx: ExecutionContext): Promise<Response> {
-    const response = await openNextWorker.fetch(request, env, ctx);
-    return normalizeRecoveryResponse(response);
+    const url = new URL(request.url);
+    const accept = request.headers.get("accept") ?? "";
+    if (
+      request.method === "GET" &&
+      accept.includes("text/markdown") &&
+      request.headers.get("x-md-probe") !== "1"
+    ) {
+      for (const pathname of markdownCandidates(url.pathname)) {
+        const probeUrl = new URL(pathname, url);
+        const probeHeaders = new Headers(request.headers);
+        probeHeaders.set("x-md-probe", "1");
+        const probe = await openNextWorker.fetch(
+          new Request(probeUrl, { method: "GET", headers: probeHeaders }),
+          env,
+          ctx,
+        );
+        if (probe.ok && (await probe.clone().text()).length > 0) {
+          const headers = new Headers(probe.headers);
+          headers.set("x-served-as", "markdown");
+          return finalizeResponse(url, new Response(probe.body, {
+            status: probe.status,
+            statusText: probe.statusText,
+            headers,
+          }));
+        }
+      }
+    }
+
+    const response = await normalizeRecoveryResponse(
+      await openNextWorker.fetch(request, env, ctx),
+    );
+    return finalizeResponse(url, response);
   },
 };
+
+function markdownCandidates(pathname: string): string[] {
+  if (pathname === "/" || pathname === "") return ["/index.md"];
+  const trimmed = pathname.replace(/\/$/, "");
+  return [`${trimmed}/index.md`, `${trimmed}.md`];
+}
+
+function finalizeResponse(url: URL, response: Response): Response {
+  const headers = new Headers(response.headers);
+  if (url.hostname.endsWith(".workers.dev") || url.hostname.endsWith(".pages.dev")) {
+    headers.set("x-robots-tag", "noindex, nofollow");
+  }
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
 
 export default worker;

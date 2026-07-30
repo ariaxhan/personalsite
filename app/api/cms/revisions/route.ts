@@ -1,4 +1,4 @@
-import { authorizeCms, cmsErrorResponse } from "@/app/content/auth";
+import { authorizeCms, cmsErrorResponse, requireJsonRequest } from "@/app/content/auth";
 import { createRevision } from "@/app/content/publication";
 import { ContentValidationError } from "@/app/content/validation";
 
@@ -6,10 +6,8 @@ export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   try {
+    requireJsonRequest(request);
     const identity = await authorizeCms(request);
-    if (request.headers.get("content-type")?.split(";")[0] !== "application/json") {
-      return Response.json({ error: "application/json required" }, { status: 415 });
-    }
     const body = (await request.json()) as {
       content?: unknown;
       basePublishedRevisionId?: string | null;

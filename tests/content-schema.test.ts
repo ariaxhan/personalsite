@@ -2,10 +2,15 @@ import { readFileSync } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
 import { describe, expect, it } from "vitest";
 
-const schema = readFileSync(
+const baseSchema = readFileSync(
   new URL("../migrations-content/0001_content_cms.sql", import.meta.url),
   "utf8",
 );
+const hardeningSchema = readFileSync(
+  new URL("../migrations-content/0002_content_hardening.sql", import.meta.url),
+  "utf8",
+);
+const schema = `${baseSchema}\n${hardeningSchema}`;
 
 function revision(db: DatabaseSync, id: string, pageKey = "site") {
   db.prepare(
@@ -75,6 +80,27 @@ describe("D1 publication schema", () => {
     expect(() => publish(db, "pub-cross", "other-revision", null)).toThrow(
       "target_revision_page_mismatch",
     );
+  });
+
+  it("enforces immutable revisions and same-page publication ownership", () => {
+    const db = new DatabaseSync(":memory:");
+    db.exec(schema);
+    revision(db, "rev-site");
+    revision(db, "rev-other", "other");
+    publish(db, "pub-site", "rev-site", null);
+    publish(db, "pub-other", "rev-other", null, "other");
+
+    expect(() =>
+      db.prepare("UPDATE content_revisions SET content_json='{\"changed\":true}' WHERE id='rev-site'").run(),
+    ).toThrow("content_revision_immutable");
+    expect(() =>
+      db.prepare("DELETE FROM content_revisions WHERE id='rev-site'").run(),
+    ).toThrow("content_revision_immutable");
+    expect(() =>
+      db.prepare(
+        "UPDATE published_content SET publish_operation_id='pub-other' WHERE page_key='site'",
+      ).run(),
+    ).toThrow("published_operation_page_mismatch");
   });
 
   it("fails against a seeded pointer-comparison defect", () => {

@@ -3,31 +3,13 @@ import { revalidatePath, revalidateTag } from "next/cache";
 import { CONTENT_PAGE_KEY, CONTENT_SCHEMA_VERSION, type SiteContent } from "./defaultContent";
 import { getContentDb } from "./repository";
 import { canonicalizeContent } from "./validation";
+import { CONTENT_PUBLIC_PATHS } from "./publicRoutes";
 
-export const PUBLIC_DEPENDENCIES = [
-  "/",
-  "/about/",
-  "/contact/",
-  "/hackathons/",
-  "/open-source/",
-  "/project-review/",
-  "/proof/",
-  "/reading/",
-  "/systems/",
-  "/timeline/",
-  "/writing/",
-  "/edit/",
-  "/edit/login/",
-  "/sitemap.xml",
-  "/llms.txt",
-  "/llms-full.txt",
-  "/index.md",
-  "/api/projects.json",
-  "/api/site-index.json",
-  "/api/stats.json",
-  "/api/work-with-me.json",
-  "/api/writing.json",
-] as const;
+export const PUBLIC_DEPENDENCIES = {
+  version: 1,
+  tags: ["content:site"],
+  paths: CONTENT_PUBLIC_PATHS,
+} as const;
 
 type RevisionRow = {
   id: string;
@@ -40,6 +22,8 @@ type RevisionRow = {
   author_id: string;
 };
 
+export type RevisionSummary = Omit<RevisionRow, "content_json">;
+
 type OperationRow = {
   id: string;
   page_key: string;
@@ -49,6 +33,7 @@ type OperationRow = {
   idempotency_key: string;
   request_fingerprint: string;
   dependency_set_json: string;
+  dependency_set_sha256: string;
   state: string;
   created_at: string;
   pointer_moved_at: string | null;
@@ -68,13 +53,26 @@ function sha256(value: string): string {
   return createHash("sha256").update(value).digest("hex");
 }
 
-export async function currentPublishedRevisionId(): Promise<string | null> {
+export async function currentPublishedPointer(): Promise<{
+  revisionId: string;
+  publicationId: string;
+} | null> {
   const db = await getContentDb();
   const row = await db
-    .prepare("SELECT revision_id FROM published_content WHERE page_key = ?1")
+    .prepare(
+      `SELECT revision_id, publish_operation_id
+       FROM published_content
+       WHERE page_key = ?1`,
+    )
     .bind(CONTENT_PAGE_KEY)
-    .first<{ revision_id: string }>();
-  return row?.revision_id ?? null;
+    .first<{ revision_id: string; publish_operation_id: string }>();
+  return row
+    ? { revisionId: row.revision_id, publicationId: row.publish_operation_id }
+    : null;
+}
+
+export async function currentPublishedRevisionId(): Promise<string | null> {
+  return (await currentPublishedPointer())?.revisionId ?? null;
 }
 
 export async function createRevision(input: {
@@ -172,6 +170,16 @@ export async function publishRevision(input: {
       .run();
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
+    if (message.includes("UNIQUE constraint failed: publish_operations.idempotency_key")) {
+      const concurrentReplay = await db
+        .prepare("SELECT * FROM publish_operations WHERE idempotency_key = ?1")
+        .bind(input.idempotencyKey)
+        .first<OperationRow>();
+      if (concurrentReplay?.request_fingerprint === fingerprint) return concurrentReplay;
+      throw new PublicationConflictError(
+        "idempotency key was already used for another request",
+      );
+    }
     if (
       message.includes("stale_published_pointer") ||
       message.includes("target_revision_page_mismatch") ||
@@ -186,8 +194,8 @@ export async function publishRevision(input: {
     if (input.forceInvalidationFailure) {
       throw new Error("seeded preview invalidation failure");
     }
-    revalidateTag("content:site");
-    for (const path of PUBLIC_DEPENDENCIES) revalidatePath(path);
+    for (const tag of PUBLIC_DEPENDENCIES.tags) revalidateTag(tag);
+    for (const path of PUBLIC_DEPENDENCIES.paths) revalidatePath(path);
     const dispatchedAt = new Date().toISOString();
     await db
       .prepare(
@@ -224,9 +232,37 @@ export async function retryInvalidation(operationId: string): Promise<OperationR
     .first<OperationRow>();
   if (!operation) throw new PublicationConflictError("publish operation not found");
 
-  revalidateTag("content:site");
-  const dependencies = JSON.parse(operation.dependency_set_json) as string[];
-  for (const path of dependencies) revalidatePath(path);
+  const pointer = await currentPublishedPointer();
+  if (
+    pointer?.revisionId !== operation.target_revision_id ||
+    pointer.publicationId !== operation.id
+  ) {
+    throw new PublicationConflictError("publish operation target is no longer canonical");
+  }
+  if (operation.state === "invalidations_complete") {
+    throw new PublicationConflictError("publish operation has already converged");
+  }
+
+  const dependenciesJson = operation.dependency_set_json;
+  if (sha256(dependenciesJson) !== operation.dependency_set_sha256) {
+    throw new PublicationConflictError("publish dependency set failed integrity validation");
+  }
+  const dependencies = JSON.parse(dependenciesJson) as {
+    version?: unknown;
+    tags?: unknown;
+    paths?: unknown;
+  };
+  if (
+    dependencies.version !== 1 ||
+    !Array.isArray(dependencies.tags) ||
+    !dependencies.tags.every((tag) => typeof tag === "string") ||
+    !Array.isArray(dependencies.paths) ||
+    !dependencies.paths.every((path) => typeof path === "string")
+  ) {
+    throw new PublicationConflictError("publish dependency set is invalid");
+  }
+  for (const tag of dependencies.tags) revalidateTag(tag);
+  for (const path of dependencies.paths) revalidatePath(path);
   const dispatchedAt = new Date().toISOString();
   await db
     .prepare(
@@ -257,17 +293,49 @@ export async function markConverged(operationId: string): Promise<void> {
     .run();
 }
 
+export async function getRevision(revisionId: string): Promise<{
+  revision: RevisionSummary;
+  content: SiteContent;
+}> {
+  const db = await getContentDb();
+  const row = await db
+    .prepare(
+      `SELECT id, page_key, parent_revision_id, base_published_revision_id,
+              content_json, content_sha256, created_at, author_id
+       FROM content_revisions
+       WHERE id = ?1 AND page_key = ?2`,
+    )
+    .bind(revisionId, CONTENT_PAGE_KEY)
+    .first<RevisionRow>();
+  if (!row) throw new PublicationConflictError("revision not found");
+  const canonical = canonicalizeContent(JSON.parse(row.content_json));
+  if (canonical.sha256 !== row.content_sha256) {
+    throw new PublicationConflictError("revision failed integrity validation");
+  }
+  const revision: RevisionSummary = {
+    id: row.id,
+    page_key: row.page_key,
+    parent_revision_id: row.parent_revision_id,
+    base_published_revision_id: row.base_published_revision_id,
+    content_sha256: row.content_sha256,
+    created_at: row.created_at,
+    author_id: row.author_id,
+  };
+  return { revision, content: canonical.content };
+}
+
 export async function cmsState(): Promise<{
   publishedRevisionId: string | null;
+  publishedOperationId: string | null;
   publishedContent: SiteContent | null;
-  revisions: RevisionRow[];
+  revisions: RevisionSummary[];
   operations: OperationRow[];
 }> {
   const db = await getContentDb();
   const [pointer, revisions, operations] = await db.batch([
     db
       .prepare(
-        `SELECT p.revision_id, r.content_json
+        `SELECT p.revision_id, p.publish_operation_id, r.content_json
          FROM published_content p
          JOIN content_revisions r
            ON r.id = p.revision_id AND r.page_key = p.page_key
@@ -277,7 +345,7 @@ export async function cmsState(): Promise<{
     db
       .prepare(
         `SELECT id, page_key, parent_revision_id, base_published_revision_id,
-                content_json, content_sha256, created_at, author_id
+                content_sha256, created_at, author_id
          FROM content_revisions
          WHERE page_key = ?1
          ORDER BY created_at DESC
@@ -296,14 +364,15 @@ export async function cmsState(): Promise<{
   ]);
 
   const pointerRow = pointer.results[0] as
-    | { revision_id: string; content_json: string }
+    | { revision_id: string; publish_operation_id: string; content_json: string }
     | undefined;
   return {
     publishedRevisionId: pointerRow?.revision_id ?? null,
+    publishedOperationId: pointerRow?.publish_operation_id ?? null,
     publishedContent: pointerRow
       ? canonicalizeContent(JSON.parse(pointerRow.content_json)).content
       : null,
-    revisions: revisions.results as RevisionRow[],
+    revisions: revisions.results as RevisionSummary[],
     operations: operations.results as OperationRow[],
   };
 }

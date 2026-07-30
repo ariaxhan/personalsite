@@ -1,4 +1,8 @@
 import type { DerivedSiteContent } from "./defaultContent";
+import {
+  contentDiagnosticHeaders,
+  type ResolvedSiteContent,
+} from "./repository";
 
 const lines = (...parts: Array<string | false | null | undefined>) =>
   parts.filter((part): part is string => typeof part === "string" && part.length > 0).join("\n\n");
@@ -160,17 +164,27 @@ export function workWithMeJson(content: DerivedSiteContent) {
   };
 }
 
-export function jsonResponse(data: unknown): Response {
+export function jsonResponse(
+  data: unknown,
+  resolved: Pick<ResolvedSiteContent, "revisionId" | "publicationId" | "source">,
+): Response {
   return Response.json(data, {
-    headers: { "cache-control": "public, max-age=0, must-revalidate" },
+    headers: {
+      "cache-control": "public, max-age=0, must-revalidate",
+      ...contentDiagnosticHeaders(resolved),
+    },
   });
 }
 
-export function markdownResponse(markdown: string): Response {
+export function markdownResponse(
+  markdown: string,
+  resolved: Pick<ResolvedSiteContent, "revisionId" | "publicationId" | "source">,
+): Response {
   return new Response(markdown, {
     headers: {
       "content-type": "text/markdown; charset=utf-8",
       "cache-control": "public, max-age=0, must-revalidate",
+      ...contentDiagnosticHeaders(resolved),
     },
   });
 }
