@@ -78,6 +78,8 @@
     "NEXTJS_ENV": "production",
     "CMS_EDITOR_EMAIL": "tiredlillies@gmail.com",
     "CMS_EDITOR_ENABLED": "true",
+    "CMS_ACCESS_TEAM": "content-website-pages",
+    "CMS_ACCESS_AUD": "597adb4676059c95be72a3a09d5f1858b930dcbd841f68dfda66e7979d96e7ba",
     "CMS_PREVIEW_HOSTNAME": "cms-preview.ariaxhan.com",
     "CMS_PREVIEW_DEV_AUTH": "enabled",
     "PROJECT_REVIEW_TO_EMAIL": "ariaxhan@gmail.com",

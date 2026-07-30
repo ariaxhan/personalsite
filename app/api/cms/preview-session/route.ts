@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       return NextResponse.redirect(new URL("/edit/login/?error=1", request.url), 303);
     }
 
-    const response = NextResponse.redirect(new URL("/edit/", request.url), 303);
+    const response = NextResponse.redirect(new URL("/?edit=true", request.url), 303);
     response.cookies.set("cms-preview-session", token, {
       httpOnly: true,
       secure: !isExplicitLocalRuntime,

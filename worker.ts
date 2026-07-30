@@ -13,6 +13,22 @@ export { DOQueueHandler } from "./.open-next/worker.js";
 const worker = {
   async fetch(request: Request, env: CloudflareEnv, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+    let appRequest = request;
+    if (
+      request.method === "GET" &&
+      url.searchParams.get("edit") === "true" &&
+      !url.pathname.startsWith("/edit-mode")
+    ) {
+      const headers = new Headers(request.headers);
+      headers.set(
+        "x-cms-edit-return",
+        `${url.pathname}${url.search}${url.hash}`,
+      );
+      const editUrl = new URL(url);
+      editUrl.pathname =
+        url.pathname === "/" ? "/edit-mode/" : `/edit-mode${url.pathname}`;
+      appRequest = new Request(editUrl, { headers, method: request.method });
+    }
     if (isCmsPrivatePath(url.pathname) && env.CMS_EDITOR_ENABLED !== "true") {
       return finalizeResponse(
         url,
@@ -52,7 +68,7 @@ const worker = {
     }
 
     const response = await normalizeRecoveryResponse(
-      await openNextWorker.fetch(request, env, ctx),
+      await openNextWorker.fetch(appRequest, env, ctx),
     );
     return finalizeResponse(url, response, env);
   },
@@ -68,6 +84,8 @@ function isCmsPrivatePath(pathname: string): boolean {
   return (
     pathname === "/edit" ||
     pathname.startsWith("/edit/") ||
+    pathname === "/edit-mode" ||
+    pathname.startsWith("/edit-mode/") ||
     pathname === "/api/cms" ||
     pathname.startsWith("/api/cms/")
   );

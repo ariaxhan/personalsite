@@ -16,7 +16,7 @@ const operationGuardSchema = readFileSync(
 );
 const strictOperationGuardSchema = readFileSync(
   new URL(
-    "../migrations-content/0004_strict_publish_operation_guard.sql",
+    "../migrations-content-phase-b/0004_strict_publish_operation_guard.sql",
     import.meta.url,
   ),
   "utf8",

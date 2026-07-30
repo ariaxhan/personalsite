@@ -153,4 +153,109 @@ describe("sitemap significant-change history", () => {
 
     expect(result.get("/about/")).toBe(identityEdit.publishedAt);
   });
+
+  it("dates Contact when its project-review bullets change", () => {
+    const contactEdit = snapshot(
+      "pub-contact-bullet",
+      "2026-02-01T00:00:00.000Z",
+      (content) => {
+        content.projectReviewBullets[0] += " updated";
+      },
+    );
+
+    const result = calculateSignificantChangeDates(
+      [contactEdit],
+      contactEdit.publicationId,
+      contactEdit.content,
+      baseline,
+    );
+
+    expect(result.get("/contact/")).toBe(contactEdit.publishedAt);
+    expect(result.get("/project-review/")).toBe(contactEdit.publishedAt);
+  });
+
+  it("dates connected project pages when a displayed project name changes", () => {
+    const relatedNameEdit = snapshot(
+      "pub-related-name",
+      "2026-02-01T00:00:00.000Z",
+      (content) => {
+        const connected = content.projects.find(
+          (project) => project.slug === "llm-bench",
+        );
+        if (!connected) throw new Error("llm-bench fixture is missing");
+        connected.name += " updated";
+      },
+    );
+
+    const result = calculateSignificantChangeDates(
+      [relatedNameEdit],
+      relatedNameEdit.publicationId,
+      relatedNameEdit.content,
+      baseline,
+    );
+
+    expect(result.get("/projects/llm-bench/")).toBe(relatedNameEdit.publishedAt);
+    expect(result.get("/projects/modelmind/")).toBe(relatedNameEdit.publishedAt);
+  });
+
+  it("dates every HTML route when shared site identity changes", () => {
+    const sharedEdit = snapshot(
+      "pub-shared",
+      "2026-02-01T00:00:00.000Z",
+      (content) => {
+        content.SITE.role += " updated";
+      },
+    );
+
+    const result = calculateSignificantChangeDates(
+      [sharedEdit],
+      sharedEdit.publicationId,
+      sharedEdit.content,
+      baseline,
+    );
+
+    for (const route of result.keys()) {
+      expect(result.get(route), route).toBe(sharedEdit.publishedAt);
+    }
+  });
+
+  it("dates the homepage when server-rendered homepage copy changes", () => {
+    const homeCopyEdit = snapshot(
+      "pub-home-copy",
+      "2026-02-01T00:00:00.000Z",
+      (content) => {
+        content.PAGE_COPY.systemDiagram.label += " updated";
+      },
+    );
+
+    const result = calculateSignificantChangeDates(
+      [homeCopyEdit],
+      homeCopyEdit.publicationId,
+      homeCopyEdit.content,
+      baseline,
+    );
+
+    expect(result.get("/")).toBe(homeCopyEdit.publishedAt);
+    expect(result.get("/about/")).toBe(baseline["/about/"]);
+  });
+
+  it("dates the homepage when a displayed homepage collection changes", () => {
+    const homeCollectionEdit = snapshot(
+      "pub-home-collection",
+      "2026-02-01T00:00:00.000Z",
+      (content) => {
+        content.deskObjects[0].caption += " updated";
+      },
+    );
+
+    const result = calculateSignificantChangeDates(
+      [homeCollectionEdit],
+      homeCollectionEdit.publicationId,
+      homeCollectionEdit.content,
+      baseline,
+    );
+
+    expect(result.get("/")).toBe(homeCollectionEdit.publishedAt);
+    expect(result.get("/writing/")).toBe(baseline["/writing/"]);
+  });
 });

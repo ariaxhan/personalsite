@@ -52,18 +52,33 @@ export function isCmsEditorEnabled(value: string | undefined): boolean {
   return value === "true";
 }
 
+function decodeCookieValue(value: string): string {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    throw new CmsAuthError("malformed cookie", 401);
+  }
+}
+
 export async function authorizeCms(request: Request): Promise<CmsIdentity> {
   const env = await cmsEnv();
   if (!isCmsEditorEnabled(env.CMS_EDITOR_ENABLED)) {
     throw new CmsAuthError("Not found", 404);
   }
   const url = new URL(request.url);
-  const cookieToken = request.headers
-    .get("cookie")
-    ?.split(";")
-    .map((part) => part.trim())
-    .find((part) => part.startsWith("cms-preview-session="))
-    ?.slice("cms-preview-session=".length);
+  const cookies = new Map(
+    (request.headers.get("cookie") ?? "")
+      .split(";")
+      .map((part) => part.trim())
+      .filter(Boolean)
+      .map((part) => {
+        const separator = part.indexOf("=");
+        return separator < 0
+          ? [part, ""]
+          : [part.slice(0, separator), decodeCookieValue(part.slice(separator + 1))];
+      }),
+  );
+  const cookieToken = cookies.get("cms-preview-session");
   const devToken = request.headers.get("x-cms-dev-token") ?? cookieToken;
   const isExplicitLocalRuntime =
     env.CMS_LOCAL_DEV_AUTH === "enabled" &&
@@ -92,7 +107,9 @@ export async function authorizeCms(request: Request): Promise<CmsIdentity> {
     throw new CmsAuthError("editor authentication is not configured", 503);
   }
 
-  const assertion = request.headers.get("cf-access-jwt-assertion");
+  const assertion =
+    request.headers.get("cf-access-jwt-assertion") ??
+    cookies.get("cms-access-assertion");
   if (!assertion) throw new CmsAuthError("authentication required");
 
   const issuer = `https://${team}.cloudflareaccess.com`;

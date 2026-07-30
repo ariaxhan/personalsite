@@ -23,10 +23,8 @@ import { projectSchema, breadcrumbSchema } from "../../utils/jsonLd";
 import StudioFooter from "../../components/StudioFooter";
 import { getSiteContent } from "../../content/repository";
 
-export const dynamic = "force-static";
-
 export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({

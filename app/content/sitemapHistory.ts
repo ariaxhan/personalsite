@@ -78,6 +78,15 @@ function baselineDate(
 
 function routeSignature(route: string, content: SiteContent): string {
   const pageCopy = content.PAGE_COPY;
+  // Every HTML route renders the shared navigation, hidden agent directive,
+  // root metadata, and (on most pages) the studio footer. A shared copy change
+  // must never leave an affected route carrying an older lastModified value.
+  const sharedDependencies = [
+    content.SITE,
+    pageCopy.navigation,
+    pageCopy.layout,
+    pageCopy.footer,
+  ];
   const productProjects = content.projects.filter(
     (project) => project.kind === "product" || project.kind === "company",
   );
@@ -91,8 +100,15 @@ function routeSignature(route: string, content: SiteContent): string {
   }));
   if (route.startsWith("/projects/")) {
     const slug = route.split("/").filter(Boolean).at(-1);
+    const project = content.projects.find((candidate) => candidate.slug === slug);
+    const connectedLabels = (project?.connections ?? []).map((connectedSlug) => {
+      const connected = content.projects.find(
+        (candidate) => candidate.slug === connectedSlug,
+      );
+      return connected ? { slug: connected.slug, name: connected.name } : null;
+    });
     return JSON.stringify(
-      content.projects.find((project) => project.slug === slug) ?? null,
+      [sharedDependencies, project ?? null, connectedLabels],
     );
   }
 
@@ -103,13 +119,20 @@ function routeSignature(route: string, content: SiteContent): string {
       content.projects,
       content.articles,
       content.moments,
+      content.contactLinks,
+      content.deskObjects,
+      content.WRITING_THEMES,
       pageCopy.hero,
       pageCopy.manifesto,
       pageCopy.thesis,
+      pageCopy.systemDiagram,
+      pageCopy.motion,
+      pageCopy.contact.elsewhere,
       pageCopy.sections.whatIBuild,
       pageCopy.sections.projectMap,
       pageCopy.sections.writingHighlights,
       pageCopy.sections.workWithMeDoor,
+      pageCopy.sections.livingDesk,
       pageCopy.now,
       pageCopy.metadata.home,
     ],
@@ -131,7 +154,7 @@ function routeSignature(route: string, content: SiteContent): string {
       pageCopy.metadata.reading,
     ],
     "/contact/": [
-      content.SITE.booking,
+      content.projectReviewBullets,
       content.contactLinks,
       content.engagements,
       content.goodFit,
@@ -194,5 +217,5 @@ function routeSignature(route: string, content: SiteContent): string {
       pageCopy.metadata.writing,
     ],
   };
-  return JSON.stringify(dependencies[route] ?? []);
+  return JSON.stringify([sharedDependencies, dependencies[route] ?? []]);
 }

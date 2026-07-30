@@ -1,0 +1,91 @@
+.toolbar {
+  position: fixed;
+  z-index: 10000;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 8px 10px;
+  border: 1px solid rgba(44, 40, 35, 0.25);
+  background: rgba(243, 237, 224, 0.97);
+  box-shadow: 0 12px 40px rgba(44, 40, 35, 0.18);
+  color: #2c2823;
+  font: 11px/1.35 var(--font-mono), monospace;
+  backdrop-filter: blur(12px);
+}
+
+.status {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.choices {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  display: grid;
+  max-width: min(620px, calc(100vw - 32px));
+  max-height: 260px;
+  gap: 6px;
+  overflow: auto;
+  padding: 8px;
+  border: 1px solid rgba(44, 40, 35, 0.25);
+  background: #f3ede0;
+  box-shadow: 0 12px 40px rgba(44, 40, 35, 0.18);
+}
+
+.button {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid rgba(44, 40, 35, 0.25);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.button:hover:not(:disabled),
+.button:focus-visible {
+  border-color: #b56a4f;
+  color: #8e4d38;
+}
+
+.button:disabled {
+  cursor: default;
+  opacity: 0.38;
+}
+
+.editable {
+  outline: 2px solid #5b7894 !important;
+  outline-offset: 4px;
+  cursor: text !important;
+}
+
+.editing {
+  outline: 2px solid #b56a4f !important;
+  outline-offset: 4px;
+  background: rgba(255, 255, 255, 0.42);
+  cursor: text !important;
+}
+
+@media (max-width: 680px) {
+  .toolbar {
+    flex-wrap: wrap;
+  }
+
+  .status {
+    flex-basis: 100%;
+    order: -1;
+  }
+
+  .button {
+    flex: 1;
+    padding-inline: 8px;
+  }
+}
