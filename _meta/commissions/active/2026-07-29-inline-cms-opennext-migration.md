@@ -1,12 +1,21 @@
 ---
 type: commission
-status: active
+status: superseded
 created: 2026-07-29
 supersedes:
   - _meta/plans/d1-copy-editor.md
+superseded_by:
+  - _meta/commissions/active/2026-07-29-inline-cms-portfolio-v1.md
+  - _meta/plans/editable-site-commercial-roadmap.md
 ---
 
 # Commission: inline CMS and OpenNext migration for ariaxhan.com
+
+> Superseded after three independent reviews found that this contract mixed a
+> portfolio migration with future commercial-platform scope. It remains the
+> detailed review and failure-analysis record. Execution authority now lives in
+> `2026-07-29-inline-cms-portfolio-v1.md`; commercial possibilities are separated
+> into the non-authoritative product roadmap.
 
 ## Telos
 

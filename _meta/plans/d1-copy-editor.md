@@ -1,10 +1,15 @@
 ---
 type: plan
-status: active
+status: superseded
 created: 2026-07-29
+superseded_by:
+  - _meta/commissions/active/2026-07-29-inline-cms-portfolio-v1.md
 ---
 
 # D1 copy editor
+
+> Superseded. This early sketch predates the reviewed recovery, publication,
+> and product-scope split. It is preserved only as design history.
 
 ## Contract
 
