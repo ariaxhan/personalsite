@@ -14,7 +14,15 @@ const operationGuardSchema = readFileSync(
   new URL("../migrations-content/0003_publish_operation_guard.sql", import.meta.url),
   "utf8",
 );
-const schema = `${baseSchema}\n${hardeningSchema}\n${operationGuardSchema}`;
+const strictOperationGuardSchema = readFileSync(
+  new URL(
+    "../migrations-content/0004_strict_publish_operation_guard.sql",
+    import.meta.url,
+  ),
+  "utf8",
+);
+const compatibilitySchema = `${baseSchema}\n${hardeningSchema}\n${operationGuardSchema}`;
+const schema = `${compatibilitySchema}\n${strictOperationGuardSchema}`;
 
 function revision(db: DatabaseSync, id: string, pageKey = "site") {
   db.prepare(
@@ -135,7 +143,7 @@ describe("D1 publication schema", () => {
 
   it("keeps the compatibility migration usable by the previous Worker", () => {
     const db = new DatabaseSync(":memory:");
-    db.exec(schema);
+    db.exec(compatibilitySchema);
     revision(db, "rev-a");
 
     legacyPublish(db, "pub-a", "rev-a", null);
@@ -148,6 +156,24 @@ describe("D1 publication schema", () => {
         )
         .get(),
     ).toEqual({ publish_operation_id: "pub-old-worker-rollback" });
+  });
+
+  it("rejects the previous Worker after the strict migration", () => {
+    const db = new DatabaseSync(":memory:");
+    db.exec(schema);
+    revision(db, "rev-a");
+
+    publish(db, "pub-a", "rev-a", null);
+    expect(() =>
+      legacyPublish(db, "pub-old-worker-rollback", "rev-a", "rev-a"),
+    ).toThrow("stale_published_operation");
+    expect(
+      db
+        .prepare(
+          "SELECT publish_operation_id FROM published_content WHERE page_key='site'",
+        )
+        .get(),
+    ).toEqual({ publish_operation_id: "pub-a" });
   });
 
   it("deduplicates draft saves by idempotency key", () => {
