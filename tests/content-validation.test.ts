@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { DEFAULT_SITE_CONTENT } from "../app/content/defaultContent";
 import {
   ContentValidationError,
+  NEW_ARTICLE_HREFS,
   canonicalizeContent,
   isEditableContentPath,
 } from "../app/content/validation";
@@ -42,6 +43,19 @@ describe("content validation", () => {
     ]);
     legacy.projects = legacy.projects.filter((project) => legacySlugs.has(project.slug));
     expect(canonicalizeContent(legacy).content.projects).toHaveLength(15);
+  });
+
+  it("keeps the previous 18-article snapshot valid during the catalog migration", () => {
+    const previous = structuredClone(DEFAULT_SITE_CONTENT);
+    const added = new Set<string>(NEW_ARTICLE_HREFS);
+    previous.articles = previous.articles.filter((article) => !added.has(article.href));
+    expect(canonicalizeContent(previous).content.articles).toHaveLength(18);
+  });
+
+  it("rejects arbitrary article removal during the catalog migration", () => {
+    const incomplete = structuredClone(DEFAULT_SITE_CONTENT);
+    incomplete.articles.splice(1, 1);
+    expect(() => canonicalizeContent(incomplete)).toThrow(ContentValidationError);
   });
 
   it("rejects arbitrary project removal during the catalog migration", () => {

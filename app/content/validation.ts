@@ -24,6 +24,12 @@ const LEGACY_PROJECT_SLUGS = [
   "latent-diagnostics",
 ] as const;
 
+export const NEW_ARTICLE_HREFS = [
+  "https://medium.com/@ariaxhan/grok-bot-cursors-bet-on-multi-agent-ai-77d69ba8b290",
+  "https://medium.com/@ariaxhan/claude-vs-gpt-vs-gemini-youre-benchmarking-the-wrong-thing-762c7e9cca5d",
+  "https://medium.com/@ariaxhan/how-i-stopped-debugging-ai-generated-code-1be33241b3c8",
+] as const;
+
 export class ContentValidationError extends Error {
   constructor(message: string) {
     super(message);
@@ -97,6 +103,42 @@ function compareShape(candidate: unknown, template: unknown, path: string, depth
       );
       return;
     }
+    if (path === "site.articles") {
+      const candidateHrefs = candidate.map((article) =>
+        article && typeof article === "object" && !Array.isArray(article)
+          ? (article as { href?: unknown }).href
+          : undefined,
+      );
+      const currentHrefs = template.map((article) =>
+        (article as { href: string }).href,
+      );
+      const previousHrefs = currentHrefs.filter(
+        (href) => !NEW_ARTICLE_HREFS.includes(href as (typeof NEW_ARTICLE_HREFS)[number]),
+      );
+      const allowed = [currentHrefs, previousHrefs].some(
+        (hrefs) => JSON.stringify(candidateHrefs) === JSON.stringify(hrefs),
+      );
+      if (!allowed) {
+        throw new ContentValidationError(
+          `${path} must keep the current or immediately previous article catalog`,
+        );
+      }
+      const templatesByHref = new Map(
+        template.map((article) => [
+          (article as { href: string }).href,
+          article,
+        ]),
+      );
+      candidate.forEach((child, index) =>
+        compareShape(
+          child,
+          templatesByHref.get(candidateHrefs[index] as string),
+          `${path}.${index}`,
+          depth + 1,
+        ),
+      );
+      return;
+    }
     if (candidate.length !== template.length) {
       throw new ContentValidationError(`${path} must keep ${template.length} items`);
     }
@@ -135,6 +177,19 @@ function compareProtected(candidate: unknown, template: unknown, path: string): 
       candidate.forEach((child, index) => {
         const slug = (child as { slug: string }).slug;
         compareProtected(child, templatesBySlug.get(slug), `${path}.${index}`);
+      });
+      return;
+    }
+    if (path === "articles") {
+      const templatesByHref = new Map(
+        template.map((article) => [
+          (article as { href: string }).href,
+          article,
+        ]),
+      );
+      candidate.forEach((child, index) => {
+        const href = (child as { href: string }).href;
+        compareProtected(child, templatesByHref.get(href), `${path}.${index}`);
       });
       return;
     }

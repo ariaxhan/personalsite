@@ -1400,6 +1400,14 @@ export interface Article {
 export const articles: Article[] = [
   // agents
   {
+    title: "Grok Bot: Cursor’s Bet on Multi-Agent AI",
+    excerpt:
+      "Of all the AI tools I’ve tried, Grok Bot may be the simplest iteration of a personal agentic team. The problem is that it keeps breaking.",
+    theme: "agents",
+    read: "4 min",
+    href: "https://medium.com/@ariaxhan/grok-bot-cursors-bet-on-multi-agent-ai-77d69ba8b290",
+  },
+  {
     title: "Your AI Harness Is the Real Product",
     excerpt:
       "The model writes the code. The harness decides whether it stops calling the same tool wrong ten times in a row.",
@@ -1454,6 +1462,14 @@ export const articles: Article[] = [
   },
   // evals-verification
   {
+    title: "Claude vs. GPT vs. Gemini: You’re Benchmarking the Wrong Thing",
+    excerpt:
+      "These benchmarks are not only comparing models. They are comparing the systems built around those models and the design of the benchmarks themselves.",
+    theme: "evals-verification",
+    read: "4 min",
+    href: "https://medium.com/@ariaxhan/claude-vs-gpt-vs-gemini-youre-benchmarking-the-wrong-thing-762c7e9cca5d",
+  },
+  {
     title: "Opus 4.8 vs 4.7 vs Sonnet vs Haiku: When the Expensive Model Is Worth It",
     excerpt:
       "A new model dropped with impressive numbers. The only question that matters: will you feel any difference in the work you actually do?",
@@ -1470,6 +1486,14 @@ export const articles: Article[] = [
     href: "https://medium.com/@ariaxhan/what-an-ai-detector-actually-measures-86b452979a5a",
   },
   // ai-coding-workflows
+  {
+    title: "I Stopped Debugging Claude’s Code and Started Debugging My Prompts Instead",
+    excerpt:
+      "Debugging AI-generated code usually isn’t about fixing bad code. It’s about giving the model context it never had.",
+    theme: "ai-coding-workflows",
+    read: "7 min",
+    href: "https://medium.com/@ariaxhan/how-i-stopped-debugging-ai-generated-code-1be33241b3c8",
+  },
   {
     title: "How to Make Claude Code Actually Work",
     excerpt: "The most capable AI coding tool available. Also completely chaotic.",
