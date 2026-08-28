@@ -77,6 +77,7 @@ async function significantChangeDates(
        JOIN content_revisions r
          ON r.id = o.target_revision_id AND r.page_key = o.page_key
        WHERE o.page_key = ?1
+         AND COALESCE(o.last_error, '') != 'superseded-invalid-content'
        ORDER BY o.created_at ASC, o.id ASC`,
     )
     .bind(CONTENT_PAGE_KEY)
@@ -111,4 +112,3 @@ function escapeXml(value: string): string {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&apos;");
 }
-

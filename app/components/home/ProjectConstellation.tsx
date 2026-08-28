@@ -38,7 +38,6 @@ const POS: Record<string, { x: number; y: number }> = {
   "civic-forges": { x: 82, y: 79 },
   "not-recommended": { x: 91, y: 64 },
   hearth: { x: 13, y: 88 },
-  "reality-check": { x: 91, y: 49 },
   // newer systems and tools
   "nexus-office": { x: 35, y: 37 },
   renderstate: { x: 73, y: 42 },

@@ -391,39 +391,6 @@ export const projects: Project[] = [
     plate: "/studio/project-hearth.png",
     gallery: ["/studio/project-hearth.png"],
   },
-  {
-    slug: "reality-check",
-    name: "Reality Check",
-    kind: "product",
-    status: "Live · Zero Human Company Hackathon",
-    thesis: "A hackathon project needs outside evidence before it needs another confident rewrite.",
-    problem:
-      "Teams can spend a whole hackathon polishing a premise nobody outside the room understands or wants.",
-    built: [
-      "A text-first autonomous review service that reads a repo, deck, or landing page, recruits three real strangers for blind feedback, and returns a verdict, four-page PDF, and agent-readable repair brief.",
-    ],
-    stack: "Python · FastAPI · Terac · Stripe · Linq · Render",
-    links: [
-      { label: "Live site", href: "https://reality-check-qhy9.onrender.com" },
-      { label: "Team GitHub", href: "https://github.com/MyatPyaePaingPie/zero-human" },
-    ],
-    proof: "Built with Myat Paing at the 2026 Zero Human Company Hackathon and deployed on Render.",
-    learned: "Agents can run the review loop, but strangers are still the evidence for whether a stranger understands the pitch.",
-    proves: "Building an autonomous product with human evidence, payments, messaging, and hard spending controls.",
-    closing: "The model has an opinion. The market gets a vote.",
-    themes: ["agents", "evals", "verification", "implementation"],
-    connections: ["llm-bench", "model-familiarity-engine"],
-    accent: "#7a4f5f",
-    meta: {
-      role: "Co-builder · Product · Agent Systems",
-      status: "Live · Hackathon Build",
-      team: "Aria Han · Myat Paing",
-      stack: "Python · FastAPI · Terac · Stripe · Linq",
-    },
-    plate: "/studio/project-reality-check.png",
-    gallery: ["/studio/project-reality-check.png"],
-  },
-
   // -------------------------------------------------------------- companies
   {
     slug: "heycontext",
@@ -1778,7 +1745,7 @@ export const PAGE_COPY = {
       title: "The projects are chapters, not trophies",
       note: "How do people learn AI? How do people read research? How does AI remember? How do teams work with agents every day? The projects are different answers to questions that keep coming back.",
       defaultCaption:
-        "Twenty-one projects, grouped by the questions underneath them: learning AI, reading research, keeping context, coordinating agents, preserving evidence, and making daily work less likely to evaporate.",
+        "Twenty projects, grouped by the questions underneath them: learning AI, reading research, keeping context, coordinating agents, preserving evidence, and making daily work less likely to evaporate.",
       plainText: "The map in plain text",
     },
     writingHighlights: {

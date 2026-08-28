@@ -2,6 +2,9 @@ import { describe, expect, it } from "vitest";
 import { DEFAULT_SITE_CONTENT } from "../app/content/defaultContent";
 import {
   ContentValidationError,
+  HISTORICAL_PROJECT_SLUGS,
+  PREVIOUS_PROJECT_SLUGS,
+  PREVIOUS_REMOVED_PROJECT_TEMPLATE,
   canonicalizeContent,
   isEditableContentPath,
 } from "../app/content/validation";
@@ -21,27 +24,19 @@ describe("content validation", () => {
     expect(result.content.SITE.oneLiner).toBe("AI for work, AI for humans.");
   });
 
-  it("keeps the previous 15-project snapshot valid during the catalog migration", () => {
-    const legacy = structuredClone(DEFAULT_SITE_CONTENT);
-    const legacySlugs = new Set([
-      "modelmind",
-      "paper-rooms",
-      "our4cuts",
-      "heycontext",
-      "heycontent",
-      "brink-mind",
-      "site-spec",
-      "kernel",
-      "llm-bench",
-      "the-agent-library",
-      "model-familiarity-engine",
-      "metabrain",
-      "agentmailkit",
-      "substrate",
-      "latent-diagnostics",
-    ]);
-    legacy.projects = legacy.projects.filter((project) => legacySlugs.has(project.slug));
-    expect(canonicalizeContent(legacy).content.projects).toHaveLength(15);
+  it("keeps the previous 21-project snapshot valid during the catalog migration", () => {
+    const previous = structuredClone(DEFAULT_SITE_CONTENT);
+    previous.projects.splice(6, 0, structuredClone(PREVIOUS_REMOVED_PROJECT_TEMPLATE));
+    expect(previous.projects.map((project) => project.slug)).toEqual(PREVIOUS_PROJECT_SLUGS);
+    expect(canonicalizeContent(previous).content.projects).toHaveLength(21);
+  });
+
+  it("keeps the historical 15-project snapshot valid for sitemap history", () => {
+    const historical = structuredClone(DEFAULT_SITE_CONTENT);
+    const slugs = new Set(HISTORICAL_PROJECT_SLUGS);
+    historical.projects = historical.projects.filter((project) => slugs.has(project.slug));
+    expect(historical.projects.map((project) => project.slug)).toEqual(HISTORICAL_PROJECT_SLUGS);
+    expect(canonicalizeContent(historical).content.projects).toHaveLength(15);
   });
 
   it("rejects arbitrary project removal during the catalog migration", () => {
