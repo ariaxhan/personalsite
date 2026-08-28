@@ -21,6 +21,37 @@ describe("content validation", () => {
     expect(result.content.SITE.oneLiner).toBe("AI for work, AI for humans.");
   });
 
+  it("keeps the previous 15-project snapshot valid during the catalog migration", () => {
+    const legacy = structuredClone(DEFAULT_SITE_CONTENT);
+    const legacySlugs = new Set([
+      "modelmind",
+      "paper-rooms",
+      "our4cuts",
+      "heycontext",
+      "heycontent",
+      "brink-mind",
+      "site-spec",
+      "kernel",
+      "llm-bench",
+      "the-agent-library",
+      "model-familiarity-engine",
+      "metabrain",
+      "agentmailkit",
+      "substrate",
+      "latent-diagnostics",
+    ]);
+    legacy.projects = legacy.projects.filter((project) => legacySlugs.has(project.slug));
+    expect(canonicalizeContent(legacy).content.projects).toHaveLength(15);
+  });
+
+  it("rejects arbitrary project removal during the catalog migration", () => {
+    const incomplete = structuredClone(DEFAULT_SITE_CONTENT);
+    incomplete.projects = incomplete.projects.slice(0, -1);
+    expect(() => canonicalizeContent(incomplete)).toThrow(
+      "current or immediately previous project catalog",
+    );
+  });
+
   it("accepts prose edits and normalizes Unicode", () => {
     const edited = mutableClone();
     edited.SITE.oneLiner = "Cafe\u0301 for humans.";

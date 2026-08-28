@@ -7,7 +7,7 @@ import Reveal from "../studio/Reveal";
 import type { Project } from "../../utils/projectsData";
 import { useSiteContent } from "../../content/SiteContentProvider";
 
-// ProjectConstellation: the thirteen projects as a constellation, not a grid.
+// ProjectConstellation: the projects as a constellation, not a grid.
 // Nodes sit in theme neighborhoods (memory NW, evals NE, agents center,
 // products S, companies SW); edges come from each project's declared
 // connections. Resting on a node warms its edges and neighbors and prints its
@@ -35,6 +35,15 @@ const POS: Record<string, { x: number; y: number }> = {
   "paper-rooms": { x: 46, y: 86 },
   modelmind: { x: 58, y: 82 },
   our4cuts: { x: 70, y: 88 },
+  "civic-forges": { x: 82, y: 79 },
+  "not-recommended": { x: 91, y: 64 },
+  hearth: { x: 13, y: 88 },
+  "reality-check": { x: 91, y: 49 },
+  // newer systems and tools
+  "nexus-office": { x: 35, y: 37 },
+  renderstate: { x: 73, y: 42 },
+  "site-spec": { x: 50, y: 14 },
+  agentmailkit: { x: 8, y: 43 },
 };
 
 function targetHref(p: Project): string {
@@ -144,7 +153,7 @@ export default function ProjectConstellation() {
                 aria-label={`${p.name}: ${p.thesis}`}
                 className="absolute flex flex-col items-center gap-1.5"
                 style={{
-                  left: `${x}%`,
+                  left: `clamp(60px, ${x}%, calc(100% - 60px))`,
                   top: `${y}%`,
                   transform: "translate(-50%,-50%)",
                   opacity: dim ? 0.32 : 1,
