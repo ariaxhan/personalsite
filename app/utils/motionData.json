@@ -1,15 +1,15 @@
 {
-  "generated": "2026-08-24",
+  "generated": "2026-08-31",
   "source": "github-contributions-plus-supplemental-git",
   "githubLogin": "ariaxhan",
   "githubWindow": {
     "from": "2024-11-01",
-    "to": "2026-08-24"
+    "to": "2026-08-31"
   },
-  "grandTotal": 3746,
-  "githubTotalCommitContributions": 3730,
+  "grandTotal": 4088,
+  "githubTotalCommitContributions": 4072,
   "supplementalCommitContributions": 16,
-  "repoCount": 37,
+  "repoCount": 42,
   "firstMonth": "2024-11",
   "lastMonth": "2026-08",
   "series": [
@@ -49,7 +49,7 @@
       "label": "KERNEL",
       "constellation": "agents",
       "months": {
-        "2026-08": 39,
+        "2026-08": 81,
         "2026-07": 135,
         "2026-06": 58,
         "2026-05": 30,
@@ -58,7 +58,7 @@
         "2026-02": 46,
         "2026-01": 68
       },
-      "total": 522,
+      "total": 564,
       "first": "2026-01",
       "last": "2026-08",
       "github": "https://github.com/ariaxhan/kernel-claude"
@@ -68,13 +68,13 @@
       "constellation": "agents",
       "months": {
         "2025-10": 3,
-        "2026-08": 1,
+        "2026-08": 4,
         "2026-07": 1,
         "2026-03": 52,
         "2026-02": 1,
         "2026-01": 4
       },
-      "total": 62,
+      "total": 65,
       "first": "2025-10",
       "last": "2026-08",
       "github": "https://github.com/ariaxhan/armature-ai"
@@ -96,12 +96,12 @@
       "label": "llm-bench",
       "constellation": "evals",
       "months": {
-        "2026-08": 1,
+        "2026-08": 4,
         "2026-07": 7,
         "2026-06": 278,
         "2026-04": 18
       },
-      "total": 304,
+      "total": 307,
       "first": "2026-04",
       "last": "2026-08",
       "github": "https://github.com/ariaxhan/llm-bench"
@@ -136,12 +136,13 @@
       "label": "metabrain",
       "constellation": "memory",
       "months": {
+        "2026-08": 5,
         "2026-07": 3,
         "2026-06": 5
       },
-      "total": 8,
+      "total": 13,
       "first": "2026-06",
-      "last": "2026-07",
+      "last": "2026-08",
       "github": "https://github.com/ariaxhan/metabrain"
     },
     {
@@ -176,7 +177,8 @@
         "2025-04": 1,
         "2025-02": 4,
         "2025-01": 14,
-        "2026-07": 50,
+        "2026-08": 7,
+        "2026-07": 63,
         "2026-06": 17,
         "2026-05": 1,
         "2026-04": 3,
@@ -185,9 +187,9 @@
         "2025-11": 22,
         "2024-11": 2
       },
-      "total": 126,
+      "total": 146,
       "first": "2024-11",
-      "last": "2026-07",
+      "last": "2026-08",
       "github": "https://github.com/ariaxhan/personalsite"
     },
     {
@@ -215,14 +217,14 @@
       "constellation": "experiments",
       "months": {
         "2025-12": 57,
-        "2026-08": 1,
+        "2026-08": 6,
         "2026-07": 7,
         "2026-01": 6,
         "2025-10": 72,
         "2026-03": 12,
         "2026-02": 1
       },
-      "total": 156,
+      "total": 161,
       "first": "2025-10",
       "last": "2026-08"
     },
@@ -230,7 +232,7 @@
       "label": "Other GitHub work",
       "constellation": "experiments",
       "months": {
-        "2026-08": 197,
+        "2026-08": 461,
         "2026-07": 165,
         "2026-06": 100,
         "2026-05": 104,
@@ -239,7 +241,7 @@
         "2026-01": 162,
         "2026-03": 5
       },
-      "total": 914,
+      "total": 1178,
       "first": "2026-01",
       "last": "2026-08"
     }
