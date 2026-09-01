@@ -166,6 +166,14 @@
         "id": "CP-20260729214000-5205-2892",
         "ts": "2026-07-30T04:40:00.865Z",
         "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"agent\":\"main-37699\",\"event\":\"session-end\",\"branch\":\"fix/medium-refresh\",\"uncommitted_files\":6}",
+        "contract_id": null,
+        "id": "CP-20260828125021-38638-11864",
+        "ts": "2026-08-28T19:50:21.769Z",
+        "type": "checkpoint"
       }
     ],
     "context_sessions": [],
@@ -3146,6 +3154,26 @@
         "metadata": "{\"exit_code\":0}",
         "session_id": "sess-20260729111210-41361",
         "ts": "2026-07-29T18:12:14.163Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:start",
+        "id": 284,
+        "metadata": "{\"branch\":\"fix/medium-refresh\",\"profile\":\"github-oss\",\"project\":\"/Users/slowember/Developer/Vaults/CodingVault/personalsite-medium-refresh\"}",
+        "session_id": "sess-20260828125018-37699",
+        "ts": "2026-08-28T19:50:21.289Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 2646,
+        "event": "session-start",
+        "id": 285,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260828125018-37699",
+        "ts": "2026-08-28T19:50:21.321Z"
       }
     ],
     "execution_traces": [],
@@ -3156,43 +3184,13 @@
       {
         "archived_at": null,
         "archived_reason": null,
-        "domain": "personalsite",
-        "evidence": "validate=pass review=pass cloudflare_pages=ok custom_domain=verified",
-        "hit_count": 0,
-        "id": "LRN-20260713235936-44900-369",
-        "insight": "deploy: personalsite production 3e0eb7e8",
-        "last_hit": null,
-        "load_count": 1,
-        "sensitivity": "low",
-        "ts": "2026-07-14T06:59:36.663Z",
-        "type": "pattern",
-        "visibility": "agent"
-      },
-      {
-        "archived_at": null,
-        "archived_reason": null,
-        "domain": "personalsite",
-        "evidence": "validate=pass review=pass pr=15 checks=pass merge=ok push=ok",
-        "hit_count": 0,
-        "id": "LRN-20260714001144-73239-16572",
-        "insight": "ship: feat/proof-engine 2f6a38e main 33a9280",
-        "last_hit": null,
-        "load_count": 1,
-        "sensitivity": "low",
-        "ts": "2026-07-14T07:11:44.129Z",
-        "type": "pattern",
-        "visibility": "agent"
-      },
-      {
-        "archived_at": null,
-        "archived_reason": null,
         "domain": "personalsite-inline-cms",
         "evidence": "verification design failure: the instrument tested a side path instead of the real delivery path",
         "hit_count": 0,
         "id": "LRN-20260729214000-5217-8344",
         "insight": "Inline CMS convergence probes used query parameters and then cache reload, so they bypassed canonical visitor cache and falsely reported publication convergence. Verification must fetch exact public URLs with normal cache behavior and compare both revision and publication IDs.",
         "last_hit": null,
-        "load_count": 0,
+        "load_count": 1,
         "sensitivity": "low",
         "ts": "2026-07-30T04:40:00.790Z",
         "type": "failure",
@@ -3304,6 +3302,21 @@
         "source_row_id": null,
         "subject_id": "LRN-20260729214000-5217-8344",
         "ts": "2026-07-30T04:40:00.837Z"
+      },
+      {
+        "actor": null,
+        "event_id": "personalsite-med-20260828195021-38440-4950-0",
+        "import_batch_id": null,
+        "inference_method": null,
+        "kind": "surfaced",
+        "object_id": null,
+        "payload": "{\"mode\":\"lean\"}",
+        "reason": "read-start session preamble",
+        "schema_version": 1,
+        "source_db": null,
+        "source_row_id": null,
+        "subject_id": "LRN-20260729214000-5217-8344",
+        "ts": "2026-08-28T19:50:21.152Z"
       }
     ],
     "nodes": [],
