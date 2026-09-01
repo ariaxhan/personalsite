@@ -1,15 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SITE, proofStats } from "../utils/siteMeta";
+import { SITE } from "../utils/siteMeta";
 import { projectBySlug } from "../utils/projectsData";
 import { PAGE_COPY } from "../utils/siteCopy";
 import SystemDiagram from "./home/SystemDiagram";
 
 // Hero: the ten-second answer. Who (Aria Han, the role, Los Angeles), what
 // (the one-liner), the strange line that says why the work is different, and
-// four doors to where to go next. The proof-stat grid and the system diagram
-// carry the evidence. Every number is sourced from siteMeta; nothing here is
-// typed twice.
+// four doors to where to go next. The system diagram and selected work carry
+// the evidence without reducing it to a scoreboard.
 
 const quickLinks = [
   {
@@ -30,7 +29,7 @@ const quickLinks = [
     title: PAGE_COPY.hero.githubTitle,
     href: "https://github.com/ariaxhan",
     image: null,
-    note: `${SITE.proof.publicRepos.value} ${PAGE_COPY.hero.githubNoteSuffix}`,
+    note: PAGE_COPY.hero.githubNote,
     initial: PAGE_COPY.hero.githubInitial,
   },
 ];
@@ -99,22 +98,6 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* Proof grid, sourced from siteMeta. */}
-          <div className="mt-1 grid grid-cols-2 border-y border-[rgba(44,40,35,0.16)] sm:grid-cols-3">
-            {proofStats.map((stat) => (
-              <div
-                key={stat.label}
-                className="min-h-[96px] border-b border-r border-[rgba(44,40,35,0.12)] px-4 py-4 [&:nth-child(2n)]:border-r-0 [&:nth-last-child(-n+2)]:border-b-0 sm:min-h-[104px] sm:px-6 sm:py-5 sm:[&:nth-child(2n)]:border-r sm:[&:nth-child(3n)]:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b sm:[&:nth-last-child(-n+3)]:border-b-0"
-              >
-                <div className="font-serif text-[36px] font-light leading-none text-ink sm:text-[44px]">
-                  {stat.value}
-                </div>
-                <div className="mt-2 max-w-[130px] font-mono text-[9px] uppercase leading-4 tracking-[0.16em] text-ink-mute">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Right column, large screens: the system diagram. On small screens it
@@ -124,7 +107,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Three quick doors, notes sourced from the project theses and the repo count. */}
+      {/* Three quick doors, notes sourced from the project theses and site copy. */}
       <div className="grid gap-3 border-t border-[rgba(44,40,35,0.16)] pt-4 lg:grid-cols-3">
         {quickLinks.map((link) => (
           <a

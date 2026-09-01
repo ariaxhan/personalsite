@@ -1,0 +1,119 @@
+{
+  "schema": "kernel.checkpoint/v1",
+  "identity": {
+    "name": "inline-cms-portfolio-execution-preflight",
+    "created": "2026-07-30T01:33:32Z",
+    "session": "sess-20260729174942-13190"
+  },
+  "provenance": {
+    "branch": "feat/founder-positioning",
+    "commit": "dedf312da61e87a736b40385387ef0f19e12d3b8",
+    "dirty": true,
+    "dirty_tree_sha256": "7e87da516fa0cf68cec7bbf695b6a11ac31bcfbd91456cdc9a5820436b1eada8"
+  },
+  "task": {
+    "goal": "Prepare and then execute the portfolio-specific inline CMS migration for ariaxhan.com under the active portfolio v1 commission, while preserving product-compatible module boundaries without implementing the non-authoritative commercial roadmap.",
+    "contract_ref": "_meta/commissions/active/2026-07-29-inline-cms-portfolio-v1.md"
+  },
+  "steps_completed": [
+    {
+      "step": "Approved homepage positioning was merged and deployed before the CMS migration.",
+      "evidence": "GitHub PR 27 merged as commit 1ef3f8ff95fb7c556161c0efc12b267d0f09bf04; Cloudflare Pages check 34aab450-358d-4aa2-9905-c5f4f458e42c completed successfully; live initial HTML and 375px viewport contained the approved title and subtitle."
+    },
+    {
+      "step": "The mixed portfolio-and-product CMS commission was independently reviewed and retired as execution authority.",
+      "evidence": "_meta/commissions/active/2026-07-29-inline-cms-opennext-migration.md has status superseded and points to the portfolio v1 commission and commercial roadmap."
+    },
+    {
+      "step": "A tighter portfolio-only execution contract and a separate commercial product roadmap were recorded.",
+      "evidence": "Commit dedf312da61e87a736b40385387ef0f19e12d3b8 created the 440-line active portfolio commission and the authority:none product roadmap; it also marked both earlier CMS documents superseded."
+    },
+    {
+      "step": "Document authority and scope separation were verified.",
+      "evidence": "A custom authority check passed and rejected an isolated seeded conflicting-active-status defect; git diff --check passed; context-blind review /root/blind_cms_docs_review returned PASS with no blocking concerns."
+    },
+    {
+      "step": "Current remote and local Git state were reconstructed immediately before this checkpoint.",
+      "evidence": "Observed origin/main at 1ef3f8ff95fb7c556161c0efc12b267d0f09bf04, origin/feat/founder-positioning at 4ff447898087e746af832f04a447a043b0eb52ce, local HEAD at dedf312da61e87a736b40385387ef0f19e12d3b8, and only _meta/agentdb/agent.db.json plus _meta/logs/actions.jsonl dirty before creating this checkpoint."
+    }
+  ],
+  "current_outputs": [
+    "_meta/commissions/active/2026-07-29-inline-cms-portfolio-v1.md",
+    "_meta/plans/editable-site-commercial-roadmap.md",
+    "_meta/commissions/active/2026-07-29-inline-cms-opennext-migration.md",
+    "_meta/plans/d1-copy-editor.md",
+    "_meta/checkpoints/inline-cms-portfolio-execution-20260730T013332Z.json"
+  ],
+  "pending_steps": [
+    "Reconstruct a clean execution branch or worktree from fresh origin/main and bring forward only the four authoritative documentation files from dedf312; do not inherit provisional CMS code or runtime metadata as implementation.",
+    "Run Milestone A phase 1 from the active commission: inventory every current siteCopy.ts consumer, public and machine route, deployment behavior, header, and project-review dependency from live repository and production evidence.",
+    "Resolve the disposition of app/api/copy-catalog.json/route.ts and app/utils/editableContent.ts from evidence; they were provisional scaffolding captured in commit 2bdfc98, not approved architecture.",
+    "Define and verify typed page schemas, fixed page and field identities, request-level revision manifests, and output-equivalent Git-default resolution before introducing D1.",
+    "Implement and independently accept the Milestone A canonical public platform, including D1 publication, recovery, OpenNext runtime migration, cache behavior, failure drills, and protected zone preview.",
+    "Only after independent Milestone A acceptance, implement and independently accept the Aria-only editor in Milestone B.",
+    "Request separate explicit approval before production custom-domain cutover.",
+    "Treat _meta/plans/editable-site-commercial-roadmap.md as product hypothesis only; do not implement commercial features during the portfolio migration."
+  ],
+  "resume": {
+    "position": "Documentation and scope are approved and committed locally; no CMS implementation has begun. The immediate seam is clean branch reconstruction because the current local history also contains provisional scaffolding and runtime metadata.",
+    "entrypoint": "kernel:ingest",
+    "next_operation": "Run kernel:ingest with this checkpoint, fetch origin/main, create a clean feat/inline-cms-portfolio-v1 execution branch or worktree from origin/main at 1ef3f8ff95fb7c556161c0efc12b267d0f09bf04, bring forward only the four CMS documentation files from dedf312, and verify the resulting diff contains no app/api/copy-catalog.json/route.ts, app/utils/editableContent.ts, session metadata, AgentDB database, or action-log changes before implementing Milestone A."
+  },
+  "context": {
+    "policy": {
+      "mode": "bounded"
+    },
+    "required": [
+      {
+        "path": "_meta/commissions/active/2026-07-29-inline-cms-portfolio-v1.md",
+        "reason": "Only active execution authority. Read in full before any implementation."
+      },
+      {
+        "path": "_meta/plans/editable-site-commercial-roadmap.md",
+        "heading": "Status",
+        "reason": "Confirms that commercial scope has authority none."
+      },
+      {
+        "path": "_meta/plans/editable-site-commercial-roadmap.md",
+        "heading": "Portfolio versus commercial product",
+        "reason": "Defines the boundary that portfolio implementation must preserve."
+      },
+      {
+        "path": "app/utils/siteCopy.ts",
+        "reason": "Current centralized content source and primary migration inventory root."
+      },
+      {
+        "path": "next.config.ts",
+        "reason": "Current static-export runtime assumptions."
+      },
+      {
+        "path": "wrangler.toml",
+        "reason": "Current Pages and project-review D1 configuration."
+      },
+      {
+        "path": "package.json",
+        "reason": "Pinned Next.js stack and available build commands."
+      },
+      {
+        "path": "app/api/project-review/route.ts",
+        "reason": "Production intake compatibility boundary that the migration must preserve."
+      },
+      {
+        "git_diff": "origin/main...dedf312da61e87a736b40385387ef0f19e12d3b8",
+        "reason": "Separates authoritative documentation from production main and exposes provisional local history."
+      }
+    ],
+    "forbidden": [
+      "Treating _meta/commissions/active/2026-07-29-inline-cms-opennext-migration.md as active authority",
+      "Treating _meta/plans/editable-site-commercial-roadmap.md as implementation authority",
+      "Treating app/api/copy-catalog.json/route.ts or app/utils/editableContent.ts as approved implementation",
+      "Inheriting Claude recap or transcript prose as evidence",
+      "Changing production custom-domain routing before the commission cutover gate and Aria approval",
+      "Implementing teams, billing, multiple sites, generalized adapters, route editing, or other commercial roadmap features"
+    ],
+    "budget": {
+      "target_tokens": 18000,
+      "max_tokens": 30000
+    }
+  }
+}

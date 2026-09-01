@@ -29,23 +29,6 @@ export default function About() {
         </p>
       </Reveal>
 
-      {/* Stats */}
-      <Reveal className="grid grid-cols-3 gap-6 border-b border-[rgba(44,40,35,0.12)] py-10">
-        {copy.stats.map((s) => (
-          <div key={s.label}>
-            <div className="font-serif font-light leading-none text-terracotta" style={{ fontSize: "clamp(36px, 6vw, 64px)" }}>
-              {s.value}
-            </div>
-            <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink">
-              {s.label}
-            </div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
-              {s.sub}
-            </div>
-          </div>
-        ))}
-      </Reveal>
-
       {/* Narrative + sidebar */}
       <div className="grid gap-12 py-16 lg:grid-cols-[1.5fr_1fr] lg:gap-20">
         <Reveal className="max-w-prose">
