@@ -1,0 +1,85 @@
+{
+  "schema": "kernel.context-receipt/v1",
+  "manifest": "_meta/checkpoints/inline-cms-portfolio-execution-20260730T013332Z.json",
+  "manifest_sha256": "830d322a19440866dc2dfa05822cbb8bce3153392782338f1f25e1f0f2a6f953",
+  "bundle_sha256": "895476535d7faf006a1c6d976cde054f67cdf9ff7d6f132ef186e08c41dcfa59",
+  "created": "2026-07-30T02:03:39Z",
+  "manifest_tokens": 1873,
+  "project_instructions_tokens": 0,
+  "always_skills_tokens": 0,
+  "workflow_skills_tokens": 0,
+  "domain_skills_tokens": 0,
+  "selected_artifacts_tokens": 65948,
+  "agentdb_tokens": 0,
+  "total_estimated_tokens": 67821,
+  "target_budget_tokens": 18000,
+  "maximum_budget_tokens": 30000,
+  "status": "maximum_exceeded",
+  "estimation_method": "chars/4 (directional; structural overhead undercounted; agentdb_tokens=0 unless --agentdb-tokens provided)",
+  "selections": [
+    {
+      "selector": "[required] _meta/commissions/active/2026-07-29-inline-cms-portfolio-v1.md",
+      "resolved": true,
+      "outcome": "resolved",
+      "estimated_tokens": 3926,
+      "resolved_sha256": "837f622d51491424a6b50a9857afd4ffb705536aad2cd9adf68b2523043af376"
+    },
+    {
+      "selector": "[required] _meta/plans/editable-site-commercial-roadmap.md :: Status",
+      "resolved": false,
+      "outcome": "missing",
+      "estimated_tokens": 0,
+      "note": "heading not found"
+    },
+    {
+      "selector": "[required] _meta/plans/editable-site-commercial-roadmap.md :: Portfolio versus commercial product",
+      "resolved": false,
+      "outcome": "missing",
+      "estimated_tokens": 0,
+      "note": "heading not found"
+    },
+    {
+      "selector": "[required] app/utils/siteCopy.ts",
+      "resolved": true,
+      "outcome": "resolved",
+      "estimated_tokens": 23948,
+      "resolved_sha256": "9596d22003639c76218daaf813a89dec008ed38162315886ad505e40b7515424"
+    },
+    {
+      "selector": "[required] next.config.ts",
+      "resolved": true,
+      "outcome": "resolved",
+      "estimated_tokens": 512,
+      "resolved_sha256": "c6829c424a60fca2ceb13bc46630e2dbca6cb6edc28af1582067010662734bd8"
+    },
+    {
+      "selector": "[required] wrangler.toml",
+      "resolved": true,
+      "outcome": "resolved",
+      "estimated_tokens": 87,
+      "resolved_sha256": "2f345ee4f6f5f8446306128b132bb659c4ec94cd15ceb698a7ea786ed8d6da50"
+    },
+    {
+      "selector": "[required] package.json",
+      "resolved": true,
+      "outcome": "resolved",
+      "estimated_tokens": 238,
+      "resolved_sha256": "e0dcec2e6fb3b7471540eccc1713c0c627c1eae27f59e406a68917d726ca1b0b"
+    },
+    {
+      "selector": "[required] app/api/project-review/route.ts",
+      "resolved": true,
+      "outcome": "resolved",
+      "estimated_tokens": 882,
+      "resolved_sha256": "3cd43c3d25b75650abd64c7b8c52a6d3fc9a8f490c37879f1641522c15cccdab"
+    },
+    {
+      "selector": "[required] git_diff:origin/main...dedf312da61e87a736b40385387ef0f19e12d3b8",
+      "resolved": true,
+      "outcome": "resolved",
+      "estimated_tokens": 36355,
+      "resolved_sha256": "cd3e6472959b86137f5d7757b832c1ed8f44c958e5fb92be0da4e71148d540bc"
+    }
+  ],
+  "loads_beyond_manifest": []
+}

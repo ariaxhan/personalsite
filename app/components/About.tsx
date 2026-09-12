@@ -1,5 +1,7 @@
+"use client";
+
 import Reveal from "./studio/Reveal";
-import { getSiteContent } from "../content/repository";
+import { useSiteCopy } from "./LocaleProvider";
 
 /**
  * About: Background. The first-person account, set as editorial body text in a
@@ -7,12 +9,12 @@ import { getSiteContent } from "../content/repository";
  * focus. The two short lines about language are pulled out large,
  * the way a magazine lifts a sentence off the page.
  */
-export default async function About() {
-  const { content: { PAGE_COPY } } = await getSiteContent();
+export default function About() {
+  const { PAGE_COPY } = useSiteCopy();
   const copy = PAGE_COPY.about;
 
   return (
-    <section className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-14" style={{ paddingTop: 120 }}>
+    <section className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-14" style={{ paddingTop: "calc(var(--masthead-height, 7.5rem) + 1.75rem)" }}>
       {/* Intro */}
       <Reveal className="border-b border-[rgba(44,40,35,0.18)] pb-12">
         <div className="kicker mb-4">{copy.label}</div>
@@ -28,23 +30,6 @@ export default async function About() {
         >
           {copy.subtitle}
         </p>
-      </Reveal>
-
-      {/* Stats */}
-      <Reveal className="grid grid-cols-3 gap-6 border-b border-[rgba(44,40,35,0.12)] py-10">
-        {copy.stats.map((s) => (
-          <div key={s.label}>
-            <div className="font-serif font-light leading-none text-terracotta" style={{ fontSize: "clamp(36px, 6vw, 64px)" }}>
-              {s.value}
-            </div>
-            <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink">
-              {s.label}
-            </div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
-              {s.sub}
-            </div>
-          </div>
-        ))}
       </Reveal>
 
       {/* Narrative + sidebar */}
@@ -89,7 +74,7 @@ export default async function About() {
             <div className="flex flex-col gap-5">
               {copy.focus.map((f) => (
                 <p key={f.name} className="m-0 text-[14.5px] leading-relaxed text-ink-faint">
-                  <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-ink">
+                  <span className="font-mono text-caption uppercase tracking-[0.08em] text-ink">
                     {f.name}
                   </span>
                   <span className="text-ink-ghost">: {f.text}</span>

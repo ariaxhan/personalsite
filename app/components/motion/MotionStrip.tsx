@@ -1,14 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import {
   MONTHS,
   GRAND_TOTAL,
   REPO_COUNT,
   motionData,
-  buildEras,
   monthLabel,
   mergedByMonth,
+  erasFrom,
 } from "./motionShared";
-import { getSiteContent } from "../../content/repository";
+import { useSiteCopy } from "../LocaleProvider";
 
 // MotionStrip: the proof-of-motion record, compressed to a single band for the
 // homepage. All constellations merge into one per-month total, drawn as small
@@ -16,8 +18,8 @@ import { getSiteContent } from "../../content/repository";
 // /proof. Self-contained: no props, reads the committed JSON directly.
 
 const BAR_MAX = 72; // px
-export default async function MotionStrip() {
-  const { content: { PAGE_COPY } } = await getSiteContent();
+
+export default function MotionStrip() {
   const merged = mergedByMonth();
   const cols = MONTHS.length;
   let peak = 1;
@@ -26,8 +28,9 @@ export default async function MotionStrip() {
   const monthCol = (m: string) => MONTHS.indexOf(m) + 1; // 1-based
   const gridTemplateColumns = `repeat(${cols}, minmax(6px, 1fr))`;
 
+  const { PAGE_COPY } = useSiteCopy();
   const copy = PAGE_COPY.motion;
-  const eras = buildEras(copy);
+  const ERAS = erasFrom(copy);
   const summary = `${copy.stripSummaryPrefix} ${GRAND_TOTAL.toLocaleString()} ${copy.stripSummaryMiddle} ${REPO_COUNT} ${copy.stripSummarySuffix}, ${monthLabel(
     motionData.firstMonth
   )} to ${monthLabel(motionData.lastMonth)}. ${copy.stripSummaryCta}`;
@@ -43,7 +46,7 @@ export default async function MotionStrip() {
         <span className="kicker text-ink-faint transition-colors group-hover:text-terracotta">
           {copy.stripLabel}
         </span>
-        <span className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.12em] text-ink-mute sm:text-[11px] sm:tracking-[0.16em]">
+        <span className="font-mono text-caption uppercase leading-relaxed tracking-[0.12em] text-ink-mute sm:tracking-[0.16em]">
           {GRAND_TOTAL.toLocaleString()} {copy.commits} · {REPO_COUNT} {copy.stripSummarySuffix}
         </span>
       </div>
@@ -74,13 +77,13 @@ export default async function MotionStrip() {
 
       {/* Era markers, aligned under the bars. */}
       <div aria-hidden="true" className="mt-2 grid grid-cols-3 border-t border-[rgba(44,40,35,0.14)] pt-2 sm:hidden">
-        {eras.map((era, i) => (
+        {ERAS.map((era, i) => (
           <div
             key={era.key}
             className="min-w-0 px-2 first:pl-0 last:pr-0"
             style={{ borderLeft: i === 0 ? "none" : "1px solid rgba(44,40,35,0.14)" }}
           >
-            <span className="block truncate font-mono text-[8.5px] uppercase leading-relaxed tracking-[0.08em] text-ink-mute">
+            <span className="block font-mono text-caption uppercase leading-snug tracking-[0.08em] text-ink-mute">
               {era.name}
             </span>
           </div>
@@ -91,7 +94,7 @@ export default async function MotionStrip() {
         className="mt-2 hidden border-t border-[rgba(44,40,35,0.14)] pt-2 sm:grid"
         style={{ gridTemplateColumns }}
       >
-        {eras.map((era, i) => (
+        {ERAS.map((era, i) => (
           <div
             key={era.key}
             style={{
@@ -100,7 +103,7 @@ export default async function MotionStrip() {
               paddingLeft: i === 0 ? 0 : 8,
             }}
           >
-            <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-ink-mute">
+            <span className="font-mono text-caption uppercase tracking-[0.12em] text-ink-mute">
               {era.name}
             </span>
           </div>
@@ -111,7 +114,7 @@ export default async function MotionStrip() {
         <span className="font-serif text-[15px] italic leading-snug text-ink-ghost">
           {copy.stripClaim}
         </span>
-        <span className="self-end font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint transition-colors group-hover:text-terracotta sm:self-auto sm:text-[11px] sm:tracking-[0.16em]">
+        <span className="self-end font-mono text-caption uppercase tracking-[0.14em] text-ink-faint transition-colors group-hover:text-terracotta sm:self-auto sm:tracking-[0.16em]">
           {copy.stripCta} &rarr;
         </span>
       </div>

@@ -1,7 +1,9 @@
+"use client";
+
 import type { CSSProperties } from "react";
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
-import { getSiteContent } from "../content/repository";
+import { useSiteCopy } from "./LocaleProvider";
 
 /**
  * HackathonsGrid: Fig. 02c, built under pressure.
@@ -10,10 +12,10 @@ import { getSiteContent } from "../content/repository";
  * proof: the award, the room it was won in, what it did, and the tools it leaned
  * on. Resting on one lifts it; the title links out to the build.
  */
-export default async function HackathonsGrid() {
-  const { content: { hackathons, PAGE_COPY } } = await getSiteContent();
+export default function HackathonsGrid() {
+  const { PAGE_COPY, hackathons } = useSiteCopy();
   return (
-    <section className="mx-auto max-w-wall px-5 sm:px-8 lg:px-14" style={{ paddingTop: 120 }}>
+    <section className="mx-auto max-w-wall px-5 sm:px-8 lg:px-14" style={{ paddingTop: "calc(var(--masthead-height, 7.5rem) + 1.75rem)" }}>
       <SectionHeader
         as="h1"
         {...PAGE_COPY.sections.hackathons}
@@ -41,15 +43,15 @@ export default async function HackathonsGrid() {
                 style={{ border: "1px solid rgba(44,40,35,.07)", boxShadow: "0 22px 34px -28px rgba(44,40,35,.55)" }}
               >
                 <div className="mb-4 flex items-center justify-between">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-terracotta">
+                  <span className="font-mono text-caption uppercase tracking-[0.2em] text-terracotta">
                     {e.metric}
                   </span>
-                  <span className="font-mono text-[10px] text-ink-mute">{e.year}</span>
+                  <span className="font-mono text-caption text-ink-mute">{e.year}</span>
                 </div>
                 <h3 className="m-0 font-serif text-[26px] font-normal leading-tight text-ink transition-colors group-hover:text-terracotta">
                   {e.name}
                 </h3>
-                <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-ghost">
+                <div className="mt-1 font-mono text-caption uppercase tracking-[0.12em] text-ink-ghost">
                   {e.hackathon}
                 </div>
                 {e.award && (
@@ -60,7 +62,7 @@ export default async function HackathonsGrid() {
                 </p>
                 <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1.5 border-t border-dashed border-[rgba(44,40,35,0.18)] pt-4">
                   {e.technologies.map((t) => (
-                    <span key={t} className="font-mono text-[10px] uppercase tracking-[0.08em] text-ink-mute">
+                    <span key={t} className="font-mono text-caption uppercase tracking-[0.08em] text-ink-mute">
                       {t}
                     </span>
                   ))}

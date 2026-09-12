@@ -1,0 +1,16 @@
+_meta/.compact-keyterms
+_meta/.runtime/
+_meta/.session_id
+_meta/.test-status
+_meta/agentdb/agent.db.json
+_meta/logs/actions.jsonl
+2bdfc98
+4ff4478
+ac6445c
+app/components/About.tsx
+app/components/Hero.tsx
+app/components/home/NowBlock.tsx
+app/utils/siteCopy.ts
+d2ef163
+dedf312
+feat/founder-positioning

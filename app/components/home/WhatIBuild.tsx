@@ -1,14 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import SectionHeader from "../studio/SectionHeader";
 import Reveal from "../studio/Reveal";
-import { getSiteContent } from "../../content/repository";
+import { useSiteCopy } from "../LocaleProvider";
 
 // WhatIBuild: Fig. 01, the seven kinds of engagement, sourced from
 // workWithMeData. Each row is a compact typographic entry (a tiny CSS-drawn
 // glyph, a serif title, a one-line detail) and a door to the contact page.
 // Two columns on large screens.
-export default async function WhatIBuild() {
-  const { content: { engagements, PAGE_COPY } } = await getSiteContent();
+export default function WhatIBuild() {
+  const { PAGE_COPY, engagements } = useSiteCopy();
   return (
     <section className="mx-auto max-w-content px-5 py-20 sm:px-8 lg:px-14 lg:py-28">
       <SectionHeader

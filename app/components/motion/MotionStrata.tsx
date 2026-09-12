@@ -10,13 +10,12 @@ import {
   monthLabel,
   monthShort,
   buildBands,
-  buildEras,
   globalPeak,
   type Band,
   type BandMonth,
+  erasFrom,
 } from "./motionShared";
-import { useSiteContent } from "../../content/SiteContentProvider";
-import type { SiteContent } from "../../content/defaultContent";
+import { useSiteCopy } from "../LocaleProvider";
 
 // Strata: build activity read like sediment. Time runs left to right, one
 // horizontal band per constellation, each month a mark whose size is its commit
@@ -34,14 +33,9 @@ function markSize(count: number, peak: number): number {
   return MIN_MARK + t * (MAX_MARK - MIN_MARK);
 }
 
-function captionFor(
-  band: Band,
-  month: string,
-  cell: BandMonth,
-  motionCopy: SiteContent["PAGE_COPY"]["motion"],
-): string {
+function captionFor(band: Band, month: string, cell: BandMonth, commits: string): string {
   const parts = cell.parts.map((p) => `${p.label} ${p.count}`).join(", ");
-  const many = cell.parts.length > 1 ? ` (${cell.total} ${motionCopy.commits})` : "";
+  const many = cell.parts.length > 1 ? ` (${cell.total} ${commits})` : "";
   return `${band.label} · ${monthLabel(month)}: ${parts}${many}`;
 }
 
@@ -56,12 +50,12 @@ function monthTick(m: string): string {
 }
 
 export default function MotionStrata() {
-  const { PAGE_COPY } = useSiteContent();
+  const { PAGE_COPY } = useSiteCopy();
   const bands = buildBands();
   const peak = globalPeak(bands);
   const cols = MONTHS.length;
   const copy = PAGE_COPY.motion;
-  const eras = buildEras(copy);
+  const ERAS = erasFrom(copy);
 
   const defaultCaption = `${GRAND_TOTAL.toLocaleString()} ${copy.stripSummaryMiddle} ${REPO_COUNT} ${copy.stripSummarySuffix}, ${monthLabel(
     motionData.firstMonth
@@ -77,7 +71,7 @@ export default function MotionStrata() {
       {/* Live caption line: reflects the focused or hovered mark. */}
       <p
         aria-live="polite"
-        className="m-0 mb-5 min-h-[2.6em] font-mono text-[12px] leading-relaxed text-ink-faint sm:min-h-[1.6em]"
+        className="m-0 mb-5 min-h-[2.6em] font-mono text-caption leading-relaxed text-ink-faint sm:min-h-[1.6em]"
       >
         {caption ?? defaultCaption}
       </p>
@@ -91,7 +85,7 @@ export default function MotionStrata() {
             aria-hidden="true"
           >
             <div />
-            {eras.map((era, i) => (
+            {ERAS.map((era, i) => (
               <div
                 key={era.key}
                 className="pb-3"
@@ -104,10 +98,10 @@ export default function MotionStrata() {
                 <div className="kicker mb-1 normal-case tracking-[0.14em] text-ink-faint">
                   {era.name}
                 </div>
-                <div className="font-serif text-[13px] italic leading-snug text-ink-ghost">
+                <div className="font-serif text-caption italic leading-snug text-ink-ghost">
                   {era.caption}
                 </div>
-                <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-mute">
+                <div className="mt-1 font-mono text-caption uppercase tracking-[0.14em] text-ink-mute">
                   {era.range}
                 </div>
               </div>
@@ -120,7 +114,7 @@ export default function MotionStrata() {
             style={{ gridTemplateColumns }}
             aria-hidden="true"
           >
-            <div className="py-2 pr-4 text-right font-mono text-[9px] uppercase tracking-[0.14em] text-ink-mute">
+            <div className="py-2 pr-4 text-right font-mono text-caption uppercase tracking-[0.14em] text-ink-mute">
               Month
             </div>
             {MONTHS.map((m) => (
@@ -128,7 +122,7 @@ export default function MotionStrata() {
                 key={m}
                 className="flex min-h-8 items-center justify-center border-l border-[rgba(44,40,35,0.08)] px-1"
               >
-                <span className="font-mono text-[9.5px] uppercase leading-none tracking-[0.08em] text-ink-mute">
+                <span className="font-mono text-caption uppercase leading-none tracking-[0.08em] text-ink-mute">
                   {monthTick(m)}
                 </span>
               </div>
@@ -145,7 +139,7 @@ export default function MotionStrata() {
               >
                 {/* Left label. */}
                 <div className="flex flex-col justify-center pr-4">
-                  <span className="flex items-center gap-2 text-[13px] leading-tight text-ink">
+                  <span className="flex items-center gap-2 text-caption leading-tight text-ink">
                     <span
                       aria-hidden="true"
                       className="inline-block h-2.5 w-2.5 shrink-0 rounded-[2px]"
@@ -153,7 +147,7 @@ export default function MotionStrata() {
                     />
                     {band.label}
                   </span>
-                  <span className="pl-[18px] font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-mute">
+                  <span className="pl-[18px] font-mono text-caption uppercase tracking-[0.12em] text-ink-mute">
                     {band.total.toLocaleString()} {copy.commits}
                   </span>
                 </div>
@@ -182,7 +176,7 @@ export default function MotionStrata() {
                   const size = markSize(cell.total, peak);
                   const t = Math.sqrt(cell.total) / Math.sqrt(peak);
                   const burst = cell.total >= BURST_THRESHOLD;
-                  const label = captionFor(band, m, cell, copy);
+                  const label = captionFor(band, m, cell, copy.commits);
                   return (
                     <div
                       key={m}
@@ -191,7 +185,7 @@ export default function MotionStrata() {
                     >
                       <span
                         aria-hidden="true"
-                        className="pointer-events-none font-mono text-[9px] leading-none"
+                        className="pointer-events-none font-mono text-caption leading-none"
                         style={{ color: burst ? band.accent : "transparent" }}
                       >
                         {burst ? cell.total : 0}
@@ -249,7 +243,7 @@ export default function MotionStrata() {
                 </span>
                 , {activeSpan(band)}.{" "}
                 <span className="text-ink-ghost">{band.note}</span>
-                <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] text-ink-mute">
+                <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-caption text-ink-mute">
                   {band.series.map((s) => (
                     <li key={s.label}>
                       {s.github ? (

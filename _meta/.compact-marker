@@ -1,0 +1,14 @@
+**Branch:** feat/founder-positioning
+**Compacted at:** 2026-08-28T20:05:40Z
+**Tokens before:** ~2160 (±20%)
+
+### Recent Learnings
+type || ': ' || insight                                                                                                                                                                                                                                                
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+gotcha: OpenNext Cloudflare can bypass an App Router global error boundary for server render failures and emit its generic 500 page; enforce non-cacheable content recovery at a custom Worker response boundary and verify it against empty D1 state.                 
+gotcha: Wrangler 4 auto-delegates OpenNext projects back to opennextjs-cloudflare deploy unless OPEN_NEXT_DEPLOY=true is set; that delegated deploy repopulates R2 with build-time Git-default pages, so canonical D1 sites must bypass it and invalidate after deploy.
+pattern: deploy: homepage hero AI for work 1ef3f8f                                                                                                                                                                                                                     
+failure: trajectory self-test flag mismatch                                                                                                                                                                                                                            
+pattern: deploy: personalsite production 3e0eb7e8                                                                                                                                                                                                                      
+
+**Resume from where you left off. Run `agentdb read-start` for full context.**

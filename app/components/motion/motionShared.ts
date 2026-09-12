@@ -7,7 +7,7 @@
 // ============================================================================
 
 import motion from "../../utils/motionData.json";
-import type { SiteContent } from "../../content/defaultContent";
+import { PAGE_COPY } from "../../utils/siteCopy";
 
 export type MotionSeries = {
   label: string;
@@ -124,14 +124,14 @@ export type Era = {
   end: string;
 };
 
-export function buildEras(
-  motionCopy: SiteContent["PAGE_COPY"]["motion"],
-): Era[] {
+export function erasFrom(motionCopy: { eras: readonly Era[] }): Era[] {
   return motionCopy.eras.map((era) => ({
     ...era,
     end: era.end === "AXIS_END" ? AXIS_END : era.end,
   }));
 }
+
+export const ERAS: Era[] = erasFrom(PAGE_COPY.motion);
 
 // ---------------------------------------------------------------------------
 // Bands. One per constellation, carrying its per-month breakdown (which named
@@ -219,3 +219,6 @@ export function mergedByMonth(): Record<string, number> {
   }
   return merged;
 }
+
+// agentText and older callers use this name.
+export const buildEras = erasFrom;

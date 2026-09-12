@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, ReactNode, useState } from "react";
-import { useSiteContent } from "../content/SiteContentProvider";
+import { useSiteCopy } from "./LocaleProvider";
 
 type FormState = "idle" | "sending" | "sent" | "error";
 
@@ -21,6 +21,7 @@ type ProjectReviewPayload = {
   company: string;
 };
 
+
 const initialPayload: ProjectReviewPayload = {
   name: "",
   email: "",
@@ -38,9 +39,9 @@ const initialPayload: ProjectReviewPayload = {
 };
 
 export default function ProjectReviewForm() {
-  const { PAGE_COPY } = useSiteContent();
-  const STAGES = [...PAGE_COPY.projectReviewForm.stages];
-  const PROJECT_TYPES = [...PAGE_COPY.projectReviewForm.projectTypes];
+  const { PAGE_COPY } = useSiteCopy();
+  const STAGES = PAGE_COPY.projectReviewForm.stages;
+  const PROJECT_TYPES = PAGE_COPY.projectReviewForm.projectTypes;
   const [payload, setPayload] = useState<ProjectReviewPayload>(initialPayload);
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState("");
@@ -149,7 +150,7 @@ export default function ProjectReviewForm() {
           </Field>
 
           <fieldset className="m-0 border-0 p-0">
-            <legend className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute">
+            <legend className="mb-3 font-mono text-caption uppercase tracking-[0.18em] text-ink-mute">
               {PAGE_COPY.projectReviewForm.fields.stage} *
             </legend>
             <div className="flex flex-wrap gap-2">
@@ -161,7 +162,7 @@ export default function ProjectReviewForm() {
                     type="button"
                     aria-pressed={selected}
                     onClick={() => updateField("projectStage", stage)}
-                    className={`min-h-10 border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.13em] transition-colors ${
+                    className={`min-h-10 border px-3 py-2 font-mono text-caption uppercase tracking-[0.13em] transition-colors ${
                       selected
                         ? "border-ink bg-ink text-studio-paper"
                         : "border-[rgba(44,40,35,0.18)] bg-[rgba(248,244,234,0.4)] text-ink-muted hover:border-terracotta hover:text-ink"
@@ -175,7 +176,7 @@ export default function ProjectReviewForm() {
           </fieldset>
 
           <fieldset className="m-0 border-0 p-0">
-            <legend className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute">
+            <legend className="mb-3 font-mono text-caption uppercase tracking-[0.18em] text-ink-mute">
               {PAGE_COPY.projectReviewForm.fields.lookAt}
             </legend>
             <div className="flex flex-wrap gap-2">
@@ -281,7 +282,7 @@ export default function ProjectReviewForm() {
             <button
               type="submit"
               disabled={state === "sending"}
-              className="inline-flex min-h-11 items-center justify-center border border-ink bg-ink px-5 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-studio-paper transition-colors hover:border-terracotta hover:bg-terracotta disabled:cursor-wait disabled:opacity-60 sm:text-[11px] sm:tracking-[0.18em]"
+              className="inline-flex min-h-11 items-center justify-center border border-ink bg-ink px-5 py-3 font-mono text-caption uppercase tracking-[0.12em] text-studio-paper transition-colors hover:border-terracotta hover:bg-terracotta disabled:cursor-wait disabled:opacity-60 sm:tracking-[0.18em]"
             >
               {state === "sending" ? PAGE_COPY.projectReviewForm.sending : PAGE_COPY.projectReviewForm.submit}
             </button>
@@ -315,7 +316,7 @@ function Field({
 }) {
   return (
     <label className="grid gap-2">
-      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute">
+      <span className="font-mono text-caption uppercase tracking-[0.18em] text-ink-mute">
         {label}
         {required ? " *" : ""}
       </span>

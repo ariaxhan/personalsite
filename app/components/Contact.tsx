@@ -1,14 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import Reveal from "./studio/Reveal";
 import CalEmbed from "./CalEmbed";
-import { getSiteContent } from "../content/repository";
+import { useSiteCopy } from "./LocaleProvider";
 
-export default async function Contact() {
-  const {
-    content: { SITE, engagements, goodFit, notAFit, contactLinks, projectReviewBullets, PAGE_COPY },
-  } = await getSiteContent();
+export default function Contact() {
+  const { PAGE_COPY, SITE, engagements, goodFit, notAFit, contactLinks, projectReviewBullets } =
+    useSiteCopy();
   return (
-    <section className="mx-auto max-w-[1120px] px-5 sm:px-8 lg:px-14" style={{ paddingTop: 120 }}>
+    <section className="mx-auto max-w-[1120px] px-5 sm:px-8 lg:px-14" style={{ paddingTop: "calc(var(--masthead-height, 7.5rem) + 1.75rem)" }}>
       {/* a) Opening. SectionHeader rhythm, but a real h1. */}
       <Reveal className="flex flex-col items-start justify-between gap-5 border-b border-[rgba(44,40,35,0.18)] pb-4 sm:flex-row sm:items-end sm:gap-6">
         <div className="max-w-3xl">
@@ -91,7 +92,7 @@ export default async function Contact() {
           <div className="mt-7">
             <Link
               href="/project-review"
-              className="inline-flex min-h-11 items-center border border-ink bg-ink px-4 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-studio-paper transition-colors hover:border-terracotta hover:bg-terracotta sm:px-5 sm:text-[11px] sm:tracking-[0.18em]"
+              className="inline-flex min-h-11 items-center border border-ink bg-ink px-4 py-3 font-mono text-caption uppercase tracking-[0.12em] text-studio-paper transition-colors hover:border-terracotta hover:bg-terracotta sm:px-5 sm:tracking-[0.18em]"
             >
               {PAGE_COPY.contact.submit}
             </Link>

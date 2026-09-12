@@ -5,6 +5,7 @@ import "./globals.css";
 import Navigation from "./components/Navigation";
 import PaperGrain from "./components/PaperGrain";
 import { SiteContentProvider } from "./content/SiteContentProvider";
+import { LocaleProvider } from "./components/LocaleProvider";
 import { getSiteContent } from "./content/repository";
 import type { DerivedSiteContent } from "./content/defaultContent";
 
@@ -115,8 +116,10 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         </div>
         <script dangerouslySetInnerHTML={{ __html: webMcpScript(resolved.content) }} />
         <SiteContentProvider content={resolved.siteContent}>
-          <Navigation />
-          <div className="relative">{children}</div>
+          <LocaleProvider>
+            <Navigation />
+            <div className="relative">{children}</div>
+          </LocaleProvider>
           <PaperGrain />
         </SiteContentProvider>
       </body>

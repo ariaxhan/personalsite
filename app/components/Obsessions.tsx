@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import SectionHeader from "./studio/SectionHeader";
-import { useSiteContent } from "../content/SiteContentProvider";
+import { useSiteCopy } from "./LocaleProvider";
 
 /**
  * Obsessions: Fig. 07, lately on my mind.
@@ -12,7 +12,7 @@ import { useSiteContent } from "../content/SiteContentProvider";
  * just breathes so the section feels alive rather than fixed.
  */
 export default function Obsessions() {
-  const { PAGE_COPY, obsessions } = useSiteContent();
+  const { PAGE_COPY, obsessions } = useSiteCopy();
   const [tick, setTick] = useState(0);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function Obsessions() {
             key={o.text}
             className="flex items-baseline gap-5 border-b border-dashed border-[rgba(44,40,35,0.16)] py-4 transition-opacity duration-700"
           >
-            <span className="shrink-0 font-mono text-[11px] tracking-[0.1em] text-terracotta">
+            <span className="shrink-0 font-mono text-caption tracking-[0.1em] text-terracotta">
               {PAGE_COPY.sections.obsessions.prefix}
             </span>
             <span

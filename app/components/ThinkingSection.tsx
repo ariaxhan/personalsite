@@ -1,6 +1,8 @@
+"use client";
+
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
-import { getSiteContent } from "../content/repository";
+import { useSiteCopy } from "./LocaleProvider";
 
 /**
  * ThinkingSection: the writing, set as a map.
@@ -12,12 +14,10 @@ import { getSiteContent } from "../content/repository";
  * on Medium; the anchor text is the article title so agents and screen readers
  * get a meaningful destination.
  */
-export default async function ThinkingSection() {
-  const {
-    content: { WRITING_THEMES, articlesByTheme, MEDIUM_PROFILE, PAGE_COPY },
-  } = await getSiteContent();
+export default function ThinkingSection() {
+  const { PAGE_COPY, WRITING_THEMES, articlesByTheme, MEDIUM_PROFILE } = useSiteCopy();
   return (
-    <section className="mx-auto max-w-[1180px] px-5 pb-24 sm:px-8 lg:px-14 lg:pb-28" style={{ paddingTop: 120 }}>
+    <section className="mx-auto max-w-[1180px] px-5 pb-24 sm:px-8 lg:px-14 lg:pb-28" style={{ paddingTop: "calc(var(--masthead-height, 7.5rem) + 1.75rem)" }}>
       <SectionHeader
         as="h1"
         fig={PAGE_COPY.sections.writing.fig}
@@ -59,7 +59,7 @@ export default async function ThinkingSection() {
                     rel="noopener noreferrer"
                     className="group grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 border-b border-[rgba(44,40,35,0.12)] py-6 transition-colors sm:grid-cols-[auto_1fr_auto]"
                   >
-                    <span className="font-mono text-[12px] text-ink-mute">
+                    <span className="font-mono text-caption text-ink-mute">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div className="min-w-0">
@@ -71,7 +71,7 @@ export default async function ThinkingSection() {
                       </p>
                     </div>
                     <div className="col-start-2 flex items-center gap-3 sm:col-start-3 sm:flex-col sm:items-end sm:gap-1 sm:text-right">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-mute">
+                      <span className="font-mono text-caption uppercase tracking-[0.14em] text-ink-mute">
                         {a.read}
                       </span>
                     </div>

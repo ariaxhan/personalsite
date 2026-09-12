@@ -100,7 +100,12 @@ export const SITE = {
   },
 } as const;
 
-export type ProofStat = (typeof SITE.proof)[keyof typeof SITE.proof];
+export type ProofStat = {
+  readonly value: string;
+  readonly label: string;
+  readonly source: string;
+  readonly verified: string;
+};
 
 export const proofStats: ProofStat[] = Object.values(SITE.proof);
 
@@ -1655,6 +1660,12 @@ export const PAGE_COPY = {
     ariaToggle: "Toggle studio index",
     open: "Index",
     close: "Close",
+    groups: [
+      { label: "Studio", hrefs: ["/", "/about", "/timeline"] },
+      { label: "Work", hrefs: ["/systems", "/open-source", "/hackathons", "/proof/"] },
+      { label: "Notes", hrefs: ["/reading", "/writing"] },
+      { label: "Door", hrefs: ["/contact"] },
+    ],
   },
   footer: {
     line: "The thread is clear. It is always about people.",
@@ -1688,17 +1699,12 @@ export const PAGE_COPY = {
     ],
     githubTitle: "GitHub",
     githubInitial: "G",
-    githubNoteSuffix: "public repositories",
+    githubNote: "Open-source tools, experiments, and working code.",
   },
   about: {
     label: "About",
     title: "Hi, I'm Aria",
     subtitle: "I spend a vast majority of my time talking to Claude Code, reading books, and writing everything from prompts to poetry.",
-    stats: [
-      { value: "3x", label: "Companies", sub: "Brink · HeyContent · HeyContext" },
-      { value: "5", label: "Hackathons", sub: "Won · 6 finals" },
-      { value: "39", label: "Skills", sub: "Packaged" },
-    ],
     narrative: [
       "I started as a language person. Journalism, essays, stories, poems, research rabbit holes, and constant reading. Computer science did not feel like leaving that behind. It felt like picking up one more language.",
       "Then language models arrived, and the language part and the machine part stopped feeling separate.",
@@ -1846,9 +1852,12 @@ export const PAGE_COPY = {
     },
   },
   now: {
-    label: "Now · July 2026",
-    active:
-      "Still active in the open: KERNEL, my memory-and-rules layer for Claude Code; llm-bench, the 21-test model benchmark; and the daily Substrate pipeline that ships one agent-made artwork a day. Also active but mostly invisible: the daily automation system that sends me research digests, keeps the vaults alive, and occasionally turns the machinery into poetry.",
+    label: "Now · September 2026",
+    title: "Working independently with a few different clients.",
+    body:
+      "AI products, personal workflows, internal operations, and AI education. Enjoying the range.",
+
+
     timelineLink: "The full timeline",
   },
   contact: {

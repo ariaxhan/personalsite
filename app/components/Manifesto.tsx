@@ -1,5 +1,7 @@
+"use client";
+
 import Reveal from "./studio/Reveal";
-import { getSiteContent } from "../content/repository";
+import { useSiteCopy } from "./LocaleProvider";
 
 /**
  * Manifesto: the note before you wander.
@@ -8,8 +10,8 @@ import { getSiteContent } from "../content/repository";
  * (ambient, not loud), then two quiet columns of body text. No cards, no
  * borders, just a held breath.
  */
-export default async function Manifesto() {
-  const { content: { PAGE_COPY } } = await getSiteContent();
+export default function Manifesto() {
+  const { PAGE_COPY } = useSiteCopy();
   const copy = PAGE_COPY.manifesto;
 
   return (

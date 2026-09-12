@@ -4,14 +4,14 @@ import { useState } from "react";
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
 import type { Book } from "../utils/studioData";
-import { useSiteContent } from "../content/SiteContentProvider";
+import { useSiteCopy } from "./LocaleProvider";
 
 function compactTitle(title: string): string {
   return title.replace(", or the Necessity of Violence", "").replace("This Is How You Lose the Time War", "Time War");
 }
 
 export default function Bookshelf() {
-  const { PAGE_COPY, books } = useSiteContent();
+  const { PAGE_COPY, books } = useSiteCopy();
   const copy = PAGE_COPY.sections.bookshelf;
   const [active, setActive] = useState(0);
   const selected = books[active] ?? books[0];
@@ -23,7 +23,7 @@ export default function Bookshelf() {
       <Reveal className="mt-12">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(340px,0.9fr)] lg:items-start">
           <div>
-            <p className="m-0 mb-4 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+            <p className="m-0 mb-4 font-mono text-caption uppercase tracking-[0.16em] text-ink-mute">
               {copy.hoverHint}
             </p>
             <div
@@ -55,7 +55,7 @@ export default function Bookshelf() {
             className="border-y border-[rgba(44,40,35,0.16)] py-7 lg:sticky lg:top-24"
             aria-live="polite"
           >
-            <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+            <div className="font-mono text-caption uppercase tracking-[0.16em] text-ink-mute">
               {copy.selectedLabel}
             </div>
             <div className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -63,12 +63,12 @@ export default function Bookshelf() {
                 {selected.title}
               </h2>
               {selected.current && (
-                <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-terracotta">
+                <span className="font-mono text-caption uppercase tracking-[0.14em] text-terracotta">
                   {copy.current}
                 </span>
               )}
             </div>
-            <p className="m-0 mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-mute">
+            <p className="m-0 mt-2 font-mono text-caption uppercase tracking-[0.14em] text-ink-mute">
               {selected.author}
             </p>
             <p className="m-0 mt-6 text-[16px] leading-relaxed text-ink-muted">
@@ -88,9 +88,9 @@ export default function Bookshelf() {
               onClick={() => setActive(i)}
               className="border-0 border-t border-[rgba(44,40,35,0.14)] bg-transparent px-0 pt-4 text-left"
             >
-              <span className="font-mono text-[10px] text-ink-mute">{String(i + 1).padStart(2, "0")}</span>
+              <span className="font-mono text-caption text-ink-mute">{String(i + 1).padStart(2, "0")}</span>
               <span className="mt-1 block font-serif text-[20px] leading-tight text-ink">{book.title}</span>
-              <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.13em] text-ink-mute">
+              <span className="mt-1 block font-mono text-caption uppercase tracking-[0.13em] text-ink-mute">
                 {book.author}
               </span>
             </button>
@@ -143,7 +143,7 @@ function BookSpine({
         {compactTitle(book.title)}
       </span>
       <span
-        className="absolute bottom-3 font-mono text-[8px] uppercase tracking-[0.12em] text-studio-paper/75"
+        className="absolute bottom-3 font-mono text-caption uppercase tracking-[0.12em] text-studio-paper/75"
         style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
       >
         {book.author.split(" ").slice(-1)[0]}

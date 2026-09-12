@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, useEffect } from "react";
-import { useSiteContent } from "../../content/SiteContentProvider";
+import { useSiteCopy } from "../LocaleProvider";
 
 /**
  * Modal: a sheet of paper lifted off the desk.
@@ -21,7 +21,6 @@ export default function Modal({
   children: ReactNode;
   maxWidth?: number;
 }) {
-  const { PAGE_COPY } = useSiteContent();
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -35,6 +34,8 @@ export default function Modal({
       document.body.style.overflow = prev;
     };
   }, [open, onClose]);
+
+  const { PAGE_COPY } = useSiteCopy();
 
   if (!open) return null;
 
@@ -54,7 +55,7 @@ export default function Modal({
         <button
           onClick={onClose}
           aria-label={PAGE_COPY.modal.closeAria}
-          className="absolute right-4 top-4 cursor-pointer border-0 bg-transparent font-mono text-[11px] uppercase tracking-[0.14em] text-ink-mute transition-colors hover:text-terracotta sm:right-6 sm:top-6"
+          className="absolute right-4 top-4 cursor-pointer border-0 bg-transparent font-mono text-caption uppercase tracking-[0.14em] text-ink-mute transition-colors hover:text-terracotta sm:right-6 sm:top-6"
         >
           {PAGE_COPY.modal.close} &times;
         </button>

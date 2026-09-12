@@ -5,9 +5,9 @@ import Link from "next/link";
 import SectionHeader from "../studio/SectionHeader";
 import Reveal from "../studio/Reveal";
 import type { Project } from "../../utils/projectsData";
-import { useSiteContent } from "../../content/SiteContentProvider";
+import { useSiteCopy } from "../LocaleProvider";
 
-// ProjectConstellation: the projects as a constellation, not a grid.
+// ProjectConstellation: the thirteen projects as a constellation, not a grid.
 // Nodes sit in theme neighborhoods (memory NW, evals NE, agents center,
 // products S, companies SW); edges come from each project's declared
 // connections. Resting on a node warms its edges and neighbors and prints its
@@ -18,6 +18,13 @@ import { useSiteContent } from "../../content/SiteContentProvider";
 // Hand-tuned positions, percent of the field. Neighborhoods, not a force layout.
 const POS: Record<string, { x: number; y: number }> = {
   // memory, north-west
+  "civic-forges": { x: 82, y: 79 },
+  "not-recommended": { x: 91, y: 64 },
+  hearth: { x: 13, y: 88 },
+  "nexus-office": { x: 35, y: 37 },
+  renderstate: { x: 73, y: 42 },
+  "site-spec": { x: 50, y: 14 },
+  agentmailkit: { x: 8, y: 43 },
   metabrain: { x: 19, y: 21 },
   // evals, north-east
   "latent-diagnostics": { x: 66, y: 26 },
@@ -35,14 +42,6 @@ const POS: Record<string, { x: number; y: number }> = {
   "paper-rooms": { x: 46, y: 86 },
   modelmind: { x: 58, y: 82 },
   our4cuts: { x: 70, y: 88 },
-  "civic-forges": { x: 82, y: 79 },
-  "not-recommended": { x: 91, y: 64 },
-  hearth: { x: 13, y: 88 },
-  // newer systems and tools
-  "nexus-office": { x: 35, y: 37 },
-  renderstate: { x: 73, y: 42 },
-  "site-spec": { x: 50, y: 14 },
-  agentmailkit: { x: 8, y: 43 },
 };
 
 function targetHref(p: Project): string {
@@ -51,8 +50,7 @@ function targetHref(p: Project): string {
 }
 
 export default function ProjectConstellation() {
-  const { PAGE_COPY, projects } = useSiteContent();
-  const projectBySlug = (slug: string) => projects.find((project) => project.slug === slug);
+  const { PAGE_COPY, projects, projectBySlug } = useSiteCopy();
   const [active, setActive] = useState<string | null>(null);
 
   const nodes = useMemo(
@@ -85,7 +83,7 @@ export default function ProjectConstellation() {
       m[e.b]?.add(e.a);
     }
     return m;
-  }, [edges, projects]);
+  }, [edges]);
 
   const activeProject = active ? projectBySlug(active) : undefined;
   const caption = activeProject ? activeProject.thesis : PAGE_COPY.sections.projectMap.defaultCaption;
@@ -174,7 +172,7 @@ export default function ProjectConstellation() {
                 <span
                   className="font-mono uppercase leading-tight"
                   style={{
-                    fontSize: 10.5,
+                    fontSize: "var(--font-caption)",
                     letterSpacing: "0.08em",
                     color: isActive ? "#b56a4f" : "#4a453d",
                     transition: "color .5s ease",

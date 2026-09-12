@@ -1,16 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { getSiteContent } from "../content/repository";
 import SystemDiagram from "./home/SystemDiagram";
+import { useSiteCopy } from "./LocaleProvider";
 
 // Hero: the ten-second answer. Who (Aria Han, the role, Los Angeles), what
 // (the one-liner), the strange line that says why the work is different, and
 // four doors to where to go next. The proof-stat grid and the system diagram
-// carry the evidence. Every number is sourced from siteMeta; nothing here is
-// typed twice.
+// carry the evidence. Every number is sourced from site copy.
 
-export default async function Hero() {
-  const { content: { SITE, PAGE_COPY, proofStats, projectBySlug } } = await getSiteContent();
+export default function Hero() {
+  const { PAGE_COPY, SITE, projectBySlug, proofStats } = useSiteCopy();
   const quickLinks = [
     {
       title: "Paper Rooms",
@@ -30,7 +31,7 @@ export default async function Hero() {
       title: PAGE_COPY.hero.githubTitle,
       href: "https://github.com/ariaxhan",
       image: null,
-      note: `${SITE.proof.publicRepos.value} ${PAGE_COPY.hero.githubNoteSuffix}`,
+      note: PAGE_COPY.hero.githubNote,
       initial: PAGE_COPY.hero.githubInitial,
     },
   ];
@@ -38,7 +39,7 @@ export default async function Hero() {
     <section
       id="entrance"
       className="relative grid min-h-[100svh] grid-cols-[minmax(0,1fr)] overflow-hidden px-5 pb-8 sm:px-8 sm:pb-10 lg:px-14"
-      style={{ gridTemplateRows: "auto 1fr auto", paddingTop: "clamp(88px, 10vw, 118px)" }}
+      style={{ gridTemplateRows: "auto 1fr auto", paddingTop: "calc(var(--masthead-height, 7.5rem) + 1.5rem)" }}
     >
       {/* Kicker row: figure label + role on the left, location on the right. */}
       <div className="flex min-w-0 items-start justify-between gap-4">
@@ -48,7 +49,7 @@ export default async function Hero() {
           {SITE.role}
         </div>
         <div
-          className="kicker max-w-[160px] text-right sm:max-w-[230px]"
+          className="kicker max-w-[11.5rem] text-right sm:max-w-[230px]"
           style={{ lineHeight: 2, letterSpacing: "0.14em" }}
         >
           {SITE.location}
@@ -97,7 +98,6 @@ export default async function Hero() {
             ))}
           </div>
 
-          {/* Proof grid, sourced from siteMeta. */}
           <div className="mt-1 grid grid-cols-2 border-y border-[rgba(44,40,35,0.16)] sm:grid-cols-3">
             {proofStats.map((stat) => (
               <div
@@ -107,7 +107,7 @@ export default async function Hero() {
                 <div className="font-serif text-[36px] font-light leading-none text-ink sm:text-[44px]">
                   {stat.value}
                 </div>
-                <div className="mt-2 max-w-[130px] font-mono text-[9px] uppercase leading-4 tracking-[0.16em] text-ink-mute">
+                <div className="mt-2 font-mono text-caption uppercase leading-5 tracking-[0.12em] text-ink-mute">
                   {stat.label}
                 </div>
               </div>
@@ -122,7 +122,7 @@ export default async function Hero() {
         </div>
       </div>
 
-      {/* Three quick doors, notes sourced from the project theses and the repo count. */}
+      {/* Three quick doors, notes sourced from the project theses and site copy. */}
       <div className="grid gap-3 border-t border-[rgba(44,40,35,0.16)] pt-4 lg:grid-cols-3">
         {quickLinks.map((link) => (
           <a
@@ -153,7 +153,7 @@ export default async function Hero() {
               <span className="font-serif text-[22px] font-light leading-none text-ink transition-colors group-hover:text-terracotta">
                 {link.title}
               </span>
-              <span className="max-w-[38ch] font-serif text-[13px] italic leading-snug text-ink-mute">
+              <span className="max-w-[38ch] font-serif text-caption italic leading-snug text-ink-mute">
                 {link.note}
               </span>
             </span>

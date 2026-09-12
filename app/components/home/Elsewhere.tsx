@@ -9,13 +9,15 @@
 // No em dashes.
 // ============================================================================
 
-import Reveal from "../studio/Reveal";
-import { getSiteContent } from "../../content/repository";
+"use client";
 
-export default async function Elsewhere() {
-  const { content: { PAGE_COPY, contactLinks } } = await getSiteContent();
-  const email = contactLinks.find((link) => link.href.startsWith("mailto:"));
-  const profiles = contactLinks.filter((link) => !link.href.startsWith("mailto:"));
+import Reveal from "../studio/Reveal";
+import { useSiteCopy } from "../LocaleProvider";
+
+export default function Elsewhere() {
+  const { PAGE_COPY, contactLinks } = useSiteCopy();
+  const email = contactLinks.find((l) => l.href.startsWith("mailto:"));
+  const profiles = contactLinks.filter((l) => !l.href.startsWith("mailto:"));
   return (
     <section id="elsewhere" className="mx-auto max-w-content px-5 py-16 sm:px-8 sm:py-20">
       <Reveal className="border-t border-[rgba(44,40,35,0.2)] pt-10">
