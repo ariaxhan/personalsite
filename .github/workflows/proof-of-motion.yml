@@ -1,8 +1,9 @@
 name: proof of motion
 
 # Regenerates app/utils/motionData.json from GitHub contribution history and
-# commits it to main. Cloudflare Pages builds production from main, so a
-# committed change here is what actually updates the live ledger.
+# commits it to main, then deploys. Bot pushes do not trigger the push-based
+# deploy workflow, so the deploy job below calls it directly.
+
 
 on:
   schedule:
@@ -54,3 +55,8 @@ jobs:
           git add app/utils/motionData.json app/utils/motionSupplemental.json app/utils/contentDates.json
           git commit -m "data: refresh motion ledger and sitemap content dates"
           git push origin HEAD:main
+
+  deploy:
+    needs: regenerate
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
