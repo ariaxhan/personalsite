@@ -1,8 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Reveal from "./studio/Reveal";
 import SectionHeader from "./studio/SectionHeader";
-import { deskObjects, DeskObject } from "../utils/studioData";
-import { PAGE_COPY } from "../utils/siteCopy";
+import type { DeskObject } from "../utils/studioData";
+import { useSiteCopy } from "./LocaleProvider";
 
 /**
  * LivingDesk: Fig. 01, the desk.
@@ -13,6 +15,7 @@ import { PAGE_COPY } from "../utils/siteCopy";
  * tidy index of the same doors.
  */
 export default function LivingDesk() {
+  const { PAGE_COPY, deskObjects } = useSiteCopy();
   return (
     <section className="mx-auto max-w-wall px-5 pb-24 pt-10 sm:px-8 lg:px-14">
       <SectionHeader
@@ -67,7 +70,7 @@ export default function LivingDesk() {
           >
             <div className="flex flex-col items-center gap-3 transition-transform duration-500 ease-paper group-hover:-translate-y-2">
               <DeskDrawing kind={obj.kind} />
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-mute transition-colors group-hover:text-ink">
+              <span className="font-mono text-caption uppercase tracking-[0.14em] text-ink-mute transition-colors group-hover:text-ink">
                 {obj.label}
               </span>
             </div>
@@ -105,7 +108,7 @@ export default function LivingDesk() {
               </div>
             </div>
             <div>
-              <div className="font-mono text-[9px] uppercase tracking-[0.13em] text-terracotta">
+              <div className="font-mono text-caption uppercase tracking-[0.13em] text-terracotta">
                 {obj.label}
               </div>
               <div className="mt-1 font-serif text-[16px] leading-tight text-ink">{obj.caption}</div>
@@ -165,7 +168,7 @@ function DeskDrawing({ kind }: { kind: DeskObject["kind"] }) {
         >
           <div style={{ position: "absolute", left: 22, top: 26, width: 56, height: 56, border: "1.5px solid #41606c", borderRadius: "50%" }} />
           <div style={{ position: "absolute", left: 50, top: 54, width: 78, height: 1.5, background: "#41606c", transform: "rotate(-32deg)" }} />
-          <div style={{ position: "absolute", right: 16, bottom: 12, fontFamily: "var(--font-mono)", fontSize: 8, color: "#41606c", letterSpacing: ".1em" }}>
+          <div style={{ position: "absolute", right: 16, bottom: 12, fontFamily: "var(--font-mono)", fontSize: "var(--font-caption)", color: "#41606c", letterSpacing: ".1em" }}>
             REV. 04
           </div>
         </div>

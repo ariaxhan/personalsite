@@ -1,20 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import Reveal from "./studio/Reveal";
-import { PAGE_COPY } from "../utils/siteCopy";
-
-interface FootLink {
-  label: string;
-  href: string;
-  external?: boolean;
-}
-
-const links: FootLink[] = [...PAGE_COPY.footer.links];
+import { useSiteCopy } from "./LocaleProvider";
 
 /**
  * StudioFooter: the colophon. A single conviction set large, a row of doors out,
  * and the studio's address. Repeated at the foot of every room.
  */
 export default function StudioFooter() {
+  const { PAGE_COPY } = useSiteCopy();
+  const links = PAGE_COPY.footer.links;
   return (
     <footer className="mx-auto max-w-[1280px] px-5 pb-16 pt-28 sm:px-8 lg:px-14">
       <Reveal className="border-t border-[rgba(44,40,35,0.2)] pt-12 lg:pt-16">
@@ -26,7 +22,7 @@ export default function StudioFooter() {
         </p>
         <div className="mb-14 flex flex-wrap items-baseline gap-x-10 gap-y-7">
           {links.map((l) =>
-            l.external ? (
+            "external" in l && l.external ? (
               <a
                 key={l.label}
                 href={l.href}
@@ -47,7 +43,7 @@ export default function StudioFooter() {
             )
           )}
         </div>
-        <div className="flex flex-wrap items-baseline justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute">
+        <div className="flex flex-wrap items-baseline justify-between gap-4 font-mono text-caption uppercase tracking-[0.18em] text-ink-mute">
           <span>{PAGE_COPY.footer.place}</span>
           <span className="normal-case tracking-[0.06em]">{PAGE_COPY.footer.handleLine}</span>
           <span>{PAGE_COPY.footer.motto}</span>

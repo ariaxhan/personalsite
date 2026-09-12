@@ -1,7 +1,8 @@
+"use client";
+
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
-import { moments, timelineTerminus } from "../utils/studioData";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { useSiteCopy } from "./LocaleProvider";
 
 const typeColor: Record<string, string> = {
   company: "#b56a4f",
@@ -17,10 +18,11 @@ const typeColor: Record<string, string> = {
  * year gets a marker, then the room it opened.
  */
 export default function Timeline() {
+  const { PAGE_COPY, moments, timelineTerminus } = useSiteCopy();
   return (
     <section
       className="py-24 lg:py-28"
-      style={{ paddingTop: 120, background: "linear-gradient(180deg, #ece4d2, #e7dec9)" }}
+      style={{ paddingTop: "calc(var(--masthead-height, 7.5rem) + 1.75rem)", background: "linear-gradient(180deg, #ece4d2, #e7dec9)" }}
     >
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-14">
         <SectionHeader
@@ -55,10 +57,10 @@ export default function Timeline() {
                   style={{ background: "#2c2823", border: "3px solid #ece4d2", boxShadow: "0 0 0 1px rgba(44,40,35,.3)" }}
                 />
               </div>
-              <div className="col-start-2 mb-2 mt-2 break-words font-mono text-[10px] uppercase tracking-[0.14em] text-ink-mute">
+              <div className="col-start-2 mb-2 mt-2 font-mono text-caption uppercase tracking-[0.14em] text-ink-mute">
                 {m.period}
               </div>
-              <h3 className="col-start-2 m-0 mb-3 break-words font-serif text-[22px] font-medium leading-[1.12] text-ink">
+              <h3 className="col-start-2 m-0 mb-3 font-serif text-[22px] font-medium leading-[1.12] text-ink">
                 {m.title}
               </h3>
               <p className="col-start-2 m-0 max-w-[290px] text-[14.5px] leading-[1.65] text-ink-muted">

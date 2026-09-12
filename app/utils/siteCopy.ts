@@ -100,7 +100,12 @@ export const SITE = {
   },
 } as const;
 
-export type ProofStat = (typeof SITE.proof)[keyof typeof SITE.proof];
+export type ProofStat = {
+  readonly value: string;
+  readonly label: string;
+  readonly source: string;
+  readonly verified: string;
+};
 
 export const proofStats: ProofStat[] = Object.values(SITE.proof);
 
@@ -1480,6 +1485,12 @@ export const PAGE_COPY = {
     ariaToggle: "Toggle studio index",
     open: "Index",
     close: "Close",
+    groups: [
+      { label: "Studio", hrefs: ["/", "/about", "/timeline"] },
+      { label: "Work", hrefs: ["/systems", "/open-source", "/hackathons", "/proof/"] },
+      { label: "Notes", hrefs: ["/reading", "/writing"] },
+      { label: "Door", hrefs: ["/contact"] },
+    ],
   },
   footer: {
     line: "The thread is clear. It is always about people.",
@@ -1666,10 +1677,12 @@ export const PAGE_COPY = {
     },
   },
   now: {
-    label: "Now · July 2026",
-    title: "Building internal AI workflows with Blink Build Studios.",
+    label: "Now · September 2026",
+    title: "Working independently with a few different clients.",
     body:
-      "I also review and repair AI products for founders and independent builders.",
+      "AI products, personal workflows, internal operations, and AI education. Enjoying the range.",
+
+
     timelineLink: "The full timeline",
   },
   contact: {

@@ -1,11 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Reveal from "../studio/Reveal";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import { useSiteCopy } from "../LocaleProvider";
 
 // NowBlock: a small, dated status update. It stays separate from the exhaustive
 // timeline so the homepage can answer what is happening now without listing
 // every project or tool that is still running.
 export default function NowBlock() {
+  const { PAGE_COPY } = useSiteCopy();
   const now = PAGE_COPY.now;
 
   return (

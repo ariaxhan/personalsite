@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import SectionHeader from "./studio/SectionHeader";
 import Reveal from "./studio/Reveal";
 import Modal from "./studio/Modal";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { projectsToWallItems } from "../utils/wallItems";
+import { useSiteCopy } from "./LocaleProvider";
 
 export interface WallLink {
   label: string;
@@ -63,18 +64,17 @@ const rotations = [-2.4, 1.6, -1.1, 2.2, -1.8, 1.4, -3, 2];
  * list. Shared by the Systems and Open Source rooms.
  */
 export default function WorkshopWall({
-  fig,
-  label,
-  title,
-  note,
-  items,
+  room,
 }: {
-  fig: string;
-  label: string;
-  title: string;
-  note: string;
-  items: WallItem[];
+  room: "systems" | "open-source";
 }) {
+  const { PAGE_COPY, productProjects, openSourceProjects, locale } = useSiteCopy();
+  const { fig, label, title, note } =
+    room === "systems" ? PAGE_COPY.sections.systems : PAGE_COPY.sections.openSource;
+  const items = projectsToWallItems(
+    room === "systems" ? productProjects : openSourceProjects,
+    locale
+  );
   const [open, setOpen] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const active = open != null ? items[open] : null;
@@ -89,7 +89,7 @@ export default function WorkshopWall({
   }, [open]);
 
   return (
-    <section className="mx-auto max-w-wall px-5 sm:px-8 lg:px-14" style={{ paddingTop: "clamp(92px, 12vw, 120px)" }}>
+    <section className="mx-auto max-w-wall px-5 sm:px-8 lg:px-14" style={{ paddingTop: "calc(var(--masthead-height, 7.5rem) + 1.75rem)" }}>
       <SectionHeader as="h1" fig={fig} label={label} title={title} note={note} />
 
       <div className="mt-10 grid grid-cols-1 items-start gap-x-8 gap-y-10 sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] sm:gap-y-12">
@@ -143,16 +143,16 @@ export default function WorkshopWall({
                     }}
                   >
                     <span className="h-1 w-9 rounded-sm" style={{ background: p.accent }} />
-                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-ink-mute">
+                    <span className="font-mono text-caption uppercase tracking-[0.12em] text-ink-mute">
                       {PAGE_COPY.workshopWall.cardPrefix} · {p.title}
                     </span>
                   </div>
                 )}
                 <div className="mb-2 flex items-center justify-between">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-terracotta">
+                  <span className="font-mono text-caption uppercase tracking-[0.2em] text-terracotta">
                     {p.tag}
                   </span>
-                  <span className="font-mono text-[10px] text-ink-mute">
+                  <span className="font-mono text-caption text-ink-mute">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
@@ -163,11 +163,11 @@ export default function WorkshopWall({
                   {p.thesis}
                 </p>
                 {p.status && (
-                  <div className="mb-4 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-mute">
+                  <div className="mb-4 font-mono text-caption uppercase tracking-[0.14em] text-ink-mute">
                     {p.status}
                   </div>
                 )}
-                <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-ghost">
+                <span className="font-mono text-caption uppercase tracking-[0.12em] text-ink-ghost">
                   {PAGE_COPY.workshopWall.cardCta} {"->"}
                 </span>
               </div>
@@ -179,7 +179,7 @@ export default function WorkshopWall({
                 _meta/research/2026-07-28-discoverability-audit.md. */}
             <a
               href={`/projects/${p.slug}/`}
-              className="mt-2 block text-center font-mono text-[9px] uppercase tracking-[0.14em] text-ink-ghost underline-offset-4 hover:text-terracotta hover:underline"
+              className="mt-2 block text-center font-mono text-caption uppercase tracking-[0.14em] text-ink-ghost underline-offset-4 hover:text-terracotta hover:underline"
             >
               {PAGE_COPY.workshopWall.permalinkCta} {p.title}
             </a>
@@ -200,7 +200,7 @@ export default function WorkshopWall({
                   <img src={active.logo} alt={`${active.title} logo`} className="h-full w-full object-contain p-1.5" />
                 </span>
               )}
-              <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-terracotta">
+              <div className="font-mono text-caption uppercase tracking-[0.2em] text-terracotta">
                 {active.tag} · {active.title}
               </div>
             </div>
@@ -252,7 +252,7 @@ export default function WorkshopWall({
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={active.poster} alt="" className="h-full w-full object-cover object-top" style={{ aspectRatio: "4 / 3" }} />
                         <span className="absolute inset-0 flex items-center justify-center">
-                          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[rgba(20,16,10,.55)] pl-0.5 text-[10px] text-white">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(20,16,10,.55)] pl-0.5 text-caption text-white">
                             {"▶"}
                           </span>
                         </span>
@@ -296,7 +296,7 @@ export default function WorkshopWall({
               {active.thesis}
             </p>
 
-            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+            <div className="mb-2 font-mono text-caption uppercase tracking-[0.16em] text-ink-mute">
               {PAGE_COPY.workshopWall.sections.built}
             </div>
             {active.body.map((para, j) => (
@@ -307,7 +307,7 @@ export default function WorkshopWall({
 
             {active.problem && (
               <div className="mt-7">
-                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+                <div className="mb-1.5 font-mono text-caption uppercase tracking-[0.16em] text-ink-mute">
                   {PAGE_COPY.workshopWall.sections.problem}
                 </div>
                 <p className="m-0 text-[16.5px] leading-[1.7] text-ink-soft">{active.problem}</p>
@@ -315,7 +315,7 @@ export default function WorkshopWall({
             )}
             {active.proofLine && (
               <div className="mt-6">
-                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+                <div className="mb-1.5 font-mono text-caption uppercase tracking-[0.16em] text-ink-mute">
                   {PAGE_COPY.workshopWall.sections.proof}
                 </div>
                 <p className="m-0 text-[16.5px] leading-[1.7] text-ink-soft">{active.proofLine}</p>
@@ -323,7 +323,7 @@ export default function WorkshopWall({
             )}
             {active.learned && (
               <div className="mt-6">
-                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+                <div className="mb-1.5 font-mono text-caption uppercase tracking-[0.16em] text-ink-mute">
                   {PAGE_COPY.workshopWall.sections.learned}
                 </div>
                 <p className="m-0 text-[16.5px] leading-[1.7] text-ink-soft">{active.learned}</p>
@@ -331,7 +331,7 @@ export default function WorkshopWall({
             )}
             {active.proves && (
               <div className="mt-6">
-                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+                <div className="mb-1.5 font-mono text-caption uppercase tracking-[0.16em] text-ink-mute">
                   {PAGE_COPY.workshopWall.sections.proves}
                 </div>
                 <p className="m-0 text-[16.5px] leading-[1.7] text-ink-soft">{active.proves}</p>
@@ -341,12 +341,12 @@ export default function WorkshopWall({
             {(active.stackLine || (active.themes && active.themes.length > 0)) && (
               <div className="mt-7 flex flex-col gap-1.5 border-t border-dashed border-[rgba(44,40,35,0.25)] pt-6">
                 {active.stackLine && (
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-mute">
+                  <div className="font-mono text-caption uppercase tracking-[0.14em] text-ink-mute">
                     {PAGE_COPY.workshopWall.sections.stack} · {active.stackLine}
                   </div>
                 )}
                 {active.themes && active.themes.length > 0 && (
-                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-mute">
+                  <div className="font-mono text-caption uppercase tracking-[0.14em] text-ink-mute">
                     {PAGE_COPY.workshopWall.sections.themes} · {active.themes.join(" · ")}
                   </div>
                 )}
@@ -355,7 +355,7 @@ export default function WorkshopWall({
 
             {active.connections && active.connections.length > 0 && (
               <div className="mt-6">
-                <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
+                <div className="mb-2 font-mono text-caption uppercase tracking-[0.16em] text-ink-mute">
                   {PAGE_COPY.workshopWall.sections.connected}
                 </div>
                 <div className="flex flex-wrap gap-x-5 gap-y-2">
@@ -375,7 +375,7 @@ export default function WorkshopWall({
             <dl className="mt-7 grid gap-x-6 gap-y-3 border-t border-dashed border-[rgba(44,40,35,0.25)] pt-6 sm:grid-cols-2">
               {Object.entries(active.meta).map(([k, v]) => (
                 <div key={k}>
-                  <dt className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink-mute">
+                  <dt className="font-mono text-caption uppercase tracking-[0.16em] text-ink-mute">
                     {k.replace(/_/g, " ")}
                   </dt>
                   <dd className="m-0 text-[14.5px] text-ink-soft">{v}</dd>

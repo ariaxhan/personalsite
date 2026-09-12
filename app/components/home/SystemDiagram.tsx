@@ -1,27 +1,29 @@
-import { PAGE_COPY } from "../../utils/siteCopy";
+"use client";
+
+import { useSiteCopy } from "../LocaleProvider";
 
 // SystemDiagram: a blueprint of the work, left to right. A messy workflow on the
 // left (drawn as a terracotta scribble), flowing through four labeled chambers
 // (memory, context, evals, agents), into a clean square on the right (a working
-// implementation). Server component: the stroke draw is pure CSS (see the
-// .sd-draw rule in globals.css) and collapses to a static drawing under
-// prefers-reduced-motion. Every label is real DOM text inside the SVG.
+// implementation). Stroke draw is pure CSS (.sd-draw) and collapses to a
+// static drawing under prefers-reduced-motion. Every label is real DOM text.
 
-const CHAMBERS = [
-  { label: PAGE_COPY.systemDiagram.chambers[0], cx: 205, rot: -1.1 },
-  { label: PAGE_COPY.systemDiagram.chambers[1], cx: 300, rot: 1.2 },
-  { label: PAGE_COPY.systemDiagram.chambers[2], cx: 395, rot: -0.9 },
-  { label: PAGE_COPY.systemDiagram.chambers[3], cx: 490, rot: 1.4 },
-];
 
 const CH_W = 78;
 const CH_H = 56;
 const MID_Y = 120;
 
 export default function SystemDiagram() {
+  const { PAGE_COPY } = useSiteCopy();
+  const CHAMBERS = [
+    { label: PAGE_COPY.systemDiagram.chambers[0], cx: 205, rot: -1.1 },
+    { label: PAGE_COPY.systemDiagram.chambers[1], cx: 300, rot: 1.2 },
+    { label: PAGE_COPY.systemDiagram.chambers[2], cx: 395, rot: -0.9 },
+    { label: PAGE_COPY.systemDiagram.chambers[3], cx: 490, rot: 1.4 },
+  ];
   return (
     <figure className="m-0">
-      <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-mute">
+      <div className="mb-3 font-mono text-caption uppercase tracking-[0.2em] text-ink-mute">
         {PAGE_COPY.systemDiagram.label}
       </div>
       <div
@@ -85,7 +87,7 @@ export default function SystemDiagram() {
                 y={MID_Y + 4}
                 textAnchor="middle"
                 fontFamily="var(--font-mono), monospace"
-                fontSize={12.5}
+                fontSize="var(--font-caption)"
                 letterSpacing="0.04em"
                 fill="#3f3a32"
               >
@@ -117,7 +119,7 @@ export default function SystemDiagram() {
             y={188}
             textAnchor="middle"
             fontFamily="var(--font-mono), monospace"
-            fontSize={11}
+            fontSize="var(--font-caption)"
             letterSpacing="0.08em"
             fill="#8a8275"
           >
@@ -133,7 +135,7 @@ export default function SystemDiagram() {
             y={188}
             textAnchor="middle"
             fontFamily="var(--font-mono), monospace"
-            fontSize={11}
+            fontSize="var(--font-caption)"
             letterSpacing="0.08em"
             fill="#8a8275"
           >

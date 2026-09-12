@@ -1,12 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import SectionHeader from "../studio/SectionHeader";
 import Reveal from "../studio/Reveal";
-import {
-  articlesByTheme,
-  WRITING_THEMES,
-  type WritingTheme,
-} from "../../utils/writingData";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import type { WritingTheme } from "../../utils/writingData";
+import { useSiteCopy } from "../LocaleProvider";
 
 // WritingHighlights: one strongest essay per working theme, sent to Medium. The
 // full archive lives on the writing page. Sourced from writingData, so the four
@@ -18,10 +16,10 @@ const PICKS: WritingTheme[] = [
   "ai-coding-workflows",
 ];
 
-const themeLabel = (key: WritingTheme) =>
-  WRITING_THEMES.find((t) => t.key === key)?.label ?? key;
-
 export default function WritingHighlights() {
+  const { PAGE_COPY, WRITING_THEMES, articlesByTheme } = useSiteCopy();
+  const themeLabel = (key: WritingTheme) =>
+    WRITING_THEMES.find((t) => t.key === key)?.label ?? key;
   const featured = PICKS.map((theme) => ({
     theme,
     article: articlesByTheme(theme)[0],
@@ -46,10 +44,10 @@ export default function WritingHighlights() {
               className="group grid gap-2.5 border-b border-[rgba(44,40,35,0.12)] py-7 transition-colors hover:border-[rgba(44,40,35,0.3)]"
             >
               <span className="flex items-center justify-between gap-4">
-                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-terracotta">
+                <span className="font-mono text-caption uppercase tracking-[0.16em] text-terracotta">
                   {themeLabel(theme)}
                 </span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-mute">
+                <span className="font-mono text-caption uppercase tracking-[0.14em] text-ink-mute">
                   {article.read}
                 </span>
               </span>
@@ -59,7 +57,7 @@ export default function WritingHighlights() {
               <span className="max-w-[52ch] text-[15px] leading-[1.6] text-ink-muted">
                 {article.excerpt}
               </span>
-              <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-ghost">
+              <span className="mt-1 font-mono text-caption uppercase tracking-[0.14em] text-ink-ghost">
                 {PAGE_COPY.sections.writingHighlights.readOnMedium} &rarr;
               </span>
             </a>

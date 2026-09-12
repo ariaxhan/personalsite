@@ -4,6 +4,7 @@ import { Newsreader, Hanken_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/Navigation";
 import PaperGrain from "./components/PaperGrain";
+import { LocaleProvider } from "./components/LocaleProvider";
 import { mcpBioMd, mcpProjectsMd, mcpWritingMd } from "./utils/agentText";
 import { SITE } from "./utils/siteMeta";
 import { PAGE_COPY } from "./utils/siteCopy";
@@ -104,11 +105,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </div>
         <script dangerouslySetInnerHTML={{ __html: WEBMCP_SCRIPT }} />
 
-        {/* Studio chrome */}
-        <Navigation />
-
-        {/* Main content */}
-        <div className="relative">{children}</div>
+        <LocaleProvider>
+          <Navigation />
+          <div className="relative">{children}</div>
+        </LocaleProvider>
 
         {/* Paper tooth over everything, never intercepts pointer events */}
         <PaperGrain />
