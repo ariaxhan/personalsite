@@ -637,7 +637,7 @@ Section:
 
 Moments:
 
-- 2026 / May 2026 to Present / AI Implementation Specialist · Blink Build Studios: Working with enterprises and founders to deploy, refine, and monitor agentic workflows and build distinctive AI products. The real question is what happens six months after you start putting AI to work in your company. 
+- 2026 / May 2026 to Present / Independent AI Implementation Specialist: Working with enterprises and founders to deploy, refine, and monitor agentic workflows and build distinctive AI products. The real question is what happens six months after you start putting AI to work in your company. 
 - 2026 / Apr to May 2026 / Lead AI Architect · FunJoin: Captured company knowledge so it could outlast the person who happened to remember it. Built internal AI tools for onboarding, retrieval, and AI-powered development.
 - 2026 / Jan to Apr 2026 / Independent AI Consultant & Researcher: Worked with non-technical founders to harden real apps made with Claude Code. Built workflows and ran research around context, memory, multi-agent systems, and checking whether the output was actually right.
 - 2025 / Sept 2025 to Jan 2026 / PersistOS / HeyContext: Built a multi-agent workspace around getting agents to work together. The chat window was never meant to be the whole operating system. Went live with hundreds of users within a month, no ad spend.
