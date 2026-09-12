@@ -1,8 +1,9 @@
 name: proof of motion
 
 # Regenerates app/utils/motionData.json from GitHub contribution history and
-# commits it to main. Auto-deploy is paused: a main build 503s against the
-# published D1 content until the CMS revision matches source.
+# commits it to main, then deploys. Bot pushes do not trigger the push-based
+# deploy workflow, so the deploy job below calls it directly.
+
 
 
 
@@ -56,3 +57,8 @@ jobs:
           git add app/utils/motionData.json app/utils/motionSupplemental.json app/utils/contentDates.json
           git commit -m "data: refresh motion ledger and sitemap content dates"
           git push origin HEAD:main
+
+  deploy:
+    needs: regenerate
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit

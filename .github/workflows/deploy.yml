@@ -1,7 +1,11 @@
 name: deploy
 
-# Builds the OpenNext Worker and deploys it to personalsite-cms-preview, which
-# serves ariaxhan.com. Same command as a local deploy: npm run cf:deploy.
+# Builds the OpenNext Worker for personalsite-cms-preview (serves ariaxhan.com).
+# Canary first: the new version is uploaded at 0% traffic and probed through a
+# version override. It is promoted only if it serves real pages; otherwise live
+# traffic never leaves the current version. A main build whose source content
+# disagrees with the published D1 revision 503s every route, so this gate is
+# what keeps a copy edit from taking the site down.
 # Pushes by github-actions[bot] do not trigger push workflows, so the motion
 # refresh calls this workflow directly after it commits.
 
@@ -14,6 +18,11 @@ on:
 concurrency:
   group: deploy-production
   cancel-in-progress: false
+
+env:
+  WORKER: personalsite-cms-preview
+  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+  CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
 
 jobs:
   deploy:
@@ -29,21 +38,46 @@ jobs:
           node-version: 24
           cache: npm
 
-
       - run: npm ci
 
-      - name: Build and deploy
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-        run: npm run cf:deploy
+      - name: Build
+        run: npx opennextjs-cloudflare build
+
+      - name: Upload canary at 0%
+        run: |
+          set -euo pipefail
+          old=$(npx wrangler deployments list --name "$WORKER" --json | node -p "const d=JSON.parse(require('fs').readFileSync(0));d.at(-1).versions.sort((a,b)=>b.percentage-a.percentage)[0].version_id")
+          new=$(OPEN_NEXT_DEPLOY=true npx wrangler versions upload --message "ci ${GITHUB_SHA::7}" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
+          echo "old=$old new=$new"
+          echo "OLD=$old" >> "$GITHUB_ENV"
+          echo "NEW=$new" >> "$GITHUB_ENV"
+          npx wrangler versions deploy "$old@100%" "$new@0%" --message "canary ${GITHUB_SHA::7}" -y
+
+      - name: Probe canary
+        run: |
+          set -euo pipefail
+          sleep 10
+          for path in / /api/stats.json /about/; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' \
+              -H "Cloudflare-Workers-Version-Overrides: $WORKER=\"$NEW\"" \
+              "https://ariaxhan.com$path?canary=$GITHUB_RUN_ID")
+            echo "$path $code"
+            [ "$code" = 200 ] || { echo "canary failed on $path" >&2; exit 1; }
+          done
+
+      - name: Promote
+        run: npx wrangler versions deploy "$NEW@100%" --message "promote ${GITHUB_SHA::7}" -y
+
+      - name: Restore current version
+        if: failure() && env.OLD != ''
+        run: npx wrangler versions deploy "$OLD@100%" --message "canary rejected ${GITHUB_SHA::7}" -y
 
       - name: Verify live
         run: |
           set -euo pipefail
           want=$(node -p "require('./app/utils/motionData.json').generated")
           for i in 1 2 3 4 5 6; do
-            got=$(curl -fsS "https://ariaxhan.com/api/stats.json?cb=$GITHUB_RUN_ID-$i" | node -p "JSON.parse(require('fs').readFileSync(0)).motion.generated")
+            got=$(curl -fsS "https://ariaxhan.com/api/stats.json?cb=$GITHUB_RUN_ID-$i" | node -p "JSON.parse(require('fs').readFileSync(0)).motion.generated" || true)
             [ "$got" = "$want" ] && { echo "live generated=$got"; exit 0; }
             sleep 10
           done
