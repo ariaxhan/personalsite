@@ -4,8 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import SectionHeader from "../studio/SectionHeader";
 import Reveal from "../studio/Reveal";
-import { projects, projectBySlug, type Project } from "../../utils/projectsData";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import type { Project } from "../../utils/projectsData";
+import { useSiteCopy } from "../LocaleProvider";
 
 // ProjectConstellation: the thirteen projects as a constellation, not a grid.
 // Nodes sit in theme neighborhoods (memory NW, evals NE, agents center,
@@ -43,11 +43,12 @@ function targetHref(p: Project): string {
 }
 
 export default function ProjectConstellation() {
+  const { PAGE_COPY, projects, projectBySlug } = useSiteCopy();
   const [active, setActive] = useState<string | null>(null);
 
   const nodes = useMemo(
     () => projects.filter((p) => POS[p.slug]).map((p) => ({ p, ...POS[p.slug] })),
-    []
+    [projects]
   );
 
   // Dedupe connection pairs into undirected edges.
@@ -64,7 +65,7 @@ export default function ProjectConstellation() {
       }
     }
     return out;
-  }, []);
+  }, [projects]);
 
   // Neighbor set for the active node (itself included).
   const neighbors = useMemo(() => {
@@ -164,7 +165,7 @@ export default function ProjectConstellation() {
                 <span
                   className="font-mono uppercase leading-tight"
                   style={{
-                    fontSize: 10.5,
+                    fontSize: "var(--font-caption)",
                     letterSpacing: "0.08em",
                     color: isActive ? "#b56a4f" : "#4a453d",
                     transition: "color .5s ease",

@@ -1,14 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import {
   MONTHS,
-  ERAS,
   GRAND_TOTAL,
   REPO_COUNT,
   motionData,
   monthLabel,
   mergedByMonth,
+  erasFrom,
 } from "./motionShared";
-import { PAGE_COPY } from "../../utils/siteCopy";
+import { useSiteCopy } from "../LocaleProvider";
 
 // MotionStrip: the proof-of-motion record, compressed to a single band for the
 // homepage. All constellations merge into one per-month total, drawn as small
@@ -16,11 +18,6 @@ import { PAGE_COPY } from "../../utils/siteCopy";
 // /proof. Self-contained: no props, reads the committed JSON directly.
 
 const BAR_MAX = 72; // px
-const MOBILE_ERA_LABELS: Record<string, string> = {
-  founder: "Founder",
-  independent: "Research",
-  implementation: "Build",
-};
 
 export default function MotionStrip() {
   const merged = mergedByMonth();
@@ -31,7 +28,9 @@ export default function MotionStrip() {
   const monthCol = (m: string) => MONTHS.indexOf(m) + 1; // 1-based
   const gridTemplateColumns = `repeat(${cols}, minmax(6px, 1fr))`;
 
+  const { PAGE_COPY } = useSiteCopy();
   const copy = PAGE_COPY.motion;
+  const ERAS = erasFrom(copy);
   const summary = `${copy.stripSummaryPrefix} ${GRAND_TOTAL.toLocaleString()} ${copy.stripSummaryMiddle} ${REPO_COUNT} ${copy.stripSummarySuffix}, ${monthLabel(
     motionData.firstMonth
   )} to ${monthLabel(motionData.lastMonth)}. ${copy.stripSummaryCta}`;
@@ -47,7 +46,7 @@ export default function MotionStrip() {
         <span className="kicker text-ink-faint transition-colors group-hover:text-terracotta">
           {copy.stripLabel}
         </span>
-        <span className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.12em] text-ink-mute sm:text-[11px] sm:tracking-[0.16em]">
+        <span className="font-mono text-caption uppercase leading-relaxed tracking-[0.12em] text-ink-mute sm:tracking-[0.16em]">
           {GRAND_TOTAL.toLocaleString()} {copy.commits} · {REPO_COUNT} {copy.stripSummarySuffix}
         </span>
       </div>
@@ -84,8 +83,8 @@ export default function MotionStrip() {
             className="min-w-0 px-2 first:pl-0 last:pr-0"
             style={{ borderLeft: i === 0 ? "none" : "1px solid rgba(44,40,35,0.14)" }}
           >
-            <span className="block truncate font-mono text-[8.5px] uppercase leading-relaxed tracking-[0.08em] text-ink-mute">
-              {MOBILE_ERA_LABELS[era.key] ?? era.name}
+            <span className="block font-mono text-caption uppercase leading-snug tracking-[0.08em] text-ink-mute">
+              {era.name}
             </span>
           </div>
         ))}
@@ -104,7 +103,7 @@ export default function MotionStrip() {
               paddingLeft: i === 0 ? 0 : 8,
             }}
           >
-            <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-ink-mute">
+            <span className="font-mono text-caption uppercase tracking-[0.12em] text-ink-mute">
               {era.name}
             </span>
           </div>
@@ -115,7 +114,7 @@ export default function MotionStrip() {
         <span className="font-serif text-[15px] italic leading-snug text-ink-ghost">
           {copy.stripClaim}
         </span>
-        <span className="self-end font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint transition-colors group-hover:text-terracotta sm:self-auto sm:text-[11px] sm:tracking-[0.16em]">
+        <span className="self-end font-mono text-caption uppercase tracking-[0.14em] text-ink-faint transition-colors group-hover:text-terracotta sm:self-auto sm:tracking-[0.16em]">
           {copy.stripCta} &rarr;
         </span>
       </div>

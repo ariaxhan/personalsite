@@ -1,5 +1,7 @@
+"use client";
+
 import Reveal from "./studio/Reveal";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { useSiteCopy } from "./LocaleProvider";
 
 /**
  * Manifesto: the note before you wander.
@@ -9,6 +11,7 @@ import { PAGE_COPY } from "../utils/siteCopy";
  * borders, just a held breath.
  */
 export default function Manifesto() {
+  const { PAGE_COPY } = useSiteCopy();
   const copy = PAGE_COPY.manifesto;
 
   return (

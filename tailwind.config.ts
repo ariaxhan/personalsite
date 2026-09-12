@@ -41,6 +41,9 @@ export default {
         sans: ['var(--font-sans)', '"Hanken Grotesk"', "system-ui", "sans-serif"],
         mono: ['var(--font-mono)', '"Space Mono"', "ui-monospace", "monospace"],
       },
+      fontSize: {
+        caption: ["var(--font-caption)", { lineHeight: "1.45" }],
+      },
       maxWidth: {
         content: "1280px",
         wall: "1360px",

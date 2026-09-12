@@ -6,21 +6,34 @@
 // ============================================================================
 
 import type { WallItem } from "../components/WorkshopWall";
-import { projectBySlug, THEME_LABELS, type Project } from "./projectsData";
+import { copyFor, type Locale } from "./locale";
+import type { Project } from "./projectsData";
 
-const kindTag: Record<Project["kind"], string> = {
-  product: "Product",
-  company: "Company",
-  "open-source": "Open Source",
-  research: "Research",
+const kindTag: Record<Locale, Record<Project["kind"], string>> = {
+  en: {
+    product: "Product",
+    company: "Company",
+    "open-source": "Open Source",
+    research: "Research",
+  },
+  ko: {
+    product: "프로덕트",
+    company: "회사",
+    "open-source": "오픈소스",
+    research: "연구",
+  },
 };
 
-
-export function projectToWallItem(p: Project): WallItem {
+export function projectToWallItem(
+  p: Project,
+  locale: Locale,
+  themeLabels: Record<string, string>,
+  find: (slug: string) => Project | undefined
+): WallItem {
   return {
     slug: p.slug,
     title: p.name,
-    tag: kindTag[p.kind],
+    tag: kindTag[locale][p.kind],
     accent: p.accent,
     thesis: p.thesis,
     status: p.status,
@@ -38,15 +51,16 @@ export function projectToWallItem(p: Project): WallItem {
     learned: p.learned,
     proves: p.proves,
     stackLine: p.stack,
-    themes: p.themes.map((t) => THEME_LABELS[t]),
+    themes: p.themes.map((t) => themeLabels[t]),
     connections: p.connections
-      .map((slug) => projectBySlug(slug))
+      .map((slug) => find(slug))
       .filter((c): c is Project => Boolean(c))
       .map((c) => ({ label: c.name, href: `/projects/${c.slug}/` })),
     closing: p.closing,
   };
 }
 
-export function projectsToWallItems(list: Project[]): WallItem[] {
-  return list.map(projectToWallItem);
+export function projectsToWallItems(list: Project[], locale: Locale): WallItem[] {
+  const { THEME_LABELS, projectBySlug } = copyFor(locale);
+  return list.map((p) => projectToWallItem(p, locale, THEME_LABELS, projectBySlug));
 }

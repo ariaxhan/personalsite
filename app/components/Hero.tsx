@@ -1,45 +1,45 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { SITE } from "../utils/siteMeta";
-import { projectBySlug } from "../utils/projectsData";
-import { PAGE_COPY } from "../utils/siteCopy";
 import SystemDiagram from "./home/SystemDiagram";
+import { useSiteCopy } from "./LocaleProvider";
 
 // Hero: the ten-second answer. Who (Aria Han, the role, Los Angeles), what
 // (the one-liner), the strange line that says why the work is different, and
-// four doors to where to go next. The system diagram and selected work carry
-// the evidence without reducing it to a scoreboard.
-
-const quickLinks = [
-  {
-    title: "Paper Rooms",
-    href: "https://paper-rooms.com",
-    image: "/studio/paperrooms-icon.jpg",
-    note: projectBySlug("paper-rooms")?.thesis ?? "",
-    initial: null,
-  },
-  {
-    title: "ModelMind",
-    href: "https://model-mind.org",
-    image: "/studio/modelmind-icon.jpg",
-    note: projectBySlug("modelmind")?.thesis ?? "",
-    initial: null,
-  },
-  {
-    title: PAGE_COPY.hero.githubTitle,
-    href: "https://github.com/ariaxhan",
-    image: null,
-    note: PAGE_COPY.hero.githubNote,
-    initial: PAGE_COPY.hero.githubInitial,
-  },
-];
+// four doors to where to go next. The proof-stat grid and the system diagram
+// carry the evidence. Every number is sourced from site copy.
 
 export default function Hero() {
+  const { PAGE_COPY, SITE, projectBySlug, proofStats } = useSiteCopy();
+  const quickLinks = [
+    {
+      title: "Paper Rooms",
+      href: "https://paper-rooms.com",
+      image: "/studio/paperrooms-icon.jpg",
+      note: projectBySlug("paper-rooms")?.thesis ?? "",
+      initial: null,
+    },
+    {
+      title: "ModelMind",
+      href: "https://model-mind.org",
+      image: "/studio/modelmind-icon.jpg",
+      note: projectBySlug("modelmind")?.thesis ?? "",
+      initial: null,
+    },
+    {
+      title: PAGE_COPY.hero.githubTitle,
+      href: "https://github.com/ariaxhan",
+      image: null,
+      note: PAGE_COPY.hero.githubNote,
+      initial: PAGE_COPY.hero.githubInitial,
+    },
+  ];
   return (
     <section
       id="entrance"
       className="relative grid min-h-[100svh] grid-cols-[minmax(0,1fr)] overflow-hidden px-5 pb-8 sm:px-8 sm:pb-10 lg:px-14"
-      style={{ gridTemplateRows: "auto 1fr auto", paddingTop: "clamp(88px, 10vw, 118px)" }}
+      style={{ gridTemplateRows: "auto 1fr auto", paddingTop: "calc(var(--masthead-height, 7.5rem) + 1.5rem)" }}
     >
       {/* Kicker row: figure label + role on the left, location on the right. */}
       <div className="flex min-w-0 items-start justify-between gap-4">
@@ -49,7 +49,7 @@ export default function Hero() {
           {SITE.role}
         </div>
         <div
-          className="kicker max-w-[160px] text-right sm:max-w-[230px]"
+          className="kicker max-w-[11.5rem] text-right sm:max-w-[230px]"
           style={{ lineHeight: 2, letterSpacing: "0.14em" }}
         >
           {SITE.location}
@@ -98,6 +98,21 @@ export default function Hero() {
             ))}
           </div>
 
+          <div className="mt-1 grid grid-cols-2 border-y border-[rgba(44,40,35,0.16)] sm:grid-cols-3">
+            {proofStats.map((stat) => (
+              <div
+                key={stat.label}
+                className="min-h-[96px] border-b border-r border-[rgba(44,40,35,0.12)] px-4 py-4 [&:nth-child(2n)]:border-r-0 [&:nth-last-child(-n+2)]:border-b-0 sm:min-h-[104px] sm:px-6 sm:py-5 sm:[&:nth-child(2n)]:border-r sm:[&:nth-child(3n)]:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b sm:[&:nth-last-child(-n+3)]:border-b-0"
+              >
+                <div className="font-serif text-[36px] font-light leading-none text-ink sm:text-[44px]">
+                  {stat.value}
+                </div>
+                <div className="mt-2 font-mono text-caption uppercase leading-5 tracking-[0.12em] text-ink-mute">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Right column, large screens: the system diagram. On small screens it
@@ -138,7 +153,7 @@ export default function Hero() {
               <span className="font-serif text-[22px] font-light leading-none text-ink transition-colors group-hover:text-terracotta">
                 {link.title}
               </span>
-              <span className="max-w-[38ch] font-serif text-[13px] italic leading-snug text-ink-mute">
+              <span className="max-w-[38ch] font-serif text-caption italic leading-snug text-ink-mute">
                 {link.note}
               </span>
             </span>

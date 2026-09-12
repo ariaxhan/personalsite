@@ -124,10 +124,14 @@ export type Era = {
   end: string;
 };
 
-export const ERAS: Era[] = PAGE_COPY.motion.eras.map((era) => ({
-  ...era,
-  end: era.end === "AXIS_END" ? AXIS_END : era.end,
-}));
+export function erasFrom(motionCopy: { eras: readonly Era[] }): Era[] {
+  return motionCopy.eras.map((era) => ({
+    ...era,
+    end: era.end === "AXIS_END" ? AXIS_END : era.end,
+  }));
+}
+
+export const ERAS: Era[] = erasFrom(PAGE_COPY.motion);
 
 // ---------------------------------------------------------------------------
 // Bands. One per constellation, carrying its per-month breakdown (which named
