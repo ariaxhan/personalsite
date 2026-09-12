@@ -3,7 +3,6 @@ import { DEFAULT_SITE_CONTENT } from "./defaultContent";
 export const HUMAN_PUBLIC_PATHS = [
   "/",
   "/about/",
-  "/books/",
   "/contact/",
   "/hackathons/",
   "/open-source/",

@@ -13,6 +13,11 @@ export { DOQueueHandler } from "./.open-next/worker.js";
 const worker = {
   async fetch(request: Request, env: CloudflareEnv, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+    // One canonical origin: http serves a duplicate of every page otherwise.
+    if (url.protocol === "http:") {
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
     let appRequest = request;
     if (
       request.method === "GET" &&

@@ -135,9 +135,7 @@ function validate(
   const sitemapUrls = [...sitemap.body.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
     (match) => new URL(match[1]).pathname,
   );
-  const expectedSitemap = HUMAN_PUBLIC_PATHS.filter(
-    (path) => path !== "/books/",
-  ).sort();
+  const expectedSitemap = [...HUMAN_PUBLIC_PATHS].sort();
   if (JSON.stringify(sitemapUrls.sort()) !== JSON.stringify([...expectedSitemap].sort())) {
     errors.push("sitemap membership differs from the fixed public route catalog");
   }
@@ -207,7 +205,7 @@ function validate(
 async function main() {
 const sitemapPath = "/sitemap.xml";
 const human = await Promise.all(
-  HUMAN_PUBLIC_PATHS.filter((path) => path !== "/books/").map((path) => observe(path)),
+  HUMAN_PUBLIC_PATHS.map((path) => observe(path)),
 );
 const machine = await Promise.all(MACHINE_PUBLIC_PATHS.map((path) => observe(path)));
 const sitemap = machine.find((item) => item.path === sitemapPath);
