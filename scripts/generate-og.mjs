@@ -11,7 +11,7 @@
 // image, the paper background and terracotta rule still yield a valid card.
 // ============================================================================
 
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import sharp from "sharp";

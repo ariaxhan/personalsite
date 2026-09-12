@@ -2,11 +2,12 @@ import { Metadata } from "next";
 import Bookshelf from "../components/Bookshelf";
 import StudioFooter from "../components/StudioFooter";
 import { pageMeta } from "../utils/pageMeta";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
-export const metadata: Metadata = pageMeta({
-  ...PAGE_COPY.metadata.reading,
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const { content } = await getSiteContent();
+  return pageMeta({ ...content.PAGE_COPY.metadata.reading }, content.SITE);
+}
 
 export default function ReadingPage() {
   return (

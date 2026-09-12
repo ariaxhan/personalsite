@@ -6,7 +6,7 @@
 // ============================================================================
 
 import type { WallItem } from "../components/WorkshopWall";
-import { copyFor, type Locale } from "./locale";
+import type { Locale } from "./locale";
 import type { Project } from "./projectsData";
 
 const kindTag: Record<Locale, Record<Project["kind"], string>> = {
@@ -60,7 +60,10 @@ export function projectToWallItem(
   };
 }
 
-export function projectsToWallItems(list: Project[], locale: Locale): WallItem[] {
-  const { THEME_LABELS, projectBySlug } = copyFor(locale);
+export function projectsToWallItems(
+  list: Project[],
+  locale: Locale,
+  { THEME_LABELS, projectBySlug }: { THEME_LABELS: Record<string, string>; projectBySlug: (slug: string) => Project | undefined },
+): WallItem[] {
   return list.map((p) => projectToWallItem(p, locale, THEME_LABELS, projectBySlug));
 }

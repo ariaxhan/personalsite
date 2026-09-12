@@ -15,17 +15,16 @@
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { projects, projectBySlug } from "../../utils/projectsData";
+import ProjectArticle from "../../components/ProjectArticle";
+import { projects } from "../../utils/projectsData";
 import { pageMeta } from "../../utils/pageMeta";
 import JsonLd from "../../components/studio/JsonLd";
 import { projectSchema, breadcrumbSchema } from "../../utils/jsonLd";
 import StudioFooter from "../../components/StudioFooter";
-import ProjectArticle from "../../components/ProjectArticle";
-
-export const dynamic = "force-static";
+import { getSiteContent } from "../../content/repository";
 
 export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
@@ -34,7 +33,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const project = projectBySlug(slug);
+  const { content } = await getSiteContent();
+  const project = content.projectBySlug(slug);
   if (!project) return {};
 
   const kindLabel =
@@ -52,7 +52,7 @@ export async function generateMetadata({
     description: `${project.thesis} ${project.stack}`.slice(0, 300),
     path: `/projects/${project.slug}/`,
     type: "article",
-  });
+  }, content.SITE);
 }
 
 export default async function ProjectPage({
@@ -61,7 +61,8 @@ export default async function ProjectPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = projectBySlug(slug);
+  const { content } = await getSiteContent();
+  const project = content.projectBySlug(slug);
   if (!project) notFound();
 
   const listPath = project.kind === "open-source" ? "/open-source/" : "/systems/";
@@ -69,15 +70,16 @@ export default async function ProjectPage({
 
   return (
     <main className="relative">
-      <JsonLd data={projectSchema(project)} />
+      <JsonLd data={projectSchema(content, project)} />
       <JsonLd
-        data={breadcrumbSchema([
+        data={breadcrumbSchema(content, [
           { name: listLabel, path: listPath },
           { name: project.name, path: `/projects/${project.slug}/` },
         ])}
       />
 
       <ProjectArticle slug={project.slug} />
+
       <StudioFooter />
     </main>
   );

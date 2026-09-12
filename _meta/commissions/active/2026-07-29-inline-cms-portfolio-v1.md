@@ -82,9 +82,7 @@ content D1
         ↓
 published_content pointer
         ↓
-immutable content revision
-        ↓
-request-level revision manifest
+immutable site revision
         ↓
 server-rendered response
         ↓
@@ -103,8 +101,16 @@ OpenNext / Cloudflare cache
 
 ## Identity and response consistency
 
-Stable page keys include `global`, `home`, current page names, and fixed
-`project:<slug>` or `article:<slug>` identities. Slugs are not editable in v1.
+Portfolio v1 uses one stable page key, `site`, for the complete typed content
+catalog. The portfolio is small enough that an edit can be reviewed and
+published atomically. This prevents shared identity, metadata, listings,
+structured data, sitemap output, and machine surfaces from landing on
+different revisions. It also removes a request-time fan-out across many D1
+pointers.
+
+The commercial roadmap may split content into page-scoped revisions after a
+second real site proves that independent publishing is worth the extra
+coordination. That abstraction has no authority here.
 
 Field IDs describe meaning, not layout:
 
@@ -114,21 +120,18 @@ project:agentmailkit.thesis
 project:agentmailkit.body.automation-origin
 ```
 
-A response may consume several page keys. Resolve every required pointer once
-per request and memoize the complete manifest:
+A response resolves the one published pointer once and memoizes the complete
+catalog:
 
 ```json
 {
-  "global": "rev_global_01",
-  "home": "rev_home_03",
-  "project:agentmailkit": "rev_project_07"
+  "site": "rev_site_01"
 }
 ```
 
 Body, metadata, JSON-LD, listings, sitemap state, markdown, JSON, MCP, and agent
-surfaces use that same manifest. A deterministic hash of sorted
-`page_key → revision_id` pairs identifies the response snapshot in tests and
-diagnostics.
+surfaces use that same revision. The revision ID identifies the response
+snapshot in tests and diagnostics.
 
 Expose the snapshot through a header or cached HTML marker only if the adapter
 preserves it without an extra request-time D1 read.
@@ -278,7 +281,7 @@ hash with each publish operation.
 ## Authentication and editor
 
 - Enter through a protected route such as
-  `/__editor/enter?return=/about`, not a public `?edit=true` cache variant.
+  `/edit/login?return=/about`, not a public `?edit=true` cache variant.
 - Validate the Cloudflare Access assertion's signature, issuer, audience,
   expiry, and principal.
 - Draft mode is private and always `noindex, nofollow`.
@@ -297,7 +300,7 @@ HTML, or page-layout editing.
 
 - Current published content is present in the first HTML response.
 - Body, metadata, JSON-LD, listings, sitemap, and machine routes use the same
-  request-level manifest.
+  resolved `site` revision.
 - Canonicals remain stable and never change after hydration.
 - Existing routes and descriptive links remain crawlable.
 - Draft and editor paths expose nothing and remain `noindex`.
@@ -313,14 +316,15 @@ Accept this before building the editor:
 
 1. Reconstruct current remote, deployment, route, header, copy, and
    project-review state.
-2. Inventory every content consumer and assign stable page and field keys.
+2. Inventory every content consumer and assign stable field keys within the
+   `site` catalog.
 3. Put human and machine consumers behind one typed content interface while
    still returning Git defaults.
 4. Add revisions, pointers, publish operations, rollback, conflict, and
    recovery.
 5. Seed isolated D1 and prove output-equivalent round trips.
 6. Migrate to pinned OpenNext and configure only proven resources.
-7. Render every public consumer from one request-level manifest.
+7. Render every public consumer from one resolved `site` revision.
 8. Implement deterministic invalidation, retry, and convergence observation.
 9. Pass the public verification gate in Wrangler and on a protected
    Cloudflare-zone preview hostname.
@@ -352,7 +356,7 @@ Production-runtime proof:
 Public proof:
 
 - published copy in raw HTML and draft copy absent;
-- one response manifest across body, metadata, JSON-LD, listings, and machine
+- one `site` revision across body, metadata, JSON-LD, listings, and machine
   output;
 - correct status, canonical, indexing state, and crawlable links;
 - no editor request during ordinary navigation;

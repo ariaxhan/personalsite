@@ -68,12 +68,14 @@ export default function WorkshopWall({
 }: {
   room: "systems" | "open-source";
 }) {
-  const { PAGE_COPY, productProjects, openSourceProjects, locale } = useSiteCopy();
+  const copy = useSiteCopy();
+  const { PAGE_COPY, productProjects, openSourceProjects, locale } = copy;
   const { fig, label, title, note } =
     room === "systems" ? PAGE_COPY.sections.systems : PAGE_COPY.sections.openSource;
   const items = projectsToWallItems(
     room === "systems" ? productProjects : openSourceProjects,
-    locale
+    locale,
+    copy,
   );
   const [open, setOpen] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);

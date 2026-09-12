@@ -80,7 +80,9 @@ export default function ProjectReviewForm() {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const result = await response.json().catch(() => null);
+      const result = (await response.json().catch(() => null)) as
+        | { error?: string; submissionId?: string }
+        | null;
 
       if (!response.ok) {
         throw new Error(result?.error || PAGE_COPY.projectReviewForm.validation.sendError);

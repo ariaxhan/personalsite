@@ -1,12 +1,25 @@
 import bundleAnalyzer from '@next/bundle-analyzer';
 import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
+const securityHeaders = [
+  { key: "Content-Signal", value: "ai-train=no, ai-input=yes, search=yes" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+  {
+    key: "Content-Security-Policy",
+    value:
+      "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.cloudflareinsights.com; img-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.cloudflareinsights.com https://app.cal.com; frame-src 'self' https://app.cal.com https://cal.com; connect-src 'self' *.cloudflareinsights.com https://app.cal.com https://cal.com;",
+  },
+];
+
 const nextConfig: NextConfig = {
-  output: 'export',
   trailingSlash: true,
   experimental: {
     // Two render-blocking stylesheets cost 326ms and pushed mobile LCP to 4.1s
@@ -23,6 +36,39 @@ const nextConfig: NextConfig = {
         hostname: '**',
       },
     ],
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: securityHeaders,
+      },
+      {
+        source: "/",
+        headers: [
+          ...securityHeaders,
+          {
+            key: "Link",
+            value:
+              '</.well-known/api-catalog>; rel="api-catalog", </.well-known/agent-card.json>; rel="https://a2a-protocol.org/rel/agent-card", </.well-known/mcp/server-card.json>; rel="https://modelcontextprotocol.io/rel/server-card", </.well-known/agent-skills/index.json>; rel="https://agentskills.io/rel/index", </llms.txt>; rel="https://llmstxt.org/rel/index", </sitemap.xml>; rel="sitemap"',
+          },
+        ],
+      },
+      {
+        source: "/edit/:path*",
+        headers: [
+          { key: "Cache-Control", value: "private, no-store" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        ],
+      },
+      {
+        source: "/api/cms/:path*",
+        headers: [
+          { key: "Cache-Control", value: "private, no-store" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        ],
+      },
+    ];
   },
   webpack: (config, { dev, isServer }) => {
     // Production optimizations
@@ -42,7 +88,7 @@ const nextConfig: NextConfig = {
           cacheGroups: {
             vendor: {
               test: /[\\/]node_modules[\\/]/,
-              name(module: any, chunks: any) {
+              name(module: { context?: string }) {
                 // next/font and other virtual modules have no node_modules path.
                 const match = module.context?.match(
                   /[\\/]node_modules[\\/](.*?)([\\/]|$)/
@@ -69,3 +115,5 @@ const nextConfig: NextConfig = {
 };
 
 export default withBundleAnalyzer(nextConfig);
+
+initOpenNextCloudflareForDev();

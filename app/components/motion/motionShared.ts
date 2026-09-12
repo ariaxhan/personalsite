@@ -219,3 +219,6 @@ export function mergedByMonth(): Record<string, number> {
   }
   return merged;
 }
+
+// agentText and older callers use this name.
+export const buildEras = erasFrom;

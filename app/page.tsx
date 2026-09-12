@@ -15,22 +15,25 @@ import type { Metadata } from "next";
 import { pageMeta } from "./utils/pageMeta";
 import JsonLd from "./components/studio/JsonLd";
 import { personSchema, webSiteSchema, professionalServiceSchema } from "./utils/jsonLd";
-import { SITE } from "./utils/siteMeta";
-import { PAGE_COPY } from "./utils/siteCopy";
+import { getSiteContent } from "./content/repository";
 
-export const metadata: Metadata = pageMeta({
-  title: `${SITE.role} in Los Angeles | ${SITE.name}`,
-  ogTitle: `${SITE.name}, ${SITE.role}`,
-  description: SITE.tldr,
-  path: PAGE_COPY.metadata.home.path,
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const { content } = await getSiteContent();
+  return pageMeta({
+    title: `${content.SITE.role} in Los Angeles | ${content.SITE.name}`,
+    ogTitle: `${content.SITE.name}, ${content.SITE.role}`,
+    description: content.SITE.tldr,
+    path: content.PAGE_COPY.metadata.home.path,
+  }, content.SITE);
+}
 
-export default function Home() {
+export default async function Home() {
+  const { content } = await getSiteContent();
   return (
     <main className="relative">
-      <JsonLd data={personSchema()} />
-      <JsonLd data={webSiteSchema()} />
-      <JsonLd data={professionalServiceSchema()} />
+      <JsonLd data={personSchema(content)} />
+      <JsonLd data={webSiteSchema(content)} />
+      <JsonLd data={professionalServiceSchema(content)} />
       <Hero />
 
       {/* The system diagram rides in the hero's right column on large screens;

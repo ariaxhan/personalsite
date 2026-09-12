@@ -1,8 +1,10 @@
 name: proof of motion
 
 # Regenerates app/utils/motionData.json from GitHub contribution history and
-# commits it to main. Cloudflare Pages builds production from main, so a
-# committed change here is what actually updates the live ledger.
+# commits it to main. Auto-deploy is paused: a main build 503s against the
+# published D1 content until the CMS revision matches source.
+
+
 
 on:
   schedule:

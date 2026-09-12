@@ -6,18 +6,17 @@
 // dashes.
 // ============================================================================
 
-import { SITE } from "./siteMeta";
 import type { Project } from "./projectsData";
-import { articles } from "./writingData";
-
-const PERSON_ID = `${SITE.url}/#person`;
+import type { DerivedSiteContent } from "../content/defaultContent";
 
 /** Aria as a schema.org Person. Reused across home and contact. */
-export function personSchema() {
+export function personSchema(content: DerivedSiteContent) {
+  const { SITE } = content;
+  const personId = `${SITE.url}/#person`;
   return {
     "@context": "https://schema.org",
     "@type": "Person",
-    "@id": PERSON_ID,
+    "@id": personId,
     name: SITE.name,
     jobTitle: SITE.role,
     description: SITE.tldr,
@@ -61,7 +60,9 @@ export function personSchema() {
  * sale, which is the statement search and answer engines look for when building
  * a shortlist of consultants. Emitted on / and /contact/.
  */
-export function professionalServiceSchema() {
+export function professionalServiceSchema(content: DerivedSiteContent) {
+  const { SITE } = content;
+  const personId = `${SITE.url}/#person`;
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -75,7 +76,7 @@ export function professionalServiceSchema() {
     // ProfessionalService inherits from LocalBusiness, not Service, so
     // `provider` and `availableChannel` are not valid here. Google's validator
     // flagged both as UNKNOWN_FIELD on 2026-07-29. founder/email/address are.
-    founder: { "@id": PERSON_ID },
+    founder: { "@id": personId },
     email: `mailto:${SITE.email}`,
     address: {
       "@type": "PostalAddress",
@@ -97,25 +98,30 @@ export function professionalServiceSchema() {
       name: "Engagements",
       itemListElement: SITE.services.map((s) => ({
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: s, provider: { "@id": PERSON_ID } },
+        itemOffered: { "@type": "Service", name: s, provider: { "@id": personId } },
       })),
     },
   };
 }
 
 /** /about/ carried no structured data at all. This types it as a profile page. */
-export function profilePageSchema() {
+export function profilePageSchema(content: DerivedSiteContent) {
+  const { SITE } = content;
   return {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     url: `${SITE.url}/about/`,
     name: `About ${SITE.name}`,
-    mainEntity: { "@id": PERSON_ID },
+    mainEntity: { "@id": `${SITE.url}/#person` },
   };
 }
 
 /** Breadcrumbs for any non-home page. */
-export function breadcrumbSchema(trail: { name: string; path: string }[]) {
+export function breadcrumbSchema(
+  content: DerivedSiteContent,
+  trail: { name: string; path: string }[],
+) {
+  const { SITE } = content;
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -129,20 +135,22 @@ export function breadcrumbSchema(trail: { name: string; path: string }[]) {
 }
 
 /** The site itself. */
-export function webSiteSchema() {
+export function webSiteSchema(content: DerivedSiteContent) {
+  const { SITE } = content;
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE.name,
     url: SITE.url,
-    author: { "@id": PERSON_ID },
+    author: { "@id": `${SITE.url}/#person` },
   };
 }
 
 /** Contact-page Person: adds a ContactPoint and the booking action. */
-export function contactSchema() {
+export function contactSchema(content: DerivedSiteContent) {
+  const { SITE } = content;
   return {
-    ...personSchema(),
+    ...personSchema(content),
     contactPoint: {
       "@type": "ContactPoint",
       email: SITE.email,
@@ -158,7 +166,8 @@ export function contactSchema() {
 }
 
 /** One project as a CreativeWork, for its own detail page. */
-export function projectSchema(p: Project) {
+export function projectSchema(content: DerivedSiteContent, p: Project) {
+  const { SITE } = content;
   const isSoftware = p.kind === "open-source" || p.kind === "product";
   return {
     "@context": "https://schema.org",
@@ -167,8 +176,8 @@ export function projectSchema(p: Project) {
     url: `${SITE.url}/projects/${p.slug}/`,
     description: p.thesis,
     abstract: p.problem,
-    author: { "@id": PERSON_ID },
-    creator: { "@id": PERSON_ID },
+    author: { "@id": `${SITE.url}/#person` },
+    creator: { "@id": `${SITE.url}/#person` },
     ...(isSoftware
       ? { applicationCategory: "DeveloperApplication", operatingSystem: "Any" }
       : {}),
@@ -178,7 +187,8 @@ export function projectSchema(p: Project) {
 }
 
 /** An ItemList of projects. url falls back to the on-site anchor. */
-export function projectListSchema(projects: Project[]) {
+export function projectListSchema(content: DerivedSiteContent, projects: Project[]) {
+  const { SITE } = content;
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -198,7 +208,8 @@ export function projectListSchema(projects: Project[]) {
 }
 
 /** An ItemList of Articles, authored by Aria, linked on Medium. */
-export function articleListSchema() {
+export function articleListSchema(content: DerivedSiteContent) {
+  const { SITE, articles } = content;
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",

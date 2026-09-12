@@ -1,4 +1,8 @@
-import { PAGE_COPY, SITE } from "./siteCopy";
+import type { DerivedSiteContent, SiteContent } from "../content/defaultContent";
+import {
+  contentDiagnosticHeaders,
+  type ResolvedSiteContent,
+} from "../content/repository";
 
 const JSON_HEADERS = {
   "content-type": "application/json; charset=utf-8",
@@ -16,15 +20,26 @@ const inputSchema = {
   additionalProperties: false,
 };
 
-export function jsonResponse(data: unknown): Response {
-  return new Response(JSON.stringify(data, null, 2), { headers: JSON_HEADERS });
+export function jsonResponse(
+  data: unknown,
+  resolved: Pick<ResolvedSiteContent, "revisionId" | "publicationId" | "source">,
+): Response {
+  return new Response(JSON.stringify(data, null, 2), {
+    headers: { ...JSON_HEADERS, ...contentDiagnosticHeaders(resolved) },
+  });
 }
 
-export function markdownResponse(markdown: string): Response {
-  return new Response(markdown, { headers: TEXT_HEADERS });
+export function markdownResponse(
+  markdown: string,
+  resolved: Pick<ResolvedSiteContent, "revisionId" | "publicationId" | "source">,
+): Response {
+  return new Response(markdown, {
+    headers: { ...TEXT_HEADERS, ...contentDiagnosticHeaders(resolved) },
+  });
 }
 
-export function agentCardJson() {
+export function agentCardJson(content: DerivedSiteContent) {
+  const { PAGE_COPY, SITE } = content;
   const copy = PAGE_COPY.wellKnown.agentCard;
 
   return {
@@ -59,7 +74,8 @@ export function agentCardJson() {
   };
 }
 
-export function mcpServerCardJson() {
+export function mcpServerCardJson(content: DerivedSiteContent) {
+  const { PAGE_COPY } = content;
   const copy = PAGE_COPY.wellKnown.mcpServerCard;
 
   return {
@@ -86,7 +102,8 @@ export function mcpServerCardJson() {
   };
 }
 
-export function agentSkillsIndexJson() {
+export function agentSkillsIndexJson(content: DerivedSiteContent) {
+  const { PAGE_COPY, SITE } = content;
   const copy = PAGE_COPY.wellKnown.agentSkillsIndex;
 
   return {
@@ -99,7 +116,8 @@ export function agentSkillsIndexJson() {
   };
 }
 
-export function apiCatalogJson() {
+export function apiCatalogJson(content: DerivedSiteContent) {
+  const { PAGE_COPY, SITE } = content;
   const copy = PAGE_COPY.wellKnown.apiCatalog;
 
   return {
@@ -133,7 +151,11 @@ export function apiCatalogJson() {
   };
 }
 
-export function agentSkillMarkdown(key: keyof typeof PAGE_COPY.wellKnown.agentSkills): string {
+export function agentSkillMarkdown(
+  content: DerivedSiteContent,
+  key: keyof SiteContent["PAGE_COPY"]["wellKnown"]["agentSkills"],
+): string {
+  const { PAGE_COPY } = content;
   if (key === "headings") return "";
   const skill = PAGE_COPY.wellKnown.agentSkills[key];
   const headings = PAGE_COPY.wellKnown.agentSkills.headings;

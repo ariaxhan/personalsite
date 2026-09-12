@@ -4,16 +4,18 @@ import JsonLd from "../components/studio/JsonLd";
 import { articleListSchema } from "../utils/jsonLd";
 import ThinkingSection from "../components/ThinkingSection";
 import StudioFooter from "../components/StudioFooter";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
-export const metadata: Metadata = pageMeta({
-  ...PAGE_COPY.metadata.writing,
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const { content } = await getSiteContent();
+  return pageMeta({ ...content.PAGE_COPY.metadata.writing }, content.SITE);
+}
 
-export default function WritingPage() {
+export default async function WritingPage() {
+  const { content } = await getSiteContent();
   return (
     <main className="relative">
-      <JsonLd data={articleListSchema()} />
+      <JsonLd data={articleListSchema(content)} />
       <ThinkingSection />
       <StudioFooter />
     </main>

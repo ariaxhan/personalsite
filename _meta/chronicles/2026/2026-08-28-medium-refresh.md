@@ -6,10 +6,16 @@ created: 2026-08-28
 
 # Three new Medium essays shipped without changing other live content
 
-**Attempted:** Refresh the Medium section from the live feed. **Changed:** Added three essays, preserved 20 projects, supported the exact prior 18-article revision, merged `d96ded3` to `main`, deployed Worker `75620428-f9db-4868-ba33-67a280e6d6ed`, and published `rev_medium_b75ac51259db411b9c96`.
+**What mattered:** The live site now serves 21 articles and preserves all 20 projects from one canonical D1 publication.
 
-**Live verification:** `npm run verify:preview -- 'https://ariaxhan.com'` passed 31 HTML routes, 25 machine routes, Markdown negotiation, MCP, and private isolation. An independent verifier ran three direct public probe rounds: all seven surfaces returned 200 with the canonical revision/publication, 21 articles, and 20 projects.
+**Shipped**
+- `d96ded3` on `main`; Worker `75620428-f9db-4868-ba33-67a280e6d6ed`; revision `rev_medium_b75ac51259db411b9c96`.
 
-**Failed:** Historical 18-article revisions initially broke sitemap validation; an isolated-worktree deploy failed before upload because symlinked `node_modules` broke OpenNext bundling; one cache-tag write hit transient Cloudflare error 7403. All were corrected and reverified.
+**Verified how:** Tests 37/37, lint, build, 31 HTML routes, 25 machine routes, and three independent public probe rounds passed on `ariaxhan.com`; production working.
 
-**Deferred:** None. **Disagreement:** None.
+**Wrong or surprising**
+- Historical 18-article revisions broke sitemap validation until the validator accepted the exact previous catalog.
+- First deploy failed before upload because symlinked `node_modules` broke OpenNext bundling; canonical worktree deploy succeeded.
+- One cache-tag write hit Cloudflare auth error 7403; authenticated retry succeeded.
+
+**Open:** None.

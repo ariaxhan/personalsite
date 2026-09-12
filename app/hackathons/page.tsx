@@ -2,11 +2,12 @@ import { Metadata } from "next";
 import { pageMeta } from "../utils/pageMeta";
 import HackathonsGrid from "../components/HackathonsGrid";
 import StudioFooter from "../components/StudioFooter";
-import { PAGE_COPY } from "../utils/siteCopy";
+import { getSiteContent } from "../content/repository";
 
-export const metadata: Metadata = pageMeta({
-  ...PAGE_COPY.metadata.hackathons,
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const { content } = await getSiteContent();
+  return pageMeta({ ...content.PAGE_COPY.metadata.hackathons }, content.SITE);
+}
 
 export default function HackathonsPage() {
   return (

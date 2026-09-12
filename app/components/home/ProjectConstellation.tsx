@@ -18,6 +18,13 @@ import { useSiteCopy } from "../LocaleProvider";
 // Hand-tuned positions, percent of the field. Neighborhoods, not a force layout.
 const POS: Record<string, { x: number; y: number }> = {
   // memory, north-west
+  "civic-forges": { x: 82, y: 79 },
+  "not-recommended": { x: 91, y: 64 },
+  hearth: { x: 13, y: 88 },
+  "nexus-office": { x: 35, y: 37 },
+  renderstate: { x: 73, y: 42 },
+  "site-spec": { x: 50, y: 14 },
+  agentmailkit: { x: 8, y: 43 },
   metabrain: { x: 19, y: 21 },
   // evals, north-east
   "latent-diagnostics": { x: 66, y: 26 },
@@ -143,7 +150,7 @@ export default function ProjectConstellation() {
                 aria-label={`${p.name}: ${p.thesis}`}
                 className="absolute flex flex-col items-center gap-1.5"
                 style={{
-                  left: `${x}%`,
+                  left: `clamp(60px, ${x}%, calc(100% - 60px))`,
                   top: `${y}%`,
                   transform: "translate(-50%,-50%)",
                   opacity: dim ? 0.32 : 1,

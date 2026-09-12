@@ -25,7 +25,7 @@ import { moments, hackathons } from "./studioData";
 import {
   motionData,
   buildBands,
-  ERAS,
+  buildEras,
   monthLabel,
 } from "../components/motion/motionShared";
 import { PAGE_COPY } from "./siteCopy";
@@ -45,6 +45,7 @@ export const AGENT_PREFERENCES = {
 
 const T = PAGE_COPY.agentText.labels;
 const NOTES = PAGE_COPY.agentText.notes;
+const ERAS = buildEras(PAGE_COPY.motion);
 
 // ---------------------------------------------------------------------------
 // Small shared fragments.

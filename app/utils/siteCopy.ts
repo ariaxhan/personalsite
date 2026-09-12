@@ -302,7 +302,100 @@ export const projects: Project[] = [
     logo: "/studio/logo-our4cuts.svg",
     gallery: ["/studio/our4cuts-home.png"],
   },
-
+  {
+    slug: "civic-forges",
+    name: "Civic Forges",
+    kind: "product",
+    status: "Playable online · App Store coming soon",
+    thesis: "I wanted a city builder where running the city and living a life are the same game.",
+    problem:
+      "City builders usually stop at zoning and budgets. The person making those decisions disappears behind the interface.",
+    built: [
+      "A playable Three.js city builder crossed with a city-leader life simulator. Draw roads, zone land, grow a tax base, manage pollution and districts, then advance the mayor's life through choices that change both the person and the city.",
+    ],
+    stack: "Three.js · TypeScript · Cloudflare Workers",
+    links: [
+      { label: "Play online", href: "https://civicforges.com/play" },
+      { label: "civicforges.com", href: "https://civicforges.com" },
+    ],
+    proof: "Playable in the browser with persistent saves, responsive controls, and 36 automated tests.",
+    learned:
+      "A management game becomes more legible when every system answers one question: what changed because I chose this?",
+    proves: "Shipping a simulation-heavy browser game from mechanics through deployment.",
+    closing: "The city is the map. The mayor is the save file.",
+    themes: ["implementation", "tiny-apps"],
+    connections: ["modelmind", "our4cuts"],
+    accent: "#8a6545",
+    meta: {
+      role: "Solo Developer · Designer · Engineer",
+      status: "Playable Online · App Store Coming Soon",
+      stack: "Three.js · TypeScript · Cloudflare Workers",
+      platform: "Web · iOS Coming Soon",
+    },
+    plate: "/studio/project-civic-forges.png",
+    gallery: ["/studio/project-civic-forges.png"],
+  },
+  {
+    slug: "not-recommended",
+    name: "Not Recommended",
+    kind: "product",
+    status: "Live on the Chrome Web Store",
+    thesis: "YouTube should begin with a question, not an infinite feed.",
+    problem:
+      "Recommendation feeds turn an intention into passive scrolling before you have decided what you came to learn or watch.",
+    built: [
+      "A Chrome extension that replaces YouTube's home feed with one search box, three random Wikipedia detours, and your own saved questions and videos. It also hides Shorts, comments, and recommendation sidebars by default.",
+    ],
+    stack: "JavaScript · Chrome Manifest V3",
+    links: [
+      { label: "Chrome Web Store", href: "https://chromewebstore.google.com/detail/not-recommended/hpgdmjphjmohhblolojdcpmcbeangnfh" },
+      { label: "GitHub", href: "https://github.com/ariaxhan/not-recommended" },
+    ],
+    proof: "Version 0.1.0 is published on the Chrome Web Store. No accounts, analytics, ads, or remote executable code.",
+    learned: "A useful recommendation system can start by removing recommendations.",
+    proves: "Turning a product philosophy into a small, privacy-respecting browser extension.",
+    closing: "Start with what you meant to ask.",
+    themes: ["local-first", "tiny-apps", "implementation"],
+    connections: ["paper-rooms", "modelmind"],
+    accent: "#725b50",
+    meta: {
+      role: "Solo Developer · Designer · Engineer",
+      status: "Chrome Web Store · Version 0.1.0",
+      platform: "Chrome",
+      privacy: "Local Storage · No Analytics",
+    },
+    plate: "/studio/project-not-recommended.png",
+    gallery: ["/studio/project-not-recommended.png"],
+  },
+  {
+    slug: "hearth",
+    name: "Hearth",
+    kind: "product",
+    status: "Personal macOS tool",
+    thesis: "The notch could be a quiet home for the context I keep reaching for.",
+    problem:
+      "Open conversations, temporary files, system state, and small obligations live in different places and disappear the moment attention moves.",
+    built: [
+      "A local macOS companion that opens from the notch into windows, conversation memory cards, a file shelf, system stats, calendar, clipboard history, and local Ollama chat with optional screen vision.",
+    ],
+    stack: "Swift · SwiftUI · AppKit · Ollama",
+    links: [],
+    proof: "Runs locally on macOS 14+, with deterministic tests for transcript parsing and conversation status.",
+    learned: "The best ambient tool stays invisible until the exact moment you reach for it.",
+    proves: "Native macOS systems work across accessibility, local models, files, windows, and honest state derivation.",
+    closing: "A small place for everything that should not become another app window.",
+    themes: ["memory", "context", "local-first"],
+    connections: ["heycontext", "metabrain"],
+    accent: "#8b4f3f",
+    meta: {
+      role: "Solo Developer · Designer · Engineer",
+      status: "Personal Tool",
+      platform: "macOS 14+ · Notched Macs",
+      stack: "Swift · SwiftUI · AppKit · Ollama",
+    },
+    plate: "/studio/project-hearth.png",
+    gallery: ["/studio/project-hearth.png"],
+  },
   // -------------------------------------------------------------- companies
   {
     slug: "heycontext",
@@ -435,6 +528,64 @@ export const projects: Project[] = [
     },
     plate: "/studio/repo-site-spec.jpg",
     gallery: ["/studio/repo-site-spec.jpg"],
+  },
+  {
+    slug: "nexus-office",
+    name: "Nexus Office",
+    kind: "open-source",
+    status: "Active · MIT",
+    thesis: "Agents that keep working without you need a place where you can see and answer them.",
+    problem:
+      "Scheduled agents, issue pipelines, and permission gates are invisible by default, so work can stop silently in a terminal nobody is watching.",
+    built: [
+      "A native Mac and phone interface for live agent threads, repositories, issues, pull requests, scheduled flows, and permission gates. Every consequential button acts on the real system and every gate answer carries the exact question ID.",
+    ],
+    stack: "SwiftUI · Python · GitHub CLI · Tailscale",
+    links: [{ label: "GitHub", href: "https://github.com/ariaxhan/nexus-office" }],
+    proof: "Public MIT repository with fixture-driven UI, deterministic runtime state, and live Mac and phone clients.",
+    learned: "An agent dashboard is useful only when stale, blocked, and unreachable are visible states instead of empty space.",
+    proves: "Designing a human control surface for autonomous systems without hiding authority or failure.",
+    closing: "The agents already have a runtime. This gives them an office.",
+    themes: ["agents", "coordination", "verification", "implementation"],
+    connections: ["kernel", "the-agent-library", "hearth"],
+    accent: "#526b70",
+    meta: {
+      status: "Active · MIT",
+      platform: "macOS · iPhone",
+      stack: "SwiftUI · Python · GitHub CLI · Tailscale",
+      interface: "Threads · Desks · Gates · Flows",
+    },
+    plate: "/studio/project-nexus-office.png",
+    gallery: ["/studio/project-nexus-office.png"],
+  },
+  {
+    slug: "renderstate",
+    name: "renderstate",
+    kind: "open-source",
+    status: "Published on npm · MIT",
+    thesis: "A screen should be inspectable in every meaningful state before the whole app can run.",
+    problem:
+      "React screens hide their important states behind routers, backends, accounts, and setup that make visual review slow and incomplete.",
+    built: [
+      "A deterministic UI-state renderer that discovers React screen components, reads their TypeScript prop contracts, derives strong state combinations, renders each in isolation, and emits screenshots plus a neutral manifest.",
+    ],
+    stack: "TypeScript · React · Vite · Playwright",
+    links: [{ label: "npm", href: "https://www.npmjs.com/package/renderstate" }],
+    proof: "Version 0.1.2 is published on npm with multi-viewport capture and a static board viewer.",
+    learned: "The manifest is the durable product. A viewer, test runner, or publisher can remain a replaceable consumer.",
+    proves: "Building deterministic developer tooling around TypeScript analysis, browsers, and visual artifacts.",
+    closing: "Render the state before the app learns how to hide it.",
+    themes: ["verification", "implementation", "evals"],
+    connections: ["site-spec", "llm-bench"],
+    accent: "#65705a",
+    meta: {
+      status: "npm · 0.1.2 · MIT",
+      stack: "TypeScript · React · Vite · Playwright",
+      output: "Manifest · PNG Frames · Static Board",
+      determinism: "Frozen Clock · Fixed Viewports · Seeded Values",
+    },
+    plate: "/studio/project-renderstate.png",
+    gallery: ["/studio/project-renderstate.png"],
   },
   {
     slug: "kernel",
@@ -903,9 +1054,9 @@ export const moments: Moment[] = [
   {
     year: "2026",
     period: "May 2026 to Present",
-    title: "AI consultant · Blink Build Studios",
-    body: "My current work focuses on internal AI workflows. Outside that engagement, I also review and repair AI products for founders and independent builders. I follow new models, tools, methods, and research closely, then update the work when they make a better approach practical.",
-    type: "company",
+    title: "Independent AI consultant",
+    body: "My current work focuses on internal AI workflows for multiple clients. I also review and repair AI products for founders and independent builders. I follow new models, tools, methods, and research closely, then update the work when they make a better approach practical.",
+    type: "practice",
   },
   {
     year: "2026",
@@ -1221,6 +1372,14 @@ export interface Article {
 export const articles: Article[] = [
   // agents
   {
+    title: "Grok Bot: Cursor’s Bet on Multi-Agent AI",
+    excerpt:
+      "Of all the AI tools I’ve tried, Grok Bot may be the simplest iteration of a “personal agentic team.” The problem is that it keeps breaking.",
+    theme: "agents",
+    read: "4 min",
+    href: "https://medium.com/@ariaxhan/grok-bot-cursors-bet-on-multi-agent-ai-77d69ba8b290",
+  },
+  {
     title: "Your AI Harness Is the Real Product",
     excerpt:
       "The model writes the code. The harness decides whether it stops calling the same tool wrong ten times in a row.",
@@ -1275,6 +1434,14 @@ export const articles: Article[] = [
   },
   // evals-verification
   {
+    title: "Claude vs. GPT vs. Gemini: You’re Benchmarking the Wrong Thing",
+    excerpt:
+      "These benchmarks are not only comparing models. They are comparing the systems built around those models and the design of the benchmarks themselves.",
+    theme: "evals-verification",
+    read: "4 min",
+    href: "https://medium.com/@ariaxhan/claude-vs-gpt-vs-gemini-youre-benchmarking-the-wrong-thing-762c7e9cca5d",
+  },
+  {
     title: "Opus 4.8 vs 4.7 vs Sonnet vs Haiku: When the Expensive Model Is Worth It",
     excerpt:
       "A new model dropped with impressive numbers. The only question that matters: will you feel any difference in the work you actually do?",
@@ -1291,6 +1458,14 @@ export const articles: Article[] = [
     href: "https://medium.com/@ariaxhan/what-an-ai-detector-actually-measures-86b452979a5a",
   },
   // ai-coding-workflows
+  {
+    title: "I Stopped Debugging Claude’s Code and Started Debugging My Prompts Instead",
+    excerpt:
+      "Debugging AI-generated code usually isn’t about fixing bad code. It’s about giving the model context it never had.",
+    theme: "ai-coding-workflows",
+    read: "7 min",
+    href: "https://medium.com/@ariaxhan/how-i-stopped-debugging-ai-generated-code-1be33241b3c8",
+  },
   {
     title: "How to Make Claude Code Actually Work",
     excerpt: "The most capable AI coding tool available. Also completely chaotic.",
@@ -1600,7 +1775,7 @@ export const PAGE_COPY = {
       title: "The projects are chapters, not trophies",
       note: "How do people learn AI? How do people read research? How does AI remember? How do teams work with agents every day? The projects are different answers to questions that keep coming back.",
       defaultCaption:
-        "Thirteen projects, grouped by the questions underneath them: learning AI, reading research, keeping context, coordinating agents, preserving evidence, and making daily work less likely to evaporate.",
+        "Twenty projects, grouped by the questions underneath them: learning AI, reading research, keeping context, coordinating agents, preserving evidence, and making daily work less likely to evaporate.",
       plainText: "The map in plain text",
     },
     writingHighlights: {
