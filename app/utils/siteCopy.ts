@@ -1054,8 +1054,8 @@ export const moments: Moment[] = [
   {
     year: "2026",
     period: "May 2026 to Present",
-    title: "Independent AI consultant",
-    body: "My current work focuses on internal AI workflows for multiple clients. I also review and repair AI products for founders and independent builders. I follow new models, tools, methods, and research closely, then update the work when they make a better approach practical.",
+    title: "AI Engineer",
+    body: "Building AI products and systems with clients across industries.",
     type: "practice",
   },
   {

@@ -779,9 +779,9 @@ export const moments: Moment[] = [
   {
     year: "2026",
     period: "2026년 5월 – 현재",
-    title: "AI 컨설턴트 · Blink Build Studios",
-    body: "사내 AI 워크플로우 구축에 집중하고 있습니다. 이와 함께 창업자 및 독립 빌더의 AI 제품을 검토하고 개선합니다. 새로운 모델, 도구, 방법론, 연구를 지속적으로 검토하여 실무 시스템을 최적화합니다.",
-    type: "company",
+    title: "AI 엔지니어",
+    body: "다양한 업계의 고객과 함께 AI 제품과 시스템을 구축하고 있습니다.",
+    type: "practice",
   },
   {
     year: "2026",
