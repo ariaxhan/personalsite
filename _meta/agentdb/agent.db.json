@@ -214,6 +214,14 @@
         "id": "CP-20260829004829-87263-13150",
         "ts": "2026-08-29T07:48:29.201Z",
         "type": "checkpoint"
+      },
+      {
+        "agent": "orchestrator",
+        "content": "{\"agent\":\"main-46243\",\"event\":\"session-end\",\"branch\":\"feat/inline-cms-portfolio-v1\",\"uncommitted_files\":0}",
+        "contract_id": null,
+        "id": "CP-20260903124644-41306-3669",
+        "ts": "2026-09-03T19:46:44.376Z",
+        "type": "checkpoint"
       }
     ],
     "context_sessions": [],
@@ -3330,6 +3338,26 @@
         "metadata": "{\"exit_code\":0}",
         "session_id": "sess-20260829000135-52322",
         "ts": "2026-08-29T07:45:30.746Z"
+      },
+      {
+        "agent": "",
+        "category": "session",
+        "duration_ms": null,
+        "event": "session:end",
+        "id": 294,
+        "metadata": "{\"branch\":\"feat/inline-cms-portfolio-v1\",\"files_changed\":1,\"agent\":\"main-85467\",\"duration_s\":}",
+        "session_id": "",
+        "ts": "2026-08-29T07:48:29.613Z"
+      },
+      {
+        "agent": "",
+        "category": "hook",
+        "duration_ms": 1244,
+        "event": "session-end",
+        "id": 295,
+        "metadata": "{\"exit_code\":0}",
+        "session_id": "sess-20260829000135-52322",
+        "ts": "2026-08-29T07:48:30.186Z"
       }
     ],
     "execution_traces": [],
