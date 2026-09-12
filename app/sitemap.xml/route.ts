@@ -82,19 +82,21 @@ async function significantChangeDates(
     )
     .bind(CONTENT_PAGE_KEY)
     .all<HistoryRow>();
-  const snapshots: PublicationSnapshot[] = history.results.map((row) => {
-    if (row.content_schema_version !== CONTENT_SCHEMA_VERSION) {
-      throw new Error("sitemap history contains an unsupported revision");
+  // Older revisions stop validating whenever the copy shape changes. They only
+  // inform lastmod dates, so skip them instead of failing the whole sitemap.
+  const snapshots: PublicationSnapshot[] = history.results.flatMap((row) => {
+    if (row.content_schema_version !== CONTENT_SCHEMA_VERSION) return [];
+    try {
+      const canonical = canonicalizeContent(JSON.parse(row.content_json));
+      if (canonical.sha256 !== row.content_sha256) return [];
+      return [{
+        publicationId: row.id,
+        publishedAt: row.pointer_moved_at ?? row.created_at,
+        content: canonical.content,
+      }];
+    } catch {
+      return [];
     }
-    const canonical = canonicalizeContent(JSON.parse(row.content_json));
-    if (canonical.sha256 !== row.content_sha256) {
-      throw new Error("sitemap history contains a corrupt revision");
-    }
-    return {
-      publicationId: row.id,
-      publishedAt: row.pointer_moved_at ?? row.created_at,
-      content: canonical.content,
-    };
   });
   return calculateSignificantChangeDates(
     snapshots,
