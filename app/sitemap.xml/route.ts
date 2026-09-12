@@ -37,13 +37,22 @@ export async function GET() {
     url: `${BASE}${route}`,
     lastModified: new Date(historyDates.get(route)!),
   }));
+  // Every page exists in English and Korean; each entry names both.
+  const entry = (loc: string, lastmod: Date, en: string, ko: string) =>
+    `<url><loc>${escapeXml(loc)}</loc><lastmod>${lastmod.toISOString()}</lastmod>` +
+    `<xhtml:link rel="alternate" hreflang="en" href="${escapeXml(en)}"/>` +
+    `<xhtml:link rel="alternate" hreflang="ko" href="${escapeXml(ko)}"/>` +
+    `<xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(en)}"/></url>`;
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...pages.map(
-      (entry) =>
-        `<url><loc>${escapeXml(entry.url)}</loc><lastmod>${entry.lastModified.toISOString()}</lastmod></url>`,
-    ),
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    ...pages.flatMap((page) => {
+      const ko = page.url.replace(BASE, `${BASE}/ko`);
+      return [
+        entry(page.url, page.lastModified, page.url, ko),
+        entry(ko, page.lastModified, page.url, ko),
+      ];
+    }),
     "</urlset>",
   ].join("\n");
   return new Response(body, {

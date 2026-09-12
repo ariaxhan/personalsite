@@ -1,14 +1,14 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { useSiteContent } from "../content/SiteContentProvider";
 import { deriveSiteContent, type SiteContent } from "../content/defaultContent";
 import * as ko from "../utils/siteCopy.ko";
-import { LOCALE_KEY, type Locale } from "../utils/locale";
+import { localeFromPath, type Locale } from "../utils/locale";
 
 type LocaleContextValue = {
   locale: Locale;
-  setLocale: (next: Locale) => void;
 };
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
@@ -27,22 +27,16 @@ function koreanContent(published: SiteContent) {
   } as SiteContent);
 }
 
+// The URL is the locale: /ko/... renders Korean on the server, so crawlers and
+// visitors get the same HTML.
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+  const locale = localeFromPath(usePathname() ?? "/");
 
   useEffect(() => {
-    const stored: Locale = localStorage.getItem(LOCALE_KEY) === "ko" ? "ko" : "en";
-    setLocaleState(stored);
-    document.documentElement.lang = stored;
-  }, []);
+    document.documentElement.lang = locale;
+  }, [locale]);
 
-  const setLocale = (next: Locale) => {
-    localStorage.setItem(LOCALE_KEY, next);
-    document.documentElement.lang = next;
-    setLocaleState(next);
-  };
-
-  const value = useMemo(() => ({ locale, setLocale }), [locale]);
+  const value = useMemo(() => ({ locale }), [locale]);
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 }

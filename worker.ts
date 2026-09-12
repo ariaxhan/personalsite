@@ -108,11 +108,17 @@ function finalizeResponse(
   ) {
     headers.set("x-robots-tag", "noindex, nofollow");
   }
-  return new Response(response.body, {
+  const finalized = new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
     headers,
   });
+  const isKorean = url.pathname === "/ko" || url.pathname.startsWith("/ko/");
+  if (!isKorean || !headers.get("content-type")?.includes("text/html")) return finalized;
+  headers.set("content-language", "ko");
+  return new HTMLRewriter()
+    .on("html", { element: (element) => { element.setAttribute("lang", "ko"); } })
+    .transform(finalized);
 }
 
 export default worker;

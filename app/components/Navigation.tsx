@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSiteCopy } from "./LocaleProvider";
-import type { Locale } from "../utils/locale";
+import { localizedPath, type Locale } from "../utils/locale";
 
 /**
  * Navigation: the studio masthead.
@@ -14,7 +14,7 @@ import type { Locale } from "../utils/locale";
  */
 export default function Navigation() {
   const pathname = usePathname();
-  const { PAGE_COPY, locale, setLocale } = useSiteCopy();
+  const { PAGE_COPY, locale } = useSiteCopy();
   const nav = PAGE_COPY.navigation;
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -60,12 +60,17 @@ export default function Navigation() {
     };
   }, [openGroup]);
 
+  const basePath = localizedPath(pathname, "en");
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+    href === "/" ? basePath === "/" : basePath.startsWith(href);
 
   const groups = nav.groups.map((group) => ({
     label: group.label,
-    items: group.hrefs.flatMap((href) => nav.items.filter((item) => item.href === href)),
+    items: group.hrefs.flatMap((href) =>
+      nav.items
+        .filter((item) => item.href === href)
+        .map((item) => ({ ...item, href: localizedPath(item.href, locale), base: item.href })),
+    ),
   }));
 
   const activeGroup = groups.find((group) => group.label === openGroup) ?? null;
@@ -106,7 +111,7 @@ export default function Navigation() {
             ))}
           </nav>
 
-          <LocaleToggle locale={locale} setLocale={setLocale} />
+          <LocaleToggle locale={locale} pathname={pathname} />
         </div>
 
         <nav
@@ -139,7 +144,7 @@ export default function Navigation() {
                 <div className="kicker mb-4 sm:mb-5">{activeGroup.label}</div>
                 <ul className="m-0 mx-auto flex w-max list-none flex-col gap-1 p-0 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-12 sm:gap-y-4">
                   {activeGroup.items.map((item) => {
-                    const active = isActive(item.href);
+                    const active = isActive(item.base);
                     return (
                       <li key={item.href} className="relative">
                         <Link
@@ -174,7 +179,7 @@ function CategoryControl({
   isActive,
   className,
 }: {
-  group: { label: string; items: { href: string; label: string; n: string }[] };
+  group: { label: string; items: { href: string; base: string; label: string; n: string }[] };
   openGroup: string | null;
   setOpenGroup: (next: string | null) => void;
   isActive: (href: string) => boolean;
@@ -186,7 +191,7 @@ function CategoryControl({
       <Link
         href={direct.href}
         className={className}
-        style={{ color: isActive(direct.href) ? "#b56a4f" : "#2c2823" }}
+        style={{ color: isActive(direct.base) ? "#b56a4f" : "#2c2823" }}
       >
         {direct.label}
       </Link>
@@ -194,7 +199,7 @@ function CategoryControl({
   }
 
   const open = openGroup === group.label;
-  const groupActive = group.items.some((item) => isActive(item.href));
+  const groupActive = group.items.some((item) => isActive(item.base));
   return (
     <button
       type="button"
@@ -231,34 +236,21 @@ function Chevron({ open }: { open: boolean }) {
   );
 }
 
-function LocaleToggle({
-  locale,
-  setLocale,
-}: {
-  locale: Locale;
-  setLocale: (next: Locale) => void;
-}) {
+function LocaleToggle({ locale, pathname }: { locale: Locale; pathname: string }) {
+  const other = (next: Locale) => localizedPath(pathname.endsWith("/") ? pathname : `${pathname}/`, next);
+  const linkClass = (active: boolean) =>
+    `px-1 py-2 touch-manipulation ${active ? "text-terracotta" : "text-ink-mute"}`;
   return (
     <div className="flex items-center gap-1 font-mono text-caption uppercase tracking-[0.16em] sm:tracking-[0.18em]">
-      <button
-        type="button"
-        onClick={() => setLocale("en")}
-        className={`border-0 bg-transparent px-1 py-2 touch-manipulation ${locale === "en" ? "text-terracotta" : "text-ink-mute"}`}
-        aria-pressed={locale === "en"}
-      >
+      <Link href={other("en")} hrefLang="en" className={linkClass(locale === "en")} aria-current={locale === "en" ? "true" : undefined}>
         EN
-      </button>
+      </Link>
       <span className="text-ink-mute" aria-hidden="true">
         /
       </span>
-      <button
-        type="button"
-        onClick={() => setLocale("ko")}
-        className={`border-0 bg-transparent px-1 py-2 touch-manipulation ${locale === "ko" ? "text-terracotta" : "text-ink-mute"}`}
-        aria-pressed={locale === "ko"}
-      >
+      <Link href={other("ko")} hrefLang="ko" className={linkClass(locale === "ko")} aria-current={locale === "ko" ? "true" : undefined}>
         KR
-      </button>
+      </Link>
     </div>
   );
 }

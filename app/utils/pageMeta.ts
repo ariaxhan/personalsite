@@ -10,6 +10,7 @@
 
 import type { Metadata } from "next";
 import { SITE as DEFAULT_SITE } from "./siteMeta";
+import { localizedPath, type Locale } from "./locale";
 
 /** Shared Open Graph image. Rasterized to /og.png at build by scripts/generate-og.mjs. */
 export const OG_IMAGE = {
@@ -28,19 +29,28 @@ export function pageMeta(opts: {
   /** Canonical path, trailing slash required ("/" for home). */
   path: string;
   type?: "website" | "article" | "profile";
-}, site: typeof DEFAULT_SITE = DEFAULT_SITE): Metadata {
+}, site: typeof DEFAULT_SITE = DEFAULT_SITE, locale: Locale = "en"): Metadata {
   const ogTitle = opts.ogTitle ?? opts.title;
+  const canonical = localizedPath(opts.path, locale);
   return {
     title: opts.title,
     description: opts.description,
-    alternates: { canonical: opts.path },
+    alternates: {
+      canonical,
+      languages: {
+        en: opts.path,
+        ko: localizedPath(opts.path, "ko"),
+        "x-default": opts.path,
+      },
+    },
     openGraph: {
       title: ogTitle,
       description: opts.description,
-      url: opts.path,
+      url: canonical,
       type: opts.type ?? "website",
       siteName: site.name,
-      locale: "en_US",
+      locale: locale === "ko" ? "ko_KR" : "en_US",
+      alternateLocale: locale === "ko" ? ["en_US"] : ["ko_KR"],
       images: [{ ...OG_IMAGE, alt: `${site.name}, ${site.role}` }],
     },
     twitter: {
