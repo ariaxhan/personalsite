@@ -108,14 +108,15 @@ function finalizeResponse(
   ) {
     headers.set("x-robots-tag", "noindex, nofollow");
   }
+  const isKorean = url.pathname === "/ko" || url.pathname.startsWith("/ko/");
+  const koreanHtml = isKorean && Boolean(headers.get("content-type")?.includes("text/html"));
+  if (koreanHtml) headers.set("content-language", "ko");
   const finalized = new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
     headers,
   });
-  const isKorean = url.pathname === "/ko" || url.pathname.startsWith("/ko/");
-  if (!isKorean || !headers.get("content-type")?.includes("text/html")) return finalized;
-  headers.set("content-language", "ko");
+  if (!koreanHtml) return finalized;
   return new HTMLRewriter()
     .on("html", { element: (element) => { element.setAttribute("lang", "ko"); } })
     .transform(finalized);
