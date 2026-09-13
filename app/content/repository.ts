@@ -117,9 +117,13 @@ async function readPublishedSiteContent(): Promise<CachedSiteContent> {
   }
 }
 
+// The cache outlives deploys (R2), so the key carries the git-default content hash:
+// a deploy that changes source copy reads fresh instead of serving the old entry forever.
+const DEFAULT_CONTENT_KEY = canonicalizeContent(structuredClone(DEFAULT_SITE_CONTENT)).sha256;
+
 const readCachedSiteContent = unstable_cache(
   readPublishedSiteContent,
-  ["published-site-content-v1"],
+  ["published-site-content-v1", DEFAULT_CONTENT_KEY],
   { tags: ["content:site"], revalidate: false },
 );
 
