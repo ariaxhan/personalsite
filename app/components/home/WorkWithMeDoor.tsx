@@ -9,7 +9,7 @@ import { useSiteCopy } from "../LocaleProvider";
 // fuller picture of what I take on. No embed here; the scheduler lives on the
 // contact page.
 export default function WorkWithMeDoor() {
-  const { PAGE_COPY, SITE } = useSiteCopy();
+  const { PAGE_COPY, SITE, href: localHref } = useSiteCopy();
   return (
     <section className="mx-auto max-w-content px-5 py-20 sm:px-8 lg:px-14 lg:py-24">
       <Reveal className="border-t border-[rgba(44,40,35,0.16)] pt-12">
@@ -30,7 +30,7 @@ export default function WorkWithMeDoor() {
             {PAGE_COPY.sections.workWithMeDoor.call} &rarr;
           </a>
           <Link
-            href="/contact/"
+            href={localHref("/contact/")}
             className="border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[19px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
           >
             {PAGE_COPY.sections.workWithMeDoor.takeOn} &rarr;

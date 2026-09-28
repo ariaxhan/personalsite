@@ -11,7 +11,7 @@ import { useSiteCopy } from "./LocaleProvider";
 // carry the evidence. Every number is sourced from site copy.
 
 export default function Hero() {
-  const { PAGE_COPY, SITE, projectBySlug, proofStats } = useSiteCopy();
+  const { PAGE_COPY, SITE, projectBySlug, proofStats, href: localHref } = useSiteCopy();
   const quickLinks = [
     {
       title: "Paper Rooms",
@@ -90,7 +90,7 @@ export default function Hero() {
             {PAGE_COPY.hero.ctas.map((c) => (
               <Link
                 key={c.href}
-                href={c.href}
+                href={localHref(c.href)}
                 className="border-b border-[rgba(44,40,35,0.3)] pb-0.5 font-serif text-[17px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
               >
                 {c.label} &rarr;

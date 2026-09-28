@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSiteCopy } from "./LocaleProvider";
 
 export default function ProjectArticle({ slug }: { slug: string }) {
-  const { PAGE_COPY, projectBySlug } = useSiteCopy();
+  const { PAGE_COPY, projectBySlug, href: localHref } = useSiteCopy();
   const project = projectBySlug(slug);
   if (!project) return null;
 
@@ -20,7 +20,7 @@ export default function ProjectArticle({ slug }: { slug: string }) {
   return (
     <article className="mx-auto max-w-content px-5 pb-24 pt-28 sm:px-8">
       <nav aria-label="Breadcrumb" className="kicker mb-8">
-        <Link href={listPath} className="underline-offset-4 hover:underline">
+        <Link href={localHref(listPath)} className="underline-offset-4 hover:underline">
           {listLabel}
         </Link>
         <span aria-hidden="true"> / </span>
@@ -79,7 +79,7 @@ export default function ProjectArticle({ slug }: { slug: string }) {
           <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
             {project.links.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="underline underline-offset-4" rel="noopener">
+                <a href={localHref(l.href)} className="underline underline-offset-4" rel="noopener">
                   {l.label}
                 </a>
               </li>
@@ -98,7 +98,7 @@ export default function ProjectArticle({ slug }: { slug: string }) {
           <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
             {related.map((r) => (
               <li key={r.slug}>
-                <Link href={`/projects/${r.slug}/`} className="underline underline-offset-4">
+                <Link href={localHref(`/projects/${r.slug}/`)} className="underline underline-offset-4">
                   {r.name}
                 </Link>
               </li>

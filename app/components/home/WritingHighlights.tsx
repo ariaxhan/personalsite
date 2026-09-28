@@ -17,7 +17,7 @@ const PICKS: WritingTheme[] = [
 ];
 
 export default function WritingHighlights() {
-  const { PAGE_COPY, WRITING_THEMES, articlesByTheme } = useSiteCopy();
+  const { PAGE_COPY, WRITING_THEMES, articlesByTheme, href: localHref } = useSiteCopy();
   const themeLabel = (key: WritingTheme) =>
     WRITING_THEMES.find((t) => t.key === key)?.label ?? key;
   const featured = PICKS.map((theme) => ({
@@ -67,7 +67,7 @@ export default function WritingHighlights() {
 
       <div className="mt-10">
         <Link
-          href="/writing/"
+          href={localHref("/writing/")}
           className="inline-block border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[19px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
         >
           {PAGE_COPY.sections.writingHighlights.allWriting} &rarr;

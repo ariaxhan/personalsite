@@ -15,7 +15,7 @@ import { useSiteCopy } from "./LocaleProvider";
  * tidy index of the same doors.
  */
 export default function LivingDesk() {
-  const { PAGE_COPY, deskObjects } = useSiteCopy();
+  const { PAGE_COPY, deskObjects, href: localHref } = useSiteCopy();
   return (
     <section className="mx-auto max-w-wall px-5 pb-24 pt-10 sm:px-8 lg:px-14">
       <SectionHeader
@@ -59,7 +59,7 @@ export default function LivingDesk() {
         {deskObjects.map((obj) => (
           <Link
             key={obj.href}
-            href={obj.href}
+            href={localHref(obj.href)}
             className="group absolute flex flex-col items-center gap-3"
             style={{
               left: obj.pos.left,
@@ -97,7 +97,7 @@ export default function LivingDesk() {
         {deskObjects.map((obj) => (
           <Link
             key={obj.href}
-            href={obj.href}
+            href={localHref(obj.href)}
             aria-label={`Open ${obj.caption}`}
             className="relative flex min-h-[168px] flex-col items-center justify-between gap-3 bg-studio-card px-3 py-4 text-center transition-transform active:scale-[0.99]"
             style={{ border: "1px solid rgba(44,40,35,.08)" }}

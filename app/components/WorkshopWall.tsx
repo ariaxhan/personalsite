@@ -69,6 +69,7 @@ export default function WorkshopWall({
   room: "systems" | "open-source";
 }) {
   const copy = useSiteCopy();
+  const localHref = copy.href;
   const { PAGE_COPY, productProjects, openSourceProjects, locale } = copy;
   const { fig, label, title, note } =
     room === "systems" ? PAGE_COPY.sections.systems : PAGE_COPY.sections.openSource;
@@ -180,7 +181,7 @@ export default function WorkshopWall({
                 narrative is indexable and shareable. Measured 2026-07-28, see
                 _meta/research/2026-07-28-discoverability-audit.md. */}
             <a
-              href={`/projects/${p.slug}/`}
+              href={localHref(`/projects/${p.slug}/`)}
               className="mt-2 block text-center font-mono text-caption uppercase tracking-[0.14em] text-ink-ghost underline-offset-4 hover:text-terracotta hover:underline"
             >
               {PAGE_COPY.workshopWall.permalinkCta} {p.title}
@@ -364,7 +365,7 @@ export default function WorkshopWall({
                   {active.connections.map((c) => (
                     <a
                       key={c.href}
-                      href={c.href}
+                      href={localHref(c.href)}
                       className="border-b border-[rgba(44,40,35,0.3)] pb-0.5 font-serif text-[16px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
                     >
                       {c.label} {"->"}

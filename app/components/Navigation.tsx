@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSiteCopy } from "./LocaleProvider";
-import { localizedPath, type Locale } from "../utils/locale";
+import { localizedPath, writeLocaleCookie, type Locale } from "../utils/locale";
 
 /**
  * Navigation: the studio masthead.
@@ -89,7 +89,7 @@ export default function Navigation() {
       <div ref={barRef} className="px-5 sm:px-8 lg:px-14">
         <div className="relative flex h-12 items-center justify-between lg:h-16">
           <Link
-            href="/"
+            href={localizedPath("/", locale)}
             className="inline-flex items-center font-serif text-[20px] leading-none tracking-[0.01em] text-ink transition-colors hover:text-terracotta sm:text-[21px]"
           >
             Aria&nbsp;Han
@@ -242,13 +242,13 @@ function LocaleToggle({ locale, pathname }: { locale: Locale; pathname: string }
     `px-1 py-2 touch-manipulation ${active ? "text-terracotta" : "text-ink-mute"}`;
   return (
     <div className="flex items-center gap-1 font-mono text-caption uppercase tracking-[0.16em] sm:tracking-[0.18em]">
-      <Link href={other("en")} hrefLang="en" className={linkClass(locale === "en")} aria-current={locale === "en" ? "true" : undefined}>
+      <Link href={other("en")} hrefLang="en" onClick={() => writeLocaleCookie("en")} className={linkClass(locale === "en")} aria-current={locale === "en" ? "true" : undefined}>
         EN
       </Link>
       <span className="text-ink-mute" aria-hidden="true">
         /
       </span>
-      <Link href={other("ko")} hrefLang="ko" className={linkClass(locale === "ko")} aria-current={locale === "ko" ? "true" : undefined}>
+      <Link href={other("ko")} hrefLang="ko" onClick={() => writeLocaleCookie("ko")} className={linkClass(locale === "ko")} aria-current={locale === "ko" ? "true" : undefined}>
         KR
       </Link>
     </div>
