@@ -28,7 +28,7 @@ export default function MotionStrip() {
   const monthCol = (m: string) => MONTHS.indexOf(m) + 1; // 1-based
   const gridTemplateColumns = `repeat(${cols}, minmax(6px, 1fr))`;
 
-  const { PAGE_COPY } = useSiteCopy();
+  const { PAGE_COPY, href: localHref } = useSiteCopy();
   const copy = PAGE_COPY.motion;
   const ERAS = erasFrom(copy);
   const summary = `${copy.stripSummaryPrefix} ${GRAND_TOTAL.toLocaleString()} ${copy.stripSummaryMiddle} ${REPO_COUNT} ${copy.stripSummarySuffix}, ${monthLabel(
@@ -37,7 +37,7 @@ export default function MotionStrip() {
 
   return (
     <Link
-      href="/proof/"
+      href={localHref("/proof/")}
       aria-label={summary}
       className="group block border border-[rgba(44,40,35,0.16)] bg-studio-card px-4 py-5 shadow-paper transition-colors duration-300 ease-paper hover:border-[rgba(44,40,35,0.3)] sm:px-7 sm:py-6"
     >

@@ -6,7 +6,7 @@ import CalEmbed from "./CalEmbed";
 import { useSiteCopy } from "./LocaleProvider";
 
 export default function Contact() {
-  const { PAGE_COPY, SITE, engagements, goodFit, notAFit, contactLinks, projectReviewBullets } =
+  const { PAGE_COPY, SITE, href: localHref, engagements, goodFit, notAFit, contactLinks, projectReviewBullets } =
     useSiteCopy();
   return (
     <section className="mx-auto max-w-[1120px] px-5 sm:px-8 lg:px-14" style={{ paddingTop: "calc(var(--masthead-height, 7.5rem) + 1.75rem)" }}>
@@ -91,7 +91,7 @@ export default function Contact() {
           </p>
           <div className="mt-7">
             <Link
-              href="/project-review"
+              href={localHref("/project-review/")}
               className="inline-flex min-h-11 items-center border border-ink bg-ink px-4 py-3 font-mono text-caption uppercase tracking-[0.12em] text-studio-paper transition-colors hover:border-terracotta hover:bg-terracotta sm:px-5 sm:tracking-[0.18em]"
             >
               {PAGE_COPY.contact.submit}
@@ -117,7 +117,7 @@ export default function Contact() {
           {contactLinks.map((l) => (
             <a
               key={l.label}
-              href={l.href}
+              href={l.external ? l.href : localHref(l.href)}
               target={l.external ? "_blank" : undefined}
               rel={l.external ? "noopener noreferrer" : undefined}
               className="border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[clamp(20px,2.6vw,28px)] text-ink transition-colors hover:border-terracotta hover:text-terracotta"

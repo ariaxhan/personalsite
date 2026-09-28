@@ -50,7 +50,7 @@ function targetHref(p: Project): string {
 }
 
 export default function ProjectConstellation() {
-  const { PAGE_COPY, projects, projectBySlug } = useSiteCopy();
+  const { PAGE_COPY, projects, projectBySlug, href: localHref } = useSiteCopy();
   const [active, setActive] = useState<string | null>(null);
 
   const nodes = useMemo(
@@ -142,7 +142,7 @@ export default function ProjectConstellation() {
             return (
               <Link
                 key={p.slug}
-                href={targetHref(p)}
+                href={localHref(targetHref(p))}
                 onMouseEnter={() => setActive(p.slug)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(p.slug)}
@@ -200,7 +200,7 @@ export default function ProjectConstellation() {
             {nodes.map(({ p }) => (
               <li key={p.slug} className="border-b border-[rgba(44,40,35,0.1)] pb-4">
                 <Link
-                  href={targetHref(p)}
+                  href={localHref(targetHref(p))}
                   className="group grid gap-1"
                 >
                   <span className="font-serif text-[19px] font-light text-ink transition-colors group-hover:text-terracotta">

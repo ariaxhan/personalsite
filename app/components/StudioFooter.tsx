@@ -9,7 +9,7 @@ import { useSiteCopy } from "./LocaleProvider";
  * and the studio's address. Repeated at the foot of every room.
  */
 export default function StudioFooter() {
-  const { PAGE_COPY } = useSiteCopy();
+  const { PAGE_COPY, href: localHref } = useSiteCopy();
   const links = PAGE_COPY.footer.links;
   return (
     <footer className="mx-auto max-w-[1280px] px-5 pb-16 pt-28 sm:px-8 lg:px-14">
@@ -35,7 +35,7 @@ export default function StudioFooter() {
             ) : (
               <Link
                 key={l.label}
-                href={l.href}
+                href={localHref(l.href)}
                 className="border-b border-[rgba(44,40,35,0.3)] pb-0.5 text-[15px] text-ink transition-colors hover:border-terracotta hover:text-terracotta"
               >
                 {l.label}

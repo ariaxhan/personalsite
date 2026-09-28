@@ -8,7 +8,7 @@ import { useSiteCopy } from "../LocaleProvider";
 // timeline so the homepage can answer what is happening now without listing
 // every project or tool that is still running.
 export default function NowBlock() {
-  const { PAGE_COPY } = useSiteCopy();
+  const { PAGE_COPY, href: localHref } = useSiteCopy();
   const now = PAGE_COPY.now;
 
   return (
@@ -25,7 +25,7 @@ export default function NowBlock() {
             {now.body}
           </p>
           <Link
-            href="/timeline/"
+            href={localHref("/timeline/")}
             className="mt-6 inline-block border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[17px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
           >
             {now.timelineLink} &rarr;

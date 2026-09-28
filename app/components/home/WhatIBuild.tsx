@@ -10,7 +10,7 @@ import { useSiteCopy } from "../LocaleProvider";
 // glyph, a serif title, a one-line detail) and a door to the contact page.
 // Two columns on large screens.
 export default function WhatIBuild() {
-  const { PAGE_COPY, engagements } = useSiteCopy();
+  const { PAGE_COPY, engagements, href: localHref } = useSiteCopy();
   return (
     <section className="mx-auto max-w-content px-5 py-20 sm:px-8 lg:px-14 lg:py-28">
       <SectionHeader
@@ -24,7 +24,7 @@ export default function WhatIBuild() {
         {engagements.map((e, i) => (
           <Reveal key={e.title} delay={Math.min(i, 6) * 40}>
             <Link
-              href="/contact/"
+              href={localHref("/contact/")}
               className="group grid grid-cols-[auto_1fr] items-start gap-5 border-b border-[rgba(44,40,35,0.12)] py-6 transition-colors hover:border-[rgba(44,40,35,0.3)]"
             >
               <span
@@ -48,7 +48,7 @@ export default function WhatIBuild() {
         {/* Keep the final row balanced on two columns with a quiet door out. */}
         <Reveal delay={280} className="hidden lg:block">
           <Link
-            href="/contact/"
+            href={localHref("/contact/")}
             className="group grid h-full grid-cols-[auto_1fr] items-center gap-5 border-b border-dashed border-[rgba(44,40,35,0.16)] py-6"
           >
             <span className="grid h-10 w-10 shrink-0 place-items-center" aria-hidden="true">

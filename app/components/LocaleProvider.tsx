@@ -1,14 +1,23 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, type ReactNode } from "react";
-import { usePathname } from "next/navigation";
+import { createContext, useCallback, useContext, useEffect, useMemo, type ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { useSiteContent } from "../content/SiteContentProvider";
 import { deriveSiteContent, type SiteContent } from "../content/defaultContent";
 import * as ko from "../utils/siteCopy.ko";
-import { localeFromPath, type Locale } from "../utils/locale";
+import {
+  hasKoreanPage,
+  localeFromPath,
+  localizeHref,
+  localizedPath,
+  parseLocaleCookie,
+  type Locale,
+} from "../utils/locale";
 
 type LocaleContextValue = {
   locale: Locale;
+  /** Keep an internal href in the current language. */
+  href: (href: string) => string;
 };
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
@@ -28,15 +37,27 @@ function koreanContent(published: SiteContent) {
 }
 
 // The URL is the locale: /ko/... renders Korean on the server, so crawlers and
-// visitors get the same HTML.
+// visitors get the same HTML. The EN/KR toggle also stores the choice in a
+// cookie; the worker redirects full page loads to match it, and this provider
+// catches any client-side navigation that lands on the other language.
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const locale = localeFromPath(usePathname() ?? "/");
+  const pathname = usePathname() ?? "/";
+  const locale = localeFromPath(pathname);
+  const router = useRouter();
 
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
 
-  const value = useMemo(() => ({ locale }), [locale]);
+  useEffect(() => {
+    const preferred = parseLocaleCookie(document.cookie);
+    if (!preferred || preferred === locale || !hasKoreanPage(pathname)) return;
+    const target = localizedPath(pathname, preferred);
+    router.replace(`${target}${window.location.search}${window.location.hash}`);
+  }, [locale, pathname, router]);
+
+  const href = useCallback((target: string) => localizeHref(target, locale), [locale]);
+  const value = useMemo(() => ({ locale, href }), [locale, href]);
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 }
