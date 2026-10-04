@@ -14,6 +14,12 @@ export { DOQueueHandler } from "./.open-next/worker.js";
 const worker = {
   async fetch(request: Request, env: CloudflareEnv, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+    // www is claimed only so it can redirect: one canonical origin, the apex.
+    if (url.hostname === "www.ariaxhan.com") {
+      url.hostname = "ariaxhan.com";
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
     // One canonical origin: http serves a duplicate of every page otherwise.
     if (url.protocol === "http:") {
       url.protocol = "https:";

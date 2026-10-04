@@ -16,6 +16,10 @@
     {
       "pattern": "ariaxhan.com",
       "custom_domain": true
+    },
+    {
+      "pattern": "www.ariaxhan.com",
+      "custom_domain": true
     }
   ],
   "assets": {
