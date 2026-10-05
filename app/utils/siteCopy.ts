@@ -57,11 +57,11 @@ export const SITE = {
 
   /** The one-sentence description a stranger should repeat after ten seconds. */
   tldr:
-    "Aria Han is an AI consultant in Los Angeles who builds and repairs AI products for founders and independent builders, and creates internal AI workflows for operations teams.",
+    "Aria Han is an AI consultant in Los Angeles who builds autonomous AI systems that run companies end to end: agents that plan, execute, and prove their own work, escalating only the decisions a human should make.",
 
   /** Longer bio for llms-full, MCP, about surfaces. */
   bio: [
-    "I'm an AI consultant in Los Angeles. I work with founders, independent builders, and operations teams that want to put AI to work now.",
+    "I'm an AI consultant in Los Angeles. I build autonomous AI systems that run companies end to end, and I work with founders, independent builders, and operations teams that want to put AI to work now.",
     "For founders and other builders, that can mean building an AI product, repairing one that got stuck after an AI-assisted build, or setting up AI workflows for research, writing, operations, and decision-making. If you have something that mostly works but has become hard to debug, extend, or trust, that is exactly what a project review is for. I can teach the workflow, build it, or do both.",
     "For companies, I focus on internal operations. I get close to the process as it actually runs, find where context is lost or work keeps getting repeated, and build an AI workflow around the tools and information the team already uses.",
     "Before consulting, I built three AI products in San Francisco and led the teams that built them. My public work includes App Store apps, Python packages, open source evaluation and memory tools, and KERNEL, the plugin I use to run coding agents on real repositories.",
@@ -306,7 +306,7 @@ export const projects: Project[] = [
     slug: "civic-forges",
     name: "Civic Forges",
     kind: "product",
-    status: "Playable online · App Store coming soon",
+    status: "Playable online · Live on the App Store",
     thesis: "I wanted a city builder where running the city and living a life are the same game.",
     problem:
       "City builders usually stop at zoning and budgets. The person making those decisions disappears behind the interface.",
@@ -328,9 +328,9 @@ export const projects: Project[] = [
     accent: "#8a6545",
     meta: {
       role: "Solo Developer · Designer · Engineer",
-      status: "Playable Online · App Store Coming Soon",
+      status: "Playable Online · Live on the App Store",
       stack: "Three.js · TypeScript · Cloudflare Workers",
-      platform: "Web · iOS Coming Soon",
+      platform: "Web · iOS",
     },
     plate: "/studio/project-civic-forges.png",
     gallery: ["/studio/project-civic-forges.png"],
@@ -1852,10 +1852,10 @@ export const PAGE_COPY = {
     },
   },
   now: {
-    label: "Now · September 2026",
-    title: "Working independently with a few different clients.",
+    label: "Now · October 2026",
+    title: "Fractional CTO at Thinking Brain School, consulting independently.",
     body:
-      "AI products, personal workflows, internal operations, and AI education. Enjoying the range.",
+      "Nexus Office, the autonomous system I built, runs the school's operations end to end: curriculum production, workflows, briefings. Around it, AI products and internal workflows for a few other clients. Enjoying the range.",
 
 
     timelineLink: "The full timeline",
