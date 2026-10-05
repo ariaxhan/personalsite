@@ -12,6 +12,7 @@ export const SITEMAP_STATIC_ROUTES = [
   "/hackathons/",
   "/open-source/",
   "/project-review/",
+  "/ai-consulting-korean-companies/",
   "/proof/",
   "/systems/",
   "/timeline/",
@@ -187,6 +188,10 @@ function routeSignature(route: string, content: SiteContent): string {
       pageCopy.projectReview,
       pageCopy.projectReviewForm,
       pageCopy.metadata.projectReview,
+    ],
+    "/ai-consulting-korean-companies/": [
+      pageCopy.koreanConsulting,
+      pageCopy.metadata.koreanConsulting,
     ],
     "/proof/": [
       content.SITE.proof,

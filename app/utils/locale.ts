@@ -10,6 +10,7 @@ const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 // (editor, api, machine files) exists in English only.
 const KO_SECTIONS = [
   "about",
+  "ai-consulting-korean-companies",
   "contact",
   "hackathons",
   "open-source",

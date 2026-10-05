@@ -5,6 +5,7 @@ export const HUMAN_PUBLIC_PATHS = [
   "/about/",
   "/contact/",
   "/hackathons/",
+  "/ai-consulting-korean-companies/",
   "/open-source/",
   "/project-review/",
   "/proof/",

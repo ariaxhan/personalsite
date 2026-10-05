@@ -1586,6 +1586,12 @@ export const PAGE_COPY = {
         "Submit an AI project, idea, repo, architecture, or tool choice for a one-time async review.",
       path: "/project-review/",
     },
+    koreanConsulting: {
+      title: "AI Consultant for Korean Companies Entering the US | Aria Han",
+      description:
+        "Bilingual Korean-English AI consulting for Korean companies entering the US and US companies working with Korea. Autonomous AI systems, fixed-scope audits and builds, fully remote. Start with a free project review.",
+      path: "/ai-consulting-korean-companies/",
+    },
     proof: {
       title: "Proof of Motion | Aria Han",
       description:
@@ -1622,6 +1628,8 @@ export const PAGE_COPY = {
       "workflow automation consultant",
       "AI product repair",
       "AI project review",
+      "bilingual AI consultant Korean English",
+      "AI consulting for Korean companies entering the US",
       "AI workflows for founders",
       "internal AI workflow automation",
       "AI continuity systems",
@@ -1677,6 +1685,7 @@ export const PAGE_COPY = {
       { label: "Writing", href: "/writing" },
       { label: "Reading", href: "/reading" },
       { label: "Proof of motion", href: "/proof/" },
+      { label: "Korean–English AI consulting", href: "/ai-consulting-korean-companies/" },
       { label: "Contact", href: "/contact" },
     ],
     place: "Aria Han · Los Angeles · 2026",
@@ -1886,6 +1895,72 @@ export const PAGE_COPY = {
     note:
       "AGENTS.md, CLAUDE.md, specs, prompts, diagrams, and notes are welcome. I'll probably read those before the code.",
   },
+  koreanConsulting: {
+    header: {
+      fig: "Fig. 10B",
+      label: "Korean–English AI Consulting",
+      title: "AI consulting for Korean companies entering the US.",
+      note: "One consultant, both languages, both markets. Based in Los Angeles, working remotely with teams in the US and Korea.",
+    },
+    introLabel: "The bilingual part",
+    intro:
+      "I work in English and Korean, remotely, with clients in the US and Korea. A lot of my work sits on that line: teams in Seoul building for the US, US companies working with Korea, founders who think in one language and sell in the other. Nothing gets lost in translation because there isn't any. You get the same person on both sides.",
+    buildLabel: "What I build",
+    build:
+      "I build autonomous AI systems that run companies end to end. Not demos and not chatbots: systems of agents that plan, execute, check their own work, and escalate only the decisions a human should make.",
+    audiencesLabel: "Who this is for",
+    audiences: [
+      {
+        title: "Korean companies entering the US",
+        detail:
+          "Your product, docs, and customers are splitting across two languages, and the US side keeps getting a translated summary of the Korean original. I build the AI systems and workflows for the US operation directly, in English, and report back to Seoul in Korean. Support, internal operations, agent systems: built once, correct in both languages.",
+      },
+      {
+        title: "US companies working with Korea",
+        detail:
+          "You have a Korean team, partner, or parent company, and the work slows down every time it crosses the language line. I sit on that line. Requirements, specs, and systems get built with both sides in the room, because I am both sides in the room.",
+      },
+    ],
+    offersLabel: "Fixed-scope engagements",
+    offersNote: "Fixed scope, fixed price, async by default. No hourly billing, no staff augmentation.",
+    offers: [
+      {
+        title: "AI System Audit",
+        price: "From $1,500",
+        detail:
+          "A full read of your AI system as it actually runs: architecture, agents, evals, guardrails, and the places where context gets lost. You get the findings and a fix plan you can hand to any engineer, including the one who built it.",
+      },
+      {
+        title: "Agent Architecture Review",
+        price: "From $1,500",
+        detail:
+          "A design review of an agent system before you build it, or a second opinion on one that is already designed. Orchestration, memory, tool boundaries, and how the system proves its own work, checked against what actually breaks in production.",
+      },
+      {
+        title: "Autonomous Workflow Build",
+        price: "From $2,500",
+        detail:
+          "One workflow, built end to end: an agent system that takes a recurring operation off your team's plate, with the checks and escalation paths that let it run unattended. Scoped together first, then built with receipts.",
+      },
+    ],
+    proofLabel: "Proof",
+    proof: [
+      "Fractional CTO at an AI-first education company, where an autonomous system I built supports operations end to end",
+      "KERNEL, my open-source plugin for coding agents: active on the Claude plugin marketplace, with real external users",
+      "Three free apps live on the App Store: ModelMind, Paper Rooms, and Civic Forges",
+      "Open-source evaluation and memory tools, published on GitHub and PyPI",
+    ],
+    reviewCta: {
+      label: "Start with a free project review",
+      line: "Send the messy version. I will look at the project, the architecture, and what to build next, and reply by email. Free, one time, async.",
+      button: "Submit a project",
+    },
+    bookingCta: {
+      label: "Or book a call",
+      line: "Fifteen minutes, in English or Korean, whichever is easier for you.",
+      button: "Book a call",
+    },
+  },
   projectReviewForm: {
     stages: ["Idea", "Prototype", "Messy but real", "Live", "Rebuild?"],
     projectTypes: [
@@ -2020,6 +2095,7 @@ export const PAGE_COPY = {
       { path: "/hackathons/", purpose: "Builds under pressure and hackathon wins." },
       { path: "/contact/", purpose: "Engagement types, fit filter, and booking." },
       { path: "/project-review/", purpose: "Structured intake for a paid project review." },
+      { path: "/ai-consulting-korean-companies/", purpose: "Bilingual Korean-English AI consulting for Korean companies entering the US and US companies working with Korea." },
     ],
     endpoints: [
       { path: "/llms.txt", purpose: "Concise agent guide to this site." },
