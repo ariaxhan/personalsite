@@ -33,6 +33,11 @@ const ROUTE_SOURCES = {
   "/hackathons/": ["app/hackathons/page.tsx"],
   "/open-source/": ["app/open-source/page.tsx", "app/utils/projectsData.ts"],
   "/project-review/": ["app/project-review/page.tsx"],
+  "/ai-consulting-korean-companies/": [
+    "app/ai-consulting-korean-companies/page.tsx",
+    "app/components/KoreanConsultingRoom.tsx",
+    "app/utils/siteCopy.ts",
+  ],
   "/proof/": ["app/proof/page.tsx", "app/utils/motionData.json"],
   "/systems/": ["app/systems/page.tsx", "app/utils/projectsData.ts"],
   "/timeline/": ["app/timeline/page.tsx"],

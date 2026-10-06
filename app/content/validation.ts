@@ -13,7 +13,6 @@ export const PREVIOUS_PROJECT_SLUGS = [
   "civic-forges",
   "not-recommended",
   "hearth",
-  "reality-check",
   "heycontext",
   "heycontent",
   "brink-mind",

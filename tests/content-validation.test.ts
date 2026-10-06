@@ -5,7 +5,6 @@ import {
   HISTORICAL_PROJECT_SLUGS,
   NEW_ARTICLE_HREFS,
   PREVIOUS_PROJECT_SLUGS,
-  PREVIOUS_REMOVED_PROJECT_TEMPLATE,
   canonicalizeContent,
   isEditableContentPath,
 } from "../app/content/validation";
@@ -25,11 +24,13 @@ describe("content validation", () => {
     expect(result.content.SITE.oneLiner).toBe("AI for work, AI for humans.");
   });
 
-  it("keeps the previous 21-project snapshot valid during the catalog migration", () => {
+  it("keeps the previous 20-project snapshot valid during the catalog migration", () => {
     const previous = structuredClone(DEFAULT_SITE_CONTENT);
-    previous.projects.splice(6, 0, structuredClone(PREVIOUS_REMOVED_PROJECT_TEMPLATE));
+    previous.projects = previous.projects.filter(
+      (project) => project.slug !== "the-correction",
+    );
     expect(previous.projects.map((project) => project.slug)).toEqual(PREVIOUS_PROJECT_SLUGS);
-    expect(canonicalizeContent(previous).content.projects).toHaveLength(21);
+    expect(canonicalizeContent(previous).content.projects).toHaveLength(20);
   });
 
   it("keeps the historical 15-project snapshot valid for sitemap history", () => {
@@ -55,7 +56,9 @@ describe("content validation", () => {
 
   it("rejects arbitrary project removal during the catalog migration", () => {
     const incomplete = structuredClone(DEFAULT_SITE_CONTENT);
-    incomplete.projects = incomplete.projects.slice(0, -1);
+    incomplete.projects = incomplete.projects.filter(
+      (project) => project.slug !== "kernel",
+    );
     expect(() => canonicalizeContent(incomplete)).toThrow(
       "current or immediately previous project catalog",
     );

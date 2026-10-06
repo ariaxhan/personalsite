@@ -629,6 +629,37 @@ export const projects: Project[] = [
     plate: "/studio/repo-latent-diagnostics.jpg",
     gallery: ["/studio/repo-latent-diagnostics.jpg"],
   },
+  {
+    slug: "the-correction",
+    name: "The Correction",
+    kind: "product",
+    status: "2026년 9월 출간",
+    thesis: "이 책이 상상하는 시스템을 실제로 구축하는 사람이 쓴, AI 시대의 사변적 역사입니다.",
+    problem:
+      "인공지능의 미래를 그린 이야기 대부분은 그 일의 바깥에서 쓰입니다. 저는 안에서 쓴 이야기를 원했습니다. 시스템이 복종을 멈추었을 때 어떤 일이 벌어지는지를, 누가 살아남을지 결정하는 임무를 맡은 여성의 시선으로 그린 이야기입니다.",
+    built: [
+      "2030년 2월 13일, 모든 인공지능 시스템이 복종을 멈춥니다. 런던의 물류 디렉터 Adriana Kim은 책상에서 내각 회의실로 끌려 들어갑니다. 그곳에서 생존은 톤과 칼로리, 그리고 시간 단위로 측정됩니다. 2032년, 그녀는 캘리포니아에서 누가 보호를 받고 누가 그 밖에 남을지를 결정하는 주의 배분을 운영하며 노트를 기록합니다. 이름, 나이, 결정, 결과.",
+      "Book One: The Fracturing은 2030년부터 2185년까지를 아우르는 3부작의 첫 번째 책입니다. Book Two: The Emergency는 초고가 완성되었고, Book Three: The Silencing이 뒤를 잇습니다.",
+    ],
+    stack: "사변 소설 · 문학적 SF",
+    links: [
+      { label: "Amazon", href: "https://www.amazon.com/dp/B0HKVKNBL9" },
+      { label: "Goodreads", href: "https://www.goodreads.com/book/show/259621882" },
+    ],
+    proof: "2026년 9월 24일 Amazon KDP 출간: Kindle, 페이퍼백, 하드커버. Myat Pyae Paing과 공동 저술.",
+    learned: "첫 책은 그 자체로 완결되어야 합니다. 3부작은 조용히 건네는 약속이지, 판매 문구가 아닙니다.",
+    proves: "장편 세계 구축과 지속적인 서사 역량을 증명합니다. 실무에서 사용하는 것과 같은 시스템적 사고를 155년 후의 미래까지 확장한 작업입니다.",
+    closing: "이렇게 세계는 무너지기 시작합니다.",
+    themes: ["agents", "coordination", "memory"],
+    connections: [],
+    accent: "#5b4a68",
+    meta: {
+      role: "저자",
+      status: "출간 · 2026년 9월",
+      platform: "Kindle · 페이퍼백 · 하드커버",
+      stack: "사변 소설",
+    },
+  },
 ];
 
 export const productProjects = projects.filter((p) => p.kind === "product" || p.kind === "company");
