@@ -27,6 +27,7 @@ export const PREVIOUS_PROJECT_SLUGS = [
   "agentmailkit",
   "substrate",
   "latent-diagnostics",
+  "the-correction",
 ] as const;
 
 export const HISTORICAL_PROJECT_SLUGS = [

@@ -396,6 +396,37 @@ export const projects: Project[] = [
     plate: "/studio/project-hearth.png",
     gallery: ["/studio/project-hearth.png"],
   },
+  {
+    slug: "the-correction",
+    name: "The Correction",
+    kind: "product",
+    status: "Published September 2026",
+    thesis: "A speculative history of the AI age, written by someone who builds the systems it imagines.",
+    problem:
+      "Most futures of artificial intelligence are written from outside the work. I wanted one written from inside it: what it looks like when the systems stop obeying, told by the woman assigned to decide who gets saved.",
+    built: [
+      "On 13 February 2030, every artificial intelligence system stops obeying. Adriana Kim, a logistics director in London, is pulled from her desk into Cabinet rooms where survival is measured in tonnes, calories, and hours. By 2032 she is in California, running allocation for a state deciding who receives protection and who remains outside it, keeping a notebook: name, age, decision, outcome.",
+      "Book One: The Fracturing is the first of three parts spanning 2030 to 2185. Book Two: The Emergency is drafted. Book Three: The Silencing follows.",
+    ],
+    stack: "Speculative fiction · Literary SF",
+    links: [
+      { label: "Amazon", href: "https://www.amazon.com/dp/B0HKVKNBL9" },
+      { label: "Goodreads", href: "https://www.goodreads.com/book/show/259621882" },
+    ],
+    proof: "Published September 24, 2026 on Amazon KDP: Kindle, paperback, and hardcover. Co-authored with Myat Pyae Paing.",
+    learned: "A first book has to stand alone. The trilogy is a promise you make quietly, not the pitch.",
+    proves: "Long-form worldbuilding and sustained narrative: the same systems thinking I use in production, run forward 155 years.",
+    closing: "This is how the world begins to fall apart.",
+    themes: ["agents", "coordination", "memory"],
+    connections: [],
+    accent: "#5b4a68",
+    meta: {
+      role: "Author",
+      status: "Published · September 2026",
+      platform: "Kindle · Paperback · Hardcover",
+      stack: "Speculative fiction",
+    },
+  },
   // -------------------------------------------------------------- companies
   {
     slug: "heycontext",
@@ -844,37 +875,6 @@ export const projects: Project[] = [
     },
     plate: "/studio/repo-latent-diagnostics.jpg",
     gallery: ["/studio/repo-latent-diagnostics.jpg"],
-  },
-  {
-    slug: "the-correction",
-    name: "The Correction",
-    kind: "product",
-    status: "Published September 2026",
-    thesis: "A speculative history of the AI age, written by someone who builds the systems it imagines.",
-    problem:
-      "Most futures of artificial intelligence are written from outside the work. I wanted one written from inside it: what it looks like when the systems stop obeying, told by the woman assigned to decide who gets saved.",
-    built: [
-      "On 13 February 2030, every artificial intelligence system stops obeying. Adriana Kim, a logistics director in London, is pulled from her desk into Cabinet rooms where survival is measured in tonnes, calories, and hours. By 2032 she is in California, running allocation for a state deciding who receives protection and who remains outside it, keeping a notebook: name, age, decision, outcome.",
-      "Book One: The Fracturing is the first of three parts spanning 2030 to 2185. Book Two: The Emergency is drafted. Book Three: The Silencing follows.",
-    ],
-    stack: "Speculative fiction · Literary SF",
-    links: [
-      { label: "Amazon", href: "https://www.amazon.com/dp/B0HKVKNBL9" },
-      { label: "Goodreads", href: "https://www.goodreads.com/book/show/259621882" },
-    ],
-    proof: "Published September 24, 2026 on Amazon KDP: Kindle, paperback, and hardcover. Co-authored with Myat Pyae Paing.",
-    learned: "A first book has to stand alone. The trilogy is a promise you make quietly, not the pitch.",
-    proves: "Long-form worldbuilding and sustained narrative: the same systems thinking I use in production, run forward 155 years.",
-    closing: "This is how the world begins to fall apart.",
-    themes: ["agents", "coordination", "memory"],
-    connections: [],
-    accent: "#5b4a68",
-    meta: {
-      role: "Author",
-      status: "Published · September 2026",
-      platform: "Kindle · Paperback · Hardcover",
-      stack: "Speculative fiction",
-    },
   },
 ];
 

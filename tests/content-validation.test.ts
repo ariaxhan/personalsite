@@ -24,13 +24,17 @@ describe("content validation", () => {
     expect(result.content.SITE.oneLiner).toBe("AI for work, AI for humans.");
   });
 
-  it("keeps the previous 20-project snapshot valid during the catalog migration", () => {
+  it("keeps the previous 21-project snapshot valid during the catalog migration", () => {
     const previous = structuredClone(DEFAULT_SITE_CONTENT);
-    previous.projects = previous.projects.filter(
-      (project) => project.slug !== "the-correction",
+    const correction = previous.projects.find(
+      (project) => project.slug === "the-correction",
     );
+    previous.projects = [
+      ...previous.projects.filter((project) => project.slug !== "the-correction"),
+      correction!,
+    ];
     expect(previous.projects.map((project) => project.slug)).toEqual(PREVIOUS_PROJECT_SLUGS);
-    expect(canonicalizeContent(previous).content.projects).toHaveLength(20);
+    expect(canonicalizeContent(previous).content.projects).toHaveLength(21);
   });
 
   it("keeps the historical 15-project snapshot valid for sitemap history", () => {
