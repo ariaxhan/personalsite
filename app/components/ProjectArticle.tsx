@@ -9,10 +9,18 @@ export default function ProjectArticle({ slug }: { slug: string }) {
   if (!project) return null;
 
   const sections = PAGE_COPY.workshopWall.sections;
-  const listPath = project.kind === "open-source" ? "/open-source/" : "/systems/";
-  const listLabel = project.kind === "open-source"
-    ? PAGE_COPY.agentText.labels.openSourcePrefix
-    : PAGE_COPY.agentText.labels.systemsPrefix;
+  const listPath =
+    project.kind === "open-source"
+      ? "/open-source/"
+      : project.kind === "writing"
+        ? "/writing/"
+        : "/systems/";
+  const listLabel =
+    project.kind === "open-source"
+      ? PAGE_COPY.agentText.labels.openSourcePrefix
+      : project.kind === "writing"
+        ? PAGE_COPY.sections.writing.label
+        : PAGE_COPY.agentText.labels.systemsPrefix;
   const related = project.connections
     .map((s) => projectBySlug(s))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
@@ -34,6 +42,17 @@ export default function ProjectArticle({ slug }: { slug: string }) {
           {project.thesis}
         </p>
       </header>
+
+      {project.kind === "writing" && project.plate && (
+        <figure className="mb-12 max-w-[340px]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.plate}
+            alt={`${project.name} cover`}
+            className="aspect-[5/8] w-full object-cover shadow-[0_28px_55px_-28px_rgba(44,40,35,0.7)]"
+          />
+        </figure>
+      )}
 
       <section className="mb-12 max-w-prose">
         <h2 className="kicker mb-3">{sections.problem}</h2>

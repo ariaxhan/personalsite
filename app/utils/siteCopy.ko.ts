@@ -242,7 +242,7 @@ export const projects: Project[] = [
   {
     slug: "the-correction",
     name: "The Correction",
-    kind: "product",
+    kind: "writing",
     status: "2026년 9월 출간",
     thesis: "이 책이 상상하는 시스템을 실제로 구축하는 사람이 쓴, AI 시대의 사변적 역사입니다.",
     problem:
@@ -269,6 +269,9 @@ export const projects: Project[] = [
       platform: "Kindle · 페이퍼백 · 하드커버",
       stack: "사변 소설",
     },
+    plate: "/studio/the-correction-cover.jpg",
+    plateFit: "contain",
+    gallery: ["/studio/the-correction-cover.jpg"],
   },
 
   {

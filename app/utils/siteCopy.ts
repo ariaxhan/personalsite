@@ -152,7 +152,7 @@ export interface ProjectLink {
 export interface Project {
   slug: string;
   name: string;
-  kind: "product" | "open-source" | "research" | "company";
+  kind: "product" | "open-source" | "research" | "company" | "writing";
   status: string;
   /** One-line thesis. */
   thesis: string;
@@ -399,7 +399,7 @@ export const projects: Project[] = [
   {
     slug: "the-correction",
     name: "The Correction",
-    kind: "product",
+    kind: "writing",
     status: "Published September 2026",
     thesis: "A speculative history of the AI age, written by someone who builds the systems it imagines.",
     problem:
@@ -426,6 +426,9 @@ export const projects: Project[] = [
       platform: "Kindle · Paperback · Hardcover",
       stack: "Speculative fiction",
     },
+    plate: "/studio/the-correction-cover.jpg",
+    plateFit: "contain",
+    gallery: ["/studio/the-correction-cover.jpg"],
   },
   // -------------------------------------------------------------- companies
   {

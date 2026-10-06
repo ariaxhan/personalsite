@@ -15,12 +15,14 @@ const kindTag: Record<Locale, Record<Project["kind"], string>> = {
     company: "Company",
     "open-source": "Open Source",
     research: "Research",
+    writing: "Writing",
   },
   ko: {
     product: "프로덕트",
     company: "회사",
     "open-source": "오픈소스",
     research: "연구",
+    writing: "글",
   },
 };
 

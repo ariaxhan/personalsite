@@ -169,9 +169,10 @@ export function contactSchema(content: DerivedSiteContent) {
 export function projectSchema(content: DerivedSiteContent, p: Project) {
   const { SITE } = content;
   const isSoftware = p.kind === "open-source" || p.kind === "product";
+  const isBook = p.kind === "writing";
   return {
     "@context": "https://schema.org",
-    "@type": isSoftware ? "SoftwareApplication" : "CreativeWork",
+    "@type": isBook ? "Book" : isSoftware ? "SoftwareApplication" : "CreativeWork",
     name: p.name,
     url: `${SITE.url}/projects/${p.slug}/`,
     description: p.thesis,
@@ -182,6 +183,7 @@ export function projectSchema(content: DerivedSiteContent, p: Project) {
       ? { applicationCategory: "DeveloperApplication", operatingSystem: "Any" }
       : {}),
     ...(p.meta.license ? { license: p.meta.license } : {}),
+    ...(p.plate ? { image: `${SITE.url}${p.plate}` } : {}),
     sameAs: p.links.map((l) => l.href),
   };
 }

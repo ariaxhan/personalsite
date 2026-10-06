@@ -44,7 +44,9 @@ export async function generateMetadata({
         ? "research"
         : project.kind === "company"
           ? "company"
-          : "product";
+          : project.kind === "writing"
+            ? "novel"
+            : "product";
 
   return pageMeta({
     title: `${project.name}, ${kindLabel} by Aria Han`,
@@ -65,8 +67,18 @@ export default async function ProjectPage({
   const project = content.projectBySlug(slug);
   if (!project) notFound();
 
-  const listPath = project.kind === "open-source" ? "/open-source/" : "/systems/";
-  const listLabel = project.kind === "open-source" ? "Open Source" : "Systems";
+  const listPath =
+    project.kind === "open-source"
+      ? "/open-source/"
+      : project.kind === "writing"
+        ? "/writing/"
+        : "/systems/";
+  const listLabel =
+    project.kind === "open-source"
+      ? "Open Source"
+      : project.kind === "writing"
+        ? "Writing"
+        : "Systems";
 
   return (
     <main className="relative">

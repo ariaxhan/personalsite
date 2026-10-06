@@ -126,6 +126,14 @@ function projectFullMd(p: Project): string[] {
 // ---------------------------------------------------------------------------
 function writingThemedMd(): string[] {
   const out: string[] = [];
+  const book = projects.find((project) => project.slug === "the-correction");
+  if (book) {
+    out.push(`### The novel`);
+    out.push(
+      `- [${book.name}](${SITE.url}/projects/${book.slug}/): ${book.thesis} ${linkList(book.links)}`,
+    );
+    out.push(``);
+  }
   for (const theme of WRITING_THEMES) {
     out.push(`### ${theme.label}`);
     out.push(theme.note);
@@ -451,7 +459,11 @@ export function projectsJson() {
 }
 
 export function writingJson() {
-  return { themes: WRITING_THEMES, articles };
+  return {
+    themes: WRITING_THEMES,
+    featuredBook: projects.find((project) => project.slug === "the-correction") ?? null,
+    articles,
+  };
 }
 
 export function workWithMeJson() {
@@ -494,6 +506,8 @@ export function mcpProjectsMd(): string {
 
 export function mcpWritingMd(): string {
   const lines: string[] = [`# ${T.writingPrefix}, ${SITE.name}`, ``];
+  const book = projects.find((project) => project.slug === "the-correction");
+  if (book) lines.push(`- [${book.name}](${SITE.url}/projects/${book.slug}/) (${book.status})`);
   for (const a of articles as Article[]) {
     lines.push(`- [${a.title}](${a.href}) (${a.read})`);
   }

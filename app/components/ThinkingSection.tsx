@@ -15,7 +15,10 @@ import { useSiteCopy } from "./LocaleProvider";
  * get a meaningful destination.
  */
 export default function ThinkingSection() {
-  const { PAGE_COPY, WRITING_THEMES, articlesByTheme, MEDIUM_PROFILE } = useSiteCopy();
+  const { PAGE_COPY, WRITING_THEMES, articlesByTheme, MEDIUM_PROFILE, projectBySlug, locale, href: localHref } = useSiteCopy();
+  const book = projectBySlug("the-correction");
+  const bookLabel = locale === "ko" ? "소설" : "The novel";
+  const bookPage = locale === "ko" ? "책 소개" : "About the book";
   return (
     <section className="mx-auto max-w-[1180px] px-5 pb-24 sm:px-8 lg:px-14 lg:pb-28" style={{ paddingTop: "calc(var(--masthead-height, 7.5rem) + 1.75rem)" }}>
       <SectionHeader
@@ -36,6 +39,54 @@ export default function ThinkingSection() {
           {PAGE_COPY.sections.writing.allMedium} {"->"}
         </a>
       </Reveal>
+
+      {book && book.plate && (
+        <Reveal className="mt-14">
+          <div className="grid gap-8 border-y border-[rgba(44,40,35,0.18)] py-10 sm:grid-cols-[220px_1fr] sm:gap-10">
+            <a href={localHref(`/projects/${book.slug}/`)} className="group block max-w-[220px]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={book.plate}
+                alt={`${book.name} cover`}
+                className="aspect-[5/8] w-full object-cover shadow-[0_24px_45px_-24px_rgba(44,40,35,0.65)] transition-transform duration-500 group-hover:-translate-y-1"
+              />
+            </a>
+            <div className="min-w-0 self-center">
+              <div className="kicker mb-3">
+                {bookLabel} · {book.status}
+              </div>
+              <h2 className="m-0 font-serif text-[clamp(30px,4vw,46px)] font-light leading-[1.05] text-ink">
+                {book.name}
+              </h2>
+              <p className="m-0 mt-4 max-w-[62ch] font-serif text-[20px] italic leading-snug text-ink-soft">
+                {book.thesis}
+              </p>
+              <p className="m-0 mt-4 max-w-[68ch] text-[15.5px] leading-relaxed text-ink-faint">
+                {book.built[0]}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
+                <a
+                  href={localHref(`/projects/${book.slug}/`)}
+                  className="inline-block border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[17px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
+                >
+                  {bookPage} {"->"}
+                </a>
+                {book.links.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block border-b border-[rgba(44,40,35,0.3)] pb-1 font-serif text-[17px] italic text-ink transition-colors hover:border-terracotta hover:text-terracotta"
+                  >
+                    {link.label} {"->"}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      )}
 
       <div className="mt-14 flex flex-col gap-16">
         {WRITING_THEMES.map((theme) => {

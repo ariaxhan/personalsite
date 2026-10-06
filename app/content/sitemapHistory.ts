@@ -216,6 +216,7 @@ function routeSignature(route: string, content: SiteContent): string {
       pageCopy.metadata.timeline,
     ],
     "/writing/": [
+      content.projects,
       content.articles,
       content.WRITING_THEMES,
       pageCopy.sections.writing,

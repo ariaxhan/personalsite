@@ -17,7 +17,9 @@ const PICKS: WritingTheme[] = [
 ];
 
 export default function WritingHighlights() {
-  const { PAGE_COPY, WRITING_THEMES, articlesByTheme, href: localHref } = useSiteCopy();
+  const { PAGE_COPY, WRITING_THEMES, articlesByTheme, projectBySlug, locale, href: localHref } = useSiteCopy();
+  const book = projectBySlug("the-correction");
+  const bookLabel = locale === "ko" ? "소설" : "The novel";
   const themeLabel = (key: WritingTheme) =>
     WRITING_THEMES.find((t) => t.key === key)?.label ?? key;
   const featured = PICKS.map((theme) => ({
@@ -64,6 +66,33 @@ export default function WritingHighlights() {
           </Reveal>
         ))}
       </div>
+
+      {book && book.plate && (
+        <Reveal className="mt-10">
+          <Link
+            href={localHref(`/projects/${book.slug}/`)}
+            className="group grid grid-cols-[76px_1fr] items-center gap-5 border-y border-[rgba(44,40,35,0.14)] py-6 sm:grid-cols-[88px_1fr]"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={book.plate}
+              alt={`${book.name} cover`}
+              className="aspect-[5/8] w-full object-cover shadow-[0_18px_30px_-18px_rgba(44,40,35,0.65)] transition-transform duration-500 group-hover:-translate-y-1"
+            />
+            <span>
+              <span className="mb-2 block font-mono text-caption uppercase tracking-[0.16em] text-terracotta">
+                {bookLabel} · {book.status}
+              </span>
+              <span className="block font-serif text-[26px] font-light leading-tight text-ink transition-colors group-hover:text-terracotta">
+                {book.name}
+              </span>
+              <span className="mt-1 block max-w-[58ch] text-[15px] leading-relaxed text-ink-muted">
+                {book.thesis}
+              </span>
+            </span>
+          </Link>
+        </Reveal>
+      )}
 
       <div className="mt-10">
         <Link

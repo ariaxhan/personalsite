@@ -62,8 +62,20 @@ export function renderOpenSourceMd(content: DerivedSiteContent): string {
 }
 
 export function renderWritingMd(content: DerivedSiteContent): string {
+  const book = content.projectBySlug("the-correction");
   return lines(
     `# ${content.PAGE_COPY.sections.writing.title}`,
+    book &&
+      book.plate &&
+      `## [${book.name}](${content.SITE.url}/projects/${book.slug}/)
+
+![${book.name} cover](${content.SITE.url}${book.plate})
+
+${book.thesis}
+
+${book.built.join("\n\n")}
+
+${book.links.map((link) => `[${link.label}](${link.href})`).join(" · ")}`,
     content.articles
       .map(
         (article) =>
@@ -150,7 +162,11 @@ export function projectsJson(content: DerivedSiteContent) {
 }
 
 export function writingJson(content: DerivedSiteContent) {
-  return { themes: content.WRITING_THEMES, articles: content.articles };
+  return {
+    themes: content.WRITING_THEMES,
+    featuredBook: content.projectBySlug("the-correction") ?? null,
+    articles: content.articles,
+  };
 }
 
 export function workWithMeJson(content: DerivedSiteContent) {

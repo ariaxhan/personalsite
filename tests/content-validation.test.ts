@@ -39,7 +39,7 @@ describe("content validation", () => {
 
   it("keeps the historical 15-project snapshot valid for sitemap history", () => {
     const historical = structuredClone(DEFAULT_SITE_CONTENT);
-    const slugs = new Set(HISTORICAL_PROJECT_SLUGS);
+    const slugs = new Set<string>(HISTORICAL_PROJECT_SLUGS);
     historical.projects = historical.projects.filter((project) => slugs.has(project.slug));
     expect(historical.projects.map((project) => project.slug)).toEqual(HISTORICAL_PROJECT_SLUGS);
     expect(canonicalizeContent(historical).content.projects).toHaveLength(15);
