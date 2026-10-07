@@ -1094,13 +1094,6 @@ export const moments: Moment[] = [
   },
   {
     year: "2026",
-    period: "May to Aug 2026",
-    title: "AI Engineer",
-    body: "Building AI products and systems with clients across industries.",
-    type: "practice",
-  },
-  {
-    year: "2026",
     period: "Apr to May 2026",
     title: "Lead AI Architect · FunJoin",
     body: "Captured company knowledge so it could outlast the person who happened to remember it. Built internal AI tools for onboarding, retrieval, and AI-powered development.",

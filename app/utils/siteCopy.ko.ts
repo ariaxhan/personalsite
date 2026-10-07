@@ -819,13 +819,6 @@ export const moments: Moment[] = [
   },
   {
     year: "2026",
-    period: "2026년 5–8월",
-    title: "AI 엔지니어",
-    body: "다양한 업계의 고객과 함께 AI 제품과 시스템을 구축하고 있습니다.",
-    type: "practice",
-  },
-  {
-    year: "2026",
     period: "2026년 4–5월",
     title: "리드 AI 아키텍트 · FunJoin",
     body: "특정 개인의 기억에 의존하지 않도록 사내 지식 관리 시스템을 체계화했습니다. 온보딩, 검색, AI 기반 개발을 위한 사내 도구를 구축했습니다.",
