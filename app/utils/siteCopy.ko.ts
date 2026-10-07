@@ -812,7 +812,14 @@ export const mapDefaultBlurb =
 export const moments: Moment[] = [
   {
     year: "2026",
-    period: "2026년 5월 – 현재",
+    period: "2026년 8월 – 현재",
+    title: "Chief Technology Officer · Thinking Brain School",
+    body: "회사를 처음부터 끝까지 지원하는 자율 AI 시스템의 설계와 운영을 총괄합니다. 전문 에이전트들이 교육과정 제작과 내부 운영 전반을 조율하고, 판단이 중요한 지점에서는 사람의 검토가 유지됩니다.",
+    type: "company",
+  },
+  {
+    year: "2026",
+    period: "2026년 5–8월",
     title: "AI 엔지니어",
     body: "다양한 업계의 고객과 함께 AI 제품과 시스템을 구축하고 있습니다.",
     type: "practice",
@@ -1533,9 +1540,9 @@ export const PAGE_COPY = {
   },
   now: {
     label: "지금 · 2026년 10월",
-    title: "Thinking Brain School의 Fractional CTO로 일하며, 독립 컨설팅도 함께 하고 있습니다.",
+    title: "Thinking Brain School의 Chief Technology Officer(CTO)로 일하고 있습니다.",
     body:
-      "제가 구축한 자율 시스템 Nexus Office가 학교 운영 전반(교육과정 제작, 업무 흐름, 브리핑)을 처음부터 끝까지 운영합니다. 그 외에는 창업자와 팀을 대상으로 AI 제품과 내부 워크플로우를 설계합니다.",
+      "AI 중심 교육 회사의 CTO로서, 회사를 처음부터 끝까지 지원하는 자율 AI 시스템의 설계와 운영을 총괄합니다. 전문 에이전트들이 교육과정 제작과 내부 운영 전반을 조율하고, 판단이 중요한 지점에서는 사람의 검토가 유지됩니다. 돈이나 정책과 관련된 민감한 결정은 사람이 내립니다. 제 초점은 시스템 아키텍처, 오케스트레이션, 품질 관리, 그리고 작업의 검증 가능성에 있습니다.",
     timelineLink: "연혁 전체",
   },
   contact: {
@@ -1614,7 +1621,7 @@ export const PAGE_COPY = {
     ],
     proofLabel: "검증된 이력",
     proof: [
-      "AI 중심 교육 회사의 Fractional CTO로 재직 중이며, 제가 구축한 자율 시스템이 운영 전반을 지원합니다",
+      "AI 중심 교육 회사 Thinking Brain School의 CTO로 재직 중이며, 제가 이끄는 자율 시스템이 운영 전반을 지원합니다",
       "코딩 에이전트를 위한 오픈소스 플러그인 KERNEL: Claude 플러그인 마켓플레이스에 공개되어 있고 실제 외부 사용자가 있습니다",
       "App Store에 무료 앱 3개 출시: ModelMind, Paper Rooms, Civic Forges",
       "GitHub와 PyPI에 공개한 오픈소스 평가 및 메모리 도구",

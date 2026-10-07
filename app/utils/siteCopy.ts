@@ -1087,7 +1087,14 @@ export interface Moment {
 export const moments: Moment[] = [
   {
     year: "2026",
-    period: "May 2026 to Present",
+    period: "Aug 2026 to Present",
+    title: "Chief Technology Officer · Thinking Brain School",
+    body: "I lead the design and operation of an autonomous AI system that supports the company end to end: specialized agents coordinate across curriculum production and internal operations, and human review stays in place where judgment matters.",
+    type: "company",
+  },
+  {
+    year: "2026",
+    period: "May to Aug 2026",
     title: "AI Engineer",
     body: "Building AI products and systems with clients across industries.",
     type: "practice",
@@ -1896,9 +1903,9 @@ export const PAGE_COPY = {
   },
   now: {
     label: "Now · October 2026",
-    title: "Fractional CTO at Thinking Brain School, consulting independently.",
+    title: "Chief Technology Officer at Thinking Brain School.",
     body:
-      "Nexus Office, the autonomous system I built, runs the school's operations end to end: curriculum production, workflows, briefings. Around it, AI products and internal workflows for a few other clients. Enjoying the range.",
+      "CTO at an AI-first education company. I lead the design and operation of an autonomous AI system that supports the company end to end, coordinating specialized agents across curriculum production and internal operations. Human review stays in place where judgment matters: sensitive decisions, including anything involving money or policy, remain with people. My focus: system architecture, orchestration, quality controls, and making sure the work is verifiable.",
 
 
     timelineLink: "The full timeline",
@@ -1979,7 +1986,7 @@ export const PAGE_COPY = {
     ],
     proofLabel: "Proof",
     proof: [
-      "Fractional CTO at an AI-first education company, where an autonomous system I built supports operations end to end",
+      "Chief Technology Officer at Thinking Brain School, an AI-first education company, where the autonomous system I lead supports operations end to end",
       "KERNEL, my open-source plugin for coding agents: active on the Claude plugin marketplace, with real external users",
       "Three free apps live on the App Store: ModelMind, Paper Rooms, and Civic Forges",
       "Open-source evaluation and memory tools, published on GitHub and PyPI",
