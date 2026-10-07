@@ -1090,7 +1090,7 @@ export const moments: Moment[] = [
     period: "Aug 2026 to Present",
     title: "Chief Technology Officer · Thinking Brain School",
     body: "I lead the design and operation of an autonomous AI system that supports the company end to end: specialized agents coordinate across curriculum production and internal operations, and human review stays in place where judgment matters.",
-    type: "company",
+    type: "practice",
   },
   {
     year: "2026",

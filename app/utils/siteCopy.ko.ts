@@ -815,7 +815,7 @@ export const moments: Moment[] = [
     period: "2026년 8월 – 현재",
     title: "Chief Technology Officer · Thinking Brain School",
     body: "회사를 처음부터 끝까지 지원하는 자율 AI 시스템의 설계와 운영을 총괄합니다. 전문 에이전트들이 교육과정 제작과 내부 운영 전반을 조율하고, 판단이 중요한 지점에서는 사람의 검토가 유지됩니다.",
-    type: "company",
+    type: "practice",
   },
   {
     year: "2026",
