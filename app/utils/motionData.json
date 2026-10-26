@@ -1,15 +1,15 @@
 {
-  "generated": "2026-10-19",
+  "generated": "2026-10-26",
   "source": "github-contributions-plus-supplemental-git",
   "githubLogin": "ariaxhan",
   "githubWindow": {
     "from": "2024-11-01",
-    "to": "2026-10-19"
+    "to": "2026-10-26"
   },
-  "grandTotal": 4856,
-  "githubTotalCommitContributions": 4840,
+  "grandTotal": 4242,
+  "githubTotalCommitContributions": 4226,
   "supplementalCommitContributions": 16,
-  "repoCount": 45,
+  "repoCount": 44,
   "firstMonth": "2024-11",
   "lastMonth": "2026-10",
   "series": [
@@ -49,7 +49,7 @@
       "label": "KERNEL",
       "constellation": "agents",
       "months": {
-        "2026-10": 7,
+        "2026-10": 9,
         "2026-09": 70,
         "2026-08": 81,
         "2026-07": 135,
@@ -60,7 +60,7 @@
         "2026-02": 46,
         "2026-01": 68
       },
-      "total": 641,
+      "total": 643,
       "first": "2026-01",
       "last": "2026-10",
       "github": "https://github.com/ariaxhan/kernel-claude"
@@ -238,9 +238,9 @@
       "label": "Other GitHub work",
       "constellation": "experiments",
       "months": {
-        "2026-10": 157,
-        "2026-09": 488,
-        "2026-08": 473,
+        "2026-10": 85,
+        "2026-09": 143,
+        "2026-08": 274,
         "2026-07": 165,
         "2026-06": 100,
         "2026-05": 104,
@@ -249,7 +249,7 @@
         "2026-01": 162,
         "2026-03": 5
       },
-      "total": 1835,
+      "total": 1219,
       "first": "2026-01",
       "last": "2026-10"
     }
