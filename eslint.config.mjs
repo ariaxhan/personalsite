@@ -1,13 +1,5 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 
 const eslintConfig = [
   {
@@ -22,7 +14,13 @@ const eslintConfig = [
       "workers/**",
     ],
   },
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...nextVitals,
+  ...nextTs,
+  {
+    // New in eslint-config-next 16 (react-hooks 7). Existing mount-time
+    // effects predate it; surface them without blocking the build.
+    rules: { "react-hooks/set-state-in-effect": "warn" },
+  },
 ];
 
 export default eslintConfig;

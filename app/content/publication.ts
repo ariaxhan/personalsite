@@ -282,7 +282,7 @@ export async function publishRevision(input: {
     if (input.forceInvalidationFailure) {
       throw new Error("seeded preview invalidation failure");
     }
-    for (const tag of PUBLIC_DEPENDENCIES.tags) revalidateTag(tag);
+    for (const tag of PUBLIC_DEPENDENCIES.tags) revalidateTag(tag, { expire: 0 });
     for (const path of PUBLIC_DEPENDENCIES.paths) revalidatePath(path);
     const dispatchedAt = new Date().toISOString();
     await db
@@ -349,7 +349,7 @@ export async function retryInvalidation(operationId: string): Promise<OperationR
   ) {
     throw new PublicationConflictError("publish dependency set is invalid");
   }
-  for (const tag of dependencies.tags) revalidateTag(tag);
+  for (const tag of dependencies.tags) revalidateTag(tag, { expire: 0 });
   for (const path of dependencies.paths) revalidatePath(path);
   const dispatchedAt = new Date().toISOString();
   await db
