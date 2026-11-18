@@ -1,0 +1,41 @@
+{
+  "schema": "chronicle/v1",
+  "date": "2026-11-18",
+  "tier": 2,
+  "title": "Site: add Korean version translated with Codex, with language switch",
+  "authority": "",
+  "attempted": [
+    "Site: add Korean version translated with Codex, with language switch"
+  ],
+  "changed": [
+    "site-v2/package-lock.json",
+    "site-v2/package.json",
+    "site-v2/public/_redirects",
+    "site-v2/public/llms.txt",
+    "site-v2/public/sitemap.xml",
+    "site-v2/src/i18n/en.json",
+    "site-v2/src/i18n/index.ts",
+    "site-v2/src/i18n/ko.json",
+    "site-v2/src/layouts/Base.astro",
+    "site-v2/src/pages/about.astro",
+    "site-v2/src/pages/index.astro",
+    "site-v2/src/pages/ko/about.astro",
+    "site-v2/src/pages/ko/index.astro",
+    "site-v2/src/pages/ko/projects/index.astro",
+    "site-v2/src/pages/projects/index.astro",
+    "site-v2/src/styles/global.css",
+    "site-v2/src/views/About.astro",
+    "site-v2/src/views/Home.astro",
+    "site-v2/src/views/Projects.astro"
+  ],
+  "verified": [
+    "commit e813da0 pushed to git@github.com:ariaxhan/personalsite.git main"
+  ],
+  "failed": [],
+  "decisions": [],
+  "open": [],
+  "work_ids": [
+    "https://github.com/ariaxhan/personalsite/commit/e813da0fef4929358b5e65242594f3b11914103a"
+  ],
+  "artifacts": []
+}
