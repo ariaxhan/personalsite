@@ -1,0 +1,25 @@
+{
+  "schema": "chronicle/v1",
+  "date": "2026-11-18",
+  "tier": 2,
+  "title": "Site v2: simplify homepage, add proof, timeline, writing and booking calendar",
+  "authority": "",
+  "attempted": [
+    "Site v2: simplify homepage, add proof, timeline, writing and booking calendar"
+  ],
+  "changed": [
+    "site-v2/src/layouts/Base.astro",
+    "site-v2/src/pages/index.astro",
+    "site-v2/src/styles/global.css"
+  ],
+  "verified": [
+    "commit e0d77c9 pushed to git@github.com:ariaxhan/personalsite.git main"
+  ],
+  "failed": [],
+  "decisions": [],
+  "open": [],
+  "work_ids": [
+    "https://github.com/ariaxhan/personalsite/commit/e0d77c9b52b36a348e9ac2d966a93e270450ee7c"
+  ],
+  "artifacts": []
+}
