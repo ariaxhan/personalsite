@@ -35,6 +35,9 @@ fi
 ln -s "$SITE_DIR/node_modules" "$WORK_DIR/site-v2/node_modules"
 cd "$WORK_DIR/site-v2"
 npm run build >/dev/null
+export CLOUDFLARE_ACCOUNT_ID=efe6d9809df58b0c911aa80e484564af
+CLOUDFLARE_API_TOKEN="$(security find-generic-password -s cloudflare-api-token -w)"
+export CLOUDFLARE_API_TOKEN
 npx --yes wrangler pages deploy dist --project-name ariaxhan-site-v2 --branch site-v2-astro --commit-dirty=true >/dev/null
 
 mkdir -p "$STATE_DIR"
