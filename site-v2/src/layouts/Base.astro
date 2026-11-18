@@ -1,0 +1,54 @@
+---
+import '@fontsource/space-grotesk/400.css';
+import '@fontsource/space-grotesk/500.css';
+import '@fontsource/space-grotesk/700.css';
+import '@fontsource/dm-mono/400.css';
+import '@fontsource/dm-mono/500.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const path = Astro.url.pathname;
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="nav">
+      <a href="/" class="logo">aria<span>han</span></a>
+      <nav class="navlinks" aria-label="Main">
+        <a href="/projects/" aria-current={path.startsWith('/projects') ? 'page' : undefined}>Projects</a>
+        <a href="/about/" aria-current={path.startsWith('/about') ? 'page' : undefined}>About</a>
+        <a href="mailto:ariaxhan@gmail.com" class="pill">Say hello</a>
+      </nav>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="footer">
+      <p class="eyebrow">Building something autonomous?</p>
+      <h2><a href="mailto:ariaxhan@gmail.com">Let's<br />talk.</a></h2>
+      <p class="footer-mail"><a href="mailto:ariaxhan@gmail.com">ariaxhan@gmail.com</a></p>
+      <div class="footerline">
+        <span>&copy; {year} Aria Han</span>
+        <span class="footerlinks">
+          <a href="https://github.com/ariaxhan">GitHub</a>
+          <a href="https://www.linkedin.com/in/ariahan/">LinkedIn</a>
+          <a href="https://medium.com/@ariaxhan">Medium</a>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

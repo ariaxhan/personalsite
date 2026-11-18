@@ -1,0 +1,16 @@
+{
+  "name": "ariaxhan-site-v2",
+  "private": true,
+  "type": "module",
+  "version": "2.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@fontsource/dm-mono": "^5.2.5",
+    "@fontsource/space-grotesk": "^5.2.5",
+    "astro": "^5.13.0"
+  }
+}

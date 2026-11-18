@@ -1,0 +1,26 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  label: string;
+}
+const { project, label } = Astro.props;
+---
+<article class="project">
+  <div class="project-top"><span>{label}</span></div>
+  <div class="project-body">
+    <h3>{project.name}</h3>
+    <p>{project.line}</p>
+  </div>
+  <div class="project-bottom">
+    <p class="proof">{project.proof}</p>
+    {project.links.length > 0 && (
+      <ul class="project-links">
+        {project.links.map((l) => (
+          <li><a href={l.href} aria-label={`${project.name}: ${l.label}`}>{l.label} <span aria-hidden="true">&rarr;</span></a></li>
+        ))}
+      </ul>
+    )}
+  </div>
+</article>
