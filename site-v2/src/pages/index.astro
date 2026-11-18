@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 import { featured, projects } from '../data/projects';
 import motion from '../../../app/utils/motionData.json';
 
@@ -52,6 +53,7 @@ const writing = [
         <a href="#talk" class="pill">Book a call <span aria-hidden="true">&rarr;</span></a>
         <a href="#work" class="pill pill-alt">See the work</a>
       </div>
+      <SocialLinks />
     </div>
     <div class="star-scene" aria-hidden="true">
       <div class="orb"></div>
@@ -85,7 +87,8 @@ const writing = [
     <div class="bars" role="img" aria-label={`Monthly commits from ${months[0][0]} to ${months[months.length - 1][0]}, peaking at ${peak.toLocaleString('en-US')} in a month.`}>
       {months.map(([, count]) => <span style={`height:${Math.max(3, (count / peak) * 100)}%`}></span>)}
     </div>
-    <p class="smallnote bars-note">Commits per month, from git</p>
+    <p class="smallnote bars-note">Commits per month, from GitHub. Updated {motion.generated}.</p>
+    <a href="https://github.com/ariaxhan" class="pill work-all">See the commits on GitHub <span aria-hidden="true">&nearr;</span></a>
   </section>
 
   <section class="section timeline" id="timeline">

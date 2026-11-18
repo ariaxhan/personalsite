@@ -5,6 +5,7 @@ import '@fontsource/space-grotesk/700.css';
 import '@fontsource/dm-mono/400.css';
 import '@fontsource/dm-mono/500.css';
 import '../styles/global.css';
+import SocialLinks from '../components/SocialLinks.astro';
 
 interface Props {
   title: string;
@@ -43,13 +44,9 @@ const year = new Date().getFullYear();
       <h2>Let's<br />talk.</h2>
       <iframe class="cal" title="Book a call with Aria Han" src="https://cal.com/aria-han/15min?embed=1&theme=light&layout=month_view" loading="lazy"></iframe>
       <p class="footer-mail"><a href="mailto:ariaxhan@gmail.com">ariaxhan@gmail.com</a></p>
+      <SocialLinks />
       <div class="footerline">
         <span>&copy; {year} Aria Han</span>
-        <span class="footerlinks">
-          <a href="https://github.com/ariaxhan">GitHub</a>
-          <a href="https://www.linkedin.com/in/ariahan/">LinkedIn</a>
-          <a href="https://medium.com/@ariaxhan">Medium</a>
-        </span>
       </div>
     </footer>
   </body>
