@@ -1,0 +1,112 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { featured, projects } from '../data/projects';
+
+const stats = [
+  { n: '5', label: 'Hackathon wins' },
+  { n: '21', label: 'Verified benchmark tests' },
+  { n: '3', label: 'Live products' },
+];
+
+const pillars = [
+  { title: 'Architecture', body: 'One prompt fans out into a family of agents, each with a role, tools, and a place in the dependency graph.' },
+  { title: 'Orchestration', body: 'Agents hand off through notes, not expensive cross-talk. Work becomes artifacts instead of fog.' },
+  { title: 'Memory', body: "Context shouldn't depend on whoever remembers it that week. Agents keep it, and you can see what they reference." },
+  { title: 'Evals', body: 'Checks that tell you whether the AI is doing the thing before a customer finds out the hard way.' },
+  { title: 'Receipts', body: 'Agents plan, execute, and prove their own work. The record, not the claim.' },
+  { title: 'Human review', body: 'Sensitive decisions, including anything involving money or policy, stay with people.' },
+];
+
+const apart = [
+  { title: 'I was early.', body: 'I built multi-agent coordination when it was still in its infancy: a single prompt fanning out into a coordinated dependency graph, with agents sharing what they learned through handoff notes.' },
+  { title: 'I run what I design.', body: 'The system I lead supports a whole company, across curriculum production and internal operations. Agents escalate only the decisions a human should make.' },
+  { title: 'I keep the evidence.', body: 'Programmatic verifiers grade the work. Memory has to prove itself before it sticks. When a hypothesis fails, the negative result stays in the repo.' },
+  { title: 'I ship products too.', body: 'Three live products, and a workspace that reached hundreds of users within a month with no ad spend. I know where agent systems meet real people.' },
+];
+
+const rest = projects.filter((p) => !p.featured);
+
+const ticker = ['Architecture', 'Orchestration', 'Memory', 'Evals', 'Receipts'];
+---
+<Base
+  title="Aria Han | AI Architect"
+  description="Aria Han designs and runs autonomous AI systems end to end: architecture, orchestration, memory, evals, and verifiable receipts."
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Aria Han / CTO, Thinking Brain School</p>
+      <h1>AI<br /><span>Architect.</span></h1>
+      <p class="lede">I design and run autonomous AI systems end to end: architecture, orchestration, memory, evals, and verifiable receipts. Humans review where judgment matters.</p>
+      <div class="hero-cta">
+        <a href="#work" class="pill">See the work <span aria-hidden="true">&rarr;</span></a>
+        <a href="mailto:ariaxhan@gmail.com" class="pill pill-alt">ariaxhan@gmail.com</a>
+      </div>
+    </div>
+    <div class="star-scene" aria-hidden="true">
+      <div class="orb"></div>
+      <div class="star"></div>
+      <div class="spark"></div>
+    </div>
+    <dl class="stats">
+      {stats.map((s) => (
+        <div><dt>{s.label}</dt><dd>{s.n}</dd></div>
+      ))}
+    </dl>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      {[0, 1].map(() => ticker.map((t) => <span>{t}</span>))}
+    </div>
+  </div>
+
+  <section class="section what" id="what">
+    <div class="section-head">
+      <h2>The whole<br />system.</h2>
+      <p class="smallnote">Not one model call. Everything around it that makes the work hold up.</p>
+    </div>
+    <div class="pillars">
+      {pillars.map((p) => (
+        <article class="pillar"><h3>{p.title}</h3><p>{p.body}</p></article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section now">
+    <p class="eyebrow">Since August 2026</p>
+    <h2>CTO at Thinking Brain School.</h2>
+    <p class="now-copy">I lead the autonomous AI system behind an AI-first education company, coordinating specialized agents across curriculum production and internal operations.</p>
+  </section>
+
+  <section class="section apart">
+    <div class="section-head">
+      <h2>What sets<br />me apart.</h2>
+      <p class="smallnote">Messy workflow in. Working implementation out.</p>
+    </div>
+    <ol class="apart-list">
+      {apart.map((a) => (
+        <li><h3>{a.title}</h3><p>{a.body}</p></li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="section work" id="work">
+    <div class="section-head">
+      <h2>The good<br />stuff.</h2>
+      <p class="smallnote">Eight of {projects.length} projects. Built, broken, rebuilt, shipped.</p>
+    </div>
+    <div class="cards">
+      {featured.map((p, i) => (
+        <ProjectCard project={p} label={`${String(i + 1).padStart(2, '0')} / ${p.featured!.tag}`} />
+      ))}
+    </div>
+    <h3 class="rest-head">And twelve more.</h3>
+    <ul class="rest">
+      {rest.map((p) => (
+        <li><strong>{p.name}</strong><span>{p.line}</span></li>
+      ))}
+    </ul>
+    <a href="/projects/" class="pill work-all">All {projects.length} projects <span aria-hidden="true">&rarr;</span></a>
+  </section>
+</Base>
