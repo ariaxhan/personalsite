@@ -1,0 +1,24 @@
+{
+  "schema": "chronicle/v1",
+  "date": "2026-11-18",
+  "tier": 2,
+  "title": "Site v2: derive live project count from the project list and republish on site changes",
+  "authority": "",
+  "attempted": [
+    "Site v2: derive live project count from the project list and republish on site changes"
+  ],
+  "changed": [
+    "site-v2/scripts/refresh-proof.sh",
+    "site-v2/src/pages/index.astro"
+  ],
+  "verified": [
+    "commit b64a96e pushed to git@github.com:ariaxhan/personalsite.git main"
+  ],
+  "failed": [],
+  "decisions": [],
+  "open": [],
+  "work_ids": [
+    "https://github.com/ariaxhan/personalsite/commit/b64a96ee69fee131a7e385dcd793aaac202eddac"
+  ],
+  "artifacts": []
+}
