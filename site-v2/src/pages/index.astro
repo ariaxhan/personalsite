@@ -52,7 +52,7 @@ const writing = [
       <h1>AI<br /><span>Architect.</span></h1>
       <p class="lede">I design and run autonomous AI systems end to end: architecture, orchestration, memory, evals, and verifiable receipts. Humans review where judgment matters.</p>
       <div class="hero-cta">
-        <a href="#talk" class="pill">Book a call <span aria-hidden="true">&rarr;</span></a>
+        <a href="#talk" class="pill">Book a call</a>
         <a href="#work" class="pill pill-alt">See the work</a>
       </div>
       <SocialLinks />
@@ -74,7 +74,7 @@ const writing = [
         <ProjectCard project={p} label={`${String(i + 1).padStart(2, '0')} / ${p.featured!.tag}`} />
       ))}
     </div>
-    <a href="/projects/" class="pill work-all">All {projects.length} projects <span aria-hidden="true">&rarr;</span></a>
+    <a href="/projects/" class="pill work-all">All {projects.length} projects</a>
   </section>
   <section class="section proof-section" id="proof">
     <div class="section-head">
@@ -90,7 +90,7 @@ const writing = [
       {months.map(([, count]) => <span style={`height:${Math.max(3, (count / peak) * 100)}%`}></span>)}
     </div>
     <p class="smallnote bars-note">Commits per month, from GitHub. Updated {motion.generated}.</p>
-    <a href="https://github.com/ariaxhan" class="pill work-all">See the commits on GitHub <span aria-hidden="true">&nearr;</span></a>
+    <a href="https://github.com/ariaxhan" class="pill work-all">See the commits on GitHub</a>
   </section>
 
   <section class="section timeline" id="timeline">
@@ -113,6 +113,6 @@ const writing = [
         <li><span class="row-meta">{w.topic}</span><a href={w.href}><strong>{w.title}</strong></a></li>
       ))}
     </ul>
-    <a href="https://medium.com/@ariaxhan" class="pill work-all">All writing <span aria-hidden="true">&rarr;</span></a>
+    <a href="https://medium.com/@ariaxhan" class="pill work-all">All writing</a>
   </section>
 </Base>

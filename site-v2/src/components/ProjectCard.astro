@@ -18,7 +18,7 @@ const { project, label } = Astro.props;
     {project.links.length > 0 && (
       <ul class="project-links">
         {project.links.map((l) => (
-          <li><a href={l.href} aria-label={`${project.name}: ${l.label}`}>{l.label} <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href={l.href} aria-label={`${project.name}: ${l.label}`}>{l.label}</a></li>
         ))}
       </ul>
     )}
