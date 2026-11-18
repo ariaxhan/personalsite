@@ -4,26 +4,39 @@ import '@fontsource/space-grotesk/500.css';
 import '@fontsource/space-grotesk/700.css';
 import '@fontsource/dm-mono/400.css';
 import '@fontsource/dm-mono/500.css';
+import '@fontsource/noto-sans-kr/400.css';
+import '@fontsource/noto-sans-kr/500.css';
+import '@fontsource/noto-sans-kr/700.css';
 import '../styles/global.css';
 import SocialLinks from '../components/SocialLinks.astro';
+import { getCopy, localePath, type Locale } from '../i18n';
 
 interface Props {
   title: string;
   description: string;
+  locale?: Locale;
 }
-const { title, description } = Astro.props;
+const { title, description, locale = 'en' } = Astro.props;
+const t = getCopy(locale);
 const path = Astro.url.pathname;
+const basePath = path.replace(/^\/ko(?=\/)/, '');
+const isNotFound = basePath.startsWith('/404');
+const otherLocale: Locale = locale === 'ko' ? 'en' : 'ko';
+const hrefFor = (target: Locale) => new URL(localePath(target, basePath), Astro.site).href;
 const canonical = new URL(path, Astro.site).href;
 const year = new Date().getFullYear();
 ---
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {!isNotFound && <link rel="alternate" hreflang="en" href={hrefFor('en')} />}
+    {!isNotFound && <link rel="alternate" hreflang="ko" href={hrefFor('ko')} />}
+    {!isNotFound && <link rel="alternate" hreflang="x-default" href={hrefFor('en')} />}
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -31,21 +44,22 @@ const year = new Date().getFullYear();
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
-    <a class="skip" href="#main">Skip to content</a>
+    <a class="skip" href="#main">{t.nav.skip}</a>
     <header class="nav">
-      <a href="/" class="logo">aria<span>han</span></a>
-      <nav class="navlinks" aria-label="Main">
-        <a href="/projects/" aria-current={path.startsWith('/projects') ? 'page' : undefined}>Projects</a>
-        <a href="/about/" aria-current={path.startsWith('/about') ? 'page' : undefined}>About</a>
-        <a href="/#writing" class="nav-writing">Writing</a>
-        <a href="#talk" class="pill">Let's talk</a>
+      <a href={localePath(locale, '/')} class="logo">aria<span>han</span></a>
+      <nav class="navlinks" aria-label={t.nav.main}>
+        <a href={localePath(locale, '/projects/')} aria-current={basePath.startsWith('/projects') ? 'page' : undefined}>{t.nav.projects}</a>
+        <a href={localePath(locale, '/about/')} aria-current={basePath.startsWith('/about') ? 'page' : undefined}>{t.nav.about}</a>
+        <a href={`${localePath(locale, '/')}#writing`} class="nav-writing">{t.nav.writing}</a>
+        <a href={localePath(otherLocale, isNotFound ? '/' : basePath)} class="lang" lang={otherLocale} hreflang={otherLocale} aria-label={t.nav.language}>{otherLocale === 'ko' ? 'KR' : 'EN'}</a>
+        <a href="#talk" class="pill">{t.nav.talk}</a>
       </nav>
     </header>
     <main id="main"><slot /></main>
     <footer class="footer" id="talk">
-      <p class="eyebrow">Building something autonomous?</p>
-      <h2>Let's<br />talk.</h2>
-      <iframe class="cal" title="Book a call with Aria Han" src="https://cal.com/aria-han/15min?embed=1&theme=light&layout=month_view" loading="lazy"></iframe>
+      <p class="eyebrow">{t.footer.eyebrow}</p>
+      <h2>{t.footer.headingLine1}<br />{t.footer.headingLine2}</h2>
+      <iframe class="cal" title={t.footer.calendarTitle} src="https://cal.com/aria-han/15min?embed=1&theme=light&layout=month_view" loading="lazy"></iframe>
       <p class="footer-mail"><a href="mailto:ariaxhan@gmail.com">ariaxhan@gmail.com</a></p>
       <SocialLinks />
       <div class="footerline">

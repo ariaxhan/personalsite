@@ -1,0 +1,118 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { featured, projects } from '../data/projects';
+import motion from '../../../app/utils/motionData.json';
+import { format, getCopy, localePath, localizeProject, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getCopy(locale);
+
+const liveProjects = projects.filter((p) => p.status.startsWith('Live'));
+
+const stats = [
+  { n: motion.grandTotal.toLocaleString('en-US'), label: t.home.statCommits },
+  { n: String(motion.repoCount), label: t.home.statRepos },
+  { n: '5', label: t.home.statWins },
+  { n: String(liveProjects.length), label: t.home.statLive },
+];
+
+const monthly = new Map<string, number>();
+for (const series of motion.series) {
+  for (const [month, count] of Object.entries(series.months)) {
+    monthly.set(month, (monthly.get(month) ?? 0) + Number(count));
+  }
+}
+const months = [...monthly].sort(([a], [b]) => a.localeCompare(b));
+const peak = Math.max(...months.map(([, count]) => count));
+
+const timelineYears = ['2026', '2026', '2026', '2025', '2025', '2024', '2024', '2024'];
+const timeline = t.timeline.map((entry, i) => ({ ...entry, when: timelineYears[i] }));
+
+const writing = [
+  { title: 'Grok Bot: Cursor\u2019s Bet on Multi-Agent AI', href: 'https://medium.com/@ariaxhan/grok-bot-cursors-bet-on-multi-agent-ai-77d69ba8b290' },
+  { title: 'Stop Writing Markdown. Start Writing Memory.', href: 'https://medium.com/@ariaxhan/stop-writing-markdown-start-writing-memory-e4a69c57caa9' },
+  { title: 'Claude vs. GPT vs. Gemini: You\u2019re Benchmarking the Wrong Thing', href: 'https://medium.com/@ariaxhan/claude-vs-gpt-vs-gemini-youre-benchmarking-the-wrong-thing-762c7e9cca5d' },
+  { title: 'I Stopped Debugging Claude\u2019s Code and Started Debugging My Prompts Instead', href: 'https://medium.com/@ariaxhan/how-i-stopped-debugging-ai-generated-code-1be33241b3c8' },
+  { title: 'The Correction', href: 'https://www.amazon.com/dp/B0HKVKNBL9' },
+].map((entry, i) => ({ ...entry, topic: t.writingTopics[i] }));
+---
+<Base
+  locale={locale}
+  title={t.meta.homeTitle}
+  description={t.meta.homeDescription}
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">{t.home.eyebrow}</p>
+      <h1>{t.home.heroLine1}<br /><span>{t.home.heroLine2}</span></h1>
+      <p class="lede">{t.home.lede}</p>
+      <div class="hero-cta">
+        <a href="#talk" class="pill">{t.home.bookCall}</a>
+        <a href="#work" class="pill pill-alt">{t.home.seeWork}</a>
+      </div>
+      <SocialLinks />
+    </div>
+    <div class="star-scene" aria-hidden="true">
+      <div class="orb"></div>
+      <div class="star"></div>
+      <div class="spark"></div>
+    </div>
+  </section>
+
+  <section class="section work" id="work">
+    <div class="section-head">
+      <h2>{t.home.workLine1}<br />{t.home.workLine2}</h2>
+      <p class="smallnote">{format(t.home.workNote, { count: projects.length })}</p>
+    </div>
+    <div class="cards">
+      {featured.map((p, i) => (
+        <ProjectCard project={localizeProject(p, locale)} label={`${String(i + 1).padStart(2, '0')} / ${localizeProject(p, locale).featured!.tag}`} />
+      ))}
+    </div>
+    <a href={localePath(locale, '/projects/')} class="pill work-all">{format(t.home.allProjects, { count: projects.length })}</a>
+  </section>
+  <section class="section proof-section" id="proof">
+    <div class="section-head">
+      <h2>{t.home.proofHeading}</h2>
+      <p class="smallnote">{t.home.proofNote}</p>
+    </div>
+    <dl class="stats">
+      {stats.map((s) => (
+        <div><dt>{s.label}</dt><dd>{s.n}</dd></div>
+      ))}
+    </dl>
+    <div class="bars" role="img" aria-label={format(t.home.chartLabel, { from: months[0][0], to: months[months.length - 1][0], peak: peak.toLocaleString('en-US') })}>
+      {months.map(([, count]) => <span style={`height:${Math.max(3, (count / peak) * 100)}%`}></span>)}
+    </div>
+    <p class="smallnote bars-note">{format(t.home.chartNote, { date: motion.generated })}</p>
+    <a href="https://github.com/ariaxhan" class="pill work-all">{t.home.seeCommits}</a>
+  </section>
+
+  <section class="section timeline" id="timeline">
+    <div class="section-head">
+      <h2>{t.home.timelineHeading}</h2>
+    </div>
+    <ol class="rows">
+      {timeline.map((t) => (
+        <li><span class="row-meta">{t.when}</span><strong>{t.title}</strong><span>{t.line}</span></li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="section writing" id="writing">
+    <div class="section-head">
+      <h2>{t.home.writingHeading}</h2>
+    </div>
+    <ul class="rows">
+      {writing.map((w) => (
+        <li><span class="row-meta">{w.topic}</span><a href={w.href}><strong>{w.title}</strong></a></li>
+      ))}
+    </ul>
+    <a href="https://medium.com/@ariaxhan" class="pill work-all">{t.home.allWriting}</a>
+  </section>
+</Base>

@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { groups, projects } from '../data/projects';
+import { format, getCopy, localizeProject, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getCopy(locale);
+---
+<Base locale={locale} title={t.meta.projectsTitle} description={t.meta.projectsDescription}>
+  <section class="page-head">
+    <p class="eyebrow">{format(t.projectsPage.count, { count: projects.length })}</p>
+    <h1>{t.projectsPage.headingLine1}<br /><span>{t.projectsPage.headingLine2}</span></h1>
+  </section>
+  {groups.map((group) => {
+    const items = projects.filter((p) => p.group === group).map((p) => localizeProject(p, locale));
+    return (
+      <section class="section group">
+        <div class="section-head">
+          <h2>{t.groups[group]}</h2>
+          <p class="smallnote">{format(t.projectsPage.count, { count: items.length })}</p>
+        </div>
+        <div class="cards">
+          {items.map((p) => <ProjectCard project={p} label={p.status} />)}
+        </div>
+      </section>
+    );
+  })}
+</Base>

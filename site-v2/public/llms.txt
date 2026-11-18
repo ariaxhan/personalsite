@@ -5,6 +5,7 @@
 - [Home](https://ariaxhan.com/): proof, timeline, writing, and booking
 - [Projects](https://ariaxhan.com/projects/): all projects
 - [About](https://ariaxhan.com/about/): background and hackathon wins
+- [Korean version](https://ariaxhan.com/ko/): 한국어 사이트
 - [GitHub](https://github.com/ariaxhan)
 - [LinkedIn](https://www.linkedin.com/in/ariahan/)
 - [Medium](https://medium.com/@ariaxhan)
