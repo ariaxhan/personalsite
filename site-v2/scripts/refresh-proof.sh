@@ -1,5 +1,5 @@
 #!/bin/bash
-# Republishes the v2 preview when the GitHub commit count changes.
+# Republishes the v2 preview when the GitHub commit count or the site source changes.
 # Works from a clean export of origin/main, so the shared checkout is never touched.
 set -euo pipefail
 
@@ -15,6 +15,8 @@ git -C "$REPO_DIR" archive origin/main app/utils scripts site-v2 | tar -x -C "$W
 
 (cd "$WORK_DIR" && node scripts/proof-of-motion.mjs >/dev/null)
 current="$(node -p "const d=require('$WORK_DIR/app/utils/motionData.json'); d.grandTotal+' '+d.repoCount")"
+# The site tree is part of the key, so a project list change republishes too.
+current="$current $(git -C "$REPO_DIR" rev-parse origin/main:site-v2)"
 total="${current%% *}"
 previous="$(cat "$STATE_FILE" 2>/dev/null || true)"
 

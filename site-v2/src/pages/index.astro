@@ -5,11 +5,13 @@ import SocialLinks from '../components/SocialLinks.astro';
 import { featured, projects } from '../data/projects';
 import motion from '../../../app/utils/motionData.json';
 
+const liveProjects = projects.filter((p) => /^(Live|Playable online)/.test(p.status));
+
 const stats = [
   { n: motion.grandTotal.toLocaleString('en-US'), label: 'Commits' },
   { n: String(motion.repoCount), label: 'Repositories' },
   { n: '5', label: 'Hackathon wins' },
-  { n: '3', label: 'Live products' },
+  { n: String(liveProjects.length), label: 'Live projects' },
 ];
 
 const monthly = new Map<string, number>();
