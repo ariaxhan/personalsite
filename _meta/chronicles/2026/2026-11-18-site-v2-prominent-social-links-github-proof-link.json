@@ -1,0 +1,27 @@
+{
+  "schema": "chronicle/v1",
+  "date": "2026-11-18",
+  "tier": 2,
+  "title": "Site v2: prominent social links, GitHub proof link, automatic commit count refresh",
+  "authority": "",
+  "attempted": [
+    "Site v2: prominent social links, GitHub proof link, automatic commit count refresh"
+  ],
+  "changed": [
+    "site-v2/scripts/refresh-proof.sh",
+    "site-v2/src/components/SocialLinks.astro",
+    "site-v2/src/layouts/Base.astro",
+    "site-v2/src/pages/index.astro",
+    "site-v2/src/styles/global.css"
+  ],
+  "verified": [
+    "commit a6b5e3c pushed to git@github.com:ariaxhan/personalsite.git main"
+  ],
+  "failed": [],
+  "decisions": [],
+  "open": [],
+  "work_ids": [
+    "https://github.com/ariaxhan/personalsite/commit/a6b5e3c578576bedc082be8a058d0f53ff80a6b0"
+  ],
+  "artifacts": []
+}
