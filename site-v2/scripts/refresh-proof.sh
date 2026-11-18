@@ -1,5 +1,5 @@
 #!/bin/bash
-# Republishes the v2 preview when the GitHub commit count or the site source changes.
+# Republishes ariaxhan.com when the GitHub commit count or the site source changes.
 # Works from a clean export of origin/main, so the shared checkout is never touched.
 set -euo pipefail
 
@@ -38,7 +38,7 @@ npm run build >/dev/null
 export CLOUDFLARE_ACCOUNT_ID=efe6d9809df58b0c911aa80e484564af
 CLOUDFLARE_API_TOKEN="$(security find-generic-password -s cloudflare-api-token -w)"
 export CLOUDFLARE_API_TOKEN
-npx --yes wrangler pages deploy dist --project-name ariaxhan-site-v2 --branch site-v2-astro --commit-dirty=true >/dev/null
+npx --yes wrangler pages deploy dist --project-name ariaxhan-site-v2 --branch main --commit-dirty=true >/dev/null
 
 mkdir -p "$STATE_DIR"
 printf '%s\n' "$current" > "$STATE_FILE"

@@ -13,6 +13,7 @@ interface Props {
 }
 const { title, description } = Astro.props;
 const path = Astro.url.pathname;
+const canonical = new URL(path, Astro.site).href;
 const year = new Date().getFullYear();
 ---
 <!doctype html>
@@ -20,9 +21,11 @@ const year = new Date().getFullYear();
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="robots" content="noindex,nofollow" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

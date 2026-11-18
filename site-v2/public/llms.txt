@@ -1,0 +1,10 @@
+# Aria Han
+
+> AI architect and CTO at Thinking Brain School. Designs and runs autonomous AI systems end to end: architecture, orchestration, memory, evals, and verifiable receipts.
+
+- [Home](https://ariaxhan.com/): proof, timeline, writing, and booking
+- [Projects](https://ariaxhan.com/projects/): all projects
+- [About](https://ariaxhan.com/about/): background and hackathon wins
+- [GitHub](https://github.com/ariaxhan)
+- [LinkedIn](https://www.linkedin.com/in/ariahan/)
+- [Medium](https://medium.com/@ariaxhan)

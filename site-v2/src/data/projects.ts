@@ -49,10 +49,11 @@ export const projects: Project[] = [
   {
     name: 'Civic Forges',
     line: 'I wanted a city builder where running the city and living a life are the same game.',
-    proof: 'Playable in the browser with persistent saves and 36 automated tests.',
-    status: 'Playable online',
+    proof: 'On the App Store and playable in the browser, with persistent saves and 36 automated tests.',
+    status: 'Live on the App Store',
     group: 'Products',
     links: [
+      { label: 'App Store', href: 'https://apps.apple.com/us/app/civic-forges/id6805645016' },
       { label: 'Play online', href: 'https://civicforges.com/play' },
       { label: 'civicforges.com', href: 'https://civicforges.com' },
     ],

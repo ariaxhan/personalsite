@@ -1,21 +1,15 @@
 name: deploy
 
-# Builds the OpenNext Worker for personalsite-cms-preview (serves ariaxhan.com).
+# Builds the retired OpenNext Worker, kept at cms-preview.ariaxhan.com as the rollback target.
+# ariaxhan.com is served by the Cloudflare Pages project ariaxhan-site-v2 (see site-v2/).
 # Canary first: the new version is uploaded at 0% traffic and probed through a
 # version override. It is promoted only if it serves real pages; otherwise live
 # traffic never leaves the current version. A main build whose source content
 # disagrees with the published D1 revision 503s every route, so this gate is
 # what keeps a copy edit from taking the site down.
-# Pushes by github-actions[bot] do not trigger push workflows, so the motion
-# refresh calls this workflow directly after it commits.
 
 on:
-  push:
-    branches: [main]
-    paths-ignore:
-      - 'site-v2/**'
   workflow_dispatch:
-  workflow_call:
 
 concurrency:
   group: deploy-production
@@ -62,7 +56,7 @@ jobs:
           for path in / /api/stats.json /about/; do
             code=$(curl -s -o /dev/null -w '%{http_code}' \
               -H "Cloudflare-Workers-Version-Overrides: $WORKER=\"$NEW\"" \
-              "https://ariaxhan.com$path?canary=$GITHUB_RUN_ID")
+              "https://cms-preview.ariaxhan.com$path?canary=$GITHUB_RUN_ID")
             echo "$path $code"
             [ "$code" = 200 ] || { echo "canary failed on $path" >&2; exit 1; }
           done
@@ -79,7 +73,7 @@ jobs:
           set -euo pipefail
           want=$(node -p "require('./app/utils/motionData.json').generated")
           for i in 1 2 3 4 5 6; do
-            got=$(curl -fsS "https://ariaxhan.com/api/stats.json?cb=$GITHUB_RUN_ID-$i" | node -p "JSON.parse(require('fs').readFileSync(0)).motion.generated" || true)
+            got=$(curl -fsS "https://cms-preview.ariaxhan.com/api/stats.json?cb=$GITHUB_RUN_ID-$i" | node -p "JSON.parse(require('fs').readFileSync(0)).motion.generated" || true)
             [ "$got" = "$want" ] && { echo "live generated=$got"; exit 0; }
             sleep 10
           done

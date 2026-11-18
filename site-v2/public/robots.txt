@@ -1,0 +1,17 @@
+# Allow search and answer bots. Disallow training-only crawlers.
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+Sitemap: https://ariaxhan.com/sitemap.xml
