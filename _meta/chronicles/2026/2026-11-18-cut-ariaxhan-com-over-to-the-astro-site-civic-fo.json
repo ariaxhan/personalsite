@@ -1,0 +1,36 @@
+{
+  "schema": "chronicle/v1",
+  "date": "2026-11-18",
+  "tier": 2,
+  "title": "Cut ariaxhan.com over to the Astro site: Civic Forges on the App Store, launch metadata, redirects, retire Worker production delivery",
+  "authority": "",
+  "attempted": [
+    "Cut ariaxhan.com over to the Astro site: Civic Forges on the App Store, launch metadata, redirects, retire Worker production delivery"
+  ],
+  "changed": [
+    ".github/workflows/deploy.yml",
+    ".github/workflows/proof-of-motion.yml",
+    "site-v2/README.md",
+    "site-v2/astro.config.mjs",
+    "site-v2/public/_headers",
+    "site-v2/public/_redirects",
+    "site-v2/public/llms.txt",
+    "site-v2/public/robots.txt",
+    "site-v2/public/sitemap.xml",
+    "site-v2/scripts/refresh-proof.sh",
+    "site-v2/src/data/projects.ts",
+    "site-v2/src/layouts/Base.astro",
+    "site-v2/src/pages/index.astro",
+    "wrangler.jsonc"
+  ],
+  "verified": [
+    "commit 66fba56 pushed to git@github.com:ariaxhan/personalsite.git main"
+  ],
+  "failed": [],
+  "decisions": [],
+  "open": [],
+  "work_ids": [
+    "https://github.com/ariaxhan/personalsite/commit/66fba56cd79a3dcf9f332098228d97a9f3b6772f"
+  ],
+  "artifacts": []
+}
