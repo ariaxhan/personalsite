@@ -1,0 +1,23 @@
+{
+  "schema": "chronicle/v1",
+  "date": "2026-11-18",
+  "tier": 2,
+  "title": "Site v2: refresh job reads its Cloudflare token from the keychain",
+  "authority": "",
+  "attempted": [
+    "Site v2: refresh job reads its Cloudflare token from the keychain"
+  ],
+  "changed": [
+    "site-v2/scripts/refresh-proof.sh"
+  ],
+  "verified": [
+    "commit 59645b3 pushed to git@github.com:ariaxhan/personalsite.git main"
+  ],
+  "failed": [],
+  "decisions": [],
+  "open": [],
+  "work_ids": [
+    "https://github.com/ariaxhan/personalsite/commit/59645b350c3e3655515668d28a24011e8b231745"
+  ],
+  "artifacts": []
+}
