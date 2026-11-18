@@ -1,0 +1,26 @@
+{
+  "schema": "chronicle/v1",
+  "date": "2026-11-18",
+  "tier": 2,
+  "title": "Site: remove arrows from all buttons and links",
+  "authority": "",
+  "attempted": [
+    "Site: remove arrows from all buttons and links"
+  ],
+  "changed": [
+    "site-v2/src/components/ProjectCard.astro",
+    "site-v2/src/components/SocialLinks.astro",
+    "site-v2/src/pages/404.astro",
+    "site-v2/src/pages/index.astro"
+  ],
+  "verified": [
+    "commit 73eb7a8 pushed to git@github.com:ariaxhan/personalsite.git main"
+  ],
+  "failed": [],
+  "decisions": [],
+  "open": [],
+  "work_ids": [
+    "https://github.com/ariaxhan/personalsite/commit/73eb7a8724509b3445b0d187abd045595fd37a6c"
+  ],
+  "artifacts": []
+}
