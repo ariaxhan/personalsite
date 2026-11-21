@@ -26,12 +26,12 @@
     "eyebrow": "Aria Han / CTO, Thinking Brain School",
     "heroLine1": "AI",
     "heroLine2": "Architect.",
-    "lede": "I design and run autonomous AI systems end to end: architecture, orchestration, memory, evals, and verifiable receipts. Humans review where judgment matters.",
+    "lede": "I design, build, and run AI systems for teams and clients: architecture, orchestration, memory, and evals. From the first decision to the system people use. Humans review where judgment matters.",
     "bookCall": "Book a call",
     "seeWork": "See the work",
-    "workLine1": "The good",
-    "workLine2": "stuff.",
-    "workNote": "Eight of {count} projects. Built, broken, rebuilt, shipped.",
+    "workLine1": "Work that",
+    "workLine2": "runs.",
+    "workNote": "Jobs and client work. Real systems, from architecture to delivery.",
     "allProjects": "All {count} projects",
     "proofHeading": "Proof.",
     "proofNote": "The record, not the claim.",
@@ -44,42 +44,10 @@
     "seeCommits": "See the commits on GitHub",
     "timelineHeading": "Timeline.",
     "writingHeading": "Writing.",
-    "allWriting": "All writing"
+    "allWriting": "All writing",
+    "projectsHeading": "Personal projects.",
+    "projectsNote": "Tools and experiments I keep building alongside the work."
   },
-  "timeline": [
-    {
-      "title": "CTO, Thinking Brain School",
-      "line": "Leading the autonomous AI system behind an AI-first education company."
-    },
-    {
-      "title": "Lead AI Architect, FunJoin",
-      "line": "Internal AI tools for onboarding, retrieval, and development."
-    },
-    {
-      "title": "Independent consultant and researcher",
-      "line": "Hardened real apps for non-technical founders."
-    },
-    {
-      "title": "PersistOS / HeyContext",
-      "line": "A multi-agent workspace. Hundreds of users within a month, no ad spend."
-    },
-    {
-      "title": "Divertissement / HeyContent",
-      "line": "Cross-platform memory and persona creation."
-    },
-    {
-      "title": "Brink Labs / Brink Mind",
-      "line": "Voice AI and Apple Watch biometrics for mental health."
-    },
-    {
-      "title": "Five hackathon wins",
-      "line": "Each one built in 24 to 48 hours."
-    },
-    {
-      "title": "Published author",
-      "line": "Notes on Surviving Eternity, a poetry collection."
-    }
-  ],
   "writingTopics": [
     "AI agents",
     "Memory",
@@ -231,5 +199,27 @@
       "TheraVoice": "A voice-first therapy prototype that reasons and speaks back.",
       "HotAgents": "Trigger agents with hotkeys."
     }
-  }
+  },
+  "experience": [
+    {
+      "when": "Aug 2026 to Present",
+      "title": "CTO, Thinking Brain School",
+      "line": "An autonomous AI system, end to end. Fleet architecture, evaluation and gates, and the Teaching MCP server."
+    },
+    {
+      "when": "Jul to Oct 2026",
+      "title": "Consultant, Matra",
+      "line": "Designed, built, and delivered the MVP end to end, including its context and memory system. 116 TestFlight builds."
+    },
+    {
+      "when": "May to Oct 2026",
+      "title": "AI Implementation Specialist, Blink Build Studios",
+      "line": "Production AI workflows, with evaluation and observability layers to see what works and what breaks."
+    },
+    {
+      "when": "Apr to May 2026",
+      "title": "Lead AI Architect, FunJoin",
+      "line": "Contract, sole engineer. Built an organizational memory system."
+    }
+  ]
 }

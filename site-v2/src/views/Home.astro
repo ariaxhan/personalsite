@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import { featured, projects } from '../data/projects';
 import motion from '../../../app/utils/motionData.json';
@@ -30,8 +29,6 @@ for (const series of motion.series) {
 const months = [...monthly].sort(([a], [b]) => a.localeCompare(b));
 const peak = Math.max(...months.map(([, count]) => count));
 
-const timelineYears = ['2026', '2026', '2026', '2025', '2025', '2024', '2024', '2024'];
-const timeline = t.timeline.map((entry, i) => ({ ...entry, when: timelineYears[i] }));
 
 const writing = [
   { title: 'Grok Bot: Cursor\u2019s Bet on Multi-Agent AI', href: 'https://medium.com/@ariaxhan/grok-bot-cursors-bet-on-multi-agent-ai-77d69ba8b290' },
@@ -64,16 +61,32 @@ const writing = [
     </div>
   </section>
 
-  <section class="section work" id="work">
+  <section class="section work experience" id="work">
     <div class="section-head">
       <h2>{t.home.workLine1}<br />{t.home.workLine2}</h2>
-      <p class="smallnote">{format(t.home.workNote, { count: projects.length })}</p>
+      <p class="smallnote">{t.home.workNote}</p>
     </div>
-    <div class="cards">
-      {featured.map((p, i) => (
-        <ProjectCard project={localizeProject(p, locale)} label={`${String(i + 1).padStart(2, '0')} / ${localizeProject(p, locale).featured!.tag}`} />
+    <ol class="rows experience-rows">
+      {t.experience.map((job) => (
+        <li>
+          <span class="row-meta">{job.when}</span>
+          <h3>{job.title}</h3>
+          <p>{job.line}</p>
+        </li>
       ))}
+    </ol>
+  </section>
+  <section class="section personal" id="projects">
+    <div class="section-head">
+      <h2>{t.home.projectsHeading}</h2>
+      <p class="smallnote">{t.home.projectsNote}</p>
     </div>
+    <ul class="personal-projects">
+      {featured.map((p) => {
+        const project = localizeProject(p, locale);
+        return <li><h3>{project.name}</h3><p>{project.line}</p></li>;
+      })}
+    </ul>
     <a href={localePath(locale, '/projects/')} class="pill work-all">{format(t.home.allProjects, { count: projects.length })}</a>
   </section>
   <section class="section proof-section" id="proof">
@@ -91,17 +104,6 @@ const writing = [
     </div>
     <p class="smallnote bars-note">{format(t.home.chartNote, { date: motion.generated })}</p>
     <a href="https://github.com/ariaxhan" class="pill work-all">{t.home.seeCommits}</a>
-  </section>
-
-  <section class="section timeline" id="timeline">
-    <div class="section-head">
-      <h2>{t.home.timelineHeading}</h2>
-    </div>
-    <ol class="rows">
-      {timeline.map((t) => (
-        <li><span class="row-meta">{t.when}</span><strong>{t.title}</strong><span>{t.line}</span></li>
-      ))}
-    </ol>
   </section>
 
   <section class="section writing" id="writing">
