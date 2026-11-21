@@ -21,7 +21,17 @@ try {
     assert.equal(await page.locator('#work li').count(), 4);
     for (const name of ['Thinking Brain School', 'Matra', 'Blink Build Studios', 'FunJoin'])
       assert((await page.locator('#work').innerText()).includes(name), name);
-    assert((await page.locator('#work').innerText()).includes('116'));
+    const work = await page.locator('#work').innerText();
+    assert(!/116|TestFlight|prompt v\d|프롬프트\s*v\d/i.test(work), 'No build counts or prompt versions');
+    assert(work.includes(locale === 'en'
+      ? 'Designed, built, and delivered the MVP end to end, including its context and memory system.'
+      : '컨텍스트와 메모리 시스템을 포함한 MVP를 처음부터 설계하고 구축해 납품했습니다.'));
+    assert(work.includes(locale === 'en'
+      ? 'On contract, took over as sole engineer from a team of three established engineers'
+      : '계약직으로 기존 엔지니어 3명이 맡던 개발을 단독으로 인수했습니다.'));
+    assert(work.includes(locale === 'en'
+      ? 'a knowledge base and a system for agents to take over the coding.'
+      : '에이전트가 코딩을 이어받을 수 있는 시스템을 구축했습니다.'));
     assert(await page.locator('#work').evaluate(el => !!(el.compareDocumentPosition(document.querySelector('#projects')) & Node.DOCUMENT_POSITION_FOLLOWING)));
     assert.equal(await page.locator('#projects li').count(), 8);
     assert.equal(await page.locator('.star-scene .star').count(), 1);
