@@ -268,7 +268,7 @@ Items:
 
 Page title: Hackathons | Aria Han
 
-Page description: Six hackathon wins in two years. Darwin (AWS). Armature (RL Track). Content Creator Connector. TheraVoice. HotAgents. Freetime. Each built in 24 to 48 hours under pressure.
+Page description: Six hackathon wins in two years. Darwin (AWS). Armature (RL Track). Content Creator Connector. TheraVoice. Best Use of Wordware. Freetime. Each built in 24 to 48 hours under pressure.
 
 ---
 
@@ -287,7 +287,7 @@ Items:
 - Armature / Weavehacks-2, Self Improving Agents w/ Google Cloud / 2025 / Winner / Reinforcement Learning Track: Self-improving agents that learn from experience instead of pretending every run is a first date. Converted into an open-source package, armature-ai on PyPI, and integrated into HeyContext.
 - Content Creator Connector / Multimodal AI Agents / 2025 / Winner / Best Use of Agno: Enter your company name, and our platform finds the best mid-size content creators, researches your brand, and sends personalized collaboration emails.
 - TheraVoice / Vertical Specific AI Agents Hackathon / 2024 / Winner / Best Use of AI/ML API: A voice-first therapy prototype built with aiXplain. It takes user input, reasons through a response, and speaks back so reflection feels less like filling out a form.
-- HotAgents / GPT-4o vs. Gemini 1.5 Hackathon / 2024 / Winner / Best Use of Wordware: Effortlessly trigger agents using hotkeys and simplify your workflow by condensing high-impact LLM use cases into easily repeatable actions.
+- Best Use of Wordware / GPT-4o vs. Gemini 1.5 Hackathon / 2024 / Winner / Best Use of Wordware: Effortlessly trigger agents using hotkeys and simplify your workflow by condensing high-impact LLM use cases into easily repeatable actions.
 - Freetime / AI Agents 2.0 Hackathon / 2024 / Finalist: AI-driven social planning tool that coordinates gatherings based on shared interests.
 
 ---
@@ -639,11 +639,11 @@ Moments:
 
 - 2026 / May 2026 to Present / Independent AI Implementation Specialist: Working with enterprises and founders to deploy, refine, and monitor agentic workflows and build distinctive AI products. The real question is what happens six months after you start putting AI to work in your company. 
 - 2026 / Apr to May 2026 / Lead AI Architect · FunJoin: Captured company knowledge so it could outlast the person who happened to remember it. Built internal AI tools for onboarding, retrieval, and AI-powered development.
-- 2026 / Jan to Apr 2026 / Independent AI Consultant & Researcher: Worked with non-technical founders to harden real apps made with Claude Code. Built workflows and ran research around context, memory, multi-agent systems, and checking whether the output was actually right.
+- 2026 / Jan to Apr 2026 / Independent AI Consultant & Researcher: Taught non-technical founders Claude Code hands-on; reviewed their AI-generated applications. Built workflows and ran research around context, memory, multi-agent systems, and checking whether the output was actually right.
 - 2025 / Sept 2025 to Jan 2026 / PersistOS / HeyContext: Built a multi-agent workspace around getting agents to work together. The chat window was never meant to be the whole operating system. Went live with hundreds of users within a month, no ad spend.
 - 2025 / Mar to Sept 2025 / Divertissement / HeyContent: Cross-platform memory and persona creation across Instagram, YouTube, Gmail, and notes. Integrated into HeyContext.
 - 2024 / Nov 2024 to Mar 2025 / Brink Labs / Brink Mind: Voice AI + Apple Watch biometric integration. Privacy-first mental health tool, first dive into founder life. 
-- 2024 / 2024 to 2025 / Six Hackathon Wins: Darwin (AWS). Armature (RL Track). Content Creator Connector. TheraVoice. HotAgents. Freetime. Each one built in 24 to 48 hours, validating ideas under pressure.
+- 2024 / 2024 to 2025 / Six Hackathon Wins: Darwin (AWS). Armature (RL Track). Content Creator Connector. TheraVoice. Best Use of Wordware. Freetime. Each one built in 24 to 48 hours, validating ideas under pressure.
 - 2024 / 2024 / Published Author: Notes on Surviving Eternity, a poetry collection on Amazon. Exploring time, fate, free will. Understanding metaphor is understanding compression.
 
 Terminus: ...and the record keeps growing

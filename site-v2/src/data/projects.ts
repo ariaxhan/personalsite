@@ -139,7 +139,7 @@ export const projects: Project[] = [
   {
     name: 'llm-bench',
     line: 'Leaderboards were not answering my questions, so I made tests that did.',
-    proof: '21 tests, graded by programmatic verifiers.',
+    proof: '42 tests, graded by programmatic verifiers.',
     status: 'Active',
     group: 'Evals and verification',
     links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/llm-bench' }],
@@ -148,7 +148,7 @@ export const projects: Project[] = [
   {
     name: 'the-agent-library',
     line: 'Prompt collections kept rotting, so I turned repeated workflows into portable skills.',
-    proof: '39 skills, each extracted from repeated real-world use.',
+    proof: '41 skills (40 active, 1 draft), each extracted from repeated real-world use.',
     status: 'Active, MIT',
     group: 'Agent systems',
     links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/the-agent-library' }],

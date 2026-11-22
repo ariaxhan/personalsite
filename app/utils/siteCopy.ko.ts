@@ -490,7 +490,7 @@ export const projects: Project[] = [
     connections: ["kernel", "heycontext"],
     accent: "#56695a",
     meta: {
-      status: "진행 중 · 포터블 스킬 39개",
+      status: "진행 중 · 포터블 스킬 41개(활성 40개, 초안 1개)",
       stack: "Claude · Codex · Agent Skills",
       structure: "카테고리별 라이브러리",
       license: "MIT",
@@ -856,7 +856,7 @@ export const moments: Moment[] = [
     year: "2024",
     period: "2024–2025",
     title: "해커톤 5회 우승",
-    body: "Darwin (AWS), Armature (RL 트랙), Content Creator Connector, TheraVoice, HotAgents 우승 및 Freetime 파이널리스트 선정. 각각 24–48시간 내에 프로토타입을 구축하여 기술 가설을 신속하게 검증했습니다.",
+    body: "Darwin (AWS), Armature (RL 트랙), Content Creator Connector, TheraVoice, Best Use of Wordware 우승 및 Freetime 파이널리스트 선정. 각각 24–48시간 내에 프로토타입을 구축하여 기술 가설을 신속하게 검증했습니다.",
     type: "achievement",
   },
   {
@@ -913,13 +913,13 @@ export const hackathons: Hackathon[] = [
   },
   {
     year: "2024",
-    name: "HotAgents",
+    name: "Best Use of Wordware",
     hackathon: "GPT-4o vs. Gemini 1.5 Hackathon",
-    description: "단축키로 에이전트를 즉시 호출하여 고부가가치 LLM 활용 작업을 반복 가능한 단일 액션으로 압축하는 도구입니다.",
+    description: "단축키로 에이전트를 실행합니다.",
     award: "Best Use of Wordware",
     metric: "우승",
     technologies: ["Wordware", "AgentOps", "Electron"],
-    link: "https://github.com/ariaxhan/hotagents",
+    link: "",
   },
   {
     year: "2024",
@@ -1245,7 +1245,7 @@ export const PAGE_COPY = {
     hackathons: {
       title: "해커톤 | Aria Han",
       description:
-        "2년간 해커톤 5회 우승, 1회 파이널리스트: Darwin (AWS), Armature (RL 트랙), Content Creator Connector, TheraVoice, HotAgents, Freetime.",
+        "2년간 해커톤 5회 우승, 1회 파이널리스트: Darwin (AWS), Armature (RL 트랙), Content Creator Connector, TheraVoice, Best Use of Wordware, Freetime.",
       path: "/hackathons/",
     },
     openSource: {

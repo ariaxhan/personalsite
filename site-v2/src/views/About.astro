@@ -13,7 +13,7 @@ const wins = [
   { name: 'Armature', href: 'https://devpost.com/software/the-convergence' },
   { name: 'Content Creator Connector', href: 'https://devpost.com/software/content-creator-connector' },
   { name: 'TheraVoice', href: 'https://devpost.com/software/draft_name' },
-  { name: 'HotAgents', href: 'https://github.com/ariaxhan/hotagents' },
+  { name: 'Best Use of Wordware', href: null },
 ] as const;
 ---
 <Base locale={locale} title={t.meta.aboutTitle} description={t.meta.aboutDescription}>
@@ -31,7 +31,7 @@ const wins = [
     </div>
     <ul class="win-list">
       {wins.map((w) => (
-        <li><a href={w.href}><strong>{w.name}</strong><span>{t.about.wins[w.name]}</span></a></li>
+        <li>{w.href ? <a href={w.href}><strong>{w.name}</strong><span>{t.about.wins[w.name]}</span></a> : <div class="win-card"><strong>{w.name}</strong><span>GPT-4o vs. Gemini 1.5 Hackathon, 2024<br />{t.about.wins[w.name]}</span></div>}</li>
       ))}
     </ul>
   </section>

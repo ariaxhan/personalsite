@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "shot": "node scripts/shot.mjs"
+    "shot": "node scripts/shot.mjs",
+    "shot:content": "node scripts/shot-content.mjs",
+    "build:hotfix-1209": "node scripts/build-hotfix-1209.mjs"
   },
   "dependencies": {
     "@fontsource/dm-mono": "^5.2.5",

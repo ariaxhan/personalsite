@@ -696,7 +696,7 @@ export const projects: Project[] = [
     ],
     stack: "Claude · Codex · Agent Skills",
     links: [{ label: "GitHub", href: "https://github.com/ariaxhan/the-agent-library" }],
-    proof: "39 skills, each extracted from repeated real-world use, MIT licensed.",
+    proof: "41 skills (40 active, 1 draft), each extracted from repeated real-world use, MIT licensed.",
     learned:
       "Residue becomes framework. Every skill started as a pattern repeating in my own work before it earned a file.",
     proves:
@@ -1103,7 +1103,7 @@ export const moments: Moment[] = [
     year: "2026",
     period: "Jan to Apr 2026",
     title: "Independent AI Consultant & Researcher",
-    body: "Worked with non-technical founders to harden real apps made with Claude Code. Built workflows and ran research around context, memory, multi-agent systems, and checking whether the output was actually right.",
+    body: "Taught non-technical founders Claude Code hands-on; reviewed their AI-generated applications. Built workflows and ran research around context, memory, multi-agent systems, and checking whether the output was actually right.",
     type: "practice",
   },
   {
@@ -1131,7 +1131,7 @@ export const moments: Moment[] = [
     year: "2024",
     period: "2024 to 2025",
     title: "Five Hackathon Wins",
-    body: "Darwin (AWS). Armature (RL Track). Content Creator Connector. TheraVoice. HotAgents. Plus a finalist run with Freetime. Each one built in 24 to 48 hours, validating ideas under pressure.",
+    body: "Darwin (AWS). Armature (RL Track). Content Creator Connector. TheraVoice. Best Use of Wordware. Plus a finalist run with Freetime. Each one built in 24 to 48 hours, validating ideas under pressure.",
     type: "achievement",
   },
   {
@@ -1202,13 +1202,13 @@ export const hackathons: Hackathon[] = [
   },
   {
     year: "2024",
-    name: "HotAgents",
+    name: "Best Use of Wordware",
     hackathon: "GPT-4o vs. Gemini 1.5 Hackathon",
-    description: "Effortlessly trigger agents using hotkeys and simplify your workflow by condensing high-impact LLM use cases into easily repeatable actions.",
+    description: "Trigger agents with hotkeys.",
     award: "Best Use of Wordware",
     metric: "Winner",
     technologies: ["Wordware", "AgentOps", "Electron"],
-    link: "https://github.com/ariaxhan/hotagents",
+    link: "",
   },
   {
     year: "2024",
@@ -1605,7 +1605,7 @@ export const PAGE_COPY = {
     hackathons: {
       title: "Hackathons | Aria Han",
       description:
-        "Six hackathon wins in two years. Darwin (AWS). Armature (RL Track). Content Creator Connector. TheraVoice. HotAgents. Freetime. Each built in 24 to 48 hours under pressure.",
+        "Six hackathon wins in two years. Darwin (AWS). Armature (RL Track). Content Creator Connector. TheraVoice. Best Use of Wordware. Freetime. Each built in 24 to 48 hours under pressure.",
       path: "/hackathons/",
     },
     openSource: {
