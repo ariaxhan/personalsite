@@ -14,4 +14,13 @@ Validation, 2026-11-22:
 - Source search: zero banned-name matches in tracked text, including both forms; generated graph caches and binary asset filenames are not serving content.
 - Preview PNGs: `/tmp/nexus-1209/preview-shots/`; browser receipt in `receipt.json`.
 
-Production delivery and live evidence are recorded below after verification.
+Production delivery:
+
+- Landed source: `ariaxhan/personalsite@dccd28a7055115e448dc212d6506676476e4ed39` via `python3.12 -m runner land`.
+- Production Pages deployment: https://0aec2891.ariaxhan-site-v2.pages.dev, serving https://ariaxhan.com.
+- `npm run shot:content -- https://ariaxhan.com /tmp/nexus-1209/live-shots`: all 18 combinations passed. Representative live PNGs opened and inspected: `en-1440-about.png`, `en-768-projects.png`, `ko-375-home.png`.
+- Six live routes fetched with curl: `/about`, `/projects`, `/`, `/ko/about`, `/ko/projects`, `/ko/`. Zero banned-name matches in either form. Required exact English award, event/year, description, counts and timeline all present. Python urllib received a client-specific 403; curl and Chrome both succeeded.
+- Evidence: `/tmp/nexus-1209/live-shots/receipt.json`, `/tmp/nexus-1209/fetch-receipt.json`, and fetched HTML in `/tmp/nexus-1209/live-*.html`.
+- Independent read-only review: approved corrections and production-baseline isolation passed. Retired V1's unrelated six-win wording remains outside this issue; production displays five wins.
+- No issue comment or closure performed. No redesign approval inferred.
+
