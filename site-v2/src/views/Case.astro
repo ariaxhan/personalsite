@@ -20,7 +20,7 @@ const ld = [{ '@type': 'CreativeWork', name: c.name, description: c.intro, url: 
     <article class="case-story">
       {c.sections.map((s) => <section><p class="eyebrow">{s.label}</p><h2>{s.title}</h2>{s.paragraphs.map((p) => <p>{p}</p>)}</section>)}
       <div class="case-highlight"><span class="eyebrow">{t.common.keyPoint}</span><strong>{c.highlight.title}</strong><p>{c.highlight.body}</p></div>
-      <div class="case-panel"><p class="eyebrow">{t.common.atGlance}</p><div class="case-flow">{c.flow.map((f, i) => <Fragment>{i > 0 && <span aria-hidden="true" class="sep">→</span>}<span class="case-node">{f}</span></Fragment>)}</div></div>
+      <div class="case-panel"><p class="eyebrow">{t.common.atGlance}</p><div class="case-flow">{c.flow.map((f, i) => <Fragment><span class="case-node">{f}</span></Fragment>)}</div></div>
       <p class="case-note">{c.note}</p>
       {link && <a class="pill" href={link.href} rel="noopener noreferrer" target="_blank">{format(t.common.explore, { label: link.label })}</a>}
     </article>

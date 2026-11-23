@@ -58,7 +58,7 @@ export const projects: Project[] = [
   { name: 'site-spec', group: 'systems', links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/site-spec' }] },
   { name: 'renderstate', group: 'systems', links: [{ label: 'npm', href: 'https://www.npmjs.com/package/renderstate' }] },
   { name: 'Substrate', group: 'systems', live: true, links: [{ label: 'Gallery', href: 'https://nexus-substrate.pages.dev' }, { label: 'GitHub', href: 'https://github.com/ariaxhan/substrate' }] },
-  { name: 'ModelMind', group: 'products', live: true, caseSlug: 'modelmind', links: [{ label: 'model-mind.org', href: 'https://model-mind.org' }, { label: 'App Store', href: 'https://apps.apple.com/us/app/modelmind/id6761348536' }] },
+  { name: 'ModelMind', group: 'products', live: true, caseSlug: 'modelmind', links: [{ label: 'model-mind.org', href: 'https://model-mind.org' }, { label: 'App Store', href: 'https://apps.apple.com/us/app/modelmind/id6761348536' }, { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.modelmind.app' }] },
   { name: 'Paper Rooms', group: 'products', live: true, links: [{ label: 'paper-rooms.com', href: 'https://paper-rooms.com' }, { label: 'App Store', href: 'https://apps.apple.com/us/app/paper-rooms/id6780741814' }] },
   { name: 'Civic Forges', group: 'products', live: true, links: [{ label: 'App Store', href: 'https://apps.apple.com/us/app/civic-forges/id6805645016' }, { label: 'Play online', href: 'https://civicforges.com/play' }] },
   { name: 'our4cuts', group: 'products', live: true, links: [{ label: 'our4cuts.com', href: 'https://our4cuts.com' }] },

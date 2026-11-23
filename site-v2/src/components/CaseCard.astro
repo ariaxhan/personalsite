@@ -8,7 +8,7 @@ const card = t.cards[slug];
 const lines = card.title;
 ---
 <a aria-label={format(t.common.readCase, { name: lines.join(' ') })} class="project" href={localePath(locale, `/projects/${slug}/`)}>
-  <div class="project-top"><span class="card-tag">{card.tag}</span><span class="project-num">↗</span></div>
+  <div class="project-top"><span class="card-tag">{card.tag}</span></div>
   <div class="project-body"><h3>{lines.map((l, i) => <Fragment>{i > 0 && <br />}{l}</Fragment>)}</h3><p>{card.body}</p></div>
-  <div class="project-bottom"><span class="proof">{card.proof}</span><span aria-hidden="true">↗</span></div>
+  <div class="project-bottom"><span class="proof">{card.proof}</span></div>
 </a>

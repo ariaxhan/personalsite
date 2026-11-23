@@ -61,7 +61,7 @@ const graph = {
   <body>
     <a class="skip" href="#main">{t.nav.skip}</a>
     <header class="nav">
-      <a aria-label={t.nav.home} class="logo" href={localePath(locale, '/')}>aria<span>han</span></a>
+      <a aria-label={t.nav.home} class="logo" href={localePath(locale, '/')}>aria<span>xhan</span></a>
       <nav aria-label={t.nav.main} class="navlinks">
         <a href={localePath(locale, '/work/')} aria-current={current('/work/') ?? current('/projects/')}>{t.nav.work}</a>
         <a class="nav-experience" href={localePath(locale, '/experience/')} aria-current={current('/experience/')}>{t.nav.experience}</a>
@@ -75,7 +75,7 @@ const graph = {
     <footer class="footer" id="contact">
       <p class="eyebrow">{t.footer.eyebrow}</p>
       <h2>{t.footer.heading[0]}<br />{t.footer.heading[1]}</h2>
-      <p class="footer-mail"><a href={`mailto:${EMAIL}`}>{EMAIL} ↗</a></p>
+      <p class="footer-mail"><a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
       <div class="footerline">
         <span>&copy; {new Date().getFullYear()} Aria Han · {t.footer.note}</span>
         <div class="footerlinks">

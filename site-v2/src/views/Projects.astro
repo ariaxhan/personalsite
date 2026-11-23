@@ -24,7 +24,7 @@ const groups: ProjectGroup[] = ['systems', 'products', 'companies'];
               <div>
                 <span class="row-meta">{c.status}</span>
                 <div class="entry-links">
-                  {p.caseSlug && <a href={localePath(locale, `/projects/${p.caseSlug}/`)}>{t.common.caseStudyLink} ↗</a>}
+                  {p.caseSlug && <a href={localePath(locale, `/projects/${p.caseSlug}/`)}>{t.common.caseStudyLink}</a>}
                   {p.links.map((l) => <a href={l.href} rel="noopener noreferrer" target="_blank">{l.label}</a>)}
                 </div>
               </div>
