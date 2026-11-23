@@ -110,7 +110,7 @@ export const ko: Copy = {
     'brink-mind': { tag: '08 / 네이티브 제품', title: ['Brink Mind'], body: '정신 건강을 위한 음성 AI와 Apple Watch 생체 신호. 민감한 데이터는 기기 안에 둡니다.', proof: '창업 / TestFlight 도달' },
   },
   timeline: [
-    { when: '2026년 9월부터 현재', title: 'CTO, Thinking Brain School', line: '자율 AI 시스템 전반을 설계하고 운영합니다. 에이전트 플릿 아키텍처, 평가와 승인 게이트, Teaching MCP 서버를 맡고 있습니다.' },
+    { when: '2026년 8월부터 현재', title: 'CTO, Thinking Brain School', line: '자율 AI 시스템 전반을 설계하고 운영합니다. 에이전트 플릿 아키텍처, 평가와 승인 게이트, Teaching MCP 서버를 맡고 있습니다.' },
     { when: '2026년 7월부터 10월', title: 'AI 아키텍트 겸 엔지니어, Matra', line: '컨텍스트와 메모리 시스템을 포함한 MVP를 처음부터 설계하고 구축해 납품했습니다.' },
     { when: '2026년 5월부터 10월', title: 'AI 구현 전문가, Blink Build Studios', line: '실서비스 AI 워크플로와 평가 및 관측 시스템을 구축했습니다. 무엇이 작동하고 어디서 문제가 생기는지 확인할 수 있게 했습니다.' },
     { when: '2026년 4월부터 5월', title: '수석 AI 아키텍트, FunJoin', line: '계약직으로 기존 엔지니어 3명이 맡던 개발을 단독으로 인수했습니다. 팀에 축적된 지식을 지식 베이스로 정리하고, 에이전트가 코딩을 이어받을 수 있는 시스템을 구축했습니다.' },
@@ -136,7 +136,7 @@ export const ko: Copy = {
     rowsHeading: ['역할과', '클라이언트.'],
     rowsNote: '최신순입니다. 직접 창업한 회사는 제품 이름으로 표기했습니다.',
     rows: [
-      { when: '2026년 9월 · 현재', title: ['최고기술책임자(CTO)', 'Thinking Brain School'], body: '교육 경험을 위한 AI 제품 방향, 아키텍처, 구현, 릴리스 품질을 맡고 있습니다. Teaching MCP 서버를 포함한 자율 AI 시스템 전반을 이끕니다.' },
+      { when: '2026년 8월 · 현재', title: ['최고기술책임자(CTO)', 'Thinking Brain School'], body: '교육 경험을 위한 AI 제품 방향, 아키텍처, 구현, 릴리스 품질을 맡고 있습니다. Teaching MCP 서버를 포함한 자율 AI 시스템 전반을 이끕니다.' },
       { when: '2026년 7월부터 10월', title: ['AI 아키텍트 겸 엔지니어', 'Matra'], body: '컨텍스트와 메모리 시스템을 포함한 MVP를 처음부터 설계하고 구축해 납품했습니다.' },
       { when: '2026년 5월부터 10월', title: ['AI 구현 전문가', 'Blink Build Studios'], body: '실서비스 AI 워크플로와 평가 및 관측 시스템을 구축했습니다. 무엇이 작동하고 어디서 문제가 생기는지 확인할 수 있게 했습니다.' },
       { when: '2026년 4월부터 5월', title: ['수석 AI 아키텍트', 'FunJoin'], body: '계약직으로 기존 엔지니어 3명이 맡던 개발을 단독으로 인수했습니다. 팀에 축적된 지식을 지식 베이스로 정리하고, 에이전트가 코딩을 이어받을 수 있는 시스템을 구축했습니다.' },

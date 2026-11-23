@@ -109,7 +109,7 @@ export const en = {
     'brink-mind': { tag: '08 / Native product', title: ['Brink Mind'], body: 'Voice AI and Apple Watch biometrics for mental health, with sensitive data kept on device.', proof: 'Founded / Reached TestFlight' },
   },
   timeline: [
-    { when: 'Sep 2026 to Present', title: 'CTO, Thinking Brain School', line: 'An autonomous AI system, end to end: fleet architecture, evaluation and gates, and the Teaching MCP server.' },
+    { when: 'Aug 2026 to Present', title: 'CTO, Thinking Brain School', line: 'An autonomous AI system, end to end: fleet architecture, evaluation and gates, and the Teaching MCP server.' },
     { when: 'Jul to Oct 2026', title: 'AI architect and engineer, Matra', line: 'Designed, built, and delivered the MVP end to end, including its context and memory system.' },
     { when: 'May to Oct 2026', title: 'AI Implementation Specialist, Blink Build Studios', line: 'Production AI workflows, with evaluation and observability layers to see what works and what breaks.' },
     { when: 'Apr to May 2026', title: 'Lead AI Architect, FunJoin', line: 'On contract, took over as sole engineer from a team of three established engineers, capturing their institutional knowledge in a knowledge base and a system for agents to take over the coding.' },
@@ -135,7 +135,7 @@ export const en = {
     rowsHeading: ['Roles and', 'clients.'],
     rowsNote: 'Most recent first. Product names are used for the companies I founded.',
     rows: [
-      { when: 'Sep 2026 · Present', title: ['Chief Technology Officer', 'Thinking Brain School'], body: 'AI product direction, architecture, implementation, and release quality for educational experiences. I lead an autonomous AI system end to end, including the Teaching MCP server.' },
+      { when: 'Aug 2026 · Present', title: ['Chief Technology Officer', 'Thinking Brain School'], body: 'AI product direction, architecture, implementation, and release quality for educational experiences. I lead an autonomous AI system end to end, including the Teaching MCP server.' },
       { when: 'Jul to Oct 2026', title: ['AI architect and engineer', 'Matra'], body: 'Designed, built, and delivered the MVP end to end, including its context and memory system.' },
       { when: 'May to Oct 2026', title: ['AI Implementation Specialist', 'Blink Build Studios'], body: 'Production AI workflows, with evaluation and observability layers to see what works and what breaks.' },
       { when: 'Apr to May 2026', title: ['Lead AI Architect', 'FunJoin'], body: 'On contract, took over as sole engineer from a team of three established engineers, capturing their institutional knowledge in a knowledge base and a system for agents to take over the coding.' },
