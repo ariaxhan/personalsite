@@ -3,9 +3,9 @@
 # Works from a clean export of origin/main, so the shared checkout is never touched.
 set -euo pipefail
 
-# nexus-office#1199: main contains an unapproved site re-orientation.
+# nexus-office#1211: main contains the redesign; production waits for Aria to approve the preview.
 # Remove this hold only after Aria explicitly approves the Pages preview.
-echo "production held: nexus-office#1199 awaits Aria approval"
+echo "production held: nexus-office#1211 awaits Aria preview approval"
 exit 0
 
 SITE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

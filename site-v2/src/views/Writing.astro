@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTop from '../components/PageTop.astro';
+import { getCopy, type Locale } from '../content';
+import { MEDIUM, NOVEL, writing } from '../content/data';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = getCopy(locale);
+const w = t.writingPage;
+---
+<Base locale={locale} title={t.meta.writingTitle} description={t.meta.writingDescription}>
+  <PageTop eyebrow={w.eyebrow} heading={w.heading} intro={w.intro} emphasis={1} />
+  <section aria-labelledby="writing-heading" class="section writing" id="writing">
+    <div class="section-head"><h2 id="writing-heading">{w.highlightsHeading}</h2><p class="smallnote">{w.highlightsNote}</p></div>
+    <ul class="rows">
+      {writing.map((a, i) => <li><span class="row-meta">{w.topics[i]}</span><a href={a.href} rel="noopener noreferrer" target="_blank"><strong>{a.title}</strong></a></li>)}
+    </ul>
+    <a class="pill work-all" href={MEDIUM} rel="noopener noreferrer" target="_blank">{w.medium}</a>
+  </section>
+  <section aria-labelledby="books-heading" class="section experience">
+    <div class="section-head"><h2 id="books-heading">{w.booksHeading}</h2></div>
+    <ul class="rows">
+      <li><span class="row-meta">{w.novel}</span><a href={NOVEL.href} rel="noopener noreferrer" target="_blank"><strong>{NOVEL.title}</strong></a><p>{w.novelNote}</p></li>
+      <li><span class="row-meta">{w.poetry}</span><strong>{w.poetryTitle}</strong><p>{w.poetryNote}</p></li>
+    </ul>
+  </section>
+</Base>

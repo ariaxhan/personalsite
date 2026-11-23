@@ -1,38 +1,37 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getCopy, type Locale } from '../i18n';
-
-interface Props {
-  locale: Locale;
-}
+import PageTop from '../components/PageTop.astro';
+import { getCopy, localePath, type Locale } from '../content';
+import { books, social } from '../content/data';
+interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = getCopy(locale);
-
-const wins = [
-  { name: 'Darwin', href: 'https://devpost.com/software/darwin-cmfysv' },
-  { name: 'Armature', href: 'https://devpost.com/software/the-convergence' },
-  { name: 'Content Creator Connector', href: 'https://devpost.com/software/content-creator-connector' },
-  { name: 'TheraVoice', href: 'https://devpost.com/software/draft_name' },
-  { name: 'Best Use of Wordware', href: null },
-] as const;
+const a = t.about;
+const l = a.linksLine;
+const u = 'text-decoration:underline';
 ---
 <Base locale={locale} title={t.meta.aboutTitle} description={t.meta.aboutDescription}>
-  <section class="section about">
-    <h1>{t.about.headingLine1}<br />{t.about.headingLine2}</h1>
-    <div class="about-copy">
-      {t.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-      <a class="pill" href="mailto:ariaxhan@gmail.com">ariaxhan@gmail.com</a>
-    </div>
+  <PageTop eyebrow={a.eyebrow} heading={a.heading} intro={a.intro} emphasis={1} />
+  <section class="about-page">
+    <p class="eyebrow">{a.backgroundEyebrow}</p>
+    <h2>{a.backgroundHeading}</h2>
+    {a.paragraphs.map((p) => <p>{p}</p>)}
+    <div class="about-facts">{a.facts.map((f) => <div class="about-fact"><b>{f.n}</b><span>{f.label}</span></div>)}</div>
+    <p style="margin-top:60px">{l[0]}<a href={localePath(locale, '/experience/')} style={u}>{l[1]}</a>{l[2]}<a href={localePath(locale, '/hackathons/')} style={u}>{l[3]}</a>{l[4]}<a href={social[1].href} rel="noopener noreferrer" target="_blank" style={u}>{l[5]}</a>{l[6]}<a href={social[0].href} rel="noopener noreferrer" target="_blank" style={u}>{l[7]}</a>{l[8]}</p>
   </section>
-  <section class="section wins">
-    <div class="section-head">
-      <h2>{t.about.winsHeading}</h2>
-      <p class="smallnote">{t.about.winsNote}</p>
-    </div>
-    <ul class="win-list">
-      {wins.map((w) => (
-        <li>{w.href ? <a href={w.href}><strong>{w.name}</strong><span>{t.about.wins[w.name]}</span></a> : <div class="win-card"><strong>{w.name}</strong><span>GPT-4o vs. Gemini 1.5 Hackathon, 2024<br />{t.about.wins[w.name]}</span></div>}</li>
-      ))}
+  <section aria-labelledby="books-heading" class="about-block books-block" id="bookshelf">
+    <h2 id="books-heading">{a.booksHeading}</h2>
+    <ul class="books">
+      {books.map((b, i) => <li class="book"><span class="eyebrow">{b.author}</span><h3>{b.title}</h3><p><strong>{a.books[i].why}</strong></p><p>{a.books[i].note}</p></li>)}
     </ul>
+  </section>
+  <section aria-labelledby="obsessions-heading" class="about-block obsessions-block" id="obsessions">
+    <h2 id="obsessions-heading">{a.obsessionsHeading}</h2>
+    <ul class="chips">{a.obsessions.map((o) => <li>{o}</li>)}</ul>
+  </section>
+  <section aria-labelledby="map-heading" class="about-block map-block" id="curiosity-map">
+    <h2 id="map-heading">{a.mapHeading}</h2>
+    <p class="count-line">{a.mapNote}</p>
+    <ul class="pursuits">{a.pursuits.map((p) => <li><h3>{p.name}</h3><p>{p.blurb}</p></li>)}</ul>
   </section>
 </Base>

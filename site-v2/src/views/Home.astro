@@ -1,120 +1,70 @@
 ---
 import Base from '../layouts/Base.astro';
-import SocialLinks from '../components/SocialLinks.astro';
-import { featured, projects } from '../data/projects';
-import motion from '../../../app/utils/motionData.json';
-import { format, getCopy, localePath, localizeProject, type Locale } from '../i18n';
-
-interface Props {
-  locale: Locale;
-}
+import CaseCard from '../components/CaseCard.astro';
+import { format, getCopy, localePath, type Locale } from '../content';
+import { liveCount, motionStats } from '../content/data';
+interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = getCopy(locale);
-
-const liveProjects = projects.filter((p) => p.status.startsWith('Live'));
-
+const h = t.home;
+const n = (v: number) => v.toLocaleString('en-US');
 const stats = [
-  { n: motion.grandTotal.toLocaleString('en-US'), label: t.home.statCommits },
-  { n: String(motion.repoCount), label: t.home.statRepos },
-  { n: '5', label: t.home.statWins },
-  { n: String(liveProjects.length), label: t.home.statLive },
+  { n: n(motionStats.commits), label: h.stats.commits },
+  { n: String(motionStats.repos), label: h.stats.repos },
+  { n: String(liveCount), label: h.stats.live },
+  { n: '5', label: h.stats.wins },
+  { n: '3', label: h.stats.ventures },
+  { n: '9', label: h.stats.team },
+  { n: '100s', label: h.stats.users },
+  { n: '2', label: h.stats.languages },
 ];
-
-const monthly = new Map<string, number>();
-for (const series of motion.series) {
-  for (const [month, count] of Object.entries(series.months)) {
-    monthly.set(month, (monthly.get(month) ?? 0) + Number(count));
-  }
-}
-const months = [...monthly].sort(([a], [b]) => a.localeCompare(b));
-const peak = Math.max(...months.map(([, count]) => count));
-
-
-const writing = [
-  { title: 'Grok Bot: Cursor\u2019s Bet on Multi-Agent AI', href: 'https://medium.com/@ariaxhan/grok-bot-cursors-bet-on-multi-agent-ai-77d69ba8b290' },
-  { title: 'Stop Writing Markdown. Start Writing Memory.', href: 'https://medium.com/@ariaxhan/stop-writing-markdown-start-writing-memory-e4a69c57caa9' },
-  { title: 'Claude vs. GPT vs. Gemini: You\u2019re Benchmarking the Wrong Thing', href: 'https://medium.com/@ariaxhan/claude-vs-gpt-vs-gemini-youre-benchmarking-the-wrong-thing-762c7e9cca5d' },
-  { title: 'I Stopped Debugging Claude\u2019s Code and Started Debugging My Prompts Instead', href: 'https://medium.com/@ariaxhan/how-i-stopped-debugging-ai-generated-code-1be33241b3c8' },
-  { title: 'The Correction', href: 'https://www.amazon.com/dp/B0HKVKNBL9' },
-].map((entry, i) => ({ ...entry, topic: t.writingTopics[i] }));
+const featured = ['heycontext', 'kernel', 'modelmind', 'thinking-brain-school'] as const;
 ---
-<Base
-  locale={locale}
-  title={t.meta.homeTitle}
-  description={t.meta.homeDescription}
->
-  <section class="hero">
+<Base locale={locale} title={t.meta.homeTitle} description={t.meta.homeDescription}>
+  <section aria-labelledby="hero-title" class="hero" id="top">
     <div class="hero-copy">
-      <p class="eyebrow">{t.home.eyebrow}</p>
-      <h1>{t.home.heroLine1}<br /><span>{t.home.heroLine2}</span></h1>
-      <p class="lede">{t.home.lede}</p>
+      <p class="eyebrow">{h.eyebrow}</p>
+      <h1 id="hero-title">{h.hero[0]}<br />{h.hero[1]}<br /><span>{h.hero[2]}<br />{h.hero[3]}</span></h1>
+      <p class="lede">{h.lede}</p>
       <div class="hero-cta">
-        <a href="#talk" class="pill">{t.home.bookCall}</a>
-        <a href="#work" class="pill pill-alt">{t.home.seeWork}</a>
+        <a class="pill" href={localePath(locale, '/work/')}>{h.seeWork} <span aria-hidden="true">↗</span></a>
+        <a class="pill pill-alt" href="#approach">{h.howIWork} <span aria-hidden="true">↗</span></a>
       </div>
-      <SocialLinks />
+      <p class="hero-note">{h.heroNote[0]}<br />{h.heroNote[1]}</p>
     </div>
-    <div class="star-scene" aria-hidden="true">
-      <div class="orb"></div>
-      <div class="star"></div>
-      <div class="spark"></div>
-    </div>
+    <div aria-hidden="true" class="star-scene"><div class="orb"></div><div class="star"></div><div class="spark"></div></div>
   </section>
-
-  <section class="section work experience" id="work">
+  <section aria-labelledby="work-heading" class="section work" id="work">
     <div class="section-head">
-      <h2>{t.home.workLine1}<br />{t.home.workLine2}</h2>
-      <p class="smallnote">{t.home.workNote}</p>
+      <h2 id="work-heading">{h.workHeading[0]}<br />{h.workHeading[1]}</h2>
+      <p class="smallnote">{h.workNote}</p>
     </div>
-    <ol class="rows experience-rows">
-      {t.experience.map((job) => (
-        <li>
-          <span class="row-meta">{job.when}</span>
-          <h3>{job.title}</h3>
-          <p>{job.line}</p>
-        </li>
-      ))}
-    </ol>
+    <div class="cards">{featured.map((slug) => <CaseCard slug={slug} locale={locale} />)}</div>
+    <a class="pill work-all" href={localePath(locale, '/work/')}>{h.allWork}</a>
   </section>
-  <section class="section personal" id="projects">
-    <div class="section-head">
-      <h2>{t.home.projectsHeading}</h2>
-      <p class="smallnote">{t.home.projectsNote}</p>
-    </div>
-    <ul class="personal-projects">
-      {featured.map((p) => {
-        const project = localizeProject(p, locale);
-        return <li><h3>{project.name}</h3><p>{project.line}</p></li>;
-      })}
-    </ul>
-    <a href={localePath(locale, '/projects/')} class="pill work-all">{format(t.home.allProjects, { count: projects.length })}</a>
+  <section aria-labelledby="approach-heading" class="section approach" id="approach">
+    <p class="eyebrow">{h.approachEyebrow}</p>
+    <h2 id="approach-heading">{h.approachHeading[0]}<br />{h.approachHeading[1]}</h2>
+    <p class="approach-head">{h.approachHead}</p>
+    <div class="steps">{h.steps.map((s) => <div class="step"><small>{s.label}</small><h3>{s.title}</h3><p>{s.body}</p></div>)}</div>
   </section>
-  <section class="section proof-section" id="proof">
-    <div class="section-head">
-      <h2>{t.home.proofHeading}</h2>
-      <p class="smallnote">{t.home.proofNote}</p>
-    </div>
-    <dl class="stats">
-      {stats.map((s) => (
-        <div><dt>{s.label}</dt><dd>{s.n}</dd></div>
-      ))}
-    </dl>
-    <div class="bars" role="img" aria-label={format(t.home.chartLabel, { from: months[0][0], to: months[months.length - 1][0], peak: peak.toLocaleString('en-US') })}>
-      {months.map(([, count]) => <span style={`height:${Math.max(3, (count / peak) * 100)}%`}></span>)}
-    </div>
-    <p class="smallnote bars-note">{format(t.home.chartNote, { date: motion.generated })}</p>
-    <a href="https://github.com/ariaxhan" class="pill work-all">{t.home.seeCommits}</a>
+  <section aria-labelledby="timeline-heading" class="section timeline" id="timeline">
+    <div class="section-head"><h2 id="timeline-heading">{h.timelineHeading[0]}<br />{h.timelineHeading[1]}</h2><p class="smallnote">{h.timelineNote}</p></div>
+    <ol class="rows">{t.timeline.map((m) => <li><span class="row-meta">{m.when}</span><strong>{m.title}</strong><p>{m.line}</p></li>)}</ol>
+    <p class="timeline-end">{h.timelineEnd}</p>
+    <a class="pill work-all" href={localePath(locale, '/experience/')}>{h.fullExperience}</a>
   </section>
-
-  <section class="section writing" id="writing">
-    <div class="section-head">
-      <h2>{t.home.writingHeading}</h2>
+  <section aria-labelledby="proof-heading" class="section stats-section" id="proof">
+    <div class="section-head"><h2 id="proof-heading">{h.proofHeading[0]}<br />{h.proofHeading[1]}</h2><p class="smallnote">{h.proofNote}</p></div>
+    <dl class="stats stats-8">{stats.map((s) => <div><dt>{s.label}</dt><dd>{s.n}</dd></div>)}</dl>
+    <p class="stats-note">{format(h.statsNote, { date: motionStats.generated })}</p>
+  </section>
+  <section aria-labelledby="about-heading" class="section about" id="about">
+    <div><p class="eyebrow">{h.aboutEyebrow}</p><h2 id="about-heading">{h.aboutHeading[0]}<br />{h.aboutHeading[1]}<br />{h.aboutHeading[2]}</h2></div>
+    <div class="about-copy">
+      {h.aboutCopy.map((p) => <p>{p}</p>)}
+      <p class="smaller">{h.aboutSmall}</p>
+      <a class="pill" href={localePath(locale, '/about/')}>{h.moreAbout}</a>
     </div>
-    <ul class="rows">
-      {writing.map((w) => (
-        <li><span class="row-meta">{w.topic}</span><a href={w.href}><strong>{w.title}</strong></a></li>
-      ))}
-    </ul>
-    <a href="https://medium.com/@ariaxhan" class="pill work-all">{t.home.allWriting}</a>
   </section>
 </Base>

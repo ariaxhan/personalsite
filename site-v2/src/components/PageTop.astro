@@ -1,0 +1,10 @@
+---
+interface Props { eyebrow: string; heading: string[]; intro?: string; emphasis?: number }
+const { eyebrow, heading, intro, emphasis = -1 } = Astro.props;
+---
+<section class="page-top">
+  <slot name="before" />
+  <p class="eyebrow">{eyebrow}</p>
+  <h1>{heading.map((l, i) => <Fragment>{i > 0 && <br />}{i === emphasis ? <em>{l}</em> : l}</Fragment>)}</h1>
+  {intro && <p class="intro">{intro}</p>}
+</section>

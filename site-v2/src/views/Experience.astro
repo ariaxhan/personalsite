@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTop from '../components/PageTop.astro';
+import { getCopy, type Locale } from '../content';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = getCopy(locale);
+const e = t.experience;
+---
+<Base locale={locale} title={t.meta.experienceTitle} description={t.meta.experienceDescription}>
+  <PageTop eyebrow={e.eyebrow} heading={e.heading} intro={e.intro} emphasis={1} />
+  <section aria-labelledby="experience-heading" class="section experience" id="experience">
+    <div class="section-head"><h2 id="experience-heading">{e.rowsHeading[0]}<br />{e.rowsHeading[1]}</h2><p class="smallnote">{e.rowsNote}</p></div>
+    <ol class="rows">{e.rows.map((r) => <li><span class="row-meta">{r.when}</span><strong>{r.title[0]}<br />{r.title[1]}</strong><p>{r.body}</p></li>)}</ol>
+  </section>
+</Base>

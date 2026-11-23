@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTop from '../components/PageTop.astro';
+import { getCopy, type Locale } from '../content';
+import { hackathons } from '../content/data';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = getCopy(locale);
+const hp = t.hackathonsPage;
+---
+<Base locale={locale} title={t.meta.hackathonsTitle} description={t.meta.hackathonsDescription}>
+  <PageTop eyebrow={hp.eyebrow} heading={hp.heading} intro={hp.intro} emphasis={1} />
+  <section aria-labelledby="hack-heading" class="section work" id="hackathons">
+    <p class="count-line" id="hack-heading">{hp.count}</p>
+    <ul class="hack-grid" style="list-style:none;margin:0;padding:0">
+      {hackathons.map((h) => {
+        const e = hp.entries[h.name];
+        return (
+          <li class="hack">
+            <div class="project-top"><span class="card-tag">{h.year} / {h.win ? hp.winner : hp.finalist}</span></div>
+            <div class="project-body">
+              <h3>{h.name}</h3>
+              <p class="hack-award">{e.event}{e.award && <Fragment><br /><strong>{e.award}</strong></Fragment>}</p>
+              <p>{e.description}</p>
+              <ul class="tags">{h.tech.map((x) => <li>{x}</li>)}</ul>
+            </div>
+            <div class="project-bottom"><a href={h.link.href} rel="noopener noreferrer" target="_blank">{h.link.label} ↗</a></div>
+          </li>
+        );
+      })}
+    </ul>
+  </section>
+</Base>

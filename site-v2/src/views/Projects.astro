@@ -1,32 +1,37 @@
 ---
 import Base from '../layouts/Base.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import { groups, projects } from '../data/projects';
-import { format, getCopy, localizeProject, type Locale } from '../i18n';
-
-interface Props {
-  locale: Locale;
-}
+import PageTop from '../components/PageTop.astro';
+import { format, getCopy, localePath, type Locale } from '../content';
+import { projects, type ProjectGroup } from '../content/data';
+interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = getCopy(locale);
+const pp = t.projectsPage;
+const groups: ProjectGroup[] = ['systems', 'products', 'companies'];
 ---
 <Base locale={locale} title={t.meta.projectsTitle} description={t.meta.projectsDescription}>
-  <section class="page-head">
-    <p class="eyebrow">{format(t.projectsPage.count, { count: projects.length })}</p>
-    <h1>{t.projectsPage.headingLine1}<br /><span>{t.projectsPage.headingLine2}</span></h1>
-  </section>
-  {groups.map((group) => {
-    const items = projects.filter((p) => p.group === group).map((p) => localizeProject(p, locale));
-    return (
-      <section class="section group">
-        <div class="section-head">
-          <h2>{t.groups[group]}</h2>
-          <p class="smallnote">{format(t.projectsPage.count, { count: items.length })}</p>
-        </div>
-        <div class="cards">
-          {items.map((p) => <ProjectCard project={p} label={p.status} />)}
-        </div>
-      </section>
-    );
-  })}
+  <PageTop eyebrow={format(pp.count, { count: projects.length })} heading={pp.heading} intro={pp.intro} emphasis={1} />
+  {groups.map((g) => (
+    <section class="list-section" aria-labelledby={`g-${g}`} id={g}>
+      <h2 id={`g-${g}`}>{pp.groups[g]}</h2>
+      <ul class="entries">
+        {projects.filter((p) => p.group === g).map((p) => {
+          const c = t.projects[p.name];
+          return (
+            <li>
+              <h3>{p.name}</h3>
+              <p>{c.line}<span class="proof">{c.proof}</span></p>
+              <div>
+                <span class="row-meta">{c.status}</span>
+                <div class="entry-links">
+                  {p.caseSlug && <a href={localePath(locale, `/projects/${p.caseSlug}/`)}>{t.common.caseStudyLink} ↗</a>}
+                  {p.links.map((l) => <a href={l.href} rel="noopener noreferrer" target="_blank">{l.label}</a>)}
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  ))}
 </Base>

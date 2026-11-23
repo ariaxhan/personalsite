@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTop from '../components/PageTop.astro';
+import { getCopy, localePath, type Locale } from '../content';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = getCopy(locale);
+---
+<Base locale={locale} title={t.meta.notFoundTitle} description={t.meta.notFoundTitle}>
+  <PageTop eyebrow="404" heading={t.notFound.heading} emphasis={1} />
+  <section class="about-page"><a class="pill" href={localePath(locale, '/')}>{t.notFound.back}</a></section>
+</Base>

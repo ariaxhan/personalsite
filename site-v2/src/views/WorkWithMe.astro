@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTop from '../components/PageTop.astro';
+import { getCopy, localePath, type Locale } from '../content';
+import { BOOKING } from '../content/data';
+import { serviceLd } from '../content/ld';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = getCopy(locale);
+const w = t.workWithMe;
+const f = w.form;
+const text = [
+  ['origin', f.origin, true], ['uniqueContribution', f.uniqueContribution, true], ['artifactIntent', f.artifactIntent, true],
+  ['architecture', f.architecture, false], ['links', f.links, false], ['question', f.question, true],
+] as const;
+---
+<Base locale={locale} title={t.meta.workWithMeTitle} description={t.meta.workWithMeDescription} ld={[serviceLd]}>
+  <PageTop eyebrow={w.eyebrow} heading={w.heading} intro={w.intro} emphasis={1} />
+  <section aria-labelledby="jobs-heading" class="section about" id="hiring">
+    <div><h2 id="jobs-heading">{w.jobsHeading}</h2></div>
+    <div class="about-copy"><p>{w.jobsBody}</p><a class="pill" href={localePath(locale, '/experience/')}>{w.jobsCta}</a></div>
+  </section>
+  <section aria-labelledby="take-heading" class="section approach" id="engagements">
+    <h2 id="take-heading">{w.takeOnHeading}</h2>
+    <div class="steps" style="margin-top:41px;row-gap:34px">
+      {w.engagements.map((e, i) => <div class="step"><small>{String(i + 1).padStart(2, '0')}</small><h3>{e.title}</h3><p>{e.detail}</p></div>)}
+    </div>
+  </section>
+  <section aria-labelledby="fit-heading" class="section stats-section" id="fit">
+    <div class="section-head"><h2 id="fit-heading">{w.fitHeading}</h2><p class="smallnote">{w.style}</p></div>
+    <div class="fit">
+      <div><h3>{w.goodFit}</h3><ul>{w.goodFitItems.map((x) => <li>{x}</li>)}</ul></div>
+      <div><h3>{w.notFit}</h3><ul>{w.notFitItems.map((x) => <li>{x}</li>)}</ul></div>
+    </div>
+  </section>
+  <section aria-labelledby="book-heading" class="section experience" id="book">
+    <div class="section-head"><h2 id="book-heading">{w.bookHeading}</h2><p class="smallnote">{w.bookBody}</p></div>
+    <a class="pill" href={BOOKING} rel="noopener noreferrer" target="_blank">{w.bookCta}</a>
+  </section>
+  <section aria-labelledby="review-heading" class="section writing" id="review">
+    <div class="section-head"><h2 id="review-heading">{w.reviewHeading}</h2><p class="smallnote">{w.reviewBody}</p></div>
+    <form class="review-form" id="review-form" data-sending={f.sending} data-sent={f.sent} data-error={f.error}>
+      <label>{f.name}<input name="name" required autocomplete="name" /></label>
+      <label>{f.email}<input name="email" type="email" required autocomplete="email" /></label>
+      <label>{f.projectName}<input name="projectName" /></label>
+      <label>{f.stage}<select name="projectStage" required><option value="">{f.stagePick}</option>{f.stages.map((s, i) => <option value={['Idea', 'Prototype', 'Messy but real', 'Live', 'Rebuild?'][i]}>{s}</option>)}</select></label>
+      {text.map(([name, label, req]) => <label class="wide">{label}<textarea name={name} required={req}></textarea></label>)}
+      <label>{f.timeline}<input name="timeline" /></label>
+      <label class="hp" aria-hidden="true">Company<input name="company" tabindex="-1" autocomplete="off" /></label>
+      <div class="wide"><button class="pill" type="submit">{f.submit}</button></div>
+      <p class="form-status wide" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</Base>
+<script>
+  const form = document.querySelector<HTMLFormElement>('#review-form');
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const status = form.querySelector<HTMLElement>('.form-status')!;
+    const button = form.querySelector<HTMLButtonElement>('button')!;
+    const body = { ...Object.fromEntries(new FormData(form)), projectTypes: [] };
+    button.disabled = true;
+    status.textContent = form.dataset.sending!;
+    try {
+      const response = await fetch('/api/project-review', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+      const result = await response.json().catch(() => null);
+      if (!response.ok) throw new Error(result?.error);
+      form.reset();
+      status.textContent = form.dataset.sent! + (result?.submissionId ? ` #${result.submissionId}` : '');
+    } catch (error) {
+      status.textContent = (error instanceof Error && error.message) || form.dataset.error!;
+    } finally {
+      button.disabled = false;
+    }
+  });
+</script>

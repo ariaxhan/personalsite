@@ -8,62 +8,82 @@ import '@fontsource/noto-sans-kr/400.css';
 import '@fontsource/noto-sans-kr/500.css';
 import '@fontsource/noto-sans-kr/700.css';
 import '../styles/global.css';
-import SocialLinks from '../components/SocialLinks.astro';
-import { getCopy, localePath, type Locale } from '../i18n';
+import { getCopy, localePath, type Locale } from '../content';
+import { EMAIL, SITE, social } from '../content/data';
+import { personLd } from '../content/ld';
 
 interface Props {
   title: string;
   description: string;
   locale?: Locale;
+  /** Extra schema.org nodes for this page, added to the shared @graph. */
+  ld?: object[];
 }
-const { title, description, locale = 'en' } = Astro.props;
+const { title, description, locale = 'en', ld = [] } = Astro.props;
 const t = getCopy(locale);
 const path = Astro.url.pathname;
 const basePath = path.replace(/^\/ko(?=\/)/, '');
 const isNotFound = basePath.startsWith('/404');
 const otherLocale: Locale = locale === 'ko' ? 'en' : 'ko';
-const hrefFor = (target: Locale) => new URL(localePath(target, basePath), Astro.site).href;
-const canonical = new URL(path, Astro.site).href;
-const year = new Date().getFullYear();
+const hrefFor = (target: Locale) => new URL(localePath(target, basePath), SITE).href;
+const canonical = new URL(path, SITE).href;
+const current = (prefix: string) => (basePath.startsWith(prefix) ? 'page' : undefined);
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    personLd,
+    { '@type': 'WebSite', '@id': `${SITE}/#website`, url: `${SITE}/`, name: 'Aria Han', inLanguage: ['en', 'ko'], publisher: { '@id': `${SITE}/#person` } },
+    { '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: title, description, inLanguage: locale, isPartOf: { '@id': `${SITE}/#website` }, about: { '@id': `${SITE}/#person` } },
+    ...ld,
+  ],
+};
 ---
 <!doctype html>
 <html lang={locale}>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1c1721" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {!isNotFound && <link rel="alternate" hreflang="en" href={hrefFor('en')} />}
     {!isNotFound && <link rel="alternate" hreflang="ko" href={hrefFor('ko')} />}
     {!isNotFound && <link rel="alternate" hreflang="x-default" href={hrefFor('en')} />}
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {!isNotFound && <script type="application/ld+json" set:html={JSON.stringify(graph)} />}
   </head>
   <body>
     <a class="skip" href="#main">{t.nav.skip}</a>
     <header class="nav">
-      <a href={localePath(locale, '/')} class="logo">aria<span>han</span></a>
-      <nav class="navlinks" aria-label={t.nav.main}>
-        <a href={localePath(locale, '/projects/')} aria-current={basePath.startsWith('/projects') ? 'page' : undefined}>{t.nav.projects}</a>
-        <a href={localePath(locale, '/about/')} aria-current={basePath.startsWith('/about') ? 'page' : undefined}>{t.nav.about}</a>
-        <a href={`${localePath(locale, '/')}#writing`} class="nav-writing">{t.nav.writing}</a>
-        <a href={localePath(otherLocale, isNotFound ? '/' : basePath)} class="lang" lang={otherLocale} hreflang={otherLocale} aria-label={t.nav.language}>{otherLocale === 'ko' ? 'KR' : 'EN'}</a>
-        <a href="#talk" class="pill">{t.nav.talk}</a>
+      <a aria-label={t.nav.home} class="logo" href={localePath(locale, '/')}>aria<span>han</span></a>
+      <nav aria-label={t.nav.main} class="navlinks">
+        <a href={localePath(locale, '/work/')} aria-current={current('/work/') ?? current('/projects/')}>{t.nav.work}</a>
+        <a class="nav-experience" href={localePath(locale, '/experience/')} aria-current={current('/experience/')}>{t.nav.experience}</a>
+        <a class="nav-about" href={localePath(locale, '/about/')} aria-current={current('/about/')}>{t.nav.about}</a>
+        <a class="nav-writing" href={localePath(locale, '/writing/')} aria-current={current('/writing/')}>{t.nav.writing}</a>
+        <a aria-label={t.nav.language} class="lang" href={localePath(otherLocale, isNotFound ? '/' : basePath)} hreflang={otherLocale} lang={otherLocale}>{otherLocale === 'ko' ? 'KR' : 'EN'}</a>
+        <a class="pill" href="#contact">{t.nav.talk}</a>
       </nav>
     </header>
     <main id="main"><slot /></main>
-    <footer class="footer" id="talk">
+    <footer class="footer" id="contact">
       <p class="eyebrow">{t.footer.eyebrow}</p>
-      <h2>{t.footer.headingLine1}<br />{t.footer.headingLine2}</h2>
-      <iframe class="cal" title={t.footer.calendarTitle} src="https://cal.com/aria-han/15min?embed=1&theme=light&layout=month_view" loading="lazy"></iframe>
-      <p class="footer-mail"><a href="mailto:ariaxhan@gmail.com">ariaxhan@gmail.com</a></p>
-      <SocialLinks />
+      <h2>{t.footer.heading[0]}<br />{t.footer.heading[1]}</h2>
+      <p class="footer-mail"><a href={`mailto:${EMAIL}`}>{EMAIL} ↗</a></p>
       <div class="footerline">
-        <span>&copy; {year} Aria Han</span>
+        <span>&copy; {new Date().getFullYear()} Aria Han · {t.footer.note}</span>
+        <div class="footerlinks">
+          <a href={localePath(locale, '/hackathons/')}>{t.footer.hackathons}</a>
+          <a href={localePath(locale, '/projects/')}>{t.footer.projects}</a>
+          <a href={localePath(locale, '/work-with-me/')}>{t.footer.workWithMe}</a>
+          {social.map((s) => <a href={s.href} rel="noopener noreferrer" target="_blank">{s.label}</a>)}
+        </div>
       </div>
     </footer>
   </body>
