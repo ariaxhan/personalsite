@@ -50,7 +50,7 @@ export const projects: Project[] = [
   { name: 'KERNEL', group: 'systems', caseSlug: 'kernel', links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/kernel-claude' }, { label: 'HOL Registry', href: 'https://hol.org/registry/plugins/aria-han/kernel' }] },
   { name: 'llm-bench', group: 'systems', caseSlug: 'llm-bench', links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/llm-bench' }] },
   { name: 'model-familiarity-engine', group: 'systems', caseSlug: 'model-familiarity-engine', links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/model-familiarity-engine' }] },
-  { name: 'Nexus Office', group: 'systems', links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/nexus-office' }] },
+  { name: 'Nexus Office', group: 'systems', links: [] },
   { name: 'the-agent-library', group: 'systems', links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/the-agent-library' }] },
   { name: 'metabrain', group: 'systems', links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/metabrain' }, { label: 'PyPI', href: 'https://pypi.org/project/metabrain/' }] },
   { name: 'agentmailkit', group: 'systems', links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/agentmailkit' }, { label: 'PyPI', href: 'https://pypi.org/project/agentmailkit/' }] },

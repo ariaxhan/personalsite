@@ -229,7 +229,7 @@ export const en = {
     KERNEL: { line: 'Claude Code kept starting over, so I built memory, rules, and receipts around it.', proof: '15 GitHub stars, 86 releases, 27 skills. HOL Trust Score 91, publisher and owner verified.', status: 'Active, own GitHub marketplace' },
     'llm-bench': { line: 'Leaderboards were not answering my questions, so I made tests that did.', proof: '42 tests, graded by programmatic verifiers.', status: 'Active' },
     'model-familiarity-engine': { line: 'I wanted to know what a model had earned across a working relationship, not where it ranked.', proof: 'Replay-bootstrap loop shipped: redaction, replay, observed model cards.', status: 'Bootstrap loop shipped' },
-    'Nexus Office': { line: 'Agents that keep working without you need a place where you can see and answer them.', proof: 'Public MIT repo with live Mac and phone clients.', status: 'Active, MIT' },
+    'Nexus Office': { line: 'Agents that keep working without you need a place where you can see and answer them.', proof: 'Private system with live Mac and phone clients.', status: 'Active, private' },
     'the-agent-library': { line: 'Prompt collections kept rotting, so I turned repeated workflows into portable skills.', proof: '41 skills (40 active, 1 draft), each extracted from repeated real-world use.', status: 'Active, MIT' },
     metabrain: { line: 'Memory gets noisy unless it has to prove itself.', proof: 'Published on PyPI. Zero dependencies by design.', status: 'Published on PyPI' },
     agentmailkit: { line: 'A scheduled email should look the same every day, even when a model writes the words.', proof: '36 offline, deterministic tests. Dry runs cannot send, enforced in code.', status: 'Published on PyPI, MIT' },

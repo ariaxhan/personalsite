@@ -230,7 +230,7 @@ export const ko: Copy = {
     KERNEL: { line: 'Claude Code가 자꾸 처음부터 다시 시작해서, 그 주위에 메모리, 규칙, 기록을 만들었습니다.', proof: 'GitHub 스타 15개, 릴리스 86회, 스킬 27개. HOL Trust Score 91, 퍼블리셔 및 소유자 인증.', status: '활성, 자체 GitHub 마켓플레이스' },
     'llm-bench': { line: '리더보드가 제 질문에 답해 주지 않아서, 답해 주는 테스트를 만들었습니다.', proof: '테스트 42개, 프로그램 검증기로 채점.', status: '활성' },
     'model-familiarity-engine': { line: '모델의 순위가 아니라, 함께 일하며 쌓아 온 것이 무엇인지 알고 싶었습니다.', proof: '리플레이 부트스트랩 루프 출시: 민감 정보 제거, 재현, 관찰 기반 모델 카드.', status: '부트스트랩 루프 출시' },
-    'Nexus Office': { line: '나 없이도 계속 일하는 에이전트에게는, 그들을 보고 답할 수 있는 공간이 필요합니다.', proof: 'Mac과 휴대폰 클라이언트가 실제로 동작하는 공개 MIT 저장소.', status: '활성, MIT' },
+    'Nexus Office': { line: '나 없이도 계속 일하는 에이전트에게는, 그들을 보고 답할 수 있는 공간이 필요합니다.', proof: 'Mac과 휴대폰 클라이언트가 실제로 동작하는 비공개 시스템.', status: '활성, 비공개' },
     'the-agent-library': { line: '프롬프트 모음은 금방 낡아서, 반복되는 워크플로를 이식 가능한 스킬로 바꿨습니다.', proof: '스킬 41개(활성 40개, 초안 1개). 모두 실제로 반복 사용하며 추출했습니다.', status: '활성, MIT' },
     metabrain: { line: '메모리는 스스로를 증명하게 하지 않으면 잡음이 됩니다.', proof: 'PyPI에 공개. 의도적으로 의존성 0개.', status: 'PyPI 공개' },
     agentmailkit: { line: '예약 이메일은 모델이 문장을 쓰더라도 매일 같은 모습이어야 합니다.', proof: '오프라인 결정적 테스트 36개. 드라이런은 발송할 수 없도록 코드로 강제.', status: 'PyPI 공개, MIT' },
