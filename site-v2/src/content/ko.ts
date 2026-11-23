@@ -104,13 +104,13 @@ export const ko: Copy = {
     kernel: { tag: '02 / 개발자 플랫폼', title: ['KERNEL'], body: '에이전트에게 프롬프트 이상으로 필요한 것: 지속되는 컨텍스트, 조율, 검증, 실험.', proof: '공개 소스 / 스타 15개 / 릴리스 86회' },
     modelmind: { tag: '03 / 제품 경험', title: ['ModelMind'], body: '기술적인 주제를 누구나 쓸 수 있는 친근한 학습 경험으로 바꿨습니다.', proof: '독립 제품 / App Store + Google Play' },
     'thinking-brain-school': { tag: '04 / 제품 & AI 아키텍처', title: ['Thinking', 'Brain School'], body: '학습 목표, 제품 결정, 그리고 이를 실제로 전달하는 데 필요한 기술 작업을 연결합니다.', proof: 'CTO / 공개 역할 개요' },
-    'teaching-mcp-server': { tag: '05 / AI 상호운용성', title: ['Teaching', 'MCP 서버'], body: 'AI 어시스턴트를 위한 인터랙티브 수업 접근. 누군가 사용하기 전에 실서비스에서 먼저 점검합니다.', proof: '실서비스 점검 / 282개 항목 모두 통과' },
+    'teaching-mcp-server': { tag: '05 / AI 상호운용성', title: ['Teaching', 'MCP 서버'], body: 'AI 어시스턴트를 위한 인터랙티브 수업 접근. 누군가 사용하기 전에 실서비스에서 먼저 점검합니다.', proof: '실서비스 운영 중' },
     'llm-bench': { tag: '06 / 평가', title: ['llm-bench'], body: '언어 모델을 위한 실무 워크플로 테스트. 모든 테스트를 프로그램 검증기로 채점합니다.', proof: '오픈소스 / 테스트 42개' },
     'model-familiarity-engine': { tag: '07 / 평가 연구', title: ['model-', 'familiarity-', 'engine'], body: '순위 대신, 재현한 작업에서 얻은 근거 기반 모델 카드.', proof: '오픈소스 / 부트스트랩 루프 출시' },
     'brink-mind': { tag: '08 / 네이티브 제품', title: ['Brink Mind'], body: '정신 건강을 위한 음성 AI와 Apple Watch 생체 신호. 민감한 데이터는 기기 안에 둡니다.', proof: '창업 / TestFlight 도달' },
   },
   timeline: [
-    { when: '2026년 8월부터 현재', title: 'CTO, Thinking Brain School', line: '자율 AI 시스템 전반을 설계하고 운영합니다. 에이전트 플릿 아키텍처, 평가와 승인 게이트, Teaching MCP 서버를 맡고 있습니다.' },
+    { when: '2026년 9월부터 현재', title: 'CTO, Thinking Brain School', line: '자율 AI 시스템 전반을 설계하고 운영합니다. 에이전트 플릿 아키텍처, 평가와 승인 게이트, Teaching MCP 서버를 맡고 있습니다.' },
     { when: '2026년 7월부터 10월', title: 'AI 아키텍트 겸 엔지니어, Matra', line: '컨텍스트와 메모리 시스템을 포함한 MVP를 처음부터 설계하고 구축해 납품했습니다.' },
     { when: '2026년 5월부터 10월', title: 'AI 구현 전문가, Blink Build Studios', line: '실서비스 AI 워크플로와 평가 및 관측 시스템을 구축했습니다. 무엇이 작동하고 어디서 문제가 생기는지 확인할 수 있게 했습니다.' },
     { when: '2026년 4월부터 5월', title: '수석 AI 아키텍트, FunJoin', line: '계약직으로 기존 엔지니어 3명이 맡던 개발을 단독으로 인수했습니다. 팀에 축적된 지식을 지식 베이스로 정리하고, 에이전트가 코딩을 이어받을 수 있는 시스템을 구축했습니다.' },
@@ -136,7 +136,7 @@ export const ko: Copy = {
     rowsHeading: ['역할과', '클라이언트.'],
     rowsNote: '최신순입니다. 직접 창업한 회사는 제품 이름으로 표기했습니다.',
     rows: [
-      { when: '2026년 8월 · 현재', title: ['최고기술책임자(CTO)', 'Thinking Brain School'], body: '교육 경험을 위한 AI 제품 방향, 아키텍처, 구현, 릴리스 품질을 맡고 있습니다. Teaching MCP 서버를 포함한 자율 AI 시스템 전반을 이끕니다.' },
+      { when: '2026년 9월 · 현재', title: ['최고기술책임자(CTO)', 'Thinking Brain School'], body: '교육 경험을 위한 AI 제품 방향, 아키텍처, 구현, 릴리스 품질을 맡고 있습니다. Teaching MCP 서버를 포함한 자율 AI 시스템 전반을 이끕니다.' },
       { when: '2026년 7월부터 10월', title: ['AI 아키텍트 겸 엔지니어', 'Matra'], body: '컨텍스트와 메모리 시스템을 포함한 MVP를 처음부터 설계하고 구축해 납품했습니다.' },
       { when: '2026년 5월부터 10월', title: ['AI 구현 전문가', 'Blink Build Studios'], body: '실서비스 AI 워크플로와 평가 및 관측 시스템을 구축했습니다. 무엇이 작동하고 어디서 문제가 생기는지 확인할 수 있게 했습니다.' },
       { when: '2026년 4월부터 5월', title: ['수석 AI 아키텍트', 'FunJoin'], body: '계약직으로 기존 엔지니어 3명이 맡던 개발을 단독으로 인수했습니다. 팀에 축적된 지식을 지식 베이스로 정리하고, 에이전트가 코딩을 이어받을 수 있는 시스템을 구축했습니다.' },
@@ -226,7 +226,7 @@ export const ko: Copy = {
     count: '프로젝트 {count}개',
   },
   projects: {
-    'Teaching MCP server': { line: 'Thinking Brain School의 AI 어시스턴트용 인터랙티브 수업 접근.', proof: '2026년 11월 20일 실서비스 점검: 282개 항목 모두 통과.', status: '실서비스 운영 중' },
+    'Teaching MCP server': { line: 'Thinking Brain School의 AI 어시스턴트용 인터랙티브 수업 접근.', proof: '실서비스 서버에서 검증했습니다.', status: '실서비스 운영 중' },
     KERNEL: { line: 'Claude Code가 자꾸 처음부터 다시 시작해서, 그 주위에 메모리, 규칙, 기록을 만들었습니다.', proof: 'GitHub 스타 15개, 릴리스 86회, 스킬 27개. HOL Trust Score 91, 퍼블리셔 및 소유자 인증.', status: '활성, 자체 GitHub 마켓플레이스' },
     'llm-bench': { line: '리더보드가 제 질문에 답해 주지 않아서, 답해 주는 테스트를 만들었습니다.', proof: '테스트 42개, 프로그램 검증기로 채점.', status: '활성' },
     'model-familiarity-engine': { line: '모델의 순위가 아니라, 함께 일하며 쌓아 온 것이 무엇인지 알고 싶었습니다.', proof: '리플레이 부트스트랩 루프 출시: 민감 정보 제거, 재현, 관찰 기반 모델 카드.', status: '부트스트랩 루프 출시' },

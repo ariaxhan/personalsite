@@ -103,13 +103,13 @@ export const en = {
     kernel: { tag: '02 / Developer platform', title: ['KERNEL'], body: 'What an agent needs beyond a prompt: persistent context, coordination, verification, and experimentation.', proof: 'Public source / 15 stars / 86 releases' },
     modelmind: { tag: '03 / Product experience', title: ['ModelMind'], body: 'Turning a technical subject into an approachable learning experience people can use.', proof: 'Independent product / App Store + Google Play' },
     'thinking-brain-school': { tag: '04 / Product & AI architecture', title: ['Thinking', 'Brain School'], body: 'Connecting learning goals, product decisions, and the technical work required for delivery.', proof: 'CTO / Public role overview' },
-    'teaching-mcp-server': { tag: '05 / AI interoperability', title: ['Teaching', 'MCP server'], body: 'Interactive lesson access for AI assistants, checked live before anyone relies on it.', proof: 'Live sweep / 282 checks, all pass' },
+    'teaching-mcp-server': { tag: '05 / AI interoperability', title: ['Teaching', 'MCP server'], body: 'Interactive lesson access for AI assistants, checked live before anyone relies on it.', proof: 'Live in production' },
     'llm-bench': { tag: '06 / Evaluation', title: ['llm-bench'], body: 'Practical workflow tests for language models, each graded by a programmatic verifier.', proof: 'Open source / 42 tests' },
     'model-familiarity-engine': { tag: '07 / Evaluation research', title: ['model-', 'familiarity-', 'engine'], body: 'Evidence-backed model cards from replayed tasks, instead of a ranking.', proof: 'Open source / Bootstrap loop shipped' },
     'brink-mind': { tag: '08 / Native product', title: ['Brink Mind'], body: 'Voice AI and Apple Watch biometrics for mental health, with sensitive data kept on device.', proof: 'Founded / Reached TestFlight' },
   },
   timeline: [
-    { when: 'Aug 2026 to Present', title: 'CTO, Thinking Brain School', line: 'An autonomous AI system, end to end: fleet architecture, evaluation and gates, and the Teaching MCP server.' },
+    { when: 'Sep 2026 to Present', title: 'CTO, Thinking Brain School', line: 'An autonomous AI system, end to end: fleet architecture, evaluation and gates, and the Teaching MCP server.' },
     { when: 'Jul to Oct 2026', title: 'AI architect and engineer, Matra', line: 'Designed, built, and delivered the MVP end to end, including its context and memory system.' },
     { when: 'May to Oct 2026', title: 'AI Implementation Specialist, Blink Build Studios', line: 'Production AI workflows, with evaluation and observability layers to see what works and what breaks.' },
     { when: 'Apr to May 2026', title: 'Lead AI Architect, FunJoin', line: 'On contract, took over as sole engineer from a team of three established engineers, capturing their institutional knowledge in a knowledge base and a system for agents to take over the coding.' },
@@ -135,7 +135,7 @@ export const en = {
     rowsHeading: ['Roles and', 'clients.'],
     rowsNote: 'Most recent first. Product names are used for the companies I founded.',
     rows: [
-      { when: 'Aug 2026 · Present', title: ['Chief Technology Officer', 'Thinking Brain School'], body: 'AI product direction, architecture, implementation, and release quality for educational experiences. I lead an autonomous AI system end to end, including the Teaching MCP server.' },
+      { when: 'Sep 2026 · Present', title: ['Chief Technology Officer', 'Thinking Brain School'], body: 'AI product direction, architecture, implementation, and release quality for educational experiences. I lead an autonomous AI system end to end, including the Teaching MCP server.' },
       { when: 'Jul to Oct 2026', title: ['AI architect and engineer', 'Matra'], body: 'Designed, built, and delivered the MVP end to end, including its context and memory system.' },
       { when: 'May to Oct 2026', title: ['AI Implementation Specialist', 'Blink Build Studios'], body: 'Production AI workflows, with evaluation and observability layers to see what works and what breaks.' },
       { when: 'Apr to May 2026', title: ['Lead AI Architect', 'FunJoin'], body: 'On contract, took over as sole engineer from a team of three established engineers, capturing their institutional knowledge in a knowledge base and a system for agents to take over the coding.' },
@@ -225,7 +225,7 @@ export const en = {
     count: '{count} projects',
   },
   projects: {
-    'Teaching MCP server': { line: 'Interactive lesson access for AI assistants at Thinking Brain School.', proof: 'Nov 20, 2026 live sweep: 282 checks, all pass.', status: 'In production' },
+    'Teaching MCP server': { line: 'Interactive lesson access for AI assistants at Thinking Brain School.', proof: 'Verified against the live production server.', status: 'In production' },
     KERNEL: { line: 'Claude Code kept starting over, so I built memory, rules, and receipts around it.', proof: '15 GitHub stars, 86 releases, 27 skills. HOL Trust Score 91, publisher and owner verified.', status: 'Active, own GitHub marketplace' },
     'llm-bench': { line: 'Leaderboards were not answering my questions, so I made tests that did.', proof: '42 tests, graded by programmatic verifiers.', status: 'Active' },
     'model-familiarity-engine': { line: 'I wanted to know what a model had earned across a working relationship, not where it ranked.', proof: 'Replay-bootstrap loop shipped: redaction, replay, observed model cards.', status: 'Bootstrap loop shipped' },
