@@ -52,6 +52,8 @@ const graph = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {isPreview && <meta name="robots" content="noindex, nofollow" />}
+    {/* Cloudflare Web Analytics (RUM site bf9034eac52e45528860dd1f914f35fd); production only so preview traffic stays out of analytics */}
+    {!isPreview && <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "87d58633d1cd4b95b937da479b6b3e2d"}'></script>}
     <link rel="canonical" href={canonical} />
     {!isNotFound && <link rel="alternate" hreflang="en" href={hrefFor('en')} />}
     {!isNotFound && <link rel="alternate" hreflang="ko" href={hrefFor('ko')} />}
