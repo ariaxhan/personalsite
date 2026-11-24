@@ -27,6 +27,11 @@ const isNotFound = basePath.startsWith('/404');
 const otherLocale: Locale = locale === 'ko' ? 'en' : 'ko';
 const hrefFor = (target: Locale) => new URL(localePath(target, basePath), SITE).href;
 const canonical = new URL(path, SITE).href;
+// Cloudflare Pages sets CF_PAGES_BRANCH at build time. Preview deployments
+// (any branch other than main) must never be indexed: a stale preview was
+// showing up in brand search results in Nov 2026.
+const isPreview = import.meta.env.CF_PAGES_BRANCH !== undefined && import.meta.env.CF_PAGES_BRANCH !== 'main';
+const ogImage = `${SITE}/og-image.png`;
 const current = (prefix: string) => (basePath.startsWith(prefix) ? 'page' : undefined);
 const graph = {
   '@context': 'https://schema.org',
@@ -46,6 +51,7 @@ const graph = {
     <meta name="theme-color" content="#1c1721" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {isPreview && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     {!isNotFound && <link rel="alternate" hreflang="en" href={hrefFor('en')} />}
     {!isNotFound && <link rel="alternate" hreflang="ko" href={hrefFor('ko')} />}
@@ -55,6 +61,16 @@ const graph = {
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="Aria Han: Product strategy, people and AI systems" />
+    <meta property="og:site_name" content="Aria Han" />
+    <meta property="og:locale" content={locale === 'ko' ? 'ko_KR' : 'en_US'} />
+    <meta property="og:locale:alternate" content={locale === 'ko' ? 'en_US' : 'ko_KR'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Aria Han: Product strategy, people and AI systems" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {!isNotFound && <script type="application/ld+json" set:html={JSON.stringify(graph)} />}
   </head>
