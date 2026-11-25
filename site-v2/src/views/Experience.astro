@@ -11,6 +11,10 @@ const e = t.experience;
   <PageTop eyebrow={e.eyebrow} heading={e.heading} intro={e.intro} emphasis={1} />
   <section aria-labelledby="experience-heading" class="section experience" id="experience">
     <div class="section-head"><h2 id="experience-heading">{e.rowsHeading[0]}<br />{e.rowsHeading[1]}</h2><p class="smallnote">{e.rowsNote}</p></div>
-    <ol class="rows">{e.rows.map((r) => <li><span class="row-meta">{r.when}</span><strong>{r.title[0]}<br />{r.title[1]}</strong><p>{r.body}</p></li>)}</ol>
+    <ol class="rows">{e.rows.map((r) => <li><span class="row-meta">{r.when}</span><strong>{r.title[0]}<br />{r.title[1]}</strong><div class="row-body">{r.note && <p class="row-note">{r.note}</p>}<ul class="row-points">{r.points.map((p) => <li>{p.lead && <strong>{p.lead} </strong>}{p.text}</li>)}</ul></div></li>)}</ol>
+    <div class="education">
+      <p class="edu-label">{e.education.heading}</p>
+      <ul class="edu-list">{e.education.items.map((s) => <li><span><strong>{s.school}</strong>, {s.field}</span><span class="row-meta">{s.when}</span></li>)}</ul>
+    </div>
   </section>
 </Base>

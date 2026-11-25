@@ -133,18 +133,33 @@ export const en = {
     heading: ['The work', 'behind it.'],
     intro: 'A career across founding companies, leading teams, and building AI systems. Client details remain high-level.',
     rowsHeading: ['Roles and', 'clients.'],
-    rowsNote: 'Most recent first. Product names are used for the companies I founded.',
+    rowsNote: 'Most recent first.',
     rows: [
-      { when: 'Aug 2026 · Present', title: ['Chief Technology Officer', 'Thinking Brain School'], body: 'AI product direction, architecture, implementation, and release quality for educational experiences. I lead an autonomous AI system end to end, including the Teaching MCP server.' },
-      { when: 'Jul to Oct 2026', title: ['AI architect and engineer', 'Matra'], body: 'Designed, built, and delivered the MVP end to end, including its context and memory system.' },
-      { when: 'May to Oct 2026', title: ['AI Implementation Specialist', 'Blink Build Studios'], body: 'Production AI workflows, with evaluation and observability layers to see what works and what breaks.' },
-      { when: 'Apr to May 2026', title: ['Lead AI Architect', 'FunJoin'], body: 'On contract, took over as sole engineer from a team of three established engineers, capturing their institutional knowledge in a knowledge base and a system for agents to take over the coding.' },
-      { when: 'Jan to Apr 2026', title: ['Independent AI consultant', 'and researcher'], body: 'Taught non-technical founders Claude Code hands-on and reviewed their AI-generated applications.' },
-      { when: 'Sep 2025 to Jan 2026', title: ['Founder & CEO', 'HeyContext'], body: 'Owned product development for a multi-agent workspace and led a cross-functional team of UX research, design, and engineering. Hundreds of users in its first month, no paid advertising.' },
-      { when: 'Mar to Sep 2025', title: ['Founder & CEO', 'HeyContent'], body: 'Cross-platform memory and persona creation for creators. The memory layer carried into HeyContext.' },
-      { when: 'Nov 2024 to Mar 2025', title: ['Founder & CEO', 'Brink Mind'], body: 'A voice-first mental health app that used Apple Watch biometrics, built natively in SwiftUI. Reached TestFlight.' },
-      { when: 'Ongoing', title: ['Independent products', '& research'], body: 'Built and published developer tools, consumer applications, and experiments in agent reliability and evaluation.' },
+      { when: 'Aug 2026 · Present', title: ['Chief Technology Officer', 'Thinking Brain School'], note: '', points: [
+        { lead: '', text: 'Own AI product strategy, roadmap, and delivery across educational products and internal operations.' },
+        { lead: '', text: 'Designed and deployed a Model Context Protocol (MCP) integration for lessons and interactive practice through ChatGPT and Claude, with context, memory, and multi-agent orchestration.' },
+        { lead: '', text: 'Architected and shipped the conversational voice tutor: a voice agent that grounds every reply in the lesson page, sending the visible text and a screenshot with each message, with one chat per lesson and search across past lessons.' },
+      ] },
+      { when: 'Jan 2026 · Oct 2026', title: ['Independent AI Product', '& Implementation Consultant'], note: 'Separate client engagements and advisory work, including concurrent projects.', points: [
+        { lead: 'Matra · AI Architect and Engineer:', text: 'Led end-to-end AI product architecture and MVP delivery across conversational AI, streaming voice/chat, knowledge retrieval, persistent memory, and deterministic safety controls.' },
+        { lead: 'Blink Build Studios · AI Implementation Specialist:', text: 'Translated requirements across financial services, healthcare, and education into production AI architectures, workflows, and integrations; delivered agentic automations and Dify applications with evaluation and observability.' },
+        { lead: 'FunJoin · Lead AI Architect:', text: 'Took over as sole engineer from a 3-engineer team; built a retrieval system over a Kubernetes and Postgres platform with hundreds of API endpoints, plus skills and hooks for agents to run deployments and rollbacks.' },
+        { lead: 'Independent advisory and research:', text: 'Trained nontechnical founders in AI adoption and Claude Code; reviewed AI-generated applications and researched agent memory and orchestration.' },
+      ] },
+      { when: 'Nov 2024 · Jan 2026', title: ['Founder & CEO', 'PersistOS, DivertissementAI & Brink Labs'], note: '', points: [
+        { lead: '', text: 'Owned product strategy and development across three AI ventures, defining vision, discovery, requirements, architecture, priorities, and delivery.' },
+        { lead: '', text: 'Managed teams of up to nine across UX research, design, and engineering; coordinated two cofounders, and supported the transition of five UX research interns into continuing roles.' },
+        { lead: '', text: 'Directed usability interviews and iterative UI/UX changes informed by user feedback; collaborated closely with designers on product decisions.' },
+        { lead: '', text: 'Launched HeyContext, HeyContent, and Brink Mind across agent orchestration, memory, content personalization, and voice AI; HeyContext reached hundreds of users in its first month without paid ads.' },
+      ] },
     ],
+    education: {
+      heading: 'Education',
+      items: [
+        { school: 'University of San Francisco', field: 'Computer Science', when: '2022–2024' },
+        { school: 'Colgate University', field: 'English', when: '2020–2022' },
+      ],
+    },
   },
   writingPage: {
     eyebrow: 'Writing',
