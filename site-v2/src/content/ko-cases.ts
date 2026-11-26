@@ -136,6 +136,31 @@ export const koCases: Cases = {
     results: {
       title: '측정 결과',
       source: '채점 v3 재채점, 2026년 10월 2일. 보관된 답변 168개를 수리된 채점기로 다시 채점했습니다. 새 답변이나 프롬프트 변경은 없습니다. PASS는 만점 1.0을 뜻합니다. 온도 0.0.',
+      models: {
+        caption: '테스트한 모델',
+        groups: [
+          { label: '채점 v3 재채점, 2026년 10월 2일', items: [
+            { name: 'gpt-6.1-sol', href: 'https://platform.openai.com/docs/models/gpt-6.1-sol', note: 'Codex CLI' },
+            { name: 'qwen3-coder:30b', href: 'https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct', note: 'Ollama' },
+            { name: 'devstral-small-2:24b', href: 'https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512', note: 'Ollama' },
+            { name: 'lfm2.5:8b', href: 'https://huggingface.co/LiquidAI/LFM2.5-8B-A1B', note: 'Ollama' },
+          ] },
+          { label: 'Claude 티어, 과거 기록(수정 전)', items: [
+            { name: 'Opus 4.8', href: 'https://www.anthropic.com/claude', note: 'Claude Code 하네스' },
+            { name: 'Opus 4.7', href: 'https://www.anthropic.com/claude', note: 'Claude Code 하네스' },
+            { name: 'Sonnet 4.6', href: 'https://www.anthropic.com/claude', note: 'Claude Code 하네스' },
+            { name: 'Haiku 4.5', href: 'https://www.anthropic.com/claude', note: 'Claude Code 하네스' },
+          ] },
+          { label: '로컬 모델 표준 스위트, 과거 기록(수정 전)', items: [
+            { name: 'llama3.2:3b', href: 'https://huggingface.co/meta-llama/Llama-3.2-3B', note: 'Ollama' },
+            { name: 'phi4:14b', href: 'https://huggingface.co/microsoft/phi-4', note: 'Ollama' },
+            { name: 'qwen2.5-coder:7b', href: 'https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct', note: 'Ollama' },
+            { name: 'apple-foundationmodel', href: 'https://developer.apple.com/documentation/foundationmodels', note: 'Apple Intelligence' },
+            { name: 'mistral:7b', href: 'https://huggingface.co/mistralai/Mistral-7B-v0.1', note: 'Ollama' },
+            { name: 'qwen3.5:4b', href: 'https://huggingface.co/Qwen/Qwen3.5-4B', note: 'Ollama' },
+          ] },
+        ],
+      },
       stats: [
         { value: '42', label: '개 테스트, 일상 12개 + 스트레스 30개, 모두 프로그램 검증' },
         { value: '168', label: '개 보관 답변을 수리된 채점기로 재채점' },
@@ -196,6 +221,18 @@ export const koCases: Cases = {
     results: {
       title: '측정 결과',
       source: '실험 0 게이트 결과, 프로토콜 9a730f21729df095. 아홉 개 게이트가 기기 인증을 결정합니다. 핵심 게이트 하나라도 실패하면 인증 불가(NOT CERTIFIED)입니다.',
+      lede: 'Experiment 0는 모델 채점 전에 채점 체계 자체를 신뢰할 수 있는지 검증한 실험입니다. 테스트 자료의 출처 기록이 없어, 이 실행에서 나온 점수는 인증되지 않았습니다.',
+      models: {
+        caption: '테스트한 모델',
+        groups: [
+          { label: 'Experiment 0 패널(gates.json)', items: [
+            { name: 'Qwen3-235B-A22B-2507', href: 'https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507', note: 'Bedrock qwen.qwen3-235b-a22b-2507-v1:0, 테스트 환경' },
+            { name: 'Llama 3.3 70B Instruct (judge_a)', href: 'https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct', note: 'Bedrock us.meta.llama3-3-70b-instruct-v1:0' },
+            { name: 'Claude Sonnet 4.6 (judge_b)', href: 'https://www.anthropic.com/claude', note: 'Bedrock us.anthropic.claude-sonnet-4-6' },
+            { name: 'GPT-5.1 (judge_c)', href: 'https://platform.openai.com/docs/models/gpt-5.1', note: 'OpenAI gpt-5.1' },
+          ] },
+        ],
+      },
       stats: [
         { value: '339', label: '심사단 일치율 측정의 전체 셀 수' },
         { value: '0.95', label: 'Oracle 일관성(기준 0.90)' },

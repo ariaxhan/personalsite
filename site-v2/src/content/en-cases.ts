@@ -3,13 +3,21 @@ import type { CaseSlug } from './data';
 
 export interface ResultBar { label: string; value: number; display: string; meta?: string }
 export interface ResultTable { caption: string; note?: string; headers: string[]; rows: string[][] }
+export interface ResultModel {
+  name: string;
+  href?: string;
+  note?: string;
+}
+
 export interface CaseResults {
   title: string;
   source: string;
+  lede?: string;
   stats?: { value: string; label: string }[];
   bars?: { caption: string; items: ResultBar[] }[];
   grouped?: { caption: string; seriesA: string; seriesB: string; items: { label: string; a: number; aDisplay: string; b: number; bDisplay: string }[] };
   tables?: ResultTable[];
+  models?: { caption: string; groups: { label: string; items: ResultModel[] }[] };
 }
 
 export interface CaseStudy {
@@ -162,6 +170,31 @@ export const enCases: Record<CaseSlug, CaseStudy> = {
     results: {
       title: 'Measured results',
       source: 'Grading v3 rescore, Oct 2, 2026. All 168 archived answers rescored with repaired graders; no new answers, no prompt changes. PASS means a full grader score of 1.0. Temperature 0.0.',
+      models: {
+        caption: 'Models tested',
+        groups: [
+          { label: 'Grading v3 rescore, Oct 2, 2026', items: [
+            { name: 'gpt-6.1-sol', href: 'https://platform.openai.com/docs/models/gpt-6.1-sol', note: 'Codex CLI' },
+            { name: 'qwen3-coder:30b', href: 'https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct', note: 'Ollama' },
+            { name: 'devstral-small-2:24b', href: 'https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512', note: 'Ollama' },
+            { name: 'lfm2.5:8b', href: 'https://huggingface.co/LiquidAI/LFM2.5-8B-A1B', note: 'Ollama' },
+          ] },
+          { label: 'Claude tiers, historical (pre-correction)', items: [
+            { name: 'Opus 4.8', href: 'https://www.anthropic.com/claude', note: 'Claude Code harness' },
+            { name: 'Opus 4.7', href: 'https://www.anthropic.com/claude', note: 'Claude Code harness' },
+            { name: 'Sonnet 4.6', href: 'https://www.anthropic.com/claude', note: 'Claude Code harness' },
+            { name: 'Haiku 4.5', href: 'https://www.anthropic.com/claude', note: 'Claude Code harness' },
+          ] },
+          { label: 'Local models, standard suite, historical (pre-correction)', items: [
+            { name: 'llama3.2:3b', href: 'https://huggingface.co/meta-llama/Llama-3.2-3B', note: 'Ollama' },
+            { name: 'phi4:14b', href: 'https://huggingface.co/microsoft/phi-4', note: 'Ollama' },
+            { name: 'qwen2.5-coder:7b', href: 'https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct', note: 'Ollama' },
+            { name: 'apple-foundationmodel', href: 'https://developer.apple.com/documentation/foundationmodels', note: 'Apple Intelligence' },
+            { name: 'mistral:7b', href: 'https://huggingface.co/mistralai/Mistral-7B-v0.1', note: 'Ollama' },
+            { name: 'qwen3.5:4b', href: 'https://huggingface.co/Qwen/Qwen3.5-4B', note: 'Ollama' },
+          ] },
+        ],
+      },
       stats: [
         { value: '42', label: 'tests, 12 routine + 30 stress, every one programmatic' },
         { value: '168', label: 'archived answers rescored with repaired graders' },
@@ -222,6 +255,18 @@ export const enCases: Record<CaseSlug, CaseStudy> = {
     results: {
       title: 'Measured results',
       source: 'Experiment 0 gate results, protocol 9a730f21729df095. Nine gates decide whether the instrument is certified. A failed hard gate means NOT CERTIFIED.',
+      lede: 'Experiment 0 checked whether the judging setup itself could be trusted, before any model was scored. It failed on provenance: the test material has no record of where it came from, so no score from this run is certified.',
+      models: {
+        caption: 'Models tested',
+        groups: [
+          { label: 'Experiment 0 panel (gates.json)', items: [
+            { name: 'Qwen3-235B-A22B-2507', href: 'https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507', note: 'Bedrock qwen.qwen3-235b-a22b-2507-v1:0, test environment' },
+            { name: 'Llama 3.3 70B Instruct (judge_a)', href: 'https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct', note: 'Bedrock us.meta.llama3-3-70b-instruct-v1:0' },
+            { name: 'Claude Sonnet 4.6 (judge_b)', href: 'https://www.anthropic.com/claude', note: 'Bedrock us.anthropic.claude-sonnet-4-6' },
+            { name: 'GPT-5.1 (judge_c)', href: 'https://platform.openai.com/docs/models/gpt-5.1', note: 'OpenAI gpt-5.1' },
+          ] },
+        ],
+      },
       stats: [
         { value: '339', label: 'full cells in the panel agreement measurement' },
         { value: '0.95', label: 'oracle consistency (threshold 0.90)' },
