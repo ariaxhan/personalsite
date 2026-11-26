@@ -201,6 +201,9 @@ export const en = {
     ],
     linksLine: ['For the detailed chronology and publicly verifiable work, see the ', 'experience', ', the ', 'hackathons', ', ', 'GitHub', ', and ', 'LinkedIn', '.'],
     booksHeading: 'On the shelf.',
+    booksHoverHint: 'Pull a book from the shelf.',
+    booksSelectedLabel: 'Selected note',
+    booksCurrent: 'current favorite',
     books: [
       { why: 'Written between 1995 and 1998, but they read like they were published last year.', note: 'AI plays a major role, both similar to and stranger than what we know now. So do consciousness, artificial beings, centuries of history, planets, civilizations, species. Exactly my kind of book.' },
       { why: 'My favorite book of all time, by far the most beautiful prose I have ever read.', note: 'Two authors, two narrators, two lovers chasing each other through time and space. After too much AI-generated slop, this is the book I come back to when I need to remember how lovely language can be.' },

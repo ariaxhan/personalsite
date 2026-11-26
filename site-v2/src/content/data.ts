@@ -85,12 +85,12 @@ export const writing = [
   { href: 'https://medium.com/@ariaxhan/grok-bot-cursors-bet-on-multi-agent-ai-77d69ba8b290', title: "Grok Bot: Cursor's Bet on Multi-Agent AI" },
 ];
 export const books = [
-  { title: 'The Nanotech Succession', author: 'Linda Nagata' },
-  { title: 'This Is How You Lose the Time War', author: 'Amal El-Mohtar & Max Gladstone' },
-  { title: 'The Fall of Princes', author: 'Robert Goolrick' },
-  { title: 'Down the Drain', author: 'Julia Fox' },
-  { title: 'Before the Coffee Gets Cold', author: 'Toshikazu Kawaguchi' },
-  { title: 'Babel, or the Necessity of Violence', author: 'R. F. Kuang' },
+  { title: 'The Nanotech Succession', author: 'Linda Nagata', color: '#56695a' },
+  { title: 'This Is How You Lose the Time War', author: 'Amal El-Mohtar & Max Gladstone', color: '#485a4d', current: true },
+  { title: 'The Fall of Princes', author: 'Robert Goolrick', color: '#6f8696' },
+  { title: 'Down the Drain', author: 'Julia Fox', color: '#b56a4f' },
+  { title: 'Before the Coffee Gets Cold', author: 'Toshikazu Kawaguchi', color: '#b08a4c' },
+  { title: 'Babel, or the Necessity of Violence', author: 'R. F. Kuang', color: '#8a4b3a', current: true },
 ];
 export const NOVEL = { title: 'The Correction', href: 'https://www.amazon.com/dp/B0HKVKNBL9' };
 

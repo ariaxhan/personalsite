@@ -2,7 +2,8 @@
 import Base from '../layouts/Base.astro';
 import PageTop from '../components/PageTop.astro';
 import { getCopy, localePath, type Locale } from '../content';
-import { books, social } from '../content/data';
+import { social } from '../content/data';
+import Bookshelf from '../components/Bookshelf.astro';
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = getCopy(locale);
@@ -21,9 +22,7 @@ const u = 'text-decoration:underline';
   </section>
   <section aria-labelledby="books-heading" class="about-block books-block" id="bookshelf">
     <h2 id="books-heading">{a.booksHeading}</h2>
-    <ul class="books">
-      {books.map((b, i) => <li class="book"><span class="eyebrow">{b.author}</span><h3>{b.title}</h3><p><strong>{a.books[i].why}</strong></p><p>{a.books[i].note}</p></li>)}
-    </ul>
+    <Bookshelf locale={locale} />
   </section>
   <section aria-labelledby="obsessions-heading" class="about-block obsessions-block" id="obsessions">
     <h2 id="obsessions-heading">{a.obsessionsHeading}</h2>

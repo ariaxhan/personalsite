@@ -1,0 +1,100 @@
+---
+import { books } from '../content/data';
+import { getCopy, type Locale } from '../content';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = getCopy(locale);
+const a = t.about;
+// Full book data: title, author, color, current (from data.ts) + why, note (from locale copy).
+const shelf = books.map((b, i) => ({
+  title: b.title,
+  author: b.author,
+  color: (b as { color?: string }).color ?? '#8c779f',
+  current: (b as { current?: boolean }).current ?? false,
+  why: a.books[i]?.why ?? '',
+  note: a.books[i]?.note ?? '',
+}));
+const widths = [46, 38, 42, 40, 44, 48];
+const heights = [270, 292, 248, 236, 260, 304];
+const compactTitle = (title: string) =>
+  title.replace(', or the Necessity of Violence', '').replace('This Is How You Lose the Time War', 'Time War');
+const lastName = (author: string) => author.split(' ').slice(-1)[0];
+---
+<div class="bookshelf" id="bookshelf-case">
+  <p class="bookshelf-hint">{a.booksHoverHint}</p>
+  <div class="bookshelf-grid">
+    <div class="bookshelf-case">
+      <div class="bookshelf-shelf" aria-hidden="true"></div>
+      <div class="bookshelf-spines">
+        {shelf.map((book, i) => (
+          <button
+            type="button"
+            class="book-spine"
+            data-index={i}
+            aria-pressed={i === 0 ? 'true' : 'false'}
+            aria-label={`${book.title} by ${book.author}`}
+            style={`width:${widths[i % widths.length]}px;height:${heights[i % heights.length]}px;background:${book.color}`}
+          >
+            <span class="spine-rule" aria-hidden="true"></span>
+            <span class="spine-title">{compactTitle(book.title)}</span>
+            <span class="spine-author">{lastName(book.author)}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+    <aside class="bookshelf-detail" aria-live="polite">
+      <div class="bookshelf-label">{a.booksSelectedLabel}</div>
+      <div class="bookshelf-selected">
+        <h3 class="bookshelf-title" id="bookshelf-title">{shelf[0].title}</h3>
+        <span class="bookshelf-current" id="bookshelf-current" hidden={!shelf[0].current}>{a.booksCurrent}</span>
+      </div>
+      <p class="bookshelf-author" id="bookshelf-author">{shelf[0].author}</p>
+      <p class="bookshelf-why" id="bookshelf-why">{shelf[0].why}</p>
+      <p class="bookshelf-note" id="bookshelf-note">{shelf[0].note}</p>
+    </aside>
+  </div>
+  <div class="bookshelf-list">
+    {shelf.map((book, i) => (
+      <button type="button" class="bookshelf-item" data-index={i}>
+        <span class="bookshelf-num">{String(i + 1).padStart(2, '0')}</span>
+        <span class="bookshelf-item-title">{book.title}</span>
+        <span class="bookshelf-item-author">{book.author}</span>
+      </button>
+    ))}
+  </div>
+</div>
+<script define:vars={{ shelf }}>
+  const root = document.getElementById('bookshelf-case');
+  if (root) {
+    const spines = Array.from(root.querySelectorAll('.book-spine'));
+    const items = Array.from(root.querySelectorAll('.bookshelf-item'));
+    const titleEl = document.getElementById('bookshelf-title');
+    const authorEl = document.getElementById('bookshelf-author');
+    const whyEl = document.getElementById('bookshelf-why');
+    const noteEl = document.getElementById('bookshelf-note');
+    const currentEl = document.getElementById('bookshelf-current');
+    function setActive(i) {
+      const book = shelf[i];
+      if (!book) return;
+      spines.forEach((s, j) => {
+        s.classList.toggle('is-active', j === i);
+        s.setAttribute('aria-pressed', j === i ? 'true' : 'false');
+      });
+      items.forEach((it, j) => it.classList.toggle('is-active', j === i));
+      if (titleEl) titleEl.textContent = book.title;
+      if (authorEl) authorEl.textContent = book.author;
+      if (whyEl) whyEl.textContent = book.why;
+      if (noteEl) noteEl.textContent = book.note;
+      if (currentEl) currentEl.hidden = !book.current;
+    }
+    const bind = (el, i) => {
+      el.addEventListener('mouseenter', () => setActive(i));
+      el.addEventListener('focus', () => setActive(i));
+      el.addEventListener('click', () => setActive(i));
+    };
+    spines.forEach((s, i) => bind(s, i));
+    items.forEach((it, i) => bind(it, i));
+    if (spines[0]) spines[0].classList.add('is-active');
+    if (items[0]) items[0].classList.add('is-active');
+  }
+</script>
