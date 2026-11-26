@@ -36,7 +36,7 @@ export const serviceLd = {
 const url = (path: string) => `${SITE}${path}`;
 
 export const record = {
-  person: { name: 'Aria Han', role: 'CTO, Thinking Brain School', location: 'California, relocating to New York City', email: EMAIL, booking: BOOKING, links: social },
+  person: { name: 'Aria Han', role: 'CTO, Thinking Brain School', location: 'California, open to relocating to New York, Chicago, San Francisco, or London', email: EMAIL, booking: BOOKING, links: social },
   availability: en.workWithMe.jobsBody,
   stats: {
     commits: motionStats.commits,
