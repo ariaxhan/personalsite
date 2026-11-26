@@ -77,6 +77,12 @@ export const enCases: Record<CaseSlug, CaseStudy> = {
     highlight: { title: 'Live on the App Store and Google Play', body: 'Available for iPhone, iPad, Mac, and Android. Scope is documented on the public curriculum page, not proven educational impact.' },
     flow: ['Concept', 'Prediction', 'Exercise', 'Feedback', 'Review'],
     note: 'Feature descriptions follow the public ModelMind website; they may change as the product evolves.',
+    gallery: [
+      { src: '/studio/modelmind-1.jpg', alt: 'ModelMind app screen' },
+      { src: '/studio/modelmind-3.jpg', alt: 'ModelMind app screen' },
+      { src: '/studio/modelmind-2.jpg', alt: 'ModelMind app screen' },
+      { src: '/studio/modelmind-4.jpg', alt: 'ModelMind app screen' },
+    ],
   },
   'thinking-brain-school': {
     name: 'Thinking Brain School',

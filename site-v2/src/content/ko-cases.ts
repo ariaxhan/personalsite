@@ -64,6 +64,12 @@ export const koCases: Cases = {
     highlight: { title: 'App Store 및 Google Play 출시', body: 'iPhone, iPad, Mac, Android에서 이용할 수 있습니다. 범위는 공개 커리큘럼 페이지에 기록되어 있으며, 교육 효과가 입증되었다는 뜻은 아닙니다.' },
     flow: ['개념', '예측', '연습', '피드백', '복습'],
     note: '기능 설명은 공개된 ModelMind 웹사이트를 따르며, 제품이 발전하면서 바뀔 수 있습니다.',
+    gallery: [
+      { src: '/studio/modelmind-1.jpg', alt: 'ModelMind 앱 화면' },
+      { src: '/studio/modelmind-3.jpg', alt: 'ModelMind 앱 화면' },
+      { src: '/studio/modelmind-2.jpg', alt: 'ModelMind 앱 화면' },
+      { src: '/studio/modelmind-4.jpg', alt: 'ModelMind 앱 화면' },
+    ],
   },
   'thinking-brain-school': {
     name: 'Thinking Brain School',
