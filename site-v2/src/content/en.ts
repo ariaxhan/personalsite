@@ -38,7 +38,7 @@ export const en = {
     talk: "Let's talk",
   },
   footer: {
-    eyebrow: 'Open to full-time roles in New York, Chicago, San Francisco, and London, and to client work',
+    eyebrow: 'Open to full-time roles in New York, Chicago, San Francisco, and London',
     heading: ["Let's", 'talk.'],
     note: 'Selected work highlights public and independently owned projects.',
     hackathons: 'Hackathons',
