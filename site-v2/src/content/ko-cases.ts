@@ -23,7 +23,6 @@ export const koCases: Cases = {
     note: '이 케이스 스터디는 창업자가 직접 밝힌 경험과 공개적으로 설명된 제품 범위를 바탕으로 합니다. 상세한 리서치 결과와 사용자 단위 데이터는 의도적으로 생략했습니다.',
     videos: [
       { src: '/studio/demo-heycontext.mp4', poster: '/studio/demo-heycontext-poster.jpg', label: 'HeyContext 제품 데모' },
-      { src: '/studio/demo-heycontent.mp4', poster: '/studio/demo-heycontent-poster.jpg', label: 'HeyContent 제품 데모' },
     ],
   },
   kernel: {

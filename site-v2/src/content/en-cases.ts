@@ -36,7 +36,6 @@ export const enCases: Record<CaseSlug, CaseStudy> = {
     note: 'This case study uses founder-reported experience and publicly described product scope. Detailed research findings and user-level data are intentionally omitted.',
     videos: [
       { src: '/studio/demo-heycontext.mp4', poster: '/studio/demo-heycontext-poster.jpg', label: 'HeyContext product demo' },
-      { src: '/studio/demo-heycontent.mp4', poster: '/studio/demo-heycontent-poster.jpg', label: 'HeyContent product demo' },
     ],
   },
   kernel: {
