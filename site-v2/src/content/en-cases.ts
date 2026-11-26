@@ -10,6 +10,8 @@ export interface CaseStudy {
   highlight: { title: string; body: string };
   flow: string[];
   note: string;
+  videos?: { src: string; poster: string; label: string }[];
+  gallery?: { src: string; alt: string }[];
 }
 
 export const enCases: Record<CaseSlug, CaseStudy> = {
@@ -32,6 +34,10 @@ export const enCases: Record<CaseSlug, CaseStudy> = {
     highlight: { title: 'Hundreds of users in month one', body: 'HeyContext reached an early audience without paid advertising. This is adoption evidence, not a claim of retention or revenue.' },
     flow: ['Research', 'Prioritize', 'Design & build', 'Release', 'Learn'],
     note: 'This case study uses founder-reported experience and publicly described product scope. Detailed research findings and user-level data are intentionally omitted.',
+    videos: [
+      { src: '/studio/demo-heycontext.mp4', poster: '/studio/demo-heycontext-poster.jpg', label: 'HeyContext product demo' },
+      { src: '/studio/demo-heycontent.mp4', poster: '/studio/demo-heycontent-poster.jpg', label: 'HeyContent product demo' },
+    ],
   },
   kernel: {
     name: 'KERNEL',
@@ -171,6 +177,11 @@ export const enCases: Record<CaseSlug, CaseStudy> = {
     highlight: { title: 'Voice, biometrics, on-device inference', body: 'All three working together in a TestFlight build.' },
     flow: ['Watch', 'Signal', 'Reflect', 'Support'],
     note: 'Brink Mind did not launch publicly. This page describes the TestFlight build.',
+    gallery: [
+      { src: '/studio/brink-landing.jpg', alt: 'Brink Mind landing screen' },
+      { src: '/studio/brink-app-1.jpg', alt: 'Brink Mind app screen' },
+      { src: '/studio/brink-app-2.jpg', alt: 'Brink Mind app screen' },
+    ],
   },
 };
 

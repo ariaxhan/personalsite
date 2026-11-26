@@ -21,6 +21,10 @@ export const koCases: Cases = {
     highlight: { title: '첫 달 사용자 수백 명', body: 'HeyContext는 유료 광고 없이 초기 사용자를 모았습니다. 이는 채택의 증거이며, 리텐션이나 매출에 대한 주장이 아닙니다.' },
     flow: ['리서치', '우선순위', '디자인 & 개발', '출시', '학습'],
     note: '이 케이스 스터디는 창업자가 직접 밝힌 경험과 공개적으로 설명된 제품 범위를 바탕으로 합니다. 상세한 리서치 결과와 사용자 단위 데이터는 의도적으로 생략했습니다.',
+    videos: [
+      { src: '/studio/demo-heycontext.mp4', poster: '/studio/demo-heycontext-poster.jpg', label: 'HeyContext 제품 데모' },
+      { src: '/studio/demo-heycontent.mp4', poster: '/studio/demo-heycontent-poster.jpg', label: 'HeyContent 제품 데모' },
+    ],
   },
   kernel: {
     name: 'KERNEL',
@@ -160,5 +164,10 @@ export const koCases: Cases = {
     highlight: { title: '음성, 생체 신호, 온디바이스 추론', body: 'TestFlight 빌드에서 세 가지가 함께 동작했습니다.' },
     flow: ['워치', '신호', '성찰', '지원'],
     note: 'Brink Mind는 공개 출시되지 않았습니다. 이 페이지는 TestFlight 빌드를 설명합니다.',
+    gallery: [
+      { src: '/studio/brink-landing.jpg', alt: 'Brink Mind 랜딩 화면' },
+      { src: '/studio/brink-app-1.jpg', alt: 'Brink Mind 앱 화면' },
+      { src: '/studio/brink-app-2.jpg', alt: 'Brink Mind 앱 화면' },
+    ],
   },
 };
