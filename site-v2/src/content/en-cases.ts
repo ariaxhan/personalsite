@@ -31,7 +31,7 @@ export const enCases: Record<CaseSlug, CaseStudy> = {
   heycontext: {
     name: 'HeyContext',
     eyebrow: 'Product leadership / user research',
-    intro: 'Owning product direction from user research to shipped AI tools.',
+    intro: 'Owning product direction from user research to a shipped system generator.',
     details: [
       { label: 'Role', value: 'Founder & CEO' },
       { label: 'Team', value: 'UX research, design, engineering' },
@@ -39,10 +39,10 @@ export const enCases: Record<CaseSlug, CaseStudy> = {
       { label: 'Public outcome', value: 'Hundreds of early users' },
     ],
     sections: [
-      { label: '01 / Problem', title: 'What we set out to solve', paragraphs: ['The products explored how people could work with AI using shared context, persistent memory, and collaborative interfaces rather than isolated chat sessions. As a founder, I was responsible for deciding which problems deserved product investment, not simply how to implement features.'] },
+      { label: '01 / Problem', title: 'What we set out to solve', paragraphs: ['The product started from a simple observation: other AI gives advice, and the user still has to do the work. HeyContext was built to do the work instead. One request, and coordinated agents build a complete system in 90 seconds: interconnected timelines, trackers, reports, and emails, ready to use. As a founder, I was responsible for deciding which problems deserved product investment, not simply how to implement features.'] },
       { label: '02 / Discovery', title: 'Research shaped the product', paragraphs: ['I managed a team of UX researchers and interns who conducted the usability interviews and reported their findings to me. I then iterated on the designs with our design interns. Those findings informed product requirements and ongoing prioritization.', 'This was cross-functional product work: research, design, engineering, and the two cofounders needed a common view of what we were building and why.'] },
       { label: '03 / Leadership', title: 'From priorities to delivery', paragraphs: ['Across HeyContent and HeyContext, I managed teams of up to nine people. The work included regular one-on-ones, reviewing deliverables, coordinating researchers and engineers, and supporting five UX research interns as they moved into continuing roles.', 'I owned the product direction while staying close enough to implementation to understand technical tradeoffs and execution constraints.'] },
-      { label: '04 / Outcome', title: 'What shipped and what I learned', paragraphs: ['HeyContext launched as a multi-agent workspace with shared context, cross-provider model routing, and collaborative artifacts. It reached hundreds of users in its first month without paid advertising.', 'The strongest lesson was operational: product direction is an ongoing series of decisions, not a strategy document written once and handed off.'] },
+      { label: '04 / Outcome', title: 'What shipped and what I learned', paragraphs: ['HeyContext launched as a system generator: one request, and coordinated agents build a complete system in 90 seconds, with interconnected artifacts that reference each other. It reached hundreds of users in its first month without paid advertising.', 'The strongest lesson was operational: product direction is an ongoing series of decisions, not a strategy document written once and handed off.'] },
     ],
     highlight: { title: 'Hundreds of users in month one', body: 'HeyContext reached an early audience without paid advertising. This is adoption evidence, not a claim of retention or revenue.' },
     flow: ['Research', 'Prioritize', 'Design & build', 'Release', 'Learn'],
