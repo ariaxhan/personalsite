@@ -93,6 +93,7 @@ export const books = [
   { title: 'Babel, or the Necessity of Violence', author: 'R. F. Kuang', color: '#8a4b3a', current: true },
 ];
 export const NOVEL = { title: 'The Correction', href: 'https://www.amazon.com/dp/B0HKVKNBL9' };
+export const POETRY = { title: 'Notes on Surviving Eternity', href: 'https://a.co/d/06Umv2B4' };
 
 export const motionStats = {
   commits: motion.grandTotal,

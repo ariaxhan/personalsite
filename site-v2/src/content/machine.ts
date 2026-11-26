@@ -64,7 +64,7 @@ export const writingText = () => [
   '',
   ...r.writing.highlights.map((w) => `- [${w.title}](${w.href}) (${w.topic})`),
   `- Novel: [${r.writing.novel.title}](${r.writing.novel.href})`,
-  `- Poetry: ${r.writing.poetry}`,
+  `- Poetry: [${r.writing.poetry.title}](${r.writing.poetry.href})`,
   `- All writing: ${r.writing.all}`,
 ].join('\n');
 

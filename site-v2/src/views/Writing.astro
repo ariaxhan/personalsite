@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageTop from '../components/PageTop.astro';
 import { getCopy, type Locale } from '../content';
-import { MEDIUM, NOVEL, writing } from '../content/data';
+import { MEDIUM, NOVEL, POETRY, writing } from '../content/data';
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = getCopy(locale);
@@ -21,7 +21,7 @@ const w = t.writingPage;
     <div class="section-head"><h2 id="books-heading">{w.booksHeading}</h2></div>
     <ul class="rows">
       <li><span class="row-meta">{w.novel}</span><a href={NOVEL.href} rel="noopener noreferrer" target="_blank"><strong>{NOVEL.title}</strong></a><p>{w.novelNote}</p></li>
-      <li><span class="row-meta">{w.poetry}</span><strong>{w.poetryTitle}</strong><p>{w.poetryNote}</p></li>
+      <li><span class="row-meta">{w.poetry}</span><a href={POETRY.href} rel="noopener noreferrer" target="_blank"><strong>{w.poetryTitle}</strong></a><p>{w.poetryNote}</p></li>
     </ul>
   </section>
 </Base>

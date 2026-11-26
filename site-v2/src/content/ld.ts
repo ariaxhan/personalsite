@@ -1,7 +1,7 @@
 // schema.org nodes and the machine-readable record shared by JSON-LD, /api/*.json, llms.txt and agent skills.
 import { en } from './en';
 import { enCases } from './en-cases';
-import { BOOKING, EMAIL, MEDIUM, NOVEL, SITE, caseSlugs, hackathons, liveCount, motionStats, projects, social, writing } from './data';
+import { BOOKING, EMAIL, MEDIUM, NOVEL, POETRY, SITE, caseSlugs, hackathons, liveCount, motionStats, projects, social, writing } from './data';
 
 export const personLd = {
   '@type': 'Person',
@@ -53,7 +53,7 @@ export const record = {
   caseStudies: caseSlugs.map((slug) => ({ slug, name: enCases[slug].name, url: url(`/projects/${slug}/`), summary: enCases[slug].intro })),
   projects: projects.map((p) => ({ name: p.name, group: p.group, ...en.projects[p.name], url: p.caseSlug ? url(`/projects/${p.caseSlug}/`) : undefined, links: p.links })),
   hackathons: hackathons.map((h) => ({ name: h.name, year: h.year, result: h.win ? 'Winner' : 'Finalist', ...en.hackathonsPage.entries[h.name], technologies: h.tech, link: h.link.href })),
-  writing: { highlights: writing.map((w, i) => ({ ...w, topic: en.writingPage.topics[i] })), novel: NOVEL, poetry: en.writingPage.poetryTitle, all: MEDIUM },
+  writing: { highlights: writing.map((w, i) => ({ ...w, topic: en.writingPage.topics[i] })), novel: NOVEL, poetry: POETRY, all: MEDIUM },
   workWithMe: { engagements: en.workWithMe.engagements, goodFit: en.workWithMe.goodFitItems, notAFit: en.workWithMe.notFitItems, booking: BOOKING, projectReview: url('/work-with-me/#review') },
 };
 
