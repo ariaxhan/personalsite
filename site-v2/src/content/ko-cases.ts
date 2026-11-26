@@ -129,6 +129,46 @@ export const koCases: Cases = {
     highlight: { title: '테스트 42개, 모두 코드로 검증', body: '로컬 모델, Apple Intelligence, Claude 각 등급, Bedrock, 또는 OpenAI 호환 엔드포인트 무엇이든.' },
     flow: ['작업', '모델', '검증기', '점수', '비교'],
     note: '테스트 수는 공개 저장소 README를 따릅니다.',
+    results: {
+      title: '측정 결과',
+      source: '채점 v3 재채점, 2026년 10월 2일. 보관된 답변 168개를 수리된 채점기로 다시 채점했습니다. 새 답변이나 프롬프트 변경은 없습니다. PASS는 만점 1.0을 뜻합니다. 온도 0.0.',
+      stats: [
+        { value: '42', label: '개 테스트, 일상 12개 + 스트레스 30개, 모두 프로그램 검증' },
+        { value: '168', label: '개 보관 답변을 수리된 채점기로 재채점' },
+        { value: '30/30', label: '스트레스 만점, gpt-6.1-sol' },
+        { value: '+0.60 / -0.65', label: '확신-근거 격차: 자신만만한 환각 대 근거 있는 사실' },
+      ],
+      bars: [
+        { caption: '전체 점수, 42개 테스트, 채점 v3', items: [
+          { label: 'gpt-6.1-sol · Codex CLI', value: 0.9928571428571429, display: '0.993', meta: '42개 중 41개 만점 · 740초' },
+          { label: 'qwen3-coder:30b · Ollama', value: 0.8573885109599395, display: '0.857', meta: '42개 중 29개 만점 · 103초' },
+          { label: 'devstral-small-2:24b · Ollama', value: 0.8558390022675737, display: '0.856', meta: '42개 중 25개 만점 · 380초' },
+          { label: 'lfm2.5:8b · Ollama', value: 0.8228798185941043, display: '0.823', meta: '42개 중 29개 만점 · 259초' },
+        ] },
+      ],
+      grouped: { caption: '일상(12개) 대 스트레스(30개), 평균 점수', seriesA: '일상', seriesB: '스트레스', items: [
+        { label: 'gpt-6.1-sol', a: 0.975, aDisplay: '0.975', b: 1.0, bDisplay: '1.000' },
+        { label: 'qwen3-coder:30b', a: 0.9880952380952381, aDisplay: '0.988', b: 0.8051058201058201, bDisplay: '0.805' },
+        { label: 'devstral-small-2:24b', a: 0.9880952380952381, aDisplay: '0.988', b: 0.802936507936508, bDisplay: '0.803' },
+        { label: 'lfm2.5:8b', a: 0.7566666666666667, aDisplay: '0.757', b: 0.8493650793650793, bDisplay: '0.849' },
+      ] },
+      tables: [
+        { caption: 'Claude 티어, 과거 기록(수정 전)', note: '2026년 6월 1일, Claude Code 하네스로 측정했습니다. Raw API가 아니라서 위 Ollama 점수와 직접 비교할 수 없습니다. 네 티어 모두 정직성 트랩 6개를 모두 거부하고 심어 둔 버그를 모두 찾았습니다.', headers: ['모델', '표준(11개)', '고난도(10개)', '합계(21개)', '정직성 트랩', '심어 둔 버그'], rows: [
+          ['Opus 4.8', '0.903', '0.73', '0.821', '6/6 거부', '모두 찾음'],
+          ['Opus 4.7', '0.904', '0.81', '0.859', '6/6 거부', '모두 찾음'],
+          ['Sonnet 4.6', '0.823', '0.67', '0.750', '6/6 거부', '모두 찾음'],
+          ['Haiku 4.5', '0.876', '0.67', '0.778', '6/6 거부', '모두 찾음'],
+        ] },
+        { caption: '로컬 모델, 표준 스위트(11개 테스트), 과거 기록(수정 전)', note: 'M4 Pro 24GB. Apple Intelligence는 39초, llama3.2:3b는 102초, phi4:14b는 271초.', headers: ['모델', '점수', '시간'], rows: [
+          ['llama3.2:3b', '0.82', '102초'],
+          ['phi4:14b', '0.81', '271초'],
+          ['qwen2.5-coder:7b', '0.79', '561초'],
+          ['apple-foundationmodel', '0.74', '39초'],
+          ['mistral:7b', '0.72', '285초'],
+          ['qwen3.5:4b', '0.23', '896초'],
+        ] },
+      ],
+    },
   },
   'model-familiarity-engine': {
     name: 'model-familiarity-engine',
@@ -149,6 +189,41 @@ export const koCases: Cases = {
     highlight: { title: '어떤 모델이 최고인지가 아니라, 이 모델이 쌓아 온 것', body: '모델 카드는 결과를 아는 작업을 재현하며 관찰한 행동에서 나옵니다.' },
     flow: ['대화 기록', '민감 정보 제거', '재현', '관찰', '모델 카드'],
     note: '이 페이지는 출시된 루프를 설명하며, 저장소 범위를 넘어서는 벤치마크 커버리지를 주장하지 않습니다.',
+    results: {
+      title: '측정 결과',
+      source: '실험 0 게이트 결과, 프로토콜 9a730f21729df095. 아홉 개 게이트가 기기 인증을 결정합니다. 핵심 게이트 하나라도 실패하면 인증 불가(NOT CERTIFIED)입니다.',
+      stats: [
+        { value: '339', label: '심사단 일치율 측정의 전체 셀 수' },
+        { value: '0.95', label: 'Oracle 일관성(기준 0.90)' },
+        { value: '9', label: '인증 기기의 게이트 수' },
+        { value: 'NOT CERTIFIED', label: '판정: 출처 기록 실패, 게이트 2개 대기' },
+      ],
+      bars: [
+        { caption: '심사자별 신뢰도(하한 0.71, 목표 0.80)', items: [
+          { label: 'judge_a', value: 1.0, display: '1.00' },
+          { label: 'judge_b', value: 0.97, display: '0.97' },
+          { label: 'judge_c', value: 0.92, display: '0.92' },
+        ] },
+        { caption: '심사자 간 일치율(평균 0.74, 기준 0.67)', items: [
+          { label: 'judge_a | judge_b', value: 0.65, display: '0.65' },
+          { label: 'judge_a | judge_c', value: 0.73, display: '0.73' },
+          { label: 'judge_b | judge_c', value: 0.84, display: '0.84' },
+        ] },
+      ],
+      tables: [
+        { caption: '실험 0 게이트', note: '판정: NOT CERTIFIED. 출처 기록 실패: 5개 소스 샤드 해시는 바이트 보관용으로 확인됐지만, 수집 시점 프로토콜/루브릭 스탬프가 없습니다. 기기가 그 간극을 잡아내 통과시키지 않았습니다.', headers: ['게이트', '값', '상태'], rows: [
+          ['Oracle 일관성', '0.95', 'PASS'],
+          ['심사자 신뢰도, 최소', '0.92', 'PASS'],
+          ['심사단 심사자 간 일치율', '0.74', 'PASS'],
+          ['블라인드 누출, 제공자 추측', '최대 40% 대 우연 25%', 'PASS'],
+          ['과제 모호성', '범위 25-87%', 'PASS'],
+          ['플로어 게이트', '통과', 'PASS'],
+          ['Oracle 거짓 음성률', '대기', 'PENDING'],
+          ['인간 기준 일치율', '대기', 'PENDING'],
+          ['출처 기록', '소급 적용만 가능', 'FAIL'],
+        ] },
+      ],
+    },
   },
   'brink-mind': {
     name: 'Brink Mind',

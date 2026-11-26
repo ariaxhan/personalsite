@@ -11,6 +11,8 @@ const nextSlug = caseSlugs[(caseSlugs.indexOf(slug) + 1) % caseSlugs.length];
 const next = cases[nextSlug];
 const link = caseLinks[slug];
 const ld = [{ '@type': 'CreativeWork', name: c.name, description: c.intro, url: SITE + localePath(locale, '/projects/' + slug + '/'), creator: { '@id': `${SITE}/#person` }, inLanguage: locale }];
+const pct = (v: number) => `${Math.round(v * 1000) / 10}%`;
+const statusClass = (cell: string) => cell === 'PASS' ? 'st-pass' : cell === 'FAIL' ? 'st-fail' : cell === 'PENDING' ? 'st-pend' : '';
 ---
 <Base locale={locale} title={format(t.meta.caseTitle, { name: c.name })} description={c.intro} ld={ld}>
   <div class="page-top"><a class="back" href={localePath(locale, '/work/')}>{t.common.allWork}</a><p class="eyebrow">{c.eyebrow}</p><h1>{c.name}</h1><p class="intro">{c.intro}</p></div>
@@ -23,6 +25,14 @@ const ld = [{ '@type': 'CreativeWork', name: c.name, description: c.intro, url: 
     <article class="case-story">
       {c.sections.map((s) => <section><p class="eyebrow">{s.label}</p><h2>{s.title}</h2>{s.paragraphs.map((p) => <p>{p}</p>)}</section>)}
       <div class="case-highlight"><span class="eyebrow">{t.common.keyPoint}</span><strong>{c.highlight.title}</strong><p>{c.highlight.body}</p></div>
+      {c.results && <div class="case-results">
+        <h3>{c.results.title}</h3>
+        <p class="case-results-source">{c.results.source}</p>
+        {c.results.stats && <div class="case-stats">{c.results.stats.map((s) => <div><strong>{s.value}</strong><span>{s.label}</span></div>)}</div>}
+        {c.results.bars && c.results.bars.map((b) => <div class="case-chart"><p class="case-chart-caption">{b.caption}</p>{b.items.map((it) => <div class="case-bar-row"><div class="case-bar-head"><span>{it.label}</span><strong>{it.display}</strong></div><div class="case-bar-track"><div class="case-bar-fill" style={{ width: pct(it.value) }}></div></div>{it.meta && <p class="case-bar-meta">{it.meta}</p>}</div>)}</div>)}
+        {c.results.grouped && <div class="case-chart"><p class="case-chart-caption">{c.results.grouped.caption}</p><p class="case-legend"><span class="lg-a">{c.results.grouped.seriesA}</span><span class="lg-b">{c.results.grouped.seriesB}</span></p>{c.results.grouped.items.map((it) => <div class="case-bar-row"><div class="case-bar-head"><span>{it.label}</span><strong>{it.aDisplay} / {it.bDisplay}</strong></div><div class="case-bar-track"><div class="case-bar-fill fill-a" style={{ width: pct(it.a) }}></div></div><div class="case-bar-track"><div class="case-bar-fill fill-b" style={{ width: pct(it.b) }}></div></div></div>)}</div>}
+        {c.results.tables && c.results.tables.map((t) => <div class="case-table-wrap"><p class="case-chart-caption">{t.caption}</p>{t.note && <p class="case-table-note">{t.note}</p>}<div class="case-table-scroll"><table class="case-table"><thead><tr>{t.headers.map((h) => <th>{h}</th>)}</tr></thead><tbody>{t.rows.map((r) => <tr>{r.map((cell) => <td class={statusClass(cell)}>{cell}</td>)}</tr>)}</tbody></table></div></div>)}
+      </div>}
       <div class="case-panel"><p class="eyebrow">{t.common.atGlance}</p><div class="case-flow">{c.flow.map((f, i) => <Fragment><span class="case-node">{f}</span></Fragment>)}</div></div>
       <p class="case-note">{c.note}</p>
       {link && <a class="pill" href={link.href} rel="noopener noreferrer" target="_blank">{format(t.common.explore, { label: link.label })}</a>}
