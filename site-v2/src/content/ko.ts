@@ -31,6 +31,10 @@ export const ko: Copy = {
     experience: '경력',
     about: '소개',
     writing: '글',
+    hackathons: '해커톤',
+    projects: '프로젝트',
+    workWithMe: '함께 일하기',
+    menu: '메뉴',
     language: 'View this page in English',
     talk: '이야기해요',
   },
@@ -109,17 +113,21 @@ export const ko: Copy = {
     'model-familiarity-engine': { tag: '07 / 평가 연구', title: ['model-', 'familiarity-', 'engine'], body: '순위 대신, 재현한 작업에서 얻은 근거 기반 모델 카드.', proof: '오픈소스 / 부트스트랩 루프 출시' },
     'brink-mind': { tag: '08 / 네이티브 제품', title: ['Brink Mind'], body: '정신 건강을 위한 음성 AI와 Apple Watch 생체 신호. 민감한 데이터는 기기 안에 둡니다.', proof: '창업 / TestFlight 도달' },
   },
-  timeline: [
-    { when: '2026년 8월부터 현재', title: 'CTO, Thinking Brain School', line: '자율 AI 시스템 전반을 설계하고 운영합니다. 에이전트 플릿 아키텍처, 평가와 승인 게이트, Teaching MCP 서버를 맡고 있습니다.' },
-    { when: '2026년 7월부터 10월', title: 'AI 아키텍트 겸 엔지니어, Matra', line: '컨텍스트와 메모리 시스템을 포함한 MVP를 처음부터 설계하고 구축해 납품했습니다.' },
-    { when: '2026년 5월부터 10월', title: 'AI 구현 전문가, Blink Build Studios', line: '실서비스 AI 워크플로와 평가 및 관측 시스템을 구축했습니다. 무엇이 작동하고 어디서 문제가 생기는지 확인할 수 있게 했습니다.' },
-    { when: '2026년 4월부터 5월', title: '수석 AI 아키텍트, FunJoin', line: '계약직으로 기존 엔지니어 3명이 맡던 개발을 단독으로 인수했습니다. 팀에 축적된 지식을 지식 베이스로 정리하고, 에이전트가 코딩을 이어받을 수 있는 시스템을 구축했습니다.' },
-    { when: '2026년 1월부터 4월', title: '독립 AI 컨설턴트 겸 연구자', line: '비개발자 창업자들에게 Claude Code를 직접 가르치고, AI로 만든 애플리케이션을 리뷰했습니다.' },
-    { when: '2025년 9월부터 2026년 1월', title: '창업자 겸 CEO, HeyContext', line: '컨텍스트를 공유하는 멀티 에이전트 워크스페이스. 광고비 없이 한 달 만에 사용자 수백 명.' },
-    { when: '2025년 3월부터 9월', title: '창업자 겸 CEO, HeyContent', line: 'Instagram, YouTube, Gmail, 메모를 넘나드는 크로스 플랫폼 메모리와 페르소나 생성. 이후 HeyContext에 통합.' },
-    { when: '2024년 11월부터 2025년 3월', title: '창업자 겸 CEO, Brink Mind', line: '정신 건강을 위한 음성 AI와 Apple Watch 생체 신호. TestFlight 도달.' },
-    { when: '2024년부터 2025년', title: '해커톤 5회 우승, 결선 진출 1회', line: '모두 24~48시간 안에 만들었습니다.' },
-    { when: '2024년', title: '출간 작가', line: '시집 Notes on Surviving Eternity.' },
+  homeRows: [
+    { when: '2026년 8월 · 현재', title: ['최고기술책임자(CTO)', 'Thinking Brain School'], note: '', points: [
+      { lead: '', text: '교육 제품과 내부 운영 전반의 AI 제품 전략, 로드맵, 납품을 책임지고 있습니다.' },
+      { lead: '', text: 'ChatGPT와 Claude를 통해 수업과 인터랙티브 실습을 제공하는 Teaching MCP 서버를 설계하고 배포했습니다.' },
+      { lead: '', text: '대화형 음성 튜터를 설계하고 출시했습니다. 수업 페이지를 기반으로 매번 답변을 구성하는 음성 에이전트로, 보이는 텍스트와 스크린샷을 매 메시지와 함께 보내고, 수업별 대화 기록을 유지하며, 지난 수업을 검색할 수 있습니다.' },
+    ] },
+    { when: '2026년 1월 · 10월', title: ['독립 AI 제품', '& 구현 컨설턴트'], note: '별도의 클라이언트 프로젝트와 자문 업무. 동시 진행 포함.', points: [
+      { lead: 'Matra · AI 아키텍트 겸 엔지니어:', text: '엔드투엔드 AI 제품 아키텍처와 MVP 납품을 이끌었습니다.' },
+      { lead: 'Blink Build Studios · AI 구현 전문가:', text: '실서비스 AI 아키텍처, 워크플로, 연동을 납품했습니다. 평가와 관측 기능을 포함합니다.' },
+      { lead: 'FunJoin · 수석 AI 아키텍트:', text: '기존 엔지니어 3명이 맡던 개발을 단독으로 인수했습니다. 검색 시스템과 에이전트 배포/롤백 스킬을 구축했습니다.' },
+    ] },
+    { when: '2024년 11월 · 2026년 1월', title: ['창업자 & CEO', 'PersistOS, DivertissementAI & Brink Labs'], note: '', points: [
+      { lead: '', text: '세 개의 AI 벤처(HeyContext, HeyContent, Brink Mind)에서 제품 전략과 개발을 책임졌습니다.' },
+      { lead: '', text: 'UX 리서치, 디자인, 엔지니어링에 걸쳐 최대 9명의 팀을 이끌었습니다. HeyContext는 유료 광고 없이 첫 달 수백 명의 사용자를 기록했습니다.' },
+    ] },
   ],
   work: {
     eyebrow: '작업',

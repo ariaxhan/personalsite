@@ -30,6 +30,10 @@ export const en = {
     experience: 'Experience',
     about: 'About',
     writing: 'Writing',
+    hackathons: 'Hackathons',
+    projects: 'Projects',
+    workWithMe: 'Work with me',
+    menu: 'Menu',
     language: '이 페이지를 한국어로 보기',
     talk: "Let's talk",
   },
@@ -108,17 +112,21 @@ export const en = {
     'model-familiarity-engine': { tag: '07 / Evaluation research', title: ['model-', 'familiarity-', 'engine'], body: 'Evidence-backed model cards from replayed tasks, instead of a ranking.', proof: 'Open source / Bootstrap loop shipped' },
     'brink-mind': { tag: '08 / Native product', title: ['Brink Mind'], body: 'Voice AI and Apple Watch biometrics for mental health, with sensitive data kept on device.', proof: 'Founded / Reached TestFlight' },
   },
-  timeline: [
-    { when: 'Aug 2026 to Present', title: 'CTO, Thinking Brain School', line: 'An autonomous AI system, end to end: fleet architecture, evaluation and gates, and the Teaching MCP server.' },
-    { when: 'Jul to Oct 2026', title: 'AI architect and engineer, Matra', line: 'Designed, built, and delivered the MVP end to end, including its context and memory system.' },
-    { when: 'May to Oct 2026', title: 'AI Implementation Specialist, Blink Build Studios', line: 'Production AI workflows, with evaluation and observability layers to see what works and what breaks.' },
-    { when: 'Apr to May 2026', title: 'Lead AI Architect, FunJoin', line: 'On contract, took over as sole engineer from a team of three established engineers, capturing their institutional knowledge in a knowledge base and a system for agents to take over the coding.' },
-    { when: 'Jan to Apr 2026', title: 'Independent AI consultant and researcher', line: 'Taught non-technical founders Claude Code hands-on and reviewed their AI-generated applications.' },
-    { when: 'Sep 2025 to Jan 2026', title: 'Founder and CEO, HeyContext', line: 'A multi-agent workspace with shared context. Hundreds of users within a month, no ad spend.' },
-    { when: 'Mar to Sep 2025', title: 'Founder and CEO, HeyContent', line: 'Cross-platform memory and persona creation across Instagram, YouTube, Gmail, and notes. Integrated into HeyContext.' },
-    { when: 'Nov 2024 to Mar 2025', title: 'Founder and CEO, Brink Mind', line: 'Voice AI and Apple Watch biometrics for mental health. Reached TestFlight.' },
-    { when: '2024 to 2025', title: '5 hackathon wins, plus 1 finalist', line: 'Each one built in 24 to 48 hours.' },
-    { when: '2024', title: 'Published author', line: 'Notes on Surviving Eternity, a poetry collection.' },
+  homeRows: [
+    { when: 'Aug 2026 · Present', title: ['Chief Technology Officer', 'Thinking Brain School'], note: '', points: [
+      { lead: '', text: 'Own AI product strategy, roadmap, and delivery across educational products and internal operations.' },
+      { lead: '', text: 'Designed and deployed the Teaching MCP server for lessons and interactive practice through ChatGPT and Claude.' },
+      { lead: '', text: 'Architected and shipped the conversational voice tutor: a voice agent that grounds every reply in the lesson page, sending the visible text and a screenshot with each message, with one chat per lesson and search across past lessons.' },
+    ] },
+    { when: 'Jan 2026 · Oct 2026', title: ['Independent AI Product', '& Implementation Consultant'], note: 'Separate client engagements and advisory work, including concurrent projects.', points: [
+      { lead: 'Matra · AI Architect and Engineer:', text: 'Led end-to-end AI product architecture and MVP delivery.' },
+      { lead: 'Blink Build Studios · AI Implementation Specialist:', text: 'Production AI architectures, workflows, and integrations with evaluation and observability.' },
+      { lead: 'FunJoin · Lead AI Architect:', text: 'Sole engineer from a 3-engineer team; built retrieval and agent systems for deployments and rollbacks.' },
+    ] },
+    { when: 'Nov 2024 · Jan 2026', title: ['Founder & CEO', 'PersistOS, DivertissementAI & Brink Labs'], note: '', points: [
+      { lead: '', text: 'Owned product strategy and development across three AI ventures: HeyContext, HeyContent, and Brink Mind.' },
+      { lead: '', text: 'Managed teams of up to nine across UX research, design, and engineering; HeyContext reached hundreds of users in its first month without paid ads.' },
+    ] },
   ],
   work: {
     eyebrow: 'Work',
