@@ -24,6 +24,7 @@ const statusClass = (cell: string) => cell === 'PASS' ? 'st-pass' : cell === 'FA
     <aside class="case-aside"><p class="eyebrow">{t.common.caseStudy}</p><h2>{t.common.closer}</h2><p>{t.common.closerNote}</p></aside>
     <article class="case-story">
       {c.sections.map((s) => <section><p class="eyebrow">{s.label}</p><h2>{s.title}</h2>{s.paragraphs.map((p) => <p>{p}</p>)}</section>)}
+      {c.badges && <div class="case-badges">{c.badges.map((b) => <a href={b.href} rel="noopener noreferrer" target="_blank"><img src={b.src} alt={b.alt} loading="lazy" /></a>)}</div>}
       <div class="case-highlight"><span class="eyebrow">{t.common.keyPoint}</span><strong>{c.highlight.title}</strong><p>{c.highlight.body}</p></div>
       {c.results && <div class="case-results">
         <h3>{c.results.title}</h3>

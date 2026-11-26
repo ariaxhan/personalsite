@@ -24,6 +24,7 @@ export interface CaseStudy {
   videos?: { src: string; poster: string; label: string }[];
   gallery?: { src: string; alt: string }[];
   results?: CaseResults;
+  badges?: { src: string; alt: string; href: string }[];
 }
 
 export const enCases: Record<CaseSlug, CaseStudy> = {
@@ -69,6 +70,10 @@ export const enCases: Record<CaseSlug, CaseStudy> = {
     highlight: { title: 'A system, not a prompt', body: 'Memory, orchestration, evaluation, and verifiable outcomes are treated as product infrastructure rather than prompt-writing techniques.' },
     flow: ['Request', 'Context', 'Agents', 'Verify', 'Record'],
     note: 'Install from its own GitHub-hosted marketplace, ariaxhan/kernel-claude. This page does not imply validated task-success improvements beyond results published in the project itself.',
+    badges: [
+      { src: 'https://img.shields.io/endpoint?url=https%3A%2F%2Fhol.org%2Fapi%2Fregistry%2Fbadges%2Fplugin%3Fslug%3Daria-han%252Fkernel%26metric%3Dtrust%26style%3Dflat', alt: 'HOL Trust Score 91', href: 'https://hol.org/registry/plugins/aria-han%2Fkernel' },
+      { src: 'https://img.shields.io/endpoint?url=https%3A%2F%2Fhol.org%2Fapi%2Fregistry%2Fbadges%2Fplugin%3Fslug%3Daria-han%252Fkernel%26metric%3Dpublisher%26style%3Dflat', alt: 'HOL publisher verified: Aria Han', href: 'https://hol.org/registry/plugins/aria-han%2Fkernel' },
+    ],
   },
   modelmind: {
     name: 'ModelMind',

@@ -47,7 +47,7 @@ export interface Project {
 /** Every project, one index. Copy for each is keyed by name in the locale file. */
 export const projects: Project[] = [
   { name: 'Teaching MCP server', group: 'systems', caseSlug: 'teaching-mcp-server', links: [] },
-  { name: 'KERNEL', group: 'systems', caseSlug: 'kernel', links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/kernel-claude' }, { label: 'HOL Registry', href: 'https://hol.org/registry/plugins/aria-han/kernel' }] },
+  { name: 'KERNEL', group: 'systems', caseSlug: 'kernel', links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/kernel-claude' }, { label: 'HOL Registry', href: 'https://hol.org/registry/plugins/aria-han%2Fkernel' }, { label: 'Awesome AI Plugins', href: 'https://github.com/wshobson/awesome-ai-plugins/blob/HEAD/README.md' }] },
   { name: 'llm-bench', group: 'systems', caseSlug: 'llm-bench', links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/llm-bench' }] },
   { name: 'model-familiarity-engine', group: 'systems', caseSlug: 'model-familiarity-engine', links: [{ label: 'GitHub', href: 'https://github.com/ariaxhan/model-familiarity-engine' }] },
   { name: 'Nexus Office', group: 'systems', links: [] },

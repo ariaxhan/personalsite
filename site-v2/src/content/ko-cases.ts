@@ -44,6 +44,10 @@ export const koCases: Cases = {
     highlight: { title: '프롬프트가 아니라 시스템', body: '메모리, 오케스트레이션, 평가, 검증 가능한 결과를 프롬프트 작성 기법이 아니라 제품 인프라로 다룹니다.' },
     flow: ['요청', '컨텍스트', '에이전트', '검증', '기록'],
     note: '자체 GitHub 마켓플레이스(ariaxhan/kernel-claude)에서 설치합니다. 이 페이지는 프로젝트 자체에 공개된 결과 이상의 작업 성공률 개선을 의미하지 않습니다.',
+    badges: [
+      { src: 'https://img.shields.io/endpoint?url=https%3A%2F%2Fhol.org%2Fapi%2Fregistry%2Fbadges%2Fplugin%3Fslug%3Daria-han%252Fkernel%26metric%3Dtrust%26style%3Dflat', alt: 'HOL Trust Score 91', href: 'https://hol.org/registry/plugins/aria-han%2Fkernel' },
+      { src: 'https://img.shields.io/endpoint?url=https%3A%2F%2Fhol.org%2Fapi%2Fregistry%2Fbadges%2Fplugin%3Fslug%3Daria-han%252Fkernel%26metric%3Dpublisher%26style%3Dflat', alt: 'HOL publisher verified: Aria Han', href: 'https://hol.org/registry/plugins/aria-han%2Fkernel' },
+    ],
   },
   modelmind: {
     name: 'ModelMind',
