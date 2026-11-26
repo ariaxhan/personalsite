@@ -38,7 +38,7 @@ export const en = {
     talk: "Let's talk",
   },
   footer: {
-    eyebrow: 'Open to full-time roles in New York City, and to client work',
+    eyebrow: 'Open to full-time roles in New York, Chicago, San Francisco, and London, and to client work',
     heading: ["Let's", 'talk.'],
     note: 'Selected work highlights public and independently owned projects.',
     hackathons: 'Hackathons',
@@ -64,7 +64,7 @@ export const en = {
     lede: "I've founded products, led researchers and designers, and built the systems behind them. I work across what people need, what teams can deliver, and what technology can reliably do.",
     seeWork: 'See selected work',
     howIWork: 'How I work',
-    heroNote: ['Founder · CTO · Product & AI systems · Writer', 'Based in California · Relocating to New York City'],
+    heroNote: ['Founder · CTO · Product & AI systems · Writer', 'Based in California · Open to relocating to New York, Chicago, San Francisco, or London.'],
     workHeading: ['The good', 'stuff.'],
     workNote: 'Selected work in product ownership, user experience, and agent systems. Each project opens a separate page.',
     allWork: 'All selected work',
@@ -104,7 +104,7 @@ export const en = {
   },
   cards: {
     heycontext: { tag: '01 / Product & leadership', title: ['HeyContext'], body: 'From research and design iterations to priorities, teams, and a shipped agent workspace.', proof: 'Founded / Product owner / Hundreds of users in month one' },
-    kernel: { tag: '02 / Developer platform', title: ['KERNEL'], body: 'What an agent needs beyond a prompt: persistent context, coordination, verification, and experimentation.', proof: 'Public source / 15 stars / 86 releases' },
+    kernel: { tag: '02 / Developer platform', title: ['KERNEL'], body: 'What an agent needs beyond a prompt: persistent context, coordination, verification, and experimentation.', proof: 'Public source' },
     modelmind: { tag: '03 / Product experience', title: ['ModelMind'], body: 'Turning a technical subject into an approachable learning experience people can use.', proof: 'Independent product / App Store + Google Play' },
     'thinking-brain-school': { tag: '04 / Product & AI architecture', title: ['Thinking', 'Brain School'], body: 'Connecting learning goals, product decisions, and the technical work required for delivery.', proof: 'CTO / Public role overview' },
     'teaching-mcp-server': { tag: '05 / AI interoperability', title: ['Teaching', 'MCP server'], body: 'Interactive lesson access for AI assistants, checked live before anyone relies on it.', proof: 'Live in production' },
@@ -252,7 +252,7 @@ export const en = {
   },
   projects: {
     'Teaching MCP server': { line: 'Interactive lesson access for AI assistants at Thinking Brain School.', proof: 'Verified against the live production server.', status: 'In production' },
-    KERNEL: { line: 'Claude Code kept starting over, so I built memory, rules, and receipts around it.', proof: '15 GitHub stars, 86 releases, 27 skills. HOL Trust Score 91, publisher and owner verified.', status: 'Active, own GitHub marketplace' },
+    KERNEL: { line: 'Claude Code kept starting over, so I built memory, rules, and receipts around it.', proof: 'HOL Trust Score 91, publisher and owner verified.', status: 'Active, own GitHub marketplace' },
     'llm-bench': { line: 'Leaderboards were not answering my questions, so I made tests that did.', proof: '42 tests, graded by programmatic verifiers.', status: 'Active' },
     'model-familiarity-engine': { line: 'I wanted to know what a model had earned across a working relationship, not where it ranked.', proof: 'Replay-bootstrap loop shipped: redaction, replay, observed model cards.', status: 'Bootstrap loop shipped' },
     'Nexus Office': { line: 'Agents that keep working without you need a place where you can see and answer them.', proof: 'Private system with live Mac and phone clients.', status: 'Active, private' },
@@ -278,7 +278,7 @@ export const en = {
     heading: ["Let's build", 'it right.'],
     intro: 'I like technically ambitious work with thoughtful people, especially when the AI matters but the people matter more. The site is open to every kind of opportunity, including full-time roles.',
     jobsHeading: 'Hiring?',
-    jobsBody: "I'm open to full-time product, platform, and AI engineering roles, based in California and relocating to New York City. Email me or book a call; my experience page has the full record.",
+    jobsBody: "I'm open to full-time product, platform, and AI engineering roles, based in California and open to relocating to New York, Chicago, San Francisco, or London. Email me or book a call; my experience page has the full record.",
     jobsCta: 'See the experience',
     takeOnHeading: 'What I take on.',
     engagements: [

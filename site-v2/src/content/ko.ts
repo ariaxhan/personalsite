@@ -39,7 +39,7 @@ export const ko: Copy = {
     talk: '이야기해요',
   },
   footer: {
-    eyebrow: '뉴욕 기반 정규직과 클라이언트 작업 모두 열려 있습니다',
+    eyebrow: '뉴욕, 시카고, 샌프란시스코, 런던 기반 정규직과 클라이언트 작업 모두 열려 있습니다',
     heading: ['같이', '얘기해요.'],
     note: '주요 작업에는 공개되었거나 직접 소유한 프로젝트만 소개합니다.',
     hackathons: '해커톤',
@@ -65,7 +65,7 @@ export const ko: Copy = {
     lede: '제품을 창업하고, 리서처와 디자이너를 이끌고, 그 뒤의 시스템을 직접 만들었습니다. 사람에게 필요한 것, 팀이 해낼 수 있는 것, 기술이 안정적으로 할 수 있는 것 사이에서 일합니다.',
     seeWork: '주요 작업 보기',
     howIWork: '일하는 방식',
-    heroNote: ['창업자 · CTO · 제품 & AI 시스템 · 작가', '캘리포니아 거주 · 뉴욕으로 이주 예정'],
+    heroNote: ['창업자 · CTO · 제품 & AI 시스템 · 작가', '캘리포니아 거주 · 뉴욕, 시카고, 샌프란시스코, 런던으로 이주 가능'],
     workHeading: ['좋은 것들만', '골랐습니다.'],
     workNote: '제품 오너십, 사용자 경험, 에이전트 시스템 분야의 주요 작업입니다. 프로젝트마다 별도 페이지가 열립니다.',
     allWork: '전체 주요 작업',
@@ -105,7 +105,7 @@ export const ko: Copy = {
   },
   cards: {
     heycontext: { tag: '01 / 제품 & 리더십', title: ['HeyContext'], body: '리서치와 디자인 반복에서 우선순위와 팀, 그리고 출시한 에이전트 워크스페이스까지.', proof: '창업 / 제품 오너 / 첫 달 사용자 수백 명' },
-    kernel: { tag: '02 / 개발자 플랫폼', title: ['KERNEL'], body: '에이전트에게 프롬프트 이상으로 필요한 것: 지속되는 컨텍스트, 조율, 검증, 실험.', proof: '공개 소스 / 스타 15개 / 릴리스 86회' },
+    kernel: { tag: '02 / 개발자 플랫폼', title: ['KERNEL'], body: '에이전트에게 프롬프트 이상으로 필요한 것: 지속되는 컨텍스트, 조율, 검증, 실험.', proof: '공개 소스' },
     modelmind: { tag: '03 / 제품 경험', title: ['ModelMind'], body: '기술적인 주제를 누구나 쓸 수 있는 친근한 학습 경험으로 바꿨습니다.', proof: '독립 제품 / App Store + Google Play' },
     'thinking-brain-school': { tag: '04 / 제품 & AI 아키텍처', title: ['Thinking', 'Brain School'], body: '학습 목표, 제품 결정, 그리고 이를 실제로 전달하는 데 필요한 기술 작업을 연결합니다.', proof: 'CTO / 공개 역할 개요' },
     'teaching-mcp-server': { tag: '05 / AI 상호운용성', title: ['Teaching', 'MCP 서버'], body: 'AI 어시스턴트를 위한 인터랙티브 수업 접근. 누군가 사용하기 전에 실서비스에서 먼저 점검합니다.', proof: '실서비스 운영 중' },
@@ -253,7 +253,7 @@ export const ko: Copy = {
   },
   projects: {
     'Teaching MCP server': { line: 'Thinking Brain School의 AI 어시스턴트용 인터랙티브 수업 접근.', proof: '실서비스 서버에서 검증했습니다.', status: '실서비스 운영 중' },
-    KERNEL: { line: 'Claude Code가 자꾸 처음부터 다시 시작해서, 그 주위에 메모리, 규칙, 기록을 만들었습니다.', proof: 'GitHub 스타 15개, 릴리스 86회, 스킬 27개. HOL Trust Score 91, 퍼블리셔 및 소유자 인증.', status: '활성, 자체 GitHub 마켓플레이스' },
+    KERNEL: { line: 'Claude Code가 자꾸 처음부터 다시 시작해서, 그 주위에 메모리, 규칙, 기록을 만들었습니다.', proof: 'HOL Trust Score 91, 퍼블리셔 및 소유자 인증.', status: '활성, 자체 GitHub 마켓플레이스' },
     'llm-bench': { line: '리더보드가 제 질문에 답해 주지 않아서, 답해 주는 테스트를 만들었습니다.', proof: '테스트 42개, 프로그램 검증기로 채점.', status: '활성' },
     'model-familiarity-engine': { line: '모델의 순위가 아니라, 함께 일하며 쌓아 온 것이 무엇인지 알고 싶었습니다.', proof: '리플레이 부트스트랩 루프 출시: 민감 정보 제거, 재현, 관찰 기반 모델 카드.', status: '부트스트랩 루프 출시' },
     'Nexus Office': { line: '나 없이도 계속 일하는 에이전트에게는, 그들을 보고 답할 수 있는 공간이 필요합니다.', proof: 'Mac과 휴대폰 클라이언트가 실제로 동작하는 비공개 시스템.', status: '활성, 비공개' },
@@ -279,7 +279,7 @@ export const ko: Copy = {
     heading: ['제대로', '만들어 봐요.'],
     intro: '사려 깊은 사람들과 하는 기술적으로 도전적인 일을 좋아합니다. 특히 AI가 중요하지만 사람이 더 중요한 일이라면요. 정규직을 포함한 모든 종류의 기회에 열려 있습니다.',
     jobsHeading: '채용 중이신가요?',
-    jobsBody: '제품, 플랫폼, AI 엔지니어링 분야의 정규직에 열려 있습니다. 현재 캘리포니아에 있고 뉴욕으로 이주할 예정입니다. 이메일을 보내시거나 통화를 예약해 주세요. 전체 이력은 경력 페이지에 있습니다.',
+    jobsBody: '제품, 플랫폼, AI 엔지니어링 분야의 정규직에 열려 있습니다. 현재 캘리포니아에 거주하며 뉴욕, 시카고, 샌프란시스코, 런던으로의 이주에 열려 있습니다. 이메일을 보내시거나 통화를 예약해 주세요. 전체 이력은 경력 페이지에 있습니다.',
     jobsCta: '경력 보기',
     takeOnHeading: '맡는 일.',
     engagements: [
