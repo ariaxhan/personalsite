@@ -79,10 +79,10 @@ export const hackathons = [
 ];
 
 export const writing = [
+  { href: 'https://medium.com/@ariaxhan/i-put-chatgpt-in-charge-of-claude-code-7b9bf5bb8ea9', title: 'I Put ChatGPT in Charge of Claude Code' },
+  { href: 'https://medium.com/@ariaxhan/i-tested-openais-new-codex-desktop-app-the-ui-is-the-real-product-c2c59bdcb5f6', title: "I Tested OpenAI's New Codex Desktop App. The UI Is the Real Product" },
+  { href: 'https://medium.com/@ariaxhan/kernel-the-ultimate-self-evolving-claude-code-and-cursor-configuration-system-a3ddeb7f4d32', title: 'KERNEL: The Ultimate Self-Evolving Claude Code (and Cursor) Configuration System' },
   { href: 'https://medium.com/@ariaxhan/stop-writing-markdown-start-writing-memory-e4a69c57caa9', title: 'Stop Writing Markdown. Start Writing Memory.' },
-  { href: 'https://medium.com/@ariaxhan/claude-vs-gpt-vs-gemini-youre-benchmarking-the-wrong-thing-762c7e9cca5d', title: "Claude vs. GPT vs. Gemini: You're Benchmarking the Wrong Thing" },
-  { href: 'https://medium.com/@ariaxhan/how-i-stopped-debugging-ai-generated-code-1be33241b3c8', title: "I Stopped Debugging Claude's Code and Started Debugging My Prompts Instead" },
-  { href: 'https://medium.com/@ariaxhan/grok-bot-cursors-bet-on-multi-agent-ai-77d69ba8b290', title: "Grok Bot: Cursor's Bet on Multi-Agent AI" },
 ];
 export const books = [
   { title: 'The Nanotech Succession', author: 'Linda Nagata', color: '#56695a' },

@@ -176,7 +176,7 @@ export const ko: Copy = {
     intro: '시스템, 메모리, 그리고 AI에 합리적으로 기대할 수 있는 것에 대해 씁니다. 소설과 시도 씁니다.',
     highlightsHeading: '추천 글.',
     highlightsNote: '먼저 읽어 볼 에세이 네 편입니다. 나머지는 Medium에 있습니다.',
-    topics: ['에이전트 메모리', '평가', 'AI와 일', 'AI 에이전트'],
+    topics: ['AI 에이전트', 'AI와 일', '에이전트 메모리', '메모리'],
     booksHeading: '책.',
     novel: '소설',
     novelNote: '장편소설.',

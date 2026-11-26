@@ -175,7 +175,7 @@ export const en = {
     intro: 'I write about systems, memory, and what we can reasonably expect from AI. Also fiction and poetry.',
     highlightsHeading: 'Highlights.',
     highlightsNote: 'Four essays to start with. The rest are on Medium.',
-    topics: ['Agent memory', 'Evaluation', 'AI & work', 'AI agents'],
+    topics: ['AI agents', 'AI & work', 'Agent memory', 'Memory'],
     booksHeading: 'Books.',
     novel: 'Fiction',
     novelNote: 'A novel.',
