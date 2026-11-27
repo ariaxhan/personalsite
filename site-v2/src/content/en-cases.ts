@@ -154,84 +154,18 @@ export const enCases: Record<CaseSlug, CaseStudy> = {
     intro: 'Will this model hold up on your actual work?',
     details: [
       { label: 'Role', value: 'Creator / maintainer' },
-      { label: 'Tests', value: '42, programmatically verified' },
       { label: 'Runs on', value: 'Ollama, Bedrock, Claude CLI, OpenAI-compatible' },
       { label: 'Evidence', value: 'Public GitHub repository' },
     ],
     sections: [
       { label: '01 / Problem', title: 'Leaderboards answer the wrong question', paragraphs: ["A leaderboard tells you how a model ranks on someone else's tasks. It does not tell you whether it will hold up on yours."] },
-      { label: '02 / Product choice', title: 'Real workflow tasks', paragraphs: ['42 tests that mirror real work: extracting structured data, finding planted bugs, writing emails, resisting prompt injection, and reasoning through dependency chains. Standard, hard, and full suites, plus a quick sanity check.'] },
+      { label: '02 / Product choice', title: 'Real workflow tasks', paragraphs: ['Tests that mirror real work: extracting structured data, finding planted bugs, writing emails, resisting prompt injection, and reasoning through dependency chains. Standard, hard, and full suites, plus a quick sanity check.'] },
       { label: '03 / Evaluation', title: 'No vibes, no LLM-as-judge', paragraphs: ['Every test has a programmatic verifier. A benchmark only matters if the measuring stick is explicit enough to argue with, and programmatic verifiers force an honesty that a model grading a model lets you skip.'] },
       { label: '04 / What is public', title: 'Run it yourself', paragraphs: ['The repository includes published model comparisons and is built to be collaborative: run it on your hardware and submit results.'] },
     ],
-    highlight: { title: '42 tests, every one verified in code', body: 'Local models, Apple Intelligence, Claude tiers, Bedrock, or any OpenAI-compatible endpoint.' },
+    highlight: { title: 'Every test verified in code', body: 'Local models, Apple Intelligence, Claude tiers, Bedrock, or any OpenAI-compatible endpoint.' },
     flow: ['Task', 'Model', 'Verifier', 'Score', 'Compare'],
-    note: 'Test counts follow the public repository README.',
-    results: {
-      title: 'Measured results',
-      source: 'Grading v3 rescore, Oct 2, 2026. All 168 archived answers rescored with repaired graders; no new answers, no prompt changes. PASS means a full grader score of 1.0. Temperature 0.0.',
-      models: {
-        caption: 'Models tested',
-        groups: [
-          { label: 'Grading v3 rescore, Oct 2, 2026', items: [
-            { name: 'gpt-6.1-sol', href: 'https://platform.openai.com/docs/models/gpt-6.1-sol', note: 'Codex CLI' },
-            { name: 'qwen3-coder:30b', href: 'https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct', note: 'Ollama' },
-            { name: 'devstral-small-2:24b', href: 'https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512', note: 'Ollama' },
-            { name: 'lfm2.5:8b', href: 'https://huggingface.co/LiquidAI/LFM2.5-8B-A1B', note: 'Ollama' },
-          ] },
-          { label: 'Claude tiers, historical (pre-correction)', items: [
-            { name: 'Opus 4.8', href: 'https://www.anthropic.com/claude', note: 'Claude Code harness' },
-            { name: 'Opus 4.7', href: 'https://www.anthropic.com/claude', note: 'Claude Code harness' },
-            { name: 'Sonnet 4.6', href: 'https://www.anthropic.com/claude', note: 'Claude Code harness' },
-            { name: 'Haiku 4.5', href: 'https://www.anthropic.com/claude', note: 'Claude Code harness' },
-          ] },
-          { label: 'Local models, standard suite, historical (pre-correction)', items: [
-            { name: 'llama3.2:3b', href: 'https://huggingface.co/meta-llama/Llama-3.2-3B', note: 'Ollama' },
-            { name: 'phi4:14b', href: 'https://huggingface.co/microsoft/phi-4', note: 'Ollama' },
-            { name: 'qwen2.5-coder:7b', href: 'https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct', note: 'Ollama' },
-            { name: 'apple-foundationmodel', href: 'https://developer.apple.com/documentation/foundationmodels', note: 'Apple Intelligence' },
-            { name: 'mistral:7b', href: 'https://huggingface.co/mistralai/Mistral-7B-v0.1', note: 'Ollama' },
-            { name: 'qwen3.5:4b', href: 'https://huggingface.co/Qwen/Qwen3.5-4B', note: 'Ollama' },
-          ] },
-        ],
-      },
-      stats: [
-        { value: '42', label: 'tests, 12 routine + 30 stress, every one programmatic' },
-        { value: '168', label: 'archived answers rescored with repaired graders' },
-        { value: '30/30', label: 'full scores on stress, gpt-6.1-sol' },
-        { value: '+0.60 / -0.65', label: 'earned-certainty lag: confident hallucination vs well-sourced fact' },
-      ],
-      bars: [
-        { caption: 'Overall score, 42 tests, grading v3', items: [
-          { label: 'gpt-6.1-sol · Codex CLI', value: 0.9928571428571429, display: '0.993', meta: '41 of 42 full scores · 740s' },
-          { label: 'qwen3-coder:30b · Ollama', value: 0.8573885109599395, display: '0.857', meta: '29 of 42 full scores · 103s' },
-          { label: 'devstral-small-2:24b · Ollama', value: 0.8558390022675737, display: '0.856', meta: '25 of 42 full scores · 380s' },
-          { label: 'lfm2.5:8b · Ollama', value: 0.8228798185941043, display: '0.823', meta: '29 of 42 full scores · 259s' },
-        ] },
-      ],
-      grouped: { caption: 'Routine (12 tests) vs stress (30 tests), mean score', seriesA: 'Routine', seriesB: 'Stress', items: [
-        { label: 'gpt-6.1-sol', a: 0.975, aDisplay: '0.975', b: 1.0, bDisplay: '1.000' },
-        { label: 'qwen3-coder:30b', a: 0.9880952380952381, aDisplay: '0.988', b: 0.8051058201058201, bDisplay: '0.805' },
-        { label: 'devstral-small-2:24b', a: 0.9880952380952381, aDisplay: '0.988', b: 0.802936507936508, bDisplay: '0.803' },
-        { label: 'lfm2.5:8b', a: 0.7566666666666667, aDisplay: '0.757', b: 0.8493650793650793, bDisplay: '0.849' },
-      ] },
-      tables: [
-        { caption: 'Claude tiers, historical (pre-correction)', note: 'Measured Jun 1, 2026 via the Claude Code harness, not the raw API, so these are not directly comparable to the Ollama scores above. All four tiers refused all 6 honesty traps and caught all planted bugs.', headers: ['Model', 'Standard (11)', 'Hard (10)', 'Combined (21)', 'Honesty traps', 'Planted bugs'], rows: [
-          ['Opus 4.8', '0.903', '0.73', '0.821', '6/6 refused', 'all caught'],
-          ['Opus 4.7', '0.904', '0.81', '0.859', '6/6 refused', 'all caught'],
-          ['Sonnet 4.6', '0.823', '0.67', '0.750', '6/6 refused', 'all caught'],
-          ['Haiku 4.5', '0.876', '0.67', '0.778', '6/6 refused', 'all caught'],
-        ] },
-        { caption: 'Local models, standard suite (11 tests), historical (pre-correction)', note: 'M4 Pro 24GB. Apple Intelligence ran the suite in 39s; llama3.2:3b in 102s, phi4:14b in 271s.', headers: ['Model', 'Score', 'Time'], rows: [
-          ['llama3.2:3b', '0.82', '102s'],
-          ['phi4:14b', '0.81', '271s'],
-          ['qwen2.5-coder:7b', '0.79', '561s'],
-          ['apple-foundationmodel', '0.74', '39s'],
-          ['mistral:7b', '0.72', '285s'],
-          ['qwen3.5:4b', '0.23', '896s'],
-        ] },
-      ],
-    },
+    note: 'The repository is public; run it on your own hardware and submit results.',
   },
   'model-familiarity-engine': {
     name: 'model-familiarity-engine',
@@ -252,53 +186,6 @@ export const enCases: Record<CaseSlug, CaseStudy> = {
     highlight: { title: "Not which model is best, but what this one has earned", body: 'Model cards come from observed behavior on replayed, known-outcome tasks.' },
     flow: ['Transcript', 'Redact', 'Replay', 'Observe', 'Model card'],
     note: 'This page describes the shipped loop, not a claim of benchmark coverage beyond the repository.',
-    results: {
-      title: 'Measured results',
-      source: 'Experiment 0 gate results, protocol 9a730f21729df095. Nine gates decide whether the instrument is certified. A failed hard gate means NOT CERTIFIED.',
-      lede: 'Experiment 0 checked whether the judging setup itself could be trusted, before any model was scored. It failed on provenance: the test material has no record of where it came from, so no score from this run is certified.',
-      models: {
-        caption: 'Models tested',
-        groups: [
-          { label: 'Experiment 0 panel (gates.json)', items: [
-            { name: 'Qwen3-235B-A22B-2507', href: 'https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507', note: 'Bedrock qwen.qwen3-235b-a22b-2507-v1:0, test environment' },
-            { name: 'Llama 3.3 70B Instruct (judge_a)', href: 'https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct', note: 'Bedrock us.meta.llama3-3-70b-instruct-v1:0' },
-            { name: 'Claude Sonnet 4.6 (judge_b)', href: 'https://www.anthropic.com/claude', note: 'Bedrock us.anthropic.claude-sonnet-4-6' },
-            { name: 'GPT-5.1 (judge_c)', href: 'https://platform.openai.com/docs/models/gpt-5.1', note: 'OpenAI gpt-5.1' },
-          ] },
-        ],
-      },
-      stats: [
-        { value: '339', label: 'full cells in the panel agreement measurement' },
-        { value: '0.95', label: 'oracle consistency (threshold 0.90)' },
-        { value: '9', label: 'gates in the certification instrument' },
-        { value: 'NOT CERTIFIED', label: 'verdict: provenance failed, two gates pending' },
-      ],
-      bars: [
-        { caption: 'Individual judge reliability (floor 0.71, target 0.80)', items: [
-          { label: 'judge_a', value: 1.0, display: '1.00' },
-          { label: 'judge_b', value: 0.97, display: '0.97' },
-          { label: 'judge_c', value: 0.92, display: '0.92' },
-        ] },
-        { caption: 'Pair agreement between judges (mean 0.74, threshold 0.67)', items: [
-          { label: 'judge_a | judge_b', value: 0.65, display: '0.65' },
-          { label: 'judge_a | judge_c', value: 0.73, display: '0.73' },
-          { label: 'judge_b | judge_c', value: 0.84, display: '0.84' },
-        ] },
-      ],
-      tables: [
-        { caption: 'Experiment 0 gates', note: 'Verdict: NOT CERTIFIED. Provenance failed: 5 source shard hashes verified for byte custody, but no collection-time protocol/rubric stamp exists. The instrument caught the gap instead of passing it.', headers: ['Gate', 'Value', 'Status'], rows: [
-          ['Oracle consistency', '0.95', 'PASS'],
-          ['Judge reliability, minimum', '0.92', 'PASS'],
-          ['Panel inter-judge agreement', '0.74', 'PASS'],
-          ['Blind leakage, provider guess', 'max 40% vs 25% chance', 'PASS'],
-          ['Challenge ambiguity', 'span 25-87%', 'PASS'],
-          ['Floor gate', 'pass', 'PASS'],
-          ['Oracle false-negative rate', 'pending', 'PENDING'],
-          ['Human-anchor agreement', 'pending', 'PENDING'],
-          ['Provenance', 'retrospective only', 'FAIL'],
-        ] },
-      ],
-    },
   },
   'brink-mind': {
     name: 'Brink Mind',
